@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour
-{
+{ 
     private bool _isCheck = false;
 
     public bool GetIsCheck()
