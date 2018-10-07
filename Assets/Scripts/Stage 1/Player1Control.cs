@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Control : MonoBehaviour
+public class Player1Control : PlayerBase
 {
     private CharacterController _playercontrol;
     private Rigidbody _rigibody;
@@ -38,5 +38,15 @@ public class Player1Control : MonoBehaviour
         _velocity.y -= _gravity * Time.deltaTime;
 
         _playercontrol.Move(_velocity * Time.deltaTime + move * Time.deltaTime * _speed);
+    }
+
+    public override void DropItem()
+    {
+        base.DropItem();
+    }
+
+    public override void PickUp()
+    {
+        base.PickUp();
     }
 }

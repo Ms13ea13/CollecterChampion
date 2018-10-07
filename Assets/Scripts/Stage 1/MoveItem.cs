@@ -5,8 +5,50 @@ using UnityEngine;
 public class MoveItem : MonoBehaviour
 {
     public float _itemspeed;
-	
-	void Update ()
+
+    private bool checkHit;
+    
+    [SerializeField]
+    private Transform[] targetWayPoints;
+
+    private int indeXWayPoint;
+
+    private void Start()
+    {
+        indeXWayPoint = 0;
+        StartCoroutine(GetToWayPoint());
+    }
+
+
+    private IEnumerator GetToWayPoint()
+    {
+        while (checkHit == false)
+        {
+            if (indeXWayPoint < targetWayPoints.Length)
+            {
+                Vector3 target = targetWayPoints[indeXWayPoint].position;
+
+                if (transform.position != targetWayPoints[indeXWayPoint].position)
+                {
+                    LerpObj();
+                }
+
+                if (transform.position == target)
+                {
+                    indeXWayPoint += 1;
+                }
+            }
+            else
+            {
+                indeXWayPoint = 0;
+            }
+            
+            yield return null;
+        }
+        
+    }
+
+    void Update ()
     {
         transform.position += transform.right * Time.deltaTime * -1 * _itemspeed;
 
@@ -23,11 +65,17 @@ public class MoveItem : MonoBehaviour
         }
     }
 
+
+    private void LerpObj()
+    {
+        
+    }
+
     void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == "Bin")
         {
-            Destroy(gameObject);
+            checkHit = true;
         }
     }
 }

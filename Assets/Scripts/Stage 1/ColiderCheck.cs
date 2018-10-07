@@ -12,20 +12,18 @@ public class ColiderCheck : MonoBehaviour
         {
             if (other.transform.tag == GameManagerStage1._targetPicture && !obj.GetIsCheck())
             {
-                other.gameObject.GetComponent<Target>().SetIsCheck();
+                other.gameObject.GetComponent<Target>().SetIsCheck(true);
                 GameManagerStage1._score += 1;
             }
             else
             {
-                GameManagerStage1._score -= 1;
-
-                if (GameManagerStage1._score <= 0)
-                {
-                    GameManagerStage1._score = 0;
-                }
+                if (GameManagerStage1._score>0)
+                    GameManagerStage1._score -= 1;
             }
-
-            Destroy(other.gameObject);
+            
+             obj.SetDestroy(true);
+          
+            
         }
     }
 }
