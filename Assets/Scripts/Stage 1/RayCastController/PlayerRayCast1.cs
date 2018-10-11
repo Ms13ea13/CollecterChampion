@@ -5,16 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.WSA.Input;
 
-public class PlayerRayCast : MonoBehaviour
+public class PlayerRayCast1 : MonoBehaviour
 {
-
-	[SerializeField]
 	private GameObject temp;
-
-	[SerializeField]
 	private GameObject currentItemInFront;
+    private bool holding;
 
-	[SerializeField]
+    [SerializeField]
 	private CharacterController charContr;
 	
 	[SerializeField]
@@ -22,9 +19,6 @@ public class PlayerRayCast : MonoBehaviour
 
 	[SerializeField]
 	private float distanceToObstacle;
-
-	[SerializeField]
-	private bool holding;
 
 	void Start()
 	{
@@ -59,8 +53,10 @@ public class PlayerRayCast : MonoBehaviour
 		distanceToObstacle = 0;
 
 		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
-		    hit.transform.tag == "Item")
+		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+		    hit.transform.tag == "Item1") || (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+            hit.transform.tag == "Item2") || (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+            hit.transform.tag == "Item3"))
 		{
 			distanceToObstacle = hit.distance;
 			currentItemInFront = hit.transform.gameObject;
@@ -79,9 +75,8 @@ public class PlayerRayCast : MonoBehaviour
 	{
 		if (target != null && !holding)
 		{
-			if (Input.GetKeyUp(KeyCode.Space))
+			if (Input.GetButtonDown("PickupJoy1"))
 			{
-//				Debug.LogError("pick up");
 				target.transform.parent = transform;
 				target.GetComponent<MoveItem>().enabled = false;
 				temp = target;
@@ -94,9 +89,8 @@ public class PlayerRayCast : MonoBehaviour
 	{
 		if (target && holding)
 		{
-			if (Input.GetKeyDown(KeyCode.B))
+			if (Input.GetButtonDown("ThrowJoy1"))
 			{
-//				Debug.LogError("drop");
 				target.transform.parent = null;
 				target.GetComponent<Target>().Throw(20f);
 
