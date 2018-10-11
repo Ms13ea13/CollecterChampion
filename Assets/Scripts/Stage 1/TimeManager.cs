@@ -5,21 +5,42 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    public static float time = 21;
+
+    private static TimeManager _instance;
+    
+    [SerializeField]
+    private float timer = 21;
     public Text ForTimeTextUI;
 
-    void Start()
+    private void Awake()
     {
-        ForTimeTextUI.text = "Time : " + time;
+
+        _instance = this;
     }
 
-    void Update()
+    public static TimeManager GetInstance()
     {
-        ForTimeTextUI.text = "Time : " + (int)time;
+        return _instance;
+    }
 
-        if (time <= 0)
+    public void SetTimeText(string newMessage)
+    {
+        ForTimeTextUI.text = "Time : " +  newMessage;
+    }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
+
+    public void SetTimeer(float minusTimer)
+    {
+        if (timer >0)
+        timer -= minusTimer;
+        else
         {
-            time = 0;
+            timer = 0;
+            GameManagerStage1.GetInstance().SetGameEnd(true);
         }
     }
 }

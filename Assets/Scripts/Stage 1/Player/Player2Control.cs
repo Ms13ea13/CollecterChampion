@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Player2Control : PlayerBase
 {
-    private CharacterController _playercontrol;
-    private Rigidbody _rigibody;
-    private Vector3 _velocity;
-
-    public Vector3 _drag;
-    public float _gravity;
-    public float _speed;
-
     void Start ()
     {
         _playercontrol = GetComponentInParent<CharacterController>();
@@ -39,14 +31,4 @@ public class Player2Control : PlayerBase
 
         _playercontrol.Move(_velocity * Time.deltaTime + move * Time.deltaTime * _speed);
     }
-
-    /*public override void DropItem()
-    {
-        base.DropItem();
-    }
-
-    public override void PickUp()
-    {
-        base.PickUp();
-    }*/
 }
