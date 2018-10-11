@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 143017470148716338}
   - component: {fileID: 54462504153958056}
   m_Layer: 0
-  m_Name: Player_2
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,6 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a8b200c5823df4599944a720461c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  score: 0
+  playerName: 
   _drag: {x: 0, y: 0, z: 0}
   _gravity: 20
   _speed: 6
