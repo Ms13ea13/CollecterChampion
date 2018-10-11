@@ -6,21 +6,21 @@ public class MoveItem : MonoBehaviour
 {
     public float _itemspeed;
 
-    private bool checkHit;
+    //private bool checkHit;
     
-    [SerializeField]
+    /*[SerializeField]
     private Transform[] targetWayPoints;
 
-    private int indeXWayPoint;
+    private int indeXWayPoint;*/
 
     private void Start()
     {
-        indeXWayPoint = 0;
-        StartCoroutine(GetToWayPoint());
+        /*indeXWayPoint = 0;
+        StartCoroutine(GetToWayPoint());*/
     }
 
 
-    private IEnumerator GetToWayPoint()
+    /*private IEnumerator GetToWayPoint()
     {
         while (checkHit == false)
         {
@@ -45,20 +45,19 @@ public class MoveItem : MonoBehaviour
             
             yield return null;
         }
-        
-    }
+    }*/
 
     void Update ()
     {
         transform.position += transform.right * Time.deltaTime * -1 * _itemspeed;
 
-        if (transform.position.x <= -4.33f && transform.position.z == -4.41f)
+        if (transform.position.x <= -7.15f && transform.position.z == -9.1f)
         {
             float yRotation = 90.0f;
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
         }
 
-        if (transform.position.x <= -4.33f && transform.position.z == 4.21f)
+        if (transform.position.x <= -7.15f && transform.position.z == 5.004786f)
         {
             float yRotation = -90.0f;
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
@@ -66,16 +65,17 @@ public class MoveItem : MonoBehaviour
     }
 
 
-    private void LerpObj()
+   /* private void LerpObj()
     {
         
-    }
+    }*/
 
     void OnTriggerEnter(Collider hit)
     {
         if (hit.gameObject.tag == "Bin")
         {
-            checkHit = true;
+            //checkHit = true;
+            Destroy(gameObject);
         }
     }
 }

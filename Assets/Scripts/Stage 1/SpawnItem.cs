@@ -19,7 +19,7 @@ public class SpawnItem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             SpawnNewPicObj();
         }

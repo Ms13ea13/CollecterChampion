@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Control : PlayerBase
+public class Player2Control : PlayerBase
 {
     private CharacterController _playercontrol;
     private Rigidbody _rigibody;
@@ -20,7 +20,7 @@ public class Player1Control : PlayerBase
 	
 	void Update ()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 move = new Vector3(Input.GetAxis("HorizontalJoy1"), 0, Input.GetAxis("VerticalJoy1"));
 
         if (_playercontrol.isGrounded)
         {
@@ -40,7 +40,7 @@ public class Player1Control : PlayerBase
         _playercontrol.Move(_velocity * Time.deltaTime + move * Time.deltaTime * _speed);
     }
 
-    public override void DropItem()
+    /*public override void DropItem()
     {
         base.DropItem();
     }
@@ -48,5 +48,5 @@ public class Player1Control : PlayerBase
     public override void PickUp()
     {
         base.PickUp();
-    }
+    }*/
 }

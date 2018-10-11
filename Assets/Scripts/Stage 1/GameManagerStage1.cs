@@ -17,9 +17,9 @@ public class GameManagerStage1 : MonoBehaviour
     private string _setTargetPicture;
     public static string _targetPicture;
 
-    [SerializeField]
+    /*[SerializeField]
     private int _showScore;
-    public static int _score;
+    public static int _score;*/
 
     void Start ()
     {
@@ -30,13 +30,14 @@ public class GameManagerStage1 : MonoBehaviour
     void Update()
     {
         _setTargetPicture = _targetPicture;
-        _showScore = _score;
+        //_showScore = _score;
+
+        TimeManager.time -= Time.deltaTime;
     }
 
     public static void UpdateTargetPicture(string _wantTag)
     {
         _targetPicture = _wantTag;
-        Debug.Log("now : " + _targetPicture);
     }
 
     public void UpdatePicture(Sprite pic)
