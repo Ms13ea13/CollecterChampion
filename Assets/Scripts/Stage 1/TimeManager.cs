@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-
     private static TimeManager _instance;
     
     [SerializeField]
-    private float timer = 21;
+    private float timer;
     public Text ForTimeTextUI;
 
-    private void Awake()
+    void Awake()
     {
-
         _instance = this;
     }
 
@@ -33,10 +31,12 @@ public class TimeManager : MonoBehaviour
         return timer;
     }
 
-    public void SetTimeer(float minusTimer)
+    public void SetTimer(float minusTimer)
     {
-        if (timer >0)
-        timer -= minusTimer;
+        if (timer > 0)
+        {
+            timer -= minusTimer;
+        }
         else
         {
             timer = 0;

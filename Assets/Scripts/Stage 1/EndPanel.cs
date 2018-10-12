@@ -32,24 +32,21 @@ public class EndPanel : MonoBehaviour
                 winner = temp;
                 winnerID = i;
             }
-            
-            
-            
         }
      
         scoreShow[0].text = "Player " + players[winnerID].GetIdPlayer() +" : " + winner.ToString();
         avartarShow[0].sprite = playerAvatar[winnerID];
-//SetShow      
-//        scoreShow[i].text = "Player " + i +" : " + players[i].GetScore().ToString();
-//        avartarShow[i].sprite = playerAvatar[i];
-        
-//SetHide
-//        scoreShow[i].text = "Player " + i;
-//        Color tempColor = avartarShow[i].color;
-//        tempColor.a = .2f;
-//        avartarShow[i].color = tempColor;
 
-    
+        //SetShow
+        //scoreShow[i].text = "Player " + i + " : " + players[i].GetScore().ToString();
+        //avartarShow[i].sprite = playerAvatar[i];
+
+        //SetHide
+        //scoreShow[i].text = "Player " + i;
+        //Color tempColor = avartarShow[i].color;
+        //tempColor.a = .2f;
+        //avartarShow[i].color = tempColor;
+
         for (int j = 0; j < players.Length; j++)
         {
             if (j != winnerID && tempI < players.Length)
@@ -67,17 +64,7 @@ public class EndPanel : MonoBehaviour
                     tempColor.a = .2f;
                     avartarShow[tempI].color = tempColor;
                 }
-                    
             }
-          
         }
-        
-       
-        
-        
-          
     }
-
-
-  
 }

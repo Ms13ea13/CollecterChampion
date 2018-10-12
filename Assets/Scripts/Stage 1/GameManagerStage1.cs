@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameManagerStage1 : MonoBehaviour
 {
-
     [SerializeField]
     private PlayerBase[] players;
 
@@ -20,7 +19,6 @@ public class GameManagerStage1 : MonoBehaviour
     private GameObject gameEndPanel;
     
     private static GameManagerStage1 _instance;
-    
     public static GameManagerStage1 GetInstance()
     {
         return _instance;
@@ -36,30 +34,15 @@ public class GameManagerStage1 : MonoBehaviour
         _targetPicture = "Item1";
         timeManager = TimeManager.GetInstance();
         timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
-        
     }
 
     void Update()
     {
         _setTargetPicture = _targetPicture;
-        timeManager.SetTimeer(Time.deltaTime);
+        timeManager.SetTimer(Time.deltaTime);
         int temp = (int)timeManager.GetTimer();
         timeManager.SetTimeText(temp.ToString());
-        Debug();
     }
-
-    private void Debug()
-    {
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            timeManager.SetTimeer(100f);
-            players[0].SetScore(500);
-            players[1].SetScore(1200);
-            players[2].SetScore(1005);
-            players[3].SetScore(1000);
-        }
-    }
-    
     
     public static void UpdateTargetPicture(string _wantTag)
     {
@@ -70,14 +53,11 @@ public class GameManagerStage1 : MonoBehaviour
     {
         _targetObj.sprite = pic;
     }
-
-
+    
     public void SetGameEnd(bool checkEnd)
     {
         Time.timeScale = 0;
         gameEndPanel.SetActive(checkEnd);
         m_EndPanel.SettingEndPanel(players);
     }
-    
-    
 }

@@ -13,7 +13,7 @@ public class MoveItem : MonoBehaviour
 
     private int indeXWayPoint;*/
 
-    private void Start()
+    void Start()
     {
         /*indeXWayPoint = 0;
         StartCoroutine(GetToWayPoint());*/

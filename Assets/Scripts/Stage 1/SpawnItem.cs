@@ -12,17 +12,21 @@ public class SpawnItem : MonoBehaviour
 
     public Sprite[] ItemStage1Picture;
 
+    public float spawnWait;
+    public float spawnMinWait;
+    public float spawnMaxWait;
+    public int startWait;
+    public bool stopWait;
+
     void Start()
     {
         InvokeRepeating("generateItem", 1f, 0.75f);
+        StartCoroutine(WaitSpawnPic());
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            SpawnNewPicObj();
-        }
+        spawnWait = Random.Range(spawnMinWait, spawnMaxWait);
     }
 
     public void generateItem()
@@ -58,6 +62,17 @@ public class SpawnItem : MonoBehaviour
         {
             _wantString = "Item3";
             GameManagerStage1.GetInstance().UpdatePicture(ItemStage1Picture[2]);
+        }
+    }
+
+    IEnumerator WaitSpawnPic()
+    {
+        yield return new WaitForSeconds(startWait);
+
+        while (!stopWait)
+        {
+            SpawnNewPicObj();
+            yield return new WaitForSeconds(spawnWait);
         }
     }
 }

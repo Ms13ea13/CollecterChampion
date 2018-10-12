@@ -7,10 +7,13 @@ public class PlayerBase : MonoBehaviour
 {
 	[SerializeField]
 	private int id;
+
 	[SerializeField]
 	private int score;
+
 	[SerializeField]
 	private String playerName;
+
 	protected CharacterController _playercontrol;
 	protected Rigidbody _rigibody;
 	protected Vector3 _velocity;
@@ -28,7 +31,6 @@ public class PlayerBase : MonoBehaviour
 	{
 		score += plusScore;
 	}
-
 
 	public int GetIdPlayer()
 	{
