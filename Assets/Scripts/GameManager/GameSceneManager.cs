@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameObserver : MonoBehaviour
+public class GameSceneManager : MonoBehaviour
 {
     [SerializeField]
     private PlayerBase[] players;
@@ -13,42 +13,52 @@ public class GameObserver : MonoBehaviour
     [SerializeField]
     private EndPanel m_EndPanel;
     
-    public Image _targetObj;
+    public Image targetObj;
+
+    [SerializeField]
+    private SpawnItem spawnItem;
     
-    private static GameObserver _instance;
-    public static GameObserver GetInstance()
+    [SerializeField]
+    private string setTargetPicture;
+    public static string targetPicture;
+
+    
+    private static GameSceneManager _instance;
+    public static GameSceneManager GetInstance()
     {
         return _instance;
     }
 
-    [SerializeField]
-    private string _setTargetPicture;
-    public static string _targetPicture;
-
-    void Start ()
+   
+    void Awake ()
     {
         _instance = this;
-        _targetPicture = "Item1";
+        targetPicture = "Item1";
         timeManager = TimeManager.GetInstance();
         timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
     }
 
     void Update()
     {
-        _setTargetPicture = _targetPicture;
+        setTargetPicture = targetPicture;
         timeManager.SetTimer(Time.deltaTime);
         int temp = (int)timeManager.GetTimer();
         timeManager.SetTimeText(temp.ToString());
     }
+
+    public Sprite GetItemPicture(int id)
+    {
+        return spawnItem.GetItemPicture(id);
+    }
     
     public static void UpdateTargetPicture(string _wantTag)
     {
-        _targetPicture = _wantTag;
+        targetPicture = _wantTag;
     }
 
     public void UpdatePicture(Sprite pic)
     {
-        _targetObj.sprite = pic;
+        targetObj.sprite = pic;
     }
     
     public void SetGameEnd(bool checkEnd)
@@ -57,4 +67,19 @@ public class GameObserver : MonoBehaviour
         m_EndPanel.gameObject.SetActive(checkEnd);
         m_EndPanel.SettingEndPanel(players);
     }
+
+    public string GetStringSomething(int id)
+    {
+        if (id == 1)
+        {
+            return "sus";
+        }
+        else
+        {
+            return ":";
+        }
+       
+    }
+    
 }
+

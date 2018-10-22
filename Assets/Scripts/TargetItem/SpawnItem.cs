@@ -10,7 +10,8 @@ public class SpawnItem : MonoBehaviour
     public Transform[] ItemSpawnPoint;
     GameObject cloneItemStage1;
 
-    public Sprite[] ItemStage1Picture;
+    [SerializeField]
+    private Sprite[] itemPictures;
 
     public float spawnWait;
     public float spawnMinWait;
@@ -29,6 +30,11 @@ public class SpawnItem : MonoBehaviour
         spawnWait = Random.Range(spawnMinWait, spawnMaxWait);
     }
 
+    public Sprite GetItemPicture(int id)
+    {
+        return itemPictures[id];
+    }
+    
     public void generateItem()
     {
         int spRandom1 = Random.Range(0, 2);
@@ -41,7 +47,7 @@ public class SpawnItem : MonoBehaviour
     void SpawnNewPicObj()
     {
         RandomTarget();
-        GameObserver.UpdateTargetPicture(_wantString);
+        GameSceneManager.UpdateTargetPicture(_wantString);
     }
 
     void RandomTarget()
@@ -51,17 +57,17 @@ public class SpawnItem : MonoBehaviour
         if (_rand == 0)
         {
             _wantString = "Item1";
-            GameObserver.GetInstance().UpdatePicture(ItemStage1Picture[0]);
+            GameSceneManager.GetInstance().UpdatePicture(itemPictures[0]);
         }
         else if (_rand == 1)
         {
             _wantString = "Item2";
-            GameObserver.GetInstance().UpdatePicture(ItemStage1Picture[1]);
+            GameSceneManager.GetInstance().UpdatePicture(itemPictures[1]);
         }
         else
         {
             _wantString = "Item3";
-            GameObserver.GetInstance().UpdatePicture(ItemStage1Picture[2]);
+            GameSceneManager.GetInstance().UpdatePicture(itemPictures[2]);
         }
     }
 

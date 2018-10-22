@@ -514,7 +514,7 @@ MonoBehaviour:
   ItemSpawnPoint:
   - {fileID: 0}
   - {fileID: 0}
-  ItemStage1Picture:
+  itemPictures:
   - {fileID: 21300000, guid: 923718337b7436141b02f49dcc9a055c, type: 3}
   - {fileID: 21300000, guid: 8152e9cc9244a3b4db53a2c925f91251, type: 3}
   - {fileID: 21300000, guid: 6fd3fbd465168594fa8411f25f1cefed, type: 3}
@@ -818,6 +818,7 @@ MonoBehaviour:
   players: []
   m_EndPanel: {fileID: 114467577970024382}
   _targetObj: {fileID: 114436791489427024}
+  spawnItem: {fileID: 114293651207613780}
   _setTargetPicture: 
 --- !u!114 &114986483708014882
 MonoBehaviour:

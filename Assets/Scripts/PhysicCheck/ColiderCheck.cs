@@ -23,7 +23,7 @@ public class ColiderCheck : MonoBehaviour
         int tempScore = 0 ;
         if(obj)
         {
-            if (other.transform.tag == GameObserver._targetPicture && !obj.GetIsCheck())
+            if (other.transform.tag == GameSceneManager.targetPicture && !obj.GetIsCheck())
             {
                 other.gameObject.GetComponent<Target>().SetIsCheck(true);
                 tempScore += 1;
