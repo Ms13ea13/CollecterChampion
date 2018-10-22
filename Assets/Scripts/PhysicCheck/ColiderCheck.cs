@@ -13,7 +13,8 @@ public class ColiderCheck : MonoBehaviour
 
     void Update()
     {
-//        ForScoreTextUI.text = "Player " + targetPlayer.GetIdPlayer() + " Score : " + targetPlayer.GetScore();
+        if (targetPlayer)
+        ForScoreTextUI.text = "Player " + targetPlayer.GetIdPlayer() + " Score : " + targetPlayer.GetScore();
     }
 
     private void OnTriggerEnter(Collider other)

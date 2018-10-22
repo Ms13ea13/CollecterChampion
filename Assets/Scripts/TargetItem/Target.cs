@@ -18,13 +18,6 @@ public class Target : MonoBehaviour
         _isCheck = check;
     }
 
-    public void Throw(float force, Transform player)
-    {
-        GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(player.forward * force,ForceMode.Impulse);
-    }
-
     public void SetDestroy(bool set)
     {
         destroyItem = set;

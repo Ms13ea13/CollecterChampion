@@ -92,15 +92,8 @@ public class PlayerRayCast : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.B))
 			{
 				target.transform.parent = null;
-				target.GetComponent<Target>().Throw(20f,transform);
-
 				ResetHolding();
-
 			}
-		}
-		else
-		{
-//			Debug.LogError("target : " + target + " hold : " + holding);
 		}
 	}
 
