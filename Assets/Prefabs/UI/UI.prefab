@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223508499915440086}
   - component: {fileID: 114673786109044156}
   - component: {fileID: 114742212886430934}
-  - component: {fileID: 114394219804176340}
+  - component: {fileID: 114959720725852288}
   - component: {fileID: 114293651207613780}
   m_Layer: 5
   m_Name: UI
@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1780605134025994
 GameObject:
   m_ObjectHideFlags: 1
@@ -302,7 +302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114010176034256282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,25 +616,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Player 3 Score : 0'
---- !u!114 &114394219804176340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1016947545708684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1abd7b93202a140ad2e28fa0888c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_EndPanel: {fileID: 114467577970024382}
-  _targetObj: {fileID: 114436791489427024}
-  gameEndPanel: {fileID: 1137459329008878}
-  _setTargetPicture: Item1
 --- !u!114 &114436791489427024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ebcdab352e78b4f8d96edde2cb3c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 31
+  timer: 10000
   ForTimeTextUI: {fileID: 114135807097825382}
 --- !u!114 &114673786109044156
 MonoBehaviour:
@@ -823,6 +804,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Score
+--- !u!114 &114959720725852288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016947545708684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1abd7b93202a140ad2e28fa0888c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  m_EndPanel: {fileID: 114467577970024382}
+  _targetObj: {fileID: 114436791489427024}
+  _setTargetPicture: 
 --- !u!114 &114986483708014882
 MonoBehaviour:
   m_ObjectHideFlags: 1
