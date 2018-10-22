@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4202382265177646}
   - component: {fileID: 143017470148716338}
-  - component: {fileID: 54462504153958056}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -38,10 +37,10 @@ GameObject:
   - component: {fileID: 4538070234208744}
   - component: {fileID: 33512404241846340}
   - component: {fileID: 23174674690968772}
-  - component: {fileID: 114400279562402770}
-  - component: {fileID: 114755612711811078}
+  - component: {fileID: 114162678239495686}
+  - component: {fileID: 114032056440811356}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003904650663218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48, y: 0, z: -4.7}
+  m_LocalPosition: {x: -0.05, y: 0, z: -4.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4538070234208744}
@@ -189,22 +188,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1548632750651910}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54462504153958056
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003904650663218}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &114400279562402770
+--- !u!114 &114032056440811356
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,16 +196,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220870994599590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a8b200c5823df4599944a720461c68, type: 3}
+  m_Script: {fileID: 11500000, guid: ad2839a09fd99df49ab1b6e17017adee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  id: 1
   score: 0
   playerName: 
-  _drag: {x: 0, y: 0, z: 0}
-  _gravity: 20
-  _speed: 6
---- !u!114 &114755612711811078
+  velocity: {x: 0, y: 0, z: 0}
+  drag: {x: 0, y: 1, z: 0}
+  gravity: 20
+  speed: 20
+  HorizontalKey: HorizontalJoy1
+  VertivalKey: VerticalJoy1
+  moveMentControlInput: {x: 0, y: 0, z: 0}
+--- !u!114 &114162678239495686
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1220870994599590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0115b01dab1bb354fa906a11b637a203, type: 3}
+  m_Script: {fileID: 11500000, guid: 533b3faec41c5124abb1f9fda92813cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charContr: {fileID: 143017470148716338}
