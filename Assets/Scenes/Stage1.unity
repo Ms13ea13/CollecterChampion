@@ -436,6 +436,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 224198784357416032, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
         type: 2}
       propertyPath: m_LocalPosition.x

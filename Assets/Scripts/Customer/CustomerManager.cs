@@ -9,7 +9,7 @@ public class CustomerManager : MonoBehaviour
 {
 
 	[SerializeField]
-	private FoodOrder[] customerOrders;
+	private List<FoodOrder> customerOrders;
 
 
 	[SerializeField]
@@ -66,21 +66,38 @@ public class CustomerManager : MonoBehaviour
 	
 	private void RandomFoodAmount()
 	{
-		orderLength = Random.Range(1, 4);
-		customerOrders = new FoodOrder[orderLength];
+		customerOrders = new List<FoodOrder>();
 
-		for (int i = 0; i < customerOrders.Length; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
 			spawnOrderPicture.transform.parent = customerPanel.transform;
-			customerOrders[i].SetOrder(i+1);
+			spawnOrderPicture.GetComponent<FoodOrder>().SetOrder(i);
+			customerOrders[i] = spawnOrderPicture.GetComponent<FoodOrder>();
 		}
 		
 	}
 	
-	public bool RecieveOrder(int id) //Need Player inventory
+	public void RecieveOrder(int id)
 	{
-		return false;
+
+		if (customerOrders.Count > 0)
+		{
+				
+			foreach (var item in customerOrders)
+			{
+				if (item.GetOrderId() == id)
+				{
+					customerOrders.Remove(item);
+				}
+				
+			}
+		}
+		else
+		{
+			Payment();
+		}
+	
 	}
 
 	private void OrderingFood()

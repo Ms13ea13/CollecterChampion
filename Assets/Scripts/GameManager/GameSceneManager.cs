@@ -23,6 +23,9 @@ public class GameSceneManager : MonoBehaviour
     private string setTargetPicture;
     public static string targetPicture;
 
+    [SerializeField]
+    private FoodNameOrder foodNmaeOrder;
+
     
     private static GameSceneManager _instance;
     public static GameSceneManager GetInstance()
@@ -69,47 +72,33 @@ public class GameSceneManager : MonoBehaviour
         m_EndPanel.SettingEndPanel(players);
     }
 
-    /*public string GetStringSomething(int id)
+    public string GetFoodNameById(int id)
     {
-        if (id == 1)
-        {
-            return "sus";
-        }
-        else
-        {
-            return ":";
-        }
-    }*/
+        return foodNmaeOrder.GetStringFoodName(id);
+    }
+
+    public Sprite GetFoodPictureById(int id)
+    {
+        return foodNmaeOrder.GetFoodPicture(id);
+    }
 }
 
 [Serializable]
 public struct FoodNameOrder
 {
+    [SerializeField]
+    private string[] orderName;
+    [SerializeField]    
+    private Sprite[] foodPicture;
+    
     public string GetStringFoodName(int id)
     {
-        switch (id)
-        {
-            case 1 :
-                return "rice";
-            case 2 :
-                return "egg";
-            case 3 :
-                return "steak";
-            case 4 :
-                return "hambergur";
-            case 5 :
-                return "pizza";
-            case 6 :
-                return "cola";
-            case 7 :
-                return "sprite";
-            case 8 :
-                return "soda";
-            case 9 :
-                return "beer";
-            default :
-                return null;
-        }
+        return orderName[id];
+    }
+    
+    public Sprite GetFoodPicture(int id)
+    {
+        return foodPicture[id];
     }
 }
 

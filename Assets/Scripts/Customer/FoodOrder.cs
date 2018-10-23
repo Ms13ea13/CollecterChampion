@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
+[Serializable]
 public class FoodOrder : MonoBehaviour
 {
     [SerializeField]
@@ -9,10 +12,14 @@ public class FoodOrder : MonoBehaviour
     [SerializeField]
     private string orderName;
 
+    [SerializeField]
+    private Image foodImage;
+
     public void SetOrder(int id)
     {
         orderId = id;
-        orderName = GameSceneManager.GetInstance().GetComponent<FoodNameOrder>().GetStringFoodName(id);
+        orderName = GameSceneManager.GetInstance().GetFoodNameById(id);
+        foodImage.sprite = GameSceneManager.GetInstance().GetFoodPictureById(id);
     }
 
     public string GetFoodName()
@@ -23,5 +30,10 @@ public class FoodOrder : MonoBehaviour
     public int GetOrderId()
     {
         return orderId;
+    }
+    
+    public Sprite GetFoodPicture()
+    {
+        return foodImage.sprite;
     }
 }
