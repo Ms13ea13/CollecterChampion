@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - Food
   - Customer
+  - Tray
   layers:
   - Default
   - TransparentFX

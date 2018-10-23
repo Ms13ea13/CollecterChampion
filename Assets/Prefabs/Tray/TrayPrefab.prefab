@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1748125213043774}
+  m_RootGameObject: {fileID: 1968270550345058}
   m_IsPrefabAsset: 1
---- !u!1 &1748125213043774
+--- !u!1 &1968270550345058
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4392303074135106}
-  - component: {fileID: 33839197433849016}
-  - component: {fileID: 23707921351131530}
-  - component: {fileID: 114665803864971178}
-  - component: {fileID: 54218656449410402}
-  - component: {fileID: 65339882172296158}
+  - component: {fileID: 4714457490997250}
+  - component: {fileID: 33221036583393206}
+  - component: {fileID: 23883346081476448}
+  - component: {fileID: 54948283598889474}
+  - component: {fileID: 114384086359395002}
+  - component: {fileID: 65658356158702960}
   m_Layer: 0
-  m_Name: FoodItem3
-  m_TagString: Food
+  m_Name: TrayPrefab
+  m_TagString: Tray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4392303074135106
+--- !u!4 &4714457490997250
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.61, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
+  m_LocalPosition: {x: 13.999969, y: 1.575, z: -4.6200905}
+  m_LocalScale: {x: 1, y: 0.067, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23707921351131530
+--- !u!23 &23883346081476448
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d30dc5fb53b90ce419d174588b99e889, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,19 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33839197433849016
+--- !u!33 &33221036583393206
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54218656449410402
+--- !u!54 &54948283598889474
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -99,31 +99,30 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65339882172296158
+--- !u!65 &65658356158702960
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2, z: 1.0000002}
-  m_Center: {x: -1.02, y: -0.0000019073486, z: -0.00000008940697}
---- !u!114 &114665803864971178
+  m_Size: {x: 1.9, y: 2, z: 1.5}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &114384086359395002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748125213043774}
+  m_GameObject: {fileID: 1968270550345058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b84d4d09d677841b06acc55aa1327d, type: 3}
+  m_Script: {fileID: 11500000, guid: f79833567dde4ba4a8d51f2df3d45eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodID: 0
-  FoodName: 
-  trayBandedId: 0
+  itemInTray: []
+  currentIndex: 0

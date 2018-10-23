@@ -42,15 +42,8 @@ public class CustomerManager : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyUp(KeyCode.I))
-		{
-			ClearAllOrderPanel();
-			RandomFoodAmount();
-			OrderingFood();
-		}
 		CheckOrderAmount();
 	}
-
 
 	private void ClearAllOrderPanel()
 	{
@@ -109,8 +102,6 @@ public class CustomerManager : MonoBehaviour
 			PlayerWalkOutAnimation();
 		}
 	}
-	
-	
 
 	private void OrderingFood()
 	{

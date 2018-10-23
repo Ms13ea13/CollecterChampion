@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -23,9 +24,6 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     private PlayerBase[] players;
 
-    [SerializeField]
-    private SpawnItem spawnItem;
-    
     private TimeManager timeManager;
 
     [SerializeField]
@@ -58,7 +56,7 @@ public class GameSceneManager : MonoBehaviour
     void Update()
     {
         TimeManageMent();
-    }
+|    }
 
     //Private Area----------------------------------------------------------------------
     
@@ -86,11 +84,6 @@ public class GameSceneManager : MonoBehaviour
     }
     
     //Public Area----------------------------------------------------------------------
-    
-    public Sprite GetItemPicture(int id)
-    {
-        return spawnItem.GetItemPicture(id);
-    }
 
     public void UpdatePicture(Sprite pic)
     {

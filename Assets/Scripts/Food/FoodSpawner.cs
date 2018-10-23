@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSpawn : MonoBehaviour
+public class FoodSpawner : MonoBehaviour
 {
     [SerializeField]
     private int foodID;
@@ -19,7 +19,7 @@ public class FoodSpawn : MonoBehaviour
         if (transform.childCount == 0)
         {
             GameObject spawnFood = Instantiate(foodPrefab);
-            spawnFood.GetComponent<FoodItem>().SetFoodItemId(foodID);
+            spawnFood.GetComponent<FoodItem>().SetUpFoodItem(foodID);
             spawnFood.transform.parent = transform;
             spawnFood.transform.localPosition = Vector3.zero;
         }

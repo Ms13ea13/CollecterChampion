@@ -10,14 +10,18 @@ public class FoodItem : MonoBehaviour
 	[SerializeField]
 	private string FoodName;
 
+	[SerializeField]
+	private int trayBandedId;
+
+	public void SetUpFoodItem(int id)
+	{
+		foodID = id;
+		FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
+	}
+
 	public int GetFoodItemId()
 	{
 		return foodID;
-	}
-
-	public void SetFoodItemId(int id)
-	{
-		foodID = id;
 	}
 
 	public string GetFoodItemName()
@@ -25,10 +29,17 @@ public class FoodItem : MonoBehaviour
 		return FoodName;
 	}
 
-	public void SetFoodItemName(string name)
+	public int GetBanedID()
 	{
-		FoodName = name;
+		return trayBandedId;
 	}
+
+	public void SetBannedId(int id)
+	{
+		trayBandedId = id;
+	}
+
+	
 
 
 }

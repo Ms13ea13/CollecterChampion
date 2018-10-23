@@ -22,9 +22,10 @@ public class PlayerController : PlayerBase
 		rigibody = GetComponentInParent<Rigidbody>();
 	}
 	
-	private void Update()
+	void Update()
 	{
 		MovePlayer();
+		playerRayCast.ShootRayCast();
 	}
 
 	private void MovePlayer()
