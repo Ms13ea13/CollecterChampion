@@ -42,18 +42,12 @@ public class CustomerManager : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyUp(KeyCode.A))
+		if (Input.GetKeyUp(KeyCode.I))
 		{
 			ClearAllOrderPanel();
 			RandomFoodAmount();
 			OrderingFood();
 		}
-
-		if (Input.GetKeyUp(KeyCode.P))
-		{
-			RecieveOrder(1);
-		}
-
 		CheckOrderAmount();
 	}
 
@@ -83,25 +77,29 @@ public class CustomerManager : MonoBehaviour
 		
 	}
 	
-	public void RecieveOrder(int id)
+	public bool RecieveOrder(int id)
 	{
-
 		if (customerOrders.Count > 0)
 		{
-			
 			foreach (var item in customerOrders)
 			{
 				if (item.GetOrderId() == id)
 				{
 					customerOrders.Remove(item);
+					Payment(item.GetOrderPrice());	
 					Destroy(item.gameObject);
 					PlayEatingAnimation();
-					Payment(item.GetOrderPrice());
-					break;
+					return true;
 				}
-				
+			
 			}
+			return false;
 		}
+		else
+		{
+			return false;
+		}
+	
 	}
 
 	private void CheckOrderAmount()

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114636231815494658}
   m_Layer: 0
   m_Name: FoodItemPrefab
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: cc6e3028841d9c4428f79edbe877d7a9, type: 2}
+  - {fileID: 2100000, guid: d30dc5fb53b90ce419d174588b99e889, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

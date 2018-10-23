@@ -9,7 +9,7 @@ public class FoodSpawn : MonoBehaviour
     [SerializeField]
     private GameObject foodPrefab;
 
-    void Start()
+    void Update()
     {
         SpawnFood();
     }

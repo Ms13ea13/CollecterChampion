@@ -7,8 +7,13 @@ using UnityEngine.XR.WSA.Input;
 
 public class PlayerRayCast : MonoBehaviour
 {
-	private GameObject temp;
+	[SerializeField]
+	private GameObject foodItemInHold;
+	[SerializeField]
 	private GameObject currentItemInFront;
+
+	[SerializeField]
+	private GameObject currentCustomer;
     private bool holding;
 
     [SerializeField]
@@ -27,21 +32,22 @@ public class PlayerRayCast : MonoBehaviour
 
 	void Update()
 	{
-		if (!temp)
+		if (!foodItemInHold)
 			ResetHolding();
 
 		if (holding)
 		{
-			DropOBj(ref temp);
+			DropOBj(ref foodItemInHold);
+			currentCustomer = GetCustomerInFront(holding);
 		}
 		else
 		{
-			PickUpObj(CapsuleCast(holding));
+			PickUpObj(GetGameObjectInFront(holding));
 		}
 		
 	}
 
-	private GameObject CapsuleCast(bool hold)
+	private GameObject GetGameObjectInFront(bool hold)
 	{
 		if (hold)
 			return null;
@@ -52,11 +58,10 @@ public class PlayerRayCast : MonoBehaviour
 		Vector3 p2 = p1 + Vector3.up * charContr.height;
 		distanceToObstacle = 0;
 
+		
+	
 		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
-		    hit.transform.tag == "Item1") || (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
-            hit.transform.tag == "Item2") || (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
-            hit.transform.tag == "Item3"))
+		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Food") )
 		{
 			distanceToObstacle = hit.distance;
 			currentItemInFront = hit.transform.gameObject;
@@ -68,7 +73,35 @@ public class PlayerRayCast : MonoBehaviour
 			currentItemInFront = null;
 			return null;
 		}
+		
+	}
+	
+	private GameObject GetCustomerInFront(bool hold)
+	{
+		if (!hold)
+			return null;
+		
+		
+		RaycastHit hit;
+		Vector3 p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
+		Vector3 p2 = p1 + Vector3.up * charContr.height;
+		distanceToObstacle = 0;
+
+		
+	
+		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
+		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Customer") )
+		{
+			distanceToObstacle = hit.distance;
+			return hit.transform.gameObject;
 			
+		}
+		else
+		{
+			currentItemInFront = null;
+			return null;
+		}
+		
 	}
 
 	private void PickUpObj(GameObject target)
@@ -77,10 +110,7 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (Input.GetKeyUp(KeyCode.Space))
 			{
-				target.transform.parent = transform;
-				target.GetComponent<MoveItem>().enabled = false;
-				temp = target;
-				holding = true;
+				TakeObjIntoHold(target);
 			}
 		}
 	}
@@ -91,16 +121,45 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.B))
 			{
-				target.transform.parent = null;
-				ResetHolding();
+				if (currentCustomer == null)
+				{
+					target.transform.parent = null;
+					target.GetComponent<Collider>().enabled = true;
+					ResetHolding();
+				}
+				else
+				{
+					int id = target.GetComponent<FoodItem>().GetFoodItemId();
+
+					if (GetCustomerInFront(holding).GetComponent<CustomerManager>().RecieveOrder(id))
+					{
+						Destroy(target);
+						ResetHolding();
+					}
+					else
+					{
+						target.transform.parent = null;
+						target.GetComponent<Collider>().enabled = true;
+						ResetHolding();
+					}
+						
+				}
 			}
 		}
+	}
+
+	private void TakeObjIntoHold(GameObject target)
+	{
+		target.transform.parent = transform;
+		foodItemInHold = target;
+		foodItemInHold.GetComponent<Collider>().enabled = false;
+		holding = true;
 	}
 
 	private void ResetHolding()
 	{
 		currentItemInFront = null;
-		temp = null;
+		foodItemInHold = null;
 		holding = false;
 	}
 	
