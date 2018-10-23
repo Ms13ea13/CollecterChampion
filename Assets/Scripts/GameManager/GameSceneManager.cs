@@ -1,44 +1,62 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class GameSceneManager : MonoBehaviour
 {
+    public static string targetPicture;
+   
+    [SerializeField]
+    private string setTargetPicture;
+ 
+    public Image targetObj;
+
     [SerializeField]
     private PlayerBase[] players;
-
-    private TimeManager timeManager;
-
-    [SerializeField]
-    private EndPanel m_EndPanel;
-    
-    public Image targetObj;
 
     [SerializeField]
     private SpawnItem spawnItem;
     
-    [SerializeField]
-    private string setTargetPicture;
-    public static string targetPicture;
+    private TimeManager timeManager;
 
+    [SerializeField]
+    private EndPanel m_EndPanel;
+
+    [SerializeField]
+    private ScoreManager scoreManager;
+    //Struct Area----------------------------------------------------------------------
+
+    [SerializeField]
+    private FoodNameOrder foodNmaeOrder;
+    
+   
+    //Instance Area----------------------------------------------------------------------
     
     private static GameSceneManager _instance;
     public static GameSceneManager GetInstance()
     {
         return _instance;
     }
-
    
+    
+    //Game Area----------------------------------------------------------------------
+    
     void Awake ()
     {
-        _instance = this;
-        targetPicture = "Item1";
-        timeManager = TimeManager.GetInstance();
-        timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
+        Initialized();
     }
 
     void Update()
+    {
+        TimeManageMent();
+    }
+
+    //Private Area----------------------------------------------------------------------
+    
+    void TimeManageMent()
     {
         setTargetPicture = targetPicture;
         timeManager.SetTimer(Time.deltaTime);
@@ -46,14 +64,26 @@ public class GameSceneManager : MonoBehaviour
         timeManager.SetTimeText(temp.ToString());
     }
 
-    public Sprite GetItemPicture(int id)
+    void Initialized()
     {
-        return spawnItem.GetItemPicture(id);
+        _instance = this;
+        targetPicture = "Item1";
+        timeManager = TimeManager.GetInstance();
+        timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
     }
+
+    //Public static Area----------------------------------------------------------------------
     
     public static void UpdateTargetPicture(string _wantTag)
     {
         targetPicture = _wantTag;
+    }
+    
+    //Public Area----------------------------------------------------------------------
+    
+    public Sprite GetItemPicture(int id)
+    {
+        return spawnItem.GetItemPicture(id);
     }
 
     public void UpdatePicture(Sprite pic)
@@ -68,18 +98,58 @@ public class GameSceneManager : MonoBehaviour
         m_EndPanel.SettingEndPanel(players);
     }
 
-    public string GetStringSomething(int id)
+    public string GetFoodNameById(int id)
     {
-        if (id == 1)
-        {
-            return "sus";
-        }
-        else
-        {
-            return ":";
-        }
-       
+        return foodNmaeOrder.GetStringFoodName(id);
+    }
+
+    public Sprite GetFoodPictureById(int id)
+    {
+        return foodNmaeOrder.GetFoodPicture(id);
+    }
+
+    public int GetFoodPriceById(int id)
+    {
+        return foodNmaeOrder.GetFoodPrice(id);
+    }
+
+    public int RandomFoodOrderByOne()
+    {
+        int rd = UnityEngine.Random.Range(0, 9);
+        return rd;
+    }
+
+    public void CustomerPayMoneyToStore(int price)
+    {
+        scoreManager.AddScoreNumber(price);
     }
     
+}
+
+[Serializable]
+public struct FoodNameOrder
+{
+    [SerializeField]
+    private string[] orderName;
+    [SerializeField]    
+    private Sprite[] foodPicture;
+
+    [SerializeField]
+    private int[] price;
+    
+    public string GetStringFoodName(int id)
+    {
+        return orderName[id];
+    }
+    
+    public Sprite GetFoodPicture(int id)
+    {
+        return foodPicture[id];
+    }
+
+    public int GetFoodPrice(int id)
+    {
+        return price[id];
+    }
 }
 
