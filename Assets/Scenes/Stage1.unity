@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -556,6 +556,105 @@ Prefab:
       propertyPath: targetObj
       value: 
       objectReference: {fileID: 399746049}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[0]
+      value: Rice
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[1]
+      value: FriedEgg
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[2]
+      value: Steak
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[3]
+      value: Pizza
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[4]
+      value: Hamburger
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[5]
+      value: Cola
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[6]
+      value: Juice
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[7]
+      value: Soda
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.orderName.Array.data[8]
+      value: Beer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3577209e91db8a544ab39297e5b22db1,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 26fd809b3715b8a4786a4ba39afdea3c,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8678e6c9999f5f24aa7820fbaa0df738,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cd72c705d3ded14fa23467f735929ad,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: b1b306a0ca7214344a0aa9b56428c61d,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3666b2e25a2f11e4284569962446acd1,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: d57498b0dcb2af242a0f55f0b08bda74,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a754a29076478c47adb69f1e2622c55,
+        type: 3}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.foodPicture.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f9cdb920e7141ad4a81cbd897f01faaf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2d716f962509d4e8b65e0f76d9d9fe, type: 2}
   m_IsPrefabAsset: 0
