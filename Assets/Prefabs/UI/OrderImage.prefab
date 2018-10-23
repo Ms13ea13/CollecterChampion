@@ -54,6 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderId: 0
   orderName: 
+  foodImage: {fileID: 114916285663695624}
+  Price: 0
 --- !u!114 &114916285663695624
 MonoBehaviour:
   m_ObjectHideFlags: 1

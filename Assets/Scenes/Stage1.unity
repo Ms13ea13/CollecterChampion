@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -175,7 +175,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.5402563
+      value: -7.145
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -183,23 +183,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -11.402066
+      value: -11.93
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.48103544
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.8767011
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
       propertyPath: m_RootOrder
@@ -240,8 +240,11 @@ Prefab:
         type: 2}
       propertyPath: satusImpages.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 9400818483ef13f4b930c8c271684d82,
-        type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548908561042314, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef1ed5b86bd5a45816de92acfcb06b, type: 2}
   m_IsPrefabAsset: 0
@@ -405,6 +408,16 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114889816216858538, guid: 010b62a6d2f683344b5c855aa6f700ac,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114947432462792610, guid: 010b62a6d2f683344b5c855aa6f700ac,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010b62a6d2f683344b5c855aa6f700ac, type: 2}
   m_IsPrefabAsset: 0
@@ -424,6 +437,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4255956238368748, guid: 010b62a6d2f683344b5c855aa6f700ac,
     type: 2}
   m_PrefabInternal: {fileID: 827290832}
+--- !u!1 &1126892625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1016947545708684, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1220569843}
+--- !u!114 &1126892626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126892625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c26862257d1bae45ba0dc6161eff354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1557540671}
+  score: 0
 --- !u!224 &1169646232 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224728801952727304, guid: ebef1ed5b86bd5a45816de92acfcb06b,
@@ -705,6 +736,11 @@ Prefab:
       propertyPath: foodNmaeOrder.price.Array.data[8]
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: scoreManager
+      value: 
+      objectReference: {fileID: 1126892626}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2d716f962509d4e8b65e0f76d9d9fe, type: 2}
   m_IsPrefabAsset: 0
