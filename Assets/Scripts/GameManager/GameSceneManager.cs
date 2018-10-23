@@ -56,7 +56,7 @@ public class GameSceneManager : MonoBehaviour
     void Update()
     {
         TimeManageMent();
-|    }
+    }
 
     //Private Area----------------------------------------------------------------------
     
