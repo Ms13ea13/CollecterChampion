@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using Random = UnityEngine.Random;
 
 public class CustomerManager : MonoBehaviour
@@ -94,32 +94,5 @@ public class CustomerManager : MonoBehaviour
 		{
 			//animation & delay payment here
 		}
-	}
-}
-
-[Serializable]
-public struct FoodOrder
-{
-	[SerializeField]
-	private int orderId;
-	[SerializeField]
-	private string orderName;
-
-	public void SetOrder(int id)
-	{
-		orderId = id;
-		orderName = GameSceneManager.GetInstance().GetStringSomething(id);
-
-	}
-
-	
-	
-	public string GetFoodName()
-	{
-		return orderName;
-	}
-	public int GetOrderId()
-	{
-		return orderId;
 	}
 }

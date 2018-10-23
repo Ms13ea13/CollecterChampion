@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,7 +69,7 @@ public class GameSceneManager : MonoBehaviour
         m_EndPanel.SettingEndPanel(players);
     }
 
-    public string GetStringSomething(int id)
+    /*public string GetStringSomething(int id)
     {
         if (id == 1)
         {
@@ -78,8 +79,37 @@ public class GameSceneManager : MonoBehaviour
         {
             return ":";
         }
-       
+    }*/
+}
+
+[Serializable]
+public struct FoodNameOrder
+{
+    public string GetStringFoodName(int id)
+    {
+        switch (id)
+        {
+            case 1 :
+                return "rice";
+            case 2 :
+                return "egg";
+            case 3 :
+                return "steak";
+            case 4 :
+                return "hambergur";
+            case 5 :
+                return "pizza";
+            case 6 :
+                return "cola";
+            case 7 :
+                return "sprite";
+            case 8 :
+                return "soda";
+            case 9 :
+                return "beer";
+            default :
+                return null;
+        }
     }
-    
 }
 
