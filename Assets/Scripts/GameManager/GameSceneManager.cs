@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -8,6 +9,12 @@ using Random = System.Random;
 public class GameSceneManager : MonoBehaviour
 {
     public static string targetPicture;
+
+    [SerializeField]
+    private int minFoodProvideID;
+    
+    [SerializeField]
+    private int maxFoodProvideID;
    
     [SerializeField]
     private string setTargetPicture;
@@ -17,9 +24,6 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     private PlayerBase[] players;
 
-    [SerializeField]
-    private SpawnItem spawnItem;
-    
     private TimeManager timeManager;
 
     [SerializeField]
@@ -80,11 +84,6 @@ public class GameSceneManager : MonoBehaviour
     }
     
     //Public Area----------------------------------------------------------------------
-    
-    public Sprite GetItemPicture(int id)
-    {
-        return spawnItem.GetItemPicture(id);
-    }
 
     public void UpdatePicture(Sprite pic)
     {
@@ -115,7 +114,7 @@ public class GameSceneManager : MonoBehaviour
 
     public int RandomFoodOrderByOne()
     {
-        int rd = UnityEngine.Random.Range(0, 9);
+        int rd = UnityEngine.Random.Range(minFoodProvideID, maxFoodProvideID);
         return rd;
     }
 

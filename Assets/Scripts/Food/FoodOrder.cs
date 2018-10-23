@@ -26,7 +26,7 @@ public class FoodOrder : MonoBehaviour
         foodImage.sprite = GameSceneManager.GetInstance().GetFoodPictureById(id);
     }
 
-    public string GetFoodName()
+    public string GetOrderName()
     {
         return orderName;
     }
@@ -41,7 +41,7 @@ public class FoodOrder : MonoBehaviour
         return Price;
     }
     
-    public Sprite GetFoodPicture()
+    public Sprite GetOrderPicture()
     {
         return foodImage.sprite;
     }

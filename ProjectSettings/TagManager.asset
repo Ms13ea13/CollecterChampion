@@ -11,6 +11,9 @@ TagManager:
   - Item3
   - Item
   - Ground
+  - Food
+  - Customer
+  - Tray
   layers:
   - Default
   - TransparentFX
