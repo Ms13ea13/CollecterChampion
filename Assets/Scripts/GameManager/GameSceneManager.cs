@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -24,8 +25,14 @@ public class GameSceneManager : MonoBehaviour
     public static string targetPicture;
 
     [SerializeField]
-    private FoodNameOrder foodNmaeOrder;
+    private ScoreManager scoreManager;
+    //Struct Area----------------------------------------------------------------------
 
+    [SerializeField]
+    private FoodNameOrder foodNmaeOrder;
+    
+   
+    //Instance Area----------------------------------------------------------------------
     
     private static GameSceneManager _instance;
     public static GameSceneManager GetInstance()
@@ -81,6 +88,18 @@ public class GameSceneManager : MonoBehaviour
     {
         return foodNmaeOrder.GetFoodPicture(id);
     }
+
+    public int RandomFoodOrderByOne()
+    {
+        int rd = UnityEngine.Random.Range(0, 9);
+        return rd;
+    }
+
+    public void CustomerPayMoneyToStore(int price)
+    {
+        scoreManager.AddScoreNumber(price);
+    }
+    
 }
 
 [Serializable]
@@ -90,6 +109,9 @@ public struct FoodNameOrder
     private string[] orderName;
     [SerializeField]    
     private Sprite[] foodPicture;
+
+    [SerializeField]
+    private int[] price;
     
     public string GetStringFoodName(int id)
     {
@@ -99,6 +121,11 @@ public struct FoodNameOrder
     public Sprite GetFoodPicture(int id)
     {
         return foodPicture[id];
+    }
+
+    public int GetFoodPrice(int id)
+    {
+        return price[id];
     }
 }
 

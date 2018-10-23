@@ -89,6 +89,8 @@ public class CustomerManager : MonoBehaviour
 				if (item.GetOrderId() == id)
 				{
 					customerOrders.Remove(item);
+					PlayEatingAnimation();
+					break;
 				}
 				
 			}
@@ -102,14 +104,20 @@ public class CustomerManager : MonoBehaviour
 
 	private void OrderingFood()
 	{
+		if (customerOrders.Count > 0)
+			foreach (var item in customerOrders)
+			{
+				item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
+			}
+	}
+
+	private void PlayEatingAnimation()
+	{
 		
 	}
 
 	private void Payment() //Need RecievingOrder
 	{
-		if (correctOrder)
-		{
-			//animation & delay payment here
-		}
+		
 	}
 }

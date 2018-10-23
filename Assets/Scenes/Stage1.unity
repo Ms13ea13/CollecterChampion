@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -436,6 +436,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
+        type: 2}
+      propertyPath: foodNmaeOrder.price.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
         type: 2}
       propertyPath: foodNmaeOrder.orderName.Array.size
