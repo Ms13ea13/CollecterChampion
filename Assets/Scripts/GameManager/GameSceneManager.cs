@@ -8,6 +8,12 @@ using Random = System.Random;
 public class GameSceneManager : MonoBehaviour
 {
     public static string targetPicture;
+
+    [SerializeField]
+    private int minFoodProvideID;
+    
+    [SerializeField]
+    private int maxFoodProvideID;
    
     [SerializeField]
     private string setTargetPicture;
@@ -115,7 +121,7 @@ public class GameSceneManager : MonoBehaviour
 
     public int RandomFoodOrderByOne()
     {
-        int rd = UnityEngine.Random.Range(0, 9);
+        int rd = UnityEngine.Random.Range(minFoodProvideID, maxFoodProvideID);
         return rd;
     }
 
