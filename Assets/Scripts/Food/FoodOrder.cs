@@ -9,6 +9,7 @@ public class FoodOrder : MonoBehaviour
 {
     [SerializeField]
     private int orderId;
+
     [SerializeField]
     private string orderName;
 

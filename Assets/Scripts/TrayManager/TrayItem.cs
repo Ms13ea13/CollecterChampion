@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class TrayItem : MonoBehaviour
 {
+    [SerializeField]
+    private List<FoodOrder> foodInTrayOrders;
+    [SerializeField]
+    private GameObject foodInTrayImagePrefab;
+    [SerializeField]
+    private GameObject trayPanel;
 
-	[SerializeField]
+    [SerializeField]
 	private List<GameObject> itemInTray;
 
-	[SerializeField]
+    [SerializeField]
 	private int currentIndex;
 	private bool onHold;
 	private Vector3 temp;
@@ -23,7 +29,6 @@ public class TrayItem : MonoBehaviour
 	{
 		if (itemInTray.Count < 3)
 		{
-			
 			itemInTray.Add(food);
 			food.transform.parent = transform;
 			food.GetComponent<Collider>().enabled = false;
@@ -43,7 +48,6 @@ public class TrayItem : MonoBehaviour
 				currentIndex -= 1;
 				break;
 			}
-			
 		}
 	}
 	
@@ -98,5 +102,11 @@ public class TrayItem : MonoBehaviour
 	{
 		return onHold;
 	}
-	
+
+    public void FoodInTrayAmount()
+    {
+        GameObject spawnOrderPicture = Instantiate(foodInTrayImagePrefab);
+        spawnOrderPicture.transform.parent = trayPanel.transform;
+        foodInTrayOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
+    }
 }

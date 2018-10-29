@@ -84,7 +84,6 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			currentFoodInFront = null;
 		}
-		
 	}
 	
 	private void GetCustomerInFront()
@@ -137,9 +136,11 @@ public class PlayerRayCast : MonoBehaviour
 			if (currentTrayInFront)
 			{
 				if (currentFoodInFront)
-				currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                {
+                    currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                    currentTrayInFront.GetComponent<TrayItem>().FoodInTrayAmount();
+                }
 			}
-			
 		}
 		else
 		{
@@ -149,8 +150,6 @@ public class PlayerRayCast : MonoBehaviour
 			if (currentFoodInFront)
 				TakeObjIntoHold(currentFoodInFront.gameObject);
 		}
-		
-
 	}
 
 	private void DropOBj(ref GameObject target)
@@ -159,14 +158,12 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.B))
 			{
-
 				if (currentBinInFront)
 				{
 					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
 					ResetHolding();
 					return;
 				}
-				
 				
 				if (currentCustomerInFront == null && currentBinInFront == null)
 				{
@@ -190,11 +187,6 @@ public class PlayerRayCast : MonoBehaviour
 					{
 						UnHoldItem(target);
 					}
-					
-
-					
-					
-						
 				}else if (currentBinInFront)
 				{
 					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(target);
