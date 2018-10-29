@@ -41,7 +41,8 @@ GameObject:
   - component: {fileID: 23405498641396268}
   - component: {fileID: 114104096544956158}
   - component: {fileID: 136447514555325766}
-  - component: {fileID: 54740350696110020}
+  - component: {fileID: 54852855642333048}
+  - component: {fileID: 136838538530612962}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -122,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414093794843010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 0.91, z: -10.29}
+  m_LocalPosition: {x: -12.86, y: 1, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4271809185920150}
@@ -214,7 +215,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414093794843010}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54740350696110020
+--- !u!54 &54852855642333048
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,7 +228,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &114104096544956158
 MonoBehaviour:
@@ -245,9 +246,7 @@ MonoBehaviour:
   showStatus: {fileID: 114340511158988564}
   orderImagePrefab: {fileID: 1850671274903486, guid: 5bc94f1e0dc21f444a5c44702bef9807,
     type: 2}
-  satusImpages:
-  - {fileID: 21300000, guid: 6bd89d70fc04c754aba40a3aded826a7, type: 3}
-  - {fileID: 0}
+  satusImpages: []
   customerPanel: {fileID: 1013311881208256}
   correctOrder: 0
 --- !u!114 &114177014701591166
@@ -375,6 +374,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &136447514555325766
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414093794843010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136838538530612962
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

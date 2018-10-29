@@ -38,8 +38,4 @@ public class FoodItem : MonoBehaviour
 	{
 		trayBandedId = id;
 	}
-
-	
-
-
 }

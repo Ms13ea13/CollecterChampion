@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrayItem : MonoBehaviour
 {
+    [SerializeField]
+    private List<FoodInTray> foodInTrayOrders;
+    [SerializeField]
+    private GameObject foodInTrayImagePrefab;
+    [SerializeField]
+    private GameObject trayPanel;
+    /*[SerializeField]
+    private Image foodImage;*/
 
-	[SerializeField]
+    [SerializeField]
 	private List<GameObject> itemInTray;
 
-	[SerializeField]
+    [SerializeField]
 	private int currentIndex;
 	private bool onHold;
 	private Vector3 temp;
@@ -23,12 +32,12 @@ public class TrayItem : MonoBehaviour
 	{
 		if (itemInTray.Count < 3)
 		{
-			
 			itemInTray.Add(food);
 			food.transform.parent = transform;
 			food.GetComponent<Collider>().enabled = false;
 			food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
 			food.GetComponent<FoodItem>().SetBannedId(currentIndex);
+            FoodInTrayAmount(food.GetComponent<FoodItem>().GetFoodItemId());
 		}
 	}
 
@@ -40,10 +49,10 @@ public class TrayItem : MonoBehaviour
 			{
 				itemInTray.Remove(item);
 				Destroy(item.gameObject);
+                ClearTargetOrderPanel(item.gameObject.GetComponent<FoodItem>().GetFoodItemId());
 				currentIndex -= 1;
 				break;
 			}
-			
 		}
 	}
 	
@@ -80,7 +89,6 @@ public class TrayItem : MonoBehaviour
 			}
 			default:
 				break;
-			
 		}
 
 		temp.x = 0f;
@@ -98,5 +106,27 @@ public class TrayItem : MonoBehaviour
 	{
 		return onHold;
 	}
-	
+
+    public void FoodInTrayAmount(int foodIndex)
+    {
+        GameObject spawnOrderPicture = Instantiate(foodInTrayImagePrefab);
+        spawnOrderPicture.GetComponent<Image>().sprite = GameSceneManager.GetInstance().GetFoodPictureById(foodIndex);
+        spawnOrderPicture.transform.parent = trayPanel.transform;
+        spawnOrderPicture.GetComponent<FoodInTray>().SetOrder(foodIndex);
+    }
+
+    public void ClearTargetOrderPanel(int id)
+    {
+        if (trayPanel.transform.childCount <= 0)
+            return;
+
+        for (int i = 0; i < trayPanel.transform.childCount; i++)
+        {
+            if (id == trayPanel.transform.GetChild(i).gameObject.GetComponent<FoodInTray>().GetOrderId())
+            {
+                Destroy(trayPanel.transform.GetChild(i).gameObject);
+                return;
+            }
+        }
+    }
 }

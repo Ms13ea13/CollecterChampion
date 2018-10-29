@@ -12,10 +12,8 @@ public class CustomerManager : MonoBehaviour
 	[SerializeField]
 	private List<FoodOrder> customerOrders;
 
-
 	[SerializeField]
 	private int orderLength;
-	
 
 	[SerializeField]
 	private Image showStatus;
@@ -24,12 +22,11 @@ public class CustomerManager : MonoBehaviour
 	private GameObject orderImagePrefab;
 
 	[SerializeField]
-	private Sprite[] satusImpages;
+	private Sprite[] statusImages;
 
 	[SerializeField]
 	private GameObject customerPanel;
-
-	
+    
 	[SerializeField]
 	private bool correctOrder;
 	
@@ -38,8 +35,7 @@ public class CustomerManager : MonoBehaviour
 		RandomFoodAmount();
 		OrderingFood();
 	}
-
-
+    
 	void Update()
 	{
 		CheckOrderAmount();
@@ -59,15 +55,14 @@ public class CustomerManager : MonoBehaviour
 	private void RandomFoodAmount()
 	{
 		customerOrders = new List<FoodOrder>();
-		int foodAmoun = Random.Range(1, 4);
+		int foodAmount = Random.Range(1, 4);
 		
-		for (int i = 0; i < foodAmoun; i++)
+		for (int i = 0; i < foodAmount; i++)
 		{
 			GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
 			spawnOrderPicture.transform.parent = customerPanel.transform;
 			customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
 		}
-		
 	}
 	
 	public bool RecieveOrder(int id)
@@ -84,7 +79,6 @@ public class CustomerManager : MonoBehaviour
 					PlayEatingAnimation();
 					return true;
 				}
-			
 			}
 			return false;
 		}
@@ -92,7 +86,6 @@ public class CustomerManager : MonoBehaviour
 		{
 			return false;
 		}
-	
 	}
 
 	private void CheckOrderAmount()
@@ -111,15 +104,13 @@ public class CustomerManager : MonoBehaviour
 			{
 				item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
 			}
-		}
-			
+		}	
 	}
 
 	private void PlayerWalkOutAnimation()
 	{
 		//Play walk out animation here
 		Destroy(gameObject);
-
 	}
 
 	private void PlayEatingAnimation()
