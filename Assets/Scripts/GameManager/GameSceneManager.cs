@@ -12,14 +12,9 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField]
     private int minFoodProvideID;
-    
+
     [SerializeField]
     private int maxFoodProvideID;
-   
-    [SerializeField]
-    private string setTargetPicture;
- 
-    public Image targetObj;
 
     [SerializeField]
     private PlayerBase[] players;
@@ -35,20 +30,20 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField]
     private FoodNameOrder foodNmaeOrder;
-    
-   
+
+
     //Instance Area----------------------------------------------------------------------
-    
+
     private static GameSceneManager _instance;
     public static GameSceneManager GetInstance()
     {
         return _instance;
     }
-   
-    
+
+
     //Game Area----------------------------------------------------------------------
-    
-    void Awake ()
+
+    void Awake()
     {
         Initialized();
     }
@@ -59,10 +54,9 @@ public class GameSceneManager : MonoBehaviour
     }
 
     //Private Area----------------------------------------------------------------------
-    
+
     void TimeManageMent()
     {
-        setTargetPicture = targetPicture;
         timeManager.SetTimer(Time.deltaTime);
         int temp = (int)timeManager.GetTimer();
         timeManager.SetTimeText(temp.ToString());
@@ -71,25 +65,19 @@ public class GameSceneManager : MonoBehaviour
     void Initialized()
     {
         _instance = this;
-        targetPicture = "Item1";
         timeManager = TimeManager.GetInstance();
         timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
     }
 
     //Public static Area----------------------------------------------------------------------
-    
+
     public static void UpdateTargetPicture(string _wantTag)
     {
         targetPicture = _wantTag;
     }
-    
+
     //Public Area----------------------------------------------------------------------
 
-    public void UpdatePicture(Sprite pic)
-    {
-        targetObj.sprite = pic;
-    }
-    
     public void SetGameEnd(bool checkEnd)
     {
         Time.timeScale = 0;
@@ -122,7 +110,6 @@ public class GameSceneManager : MonoBehaviour
     {
         scoreManager.AddScoreNumber(price);
     }
-    
 }
 
 [Serializable]
@@ -130,6 +117,7 @@ public struct FoodNameOrder
 {
     [SerializeField]
     private string[] orderName;
+
     [SerializeField]    
     private Sprite[] foodPicture;
 

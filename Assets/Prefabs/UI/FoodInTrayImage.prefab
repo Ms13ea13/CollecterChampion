@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222341171409030550}
   - component: {fileID: 114119242004651476}
   - component: {fileID: 114990140470710132}
-  - component: {fileID: 114135410915599428}
+  - component: {fileID: 114606948999065550}
   m_Layer: 0
   m_Name: FoodInTrayImage
   m_TagString: Untagged
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114135410915599428
+--- !u!114 &114606948999065550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,13 +65,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1326593529557490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e749800c8e8fb08478a4e31a6b72aa14, type: 3}
+  m_Script: {fileID: 11500000, guid: d86526ee47e33a242b1e1a7f5fe7bb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   orderId: 0
   orderName: 
   foodImage: {fileID: 114119242004651476}
-  Price: 0
 --- !u!114 &114990140470710132
 MonoBehaviour:
   m_ObjectHideFlags: 1

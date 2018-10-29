@@ -12,10 +12,8 @@ public class CustomerManager : MonoBehaviour
 	[SerializeField]
 	private List<FoodOrder> customerOrders;
 
-
 	[SerializeField]
 	private int orderLength;
-	
 
 	[SerializeField]
 	private Image showStatus;
@@ -81,7 +79,6 @@ public class CustomerManager : MonoBehaviour
 					PlayEatingAnimation();
 					return true;
 				}
-			
 			}
 			return false;
 		}
@@ -89,7 +86,6 @@ public class CustomerManager : MonoBehaviour
 		{
 			return false;
 		}
-	
 	}
 
 	private void CheckOrderAmount()
@@ -108,8 +104,7 @@ public class CustomerManager : MonoBehaviour
 			{
 				item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
 			}
-		}
-			
+		}	
 	}
 
 	private void PlayerWalkOutAnimation()

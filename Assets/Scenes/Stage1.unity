@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &399746049 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114436791489427024, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-    type: 2}
-  m_PrefabInternal: {fileID: 1220569843}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &563016037
 Prefab:
   m_ObjectHideFlags: 0
@@ -315,62 +309,19 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010b62a6d2f683344b5c855aa6f700ac, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &858256334 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4961540056094708, guid: 010b62a6d2f683344b5c855aa6f700ac,
-    type: 2}
-  m_PrefabInternal: {fileID: 827290832}
 --- !u!114 &984657553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114032056440811356, guid: 0a43d8c7021ac67479b2a45c9d8765e8,
     type: 2}
   m_PrefabInternal: {fileID: 563016037}
   m_Script: {fileID: 11500000, guid: ad2839a09fd99df49ab1b6e17017adee, type: 3}
---- !u!4 &993866907 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4255956238368748, guid: 010b62a6d2f683344b5c855aa6f700ac,
-    type: 2}
-  m_PrefabInternal: {fileID: 827290832}
---- !u!1 &1126892625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1016947545708684, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-    type: 2}
-  m_PrefabInternal: {fileID: 1220569843}
---- !u!114 &1126892626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1126892625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c26862257d1bae45ba0dc6161eff354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1557540671}
-  score: 0
---- !u!1001 &1220569843
+--- !u!1001 &1183789234
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 224198784357416032, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -461,208 +412,19 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114293651207613780, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: ItemSpawnPoint.Array.data[0]
-      value: 
-      objectReference: {fileID: 858256334}
-    - target: {fileID: 114293651207613780, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: ItemSpawnPoint.Array.data[1]
-      value: 
-      objectReference: {fileID: 993866907}
     - target: {fileID: 223508499915440086, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1375292506}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: targetObj
-      value: 
-      objectReference: {fileID: 399746049}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[0]
-      value: Rice
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[1]
-      value: FriedEgg
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[2]
-      value: Steak
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[3]
-      value: Pizza
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[4]
-      value: Hamburger
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[5]
-      value: Cola
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[6]
-      value: Juice
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[7]
-      value: Soda
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[8]
-      value: Beer
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[8]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3577209e91db8a544ab39297e5b22db1,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[7]
-      value: 
-      objectReference: {fileID: 21300000, guid: 26fd809b3715b8a4786a4ba39afdea3c,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[6]
-      value: 
-      objectReference: {fileID: 21300000, guid: 8678e6c9999f5f24aa7820fbaa0df738,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300000, guid: 5cd72c705d3ded14fa23467f735929ad,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: b1b306a0ca7214344a0aa9b56428c61d,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3666b2e25a2f11e4284569962446acd1,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: d57498b0dcb2af242a0f55f0b08bda74,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 2a754a29076478c47adb69f1e2622c55,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: f9cdb920e7141ad4a81cbd897f01faaf,
-        type: 3}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[0]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[1]
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[2]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[3]
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[4]
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[5]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[6]
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[7]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[8]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: scoreManager
-      value: 
-      objectReference: {fileID: 1126892626}
-    - target: {fileID: 1307640238776952, guid: 3d2d716f962509d4e8b65e0f76d9d9fe, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943245378772930, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943245378772930, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 114293651207613780, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114959720725852288, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
-        type: 2}
-      propertyPath: maxFoodProvideID
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114293651207613780, guid: 3d2d716f962509d4e8b65e0f76d9d9fe, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2d716f962509d4e8b65e0f76d9d9fe, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &1229140550 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114185061328453092, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
     type: 2}
-  m_PrefabInternal: {fileID: 1220569843}
+  m_PrefabInternal: {fileID: 1183789234}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1264890182 stripped
 MonoBehaviour:
@@ -813,7 +575,7 @@ Transform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114346722706362028, guid: 3d2d716f962509d4e8b65e0f76d9d9fe,
     type: 2}
-  m_PrefabInternal: {fileID: 1220569843}
+  m_PrefabInternal: {fileID: 1183789234}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1765313209
 GameObject:
