@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33988733727739954}
   - component: {fileID: 23030727464641792}
   - component: {fileID: 65785597995304678}
-  - component: {fileID: 114636231815494658}
   - component: {fileID: 54044543803886048}
+  - component: {fileID: 114636231815494658}
   m_Layer: 0
   m_Name: FoodItemPrefab
   m_TagString: Food

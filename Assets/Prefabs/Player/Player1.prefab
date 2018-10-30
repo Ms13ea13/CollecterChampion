@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052214797530336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.48, y: 0, z: -4.7}
+  m_LocalPosition: {x: -4.78, y: 1, z: -3.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4635689013438204}
@@ -199,9 +199,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533b3faec41c5124abb1f9fda92813cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInHold: {fileID: 0}
+  currentFoodInFront: {fileID: 0}
+  currentCustomerInFront: {fileID: 0}
+  currentBinInFront: {fileID: 0}
+  currentTrayInFront: {fileID: 0}
+  foodStockManager:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   charContr: {fileID: 143091882382662048}
   playerSightLength: 6
   distanceToObstacle: 0
+  holding: 0
 --- !u!114 &114813359895822402
 MonoBehaviour:
   m_ObjectHideFlags: 1

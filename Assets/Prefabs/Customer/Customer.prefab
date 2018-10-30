@@ -246,7 +246,7 @@ MonoBehaviour:
   showStatus: {fileID: 114340511158988564}
   orderImagePrefab: {fileID: 1850671274903486, guid: 5bc94f1e0dc21f444a5c44702bef9807,
     type: 2}
-  satusImpages: []
+  statusImages: []
   customerPanel: {fileID: 1013311881208256}
   correctOrder: 0
 --- !u!114 &114177014701591166

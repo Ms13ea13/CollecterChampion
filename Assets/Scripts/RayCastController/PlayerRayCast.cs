@@ -21,8 +21,9 @@ public class PlayerRayCast : MonoBehaviour
 
 	[SerializeField]
 	private TrayItem currentTrayInFront;
-	
-   
+
+    [SerializeField]
+    private FoodStockManager[] foodStockManager;
 
     [SerializeField]
 	private CharacterController charContr;
@@ -137,8 +138,7 @@ public class PlayerRayCast : MonoBehaviour
 				if (currentFoodInFront)
                 {
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
-                    //currentTrayInFront.GetComponent<TrayItem>().GetFoodToTray();
-                    //currentTrayInFront.GetComponent<TrayItem>().FoodInTrayAmount();
+                    foodStockManager[currentFoodInFront.GetFoodItemId()].RemoveFoodNumber(1);
                 }
 			}
 		}

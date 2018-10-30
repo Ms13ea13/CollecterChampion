@@ -21,5 +21,4 @@ public class ScoreManager : MonoBehaviour
 	{
 		scoreText.text = message;
 	}
-
 }
