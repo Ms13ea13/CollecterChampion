@@ -74,9 +74,10 @@ public class CustomerManager : MonoBehaviour
 				if (item.GetOrderId() == id)
 				{
 					customerOrders.Remove(item);
-					Payment(item.GetOrderPrice());	
+                    StartCoroutine(DelayCustomerPayMent(item.GetOrderPrice()));
+					//*Payment(item.GetOrderPrice());	
 					Destroy(item.gameObject);
-					PlayEatingAnimation();
+					//PlayEatingAnimation();
 					return true;
 				}
 			}
@@ -113,7 +114,7 @@ public class CustomerManager : MonoBehaviour
         StartCoroutine(DelayCustomerExit());
 	}
 
-	private void PlayEatingAnimation()
+	/*private void PlayEatingAnimation()
 	{
 		//Play Eat animation here
 		
@@ -124,7 +125,7 @@ public class CustomerManager : MonoBehaviour
 	private void EmptyPlate()
 	{
 		
-	}
+	}*/
 
 	private void Payment(int moneyAmount) 
 	{
@@ -137,6 +138,13 @@ public class CustomerManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         OrderingFood();
         Debug.Log("Customer Ordering");
+    }
+
+    IEnumerator DelayCustomerPayMent(int payment)
+    {
+        yield return new WaitForSeconds(3f);
+        Payment(payment);
+        Debug.Log("Customer Pay Money");
     }
 
     IEnumerator DelayCustomerExit()
