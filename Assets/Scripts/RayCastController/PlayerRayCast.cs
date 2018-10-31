@@ -37,7 +37,7 @@ public class PlayerRayCast : MonoBehaviour
 	[SerializeField]
 	private bool holding;
 
-	private int foodInHoldId;
+    private int foodInHoldId;
 	private RaycastHit hit;
 	private Vector3 p1;
 	private Vector3 p2;
@@ -68,7 +68,7 @@ public class PlayerRayCast : MonoBehaviour
 
 		if (Input.GetKeyUp(KeyCode.Space))
 		{
-			PickUpObj();
+            PickUpObj();
 		}
 	}
 
@@ -137,8 +137,11 @@ public class PlayerRayCast : MonoBehaviour
 			{
 				if (currentFoodInFront)
                 {
-                    currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
-                    foodStockManager[currentFoodInFront.GetFoodItemId()].RemoveFoodNumber(1);
+                    if (currentTrayInFront.currentIndex < 3)
+                    {
+                        currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                        foodStockManager[currentFoodInFront.GetFoodItemId()].RemoveFoodNumber(1);
+                    }
                 }
 			}
 		}
@@ -147,8 +150,8 @@ public class PlayerRayCast : MonoBehaviour
 			if (currentTrayInFront)
 				TakeObjIntoHold(currentTrayInFront.gameObject);
 				
-			if (currentFoodInFront)
-				TakeObjIntoHold(currentFoodInFront.gameObject);
+			/*if (currentFoodInFront)
+				TakeObjIntoHold(currentFoodInFront.gameObject);*/
 		}
 	}
 
@@ -227,5 +230,4 @@ public class PlayerRayCast : MonoBehaviour
 		holding = false;
 		currentBinInFront = null;
 	}
-	
 }

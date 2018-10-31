@@ -13,8 +13,15 @@ public class FoodStockManager : MonoBehaviour
 
     public void RemoveFoodNumber(int minusFood)
     {
-        foodStock -= minusFood;
-        SetFoodContent(foodStock.ToString());
+        if (foodStock > 0)
+        {
+            foodStock -= minusFood;
+            SetFoodContent(foodStock.ToString());
+        }
+        else
+        {
+            foodStock = 0;
+        }
     }
 
     private void SetFoodContent(string message)
