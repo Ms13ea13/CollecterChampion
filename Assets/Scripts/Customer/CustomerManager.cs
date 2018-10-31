@@ -32,13 +32,13 @@ public class CustomerManager : MonoBehaviour
 	
 	void Start()
 	{
-		RandomFoodAmount();
-		OrderingFood();
+        RandomFoodAmount();
+        StartCoroutine(DelayCustomerOrdering());
 	}
     
 	void Update()
 	{
-		CheckOrderAmount();
+        CheckOrderAmount();
 	}
 
 	private void ClearAllOrderPanel()
@@ -92,8 +92,8 @@ public class CustomerManager : MonoBehaviour
 	{
 		if (customerOrders.Count == 0)
 		{
-			PlayerWalkOutAnimation();
-		}
+            PlayerWalkOutAnimation();
+        }
 	}
 
 	private void OrderingFood()
@@ -109,8 +109,8 @@ public class CustomerManager : MonoBehaviour
 
 	private void PlayerWalkOutAnimation()
 	{
-		//Play walk out animation here
-		Destroy(gameObject);
+        //Play walk out animation here
+        StartCoroutine(DelayCustomerExit());
 	}
 
 	private void PlayEatingAnimation()
@@ -131,4 +131,18 @@ public class CustomerManager : MonoBehaviour
 		//Play coin vfx here
 		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
 	}
+
+    IEnumerator DelayCustomerOrdering()
+    {
+        yield return new WaitForSeconds(3f);
+        OrderingFood();
+        Debug.Log("Customer Ordering");
+    }
+
+    IEnumerator DelayCustomerExit()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+        Debug.Log("Customer Exit");
+    }
 }

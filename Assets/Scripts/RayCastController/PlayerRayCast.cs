@@ -159,7 +159,7 @@ public class PlayerRayCast : MonoBehaviour
 	{
 		if (target && holding)
 		{
-			if (Input.GetKeyDown(KeyCode.B))
+			if (Input.GetKeyUp(KeyCode.B))
 			{
 				if (currentBinInFront)
 				{
@@ -180,7 +180,7 @@ public class PlayerRayCast : MonoBehaviour
 						if (currentCustomerInFront.RecieveOrder(foodInHoldId))
 						{
 							Destroy(target);
-							ResetHolding();
+                            ResetHolding();
 						}
 					}
 					else if (target.GetComponent<TrayItem>())
@@ -189,8 +189,8 @@ public class PlayerRayCast : MonoBehaviour
 					}
                     else
 					{
-						UnHoldItem(target);
-					}
+                        UnHoldItem(target);
+                    }
 				}
                 else if (currentBinInFront)
 				{
