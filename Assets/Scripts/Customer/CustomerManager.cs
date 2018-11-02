@@ -75,7 +75,7 @@ public class CustomerManager : MonoBehaviour
 				{
 					customerOrders.Remove(item);
                     StartCoroutine(DelayCustomerPayMent(item.GetOrderPrice()));
-					//*Payment(item.GetOrderPrice());	
+					//Payment(item.GetOrderPrice());	
 					Destroy(item.gameObject);
 					//PlayEatingAnimation();
 					return true;
@@ -112,9 +112,17 @@ public class CustomerManager : MonoBehaviour
 	{
         //Play walk out animation here
         StartCoroutine(DelayCustomerExit());
-	}
 
-	/*private void PlayEatingAnimation()
+        /*var seq = LeanTween.sequence();
+        seq.append(3f);
+        seq.append(() =>
+        {
+            Destroy(gameObject);
+            Debug.Log("Customer Exit");
+        });*/
+    }
+
+    /*private void PlayEatingAnimation()
 	{
 		//Play Eat animation here
 		
@@ -127,7 +135,7 @@ public class CustomerManager : MonoBehaviour
 		
 	}*/
 
-	private void Payment(int moneyAmount) 
+    private void Payment(int moneyAmount) 
 	{
 		//Play coin vfx here
 		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
