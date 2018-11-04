@@ -106,7 +106,6 @@ public class FoodItem : MonoBehaviour
 
         if (timerSlider.value < max && !grilledFood && !cooked)
         {
-            Debug.LogError("Hold H");
             timerSlider.value += Time.deltaTime;
 
             if (timerSlider.value >= max)
