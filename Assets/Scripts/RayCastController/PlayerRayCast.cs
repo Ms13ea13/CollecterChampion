@@ -185,8 +185,8 @@ public class PlayerRayCast : MonoBehaviour
 			if (currentTrayInFront)
 				TakeObjIntoHold(currentTrayInFront.gameObject);
 
-            /*if (currentFoodInFront)
-				TakeObjIntoHold(currentFoodInFront.gameObject);*/
+            if (currentFoodInFront)
+				TakeObjIntoHold(currentFoodInFront.gameObject);
         }
 	}
 
@@ -196,24 +196,18 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (Input.GetKeyUp(KeyCode.B))
 			{
-				if (currentBinInFront)
-				{
-					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
-					ResetHolding();
-				}
-				
 				/*if (currentCustomerInFront == null && currentBinInFront == null)
 				{
 					UnHoldItem(target);
 				}*/
-				else if (currentCustomerInFront)
+				if (currentCustomerInFront)
 				{
 					if (target.GetComponent<FoodItem>())
 					{
 						foodInHoldId = target.GetComponent<FoodItem>().GetFoodItemId();
 						if (currentCustomerInFront.RecieveOrder(foodInHoldId))
 						{
-							Destroy(target);
+                            Destroy(target);
                             ResetHolding();
 						}
 					}
@@ -221,26 +215,32 @@ public class PlayerRayCast : MonoBehaviour
 					{
 						target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
 					}
-                    /*else
+                    else
 					{
                         UnHoldItem(target);
-                    }*/
+                    }
 				}
-                /*else if (currentBinInFront)
-				{
-					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(target);
-					ResetHolding();
-				}*/
-			}
+                else if (currentBinInFront)
+                {
+                    currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
+                    ResetHolding();
+                }
+                else if (currentStoveInFront)
+                {
+                    currentStoveInFront.GetComponent<StoveManager>().GrillFood(itemInHold);
+                    Debug.Log(itemInHold + "Color Change");
+                    UnHoldItem(target);
+                }
+            }
 		}
 	}
 
-	/*private void UnHoldItem(GameObject target)
+	private void UnHoldItem(GameObject target)
 	{
 		target.transform.parent = null;
 		target.GetComponent<Collider>().enabled = true;
 		ResetHolding();
-	}*/
+	}
 	
 	private void TakeObjIntoHold(GameObject target)
 	{

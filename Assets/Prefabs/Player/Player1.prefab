@@ -204,10 +204,8 @@ MonoBehaviour:
   currentCustomerInFront: {fileID: 0}
   currentBinInFront: {fileID: 0}
   currentTrayInFront: {fileID: 0}
-  foodStockManager:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  currentStoveInFront: {fileID: 0}
+  currentChoppingBoardInFront: {fileID: 0}
   charContr: {fileID: 143091882382662048}
   playerSightLength: 6
   distanceToObstacle: 0
