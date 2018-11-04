@@ -51,7 +51,7 @@ public class PlayerRayCast : MonoBehaviour
 	void Start()
 	{
 		holding = false;
-		distanceToObstacle = 0;
+        distanceToObstacle = 0;
 	}
 
 	public void ShootRayCast()
@@ -62,23 +62,33 @@ public class PlayerRayCast : MonoBehaviour
 		if (holding)
 		{
 			DropOBj(ref itemInHold);
-			GetCustomerInFront();
+            GetCustomerInFront();
 			GetBinInFront();
-            GetStoveInFront();
-            GetChoppingBoardInFront();
         }
 		else
 		{
 			GetTrayHolderInFront();
-		}
+        }
 		
 		GetFoodInFront();
+        GetStoveInFront();
+        GetChoppingBoardInFront();
 
-		if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
 		{
             PickUpObj();
 		}
-	}
+
+        if (Input.GetKey(KeyCode.H))
+        {
+            GrillObj();
+        }
+
+        if (Input.GetKey(KeyCode.J))
+        {
+            ChopObj();
+        }
+    }
 
 	private void GetFoodInFront()
 	{
@@ -164,7 +174,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void PickUpObj()
 	{
-		if (holding )
+		if (holding)
 		{
 			if (currentTrayInFront)
 			{
@@ -227,15 +237,73 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentStoveInFront)
                 {
-                    currentStoveInFront.GetComponent<StoveManager>().GrillFood(itemInHold);
-                    Debug.Log(itemInHold + "Color Change");
+                    if (target)
+                    {
+                        PlaceObjIntoStove(target);
+                        UnHoldItem(target);
+                    }
+                }
+                else if (currentChoppingBoardInFront)
+                {
+                    if (target)
+                    {
+                        PlaceObjIntoChoppingBoard(target);
+                        UnHoldItem(target);
+                    }
+                }
+                else
+                {
                     UnHoldItem(target);
                 }
+                /*else if (currentStoveInFront)
+                {
+                    if (currentFoodInFront)
+                    {
+                        if (Input.GetKey(KeyCode.H))
+                        {
+                            BarFill.GetComponent<BarFilling>().FillBar();
+                            currentStoveInFront.GetComponent<StoveManager>().GrillFood(itemInHold);
+                            Debug.Log(itemInHold + "Color Change");
+                            //UnHoldItem(target);
+                        }
+                    }
+                }*/
             }
 		}
 	}
 
-	private void UnHoldItem(GameObject target)
+    private void GrillObj()
+    {
+        if (!holding)
+        {
+            if (currentFoodInFront)
+            {
+                if (currentFoodInFront.GetFoodOnStove())
+                {
+                    currentFoodInFront.GetComponent<FoodItem>().PrepareFood(currentFoodInFront.gameObject);
+                }
+            }
+        }
+    }
+
+    private void ChopObj()
+    {
+        if (!holding)
+        {
+            if (currentFoodInFront)
+            {
+                if (currentFoodInFront.GetFoodOnChoppingBoard())
+                {
+                    if (currentFoodInFront.GetFoodIsGrilled())
+                    {
+                        currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
+                    }
+                }
+            }
+        }
+    }
+
+    private void UnHoldItem(GameObject target)
 	{
 		target.transform.parent = null;
 		target.GetComponent<Collider>().enabled = true;
@@ -252,16 +320,42 @@ public class PlayerRayCast : MonoBehaviour
 		target.transform.localPosition = temp;
 		itemInHold = target;
 		itemInHold.GetComponent<Collider>().enabled = false;
-		holding = true;
-	}
+        holding = true;
+        //target.GetComponent<FoodItem>().SetFoodOnStove(false);
+        //target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(false);
+    }
 
-	private void ResetHolding()
+    private void PlaceObjIntoStove(GameObject target)
+    {
+        target.transform.parent = currentStoveInFront.transform;
+        Vector3 temp = target.transform.localPosition;
+        temp.y = 0.8f;
+        temp.x = 0;
+        temp.z = 0;
+        target.transform.localPosition = temp;
+        holding = false;
+        target.GetComponent<FoodItem>().SetFoodOnStove(true);
+    }
+
+    private void PlaceObjIntoChoppingBoard(GameObject target)
+    {
+        target.transform.parent = currentChoppingBoardInFront.transform;
+        Vector3 temp = target.transform.localPosition;
+        temp.y = 0.8f;
+        temp.x = 0;
+        temp.z = 0;
+        target.transform.localPosition = temp;
+        holding = false;
+        target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(true);
+    }
+
+    private void ResetHolding()
 	{
 		currentFoodInFront = null;
 		currentCustomerInFront = null;
 		currentTrayInFront = null;
 		itemInHold = null;
 		holding = false;
-		currentBinInFront = null;
+        currentBinInFront = null;
 	}
 }
