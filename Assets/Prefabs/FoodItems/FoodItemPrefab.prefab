@@ -379,9 +379,11 @@ MonoBehaviour:
   foodOnStove: 0
   foodOnChoppingBoard: 0
   grilledFood: 0
+  cooked: 0
   timerSlider: {fileID: 114647611459744200}
   min: 0
   max: 1
+  tempSliderValue: 0
 --- !u!114 &114637630251846982
 MonoBehaviour:
   m_ObjectHideFlags: 1

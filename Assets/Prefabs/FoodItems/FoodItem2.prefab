@@ -172,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110788850676922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: 0}
+  m_LocalPosition: {x: 2.19, y: 0.926, z: -4.55}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224135479958493358}
@@ -426,9 +426,11 @@ MonoBehaviour:
   foodOnStove: 0
   foodOnChoppingBoard: 0
   grilledFood: 0
+  cooked: 0
   timerSlider: {fileID: 114722404536899226}
   min: 0
   max: 1
+  tempSliderValue: 0
 --- !u!114 &114806497149425496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -567,7 +569,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1071289658129106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.067, z: 1}
   m_Children:
   - {fileID: 224841827492802938}
@@ -577,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.099999994, y: 2.512}
+  m_AnchoredPosition: {x: 0, y: 1.3}
   m_SizeDelta: {x: 3, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224258132875774118
