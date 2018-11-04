@@ -21,8 +21,9 @@ public class PlayerRayCast : MonoBehaviour
 
 	[SerializeField]
 	private TrayItem currentTrayInFront;
-	
-   
+
+    /*[SerializeField]
+    private FoodStockManager[] foodStockManager;*/
 
     [SerializeField]
 	private CharacterController charContr;
@@ -36,7 +37,7 @@ public class PlayerRayCast : MonoBehaviour
 	[SerializeField]
 	private bool holding;
 
-	private int foodInHoldId;
+    private int foodInHoldId;
 	private RaycastHit hit;
 	private Vector3 p1;
 	private Vector3 p2;
@@ -67,7 +68,7 @@ public class PlayerRayCast : MonoBehaviour
 
 		if (Input.GetKeyUp(KeyCode.Space))
 		{
-			PickUpObj();
+            PickUpObj();
 		}
 	}
 
@@ -97,7 +98,6 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			currentCustomerInFront = null;
 		}
-		
 	}
 	
 	private void GetBinInFront()
@@ -137,8 +137,12 @@ public class PlayerRayCast : MonoBehaviour
 				if (currentFoodInFront)
                 {
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
-                    //currentTrayInFront.GetComponent<TrayItem>().GetFoodToTray();
-                    //currentTrayInFront.GetComponent<TrayItem>().FoodInTrayAmount();
+
+                    /*if (currentTrayInFront.currentIndex < 3)
+                    {
+                        currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                        foodStockManager[currentFoodInFront.GetFoodItemId()].RemoveFoodNumber(1);
+                    }*/
                 }
 			}
 		}
@@ -147,8 +151,8 @@ public class PlayerRayCast : MonoBehaviour
 			if (currentTrayInFront)
 				TakeObjIntoHold(currentTrayInFront.gameObject);
 				
-			if (currentFoodInFront)
-				TakeObjIntoHold(currentFoodInFront.gameObject);
+			/*if (currentFoodInFront)
+				TakeObjIntoHold(currentFoodInFront.gameObject);*/
 		}
 	}
 
@@ -156,19 +160,18 @@ public class PlayerRayCast : MonoBehaviour
 	{
 		if (target && holding)
 		{
-			if (Input.GetKeyDown(KeyCode.B))
+			if (Input.GetKeyUp(KeyCode.B))
 			{
 				if (currentBinInFront)
 				{
 					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
 					ResetHolding();
-					return;
 				}
 				
-				if (currentCustomerInFront == null && currentBinInFront == null)
+				/*if (currentCustomerInFront == null && currentBinInFront == null)
 				{
 					UnHoldItem(target);
-				}
+				}*/
 				else if (currentCustomerInFront)
 				{
 					if (target.GetComponent<FoodItem>())
@@ -177,33 +180,33 @@ public class PlayerRayCast : MonoBehaviour
 						if (currentCustomerInFront.RecieveOrder(foodInHoldId))
 						{
 							Destroy(target);
-							ResetHolding();
+                            ResetHolding();
 						}
 					}
 					else if (target.GetComponent<TrayItem>())
 					{
 						target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
 					}
-                    else
+                    /*else
 					{
-						UnHoldItem(target);
-					}
+                        UnHoldItem(target);
+                    }*/
 				}
-                else if (currentBinInFront)
+                /*else if (currentBinInFront)
 				{
 					currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(target);
 					ResetHolding();
-				}
+				}*/
 			}
 		}
 	}
 
-	private void UnHoldItem(GameObject target)
+	/*private void UnHoldItem(GameObject target)
 	{
 		target.transform.parent = null;
 		target.GetComponent<Collider>().enabled = true;
 		ResetHolding();
-	}
+	}*/
 	
 	private void TakeObjIntoHold(GameObject target)
 	{
@@ -227,5 +230,4 @@ public class PlayerRayCast : MonoBehaviour
 		holding = false;
 		currentBinInFront = null;
 	}
-	
 }

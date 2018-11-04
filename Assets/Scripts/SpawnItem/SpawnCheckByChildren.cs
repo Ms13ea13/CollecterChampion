@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnCheckByChildren : MonoBehaviour
 {
-
 	[SerializeField]
 	private GameObject prefab;
 
@@ -23,8 +22,5 @@ public class SpawnCheckByChildren : MonoBehaviour
 			temp.y = .5f;
 			spawnGameobj.transform.localPosition = temp;
 		}
-		
 	}
-
-
 }

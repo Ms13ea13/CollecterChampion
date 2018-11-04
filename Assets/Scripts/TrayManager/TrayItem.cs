@@ -7,18 +7,19 @@ public class TrayItem : MonoBehaviour
 {
     [SerializeField]
     private List<FoodInTray> foodInTrayOrders;
+
     [SerializeField]
     private GameObject foodInTrayImagePrefab;
+
     [SerializeField]
     private GameObject trayPanel;
-    /*[SerializeField]
-    private Image foodImage;*/
 
     [SerializeField]
 	private List<GameObject> itemInTray;
 
     [SerializeField]
 	private int currentIndex;
+
 	private bool onHold;
 	private Vector3 temp;
 
@@ -62,14 +63,14 @@ public class TrayItem : MonoBehaviour
 		currentIndex = 0;
 	}
 	
-	public void RemoveFoorFromTray()
+	public void RemoveFoodFromTray()
 	{
 		currentIndex -= 1;
 	}
 
 	private Vector3 StackFoodVisually(int index, Transform targetTransform)
 	{
-		 temp = targetTransform.localPosition;
+	    temp = targetTransform.localPosition;
 		switch (index)
 		{
 			case 0:

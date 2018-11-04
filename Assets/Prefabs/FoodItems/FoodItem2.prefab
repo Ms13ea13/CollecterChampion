@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4620570366195460}
   - component: {fileID: 33597660749067320}
   - component: {fileID: 23400854291503712}
-  - component: {fileID: 114726314850349382}
-  - component: {fileID: 54871766995124850}
   - component: {fileID: 65825496799582630}
+  - component: {fileID: 54871766995124850}
+  - component: {fileID: 114726314850349382}
   m_Layer: 0
   m_Name: FoodItem2
   m_TagString: Food

@@ -32,13 +32,13 @@ public class CustomerManager : MonoBehaviour
 	
 	void Start()
 	{
-		RandomFoodAmount();
-		OrderingFood();
+        RandomFoodAmount();
+        StartCoroutine(DelayCustomerOrdering());
 	}
     
 	void Update()
 	{
-		CheckOrderAmount();
+        CheckOrderAmount();
 	}
 
 	private void ClearAllOrderPanel()
@@ -74,9 +74,10 @@ public class CustomerManager : MonoBehaviour
 				if (item.GetOrderId() == id)
 				{
 					customerOrders.Remove(item);
-					Payment(item.GetOrderPrice());	
+                    StartCoroutine(DelayCustomerPayMent(item.GetOrderPrice()));
+					//Payment(item.GetOrderPrice());	
 					Destroy(item.gameObject);
-					PlayEatingAnimation();
+					//PlayEatingAnimation();
 					return true;
 				}
 			}
@@ -92,8 +93,8 @@ public class CustomerManager : MonoBehaviour
 	{
 		if (customerOrders.Count == 0)
 		{
-			PlayerWalkOutAnimation();
-		}
+            PlayerWalkOutAnimation();
+        }
 	}
 
 	private void OrderingFood()
@@ -109,11 +110,13 @@ public class CustomerManager : MonoBehaviour
 
 	private void PlayerWalkOutAnimation()
 	{
-		//Play walk out animation here
-		Destroy(gameObject);
-	}
+        //Play walk out animation here
+        //StartCoroutine(DelayCustomerExit());
+        RandomFoodAmount();
+        StartCoroutine(DelayCustomerOrdering());
+    }
 
-	private void PlayEatingAnimation()
+    /*private void PlayEatingAnimation()
 	{
 		//Play Eat animation here
 		
@@ -124,11 +127,32 @@ public class CustomerManager : MonoBehaviour
 	private void EmptyPlate()
 	{
 		
-	}
+	}*/
 
-	private void Payment(int moneyAmount) 
+    private void Payment(int moneyAmount) 
 	{
 		//Play coin vfx here
 		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
 	}
+
+    IEnumerator DelayCustomerOrdering()
+    {
+        yield return new WaitForSeconds(3f);
+        OrderingFood();
+        Debug.Log("Customer Ordering");
+    }
+
+    IEnumerator DelayCustomerPayMent(int payment)
+    {
+        yield return new WaitForSeconds(3f);
+        Payment(payment);
+        Debug.Log("Customer Pay Money");
+    }
+
+    IEnumerator DelayCustomerExit()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+        Debug.Log("Customer Exit");
+    }
 }
