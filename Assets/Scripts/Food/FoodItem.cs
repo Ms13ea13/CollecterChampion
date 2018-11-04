@@ -63,6 +63,11 @@ public class FoodItem : MonoBehaviour
 		return foodID;
 	}
 
+    public bool GetCookState()
+    {
+        return cooked;
+    }
+
 	public string GetFoodItemName()
 	{
 		return FoodName;

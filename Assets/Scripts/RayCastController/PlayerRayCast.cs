@@ -206,16 +206,12 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (Input.GetKeyUp(KeyCode.B))
 			{
-				/*if (currentCustomerInFront == null && currentBinInFront == null)
-				{
-					UnHoldItem(target);
-				}*/
 				if (currentCustomerInFront)
 				{
 					if (target.GetComponent<FoodItem>())
 					{
-						foodInHoldId = target.GetComponent<FoodItem>().GetFoodItemId();
-						if (currentCustomerInFront.RecieveOrder(foodInHoldId))
+						FoodItem foodToServe = target.GetComponent<FoodItem>();
+						if (currentCustomerInFront.RecieveOrder(foodToServe))
 						{
                             Destroy(target);
                             ResetHolding();
@@ -255,19 +251,6 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     UnHoldItem(target);
                 }
-                /*else if (currentStoveInFront)
-                {
-                    if (currentFoodInFront)
-                    {
-                        if (Input.GetKey(KeyCode.H))
-                        {
-                            BarFill.GetComponent<BarFilling>().FillBar();
-                            currentStoveInFront.GetComponent<StoveManager>().GrillFood(itemInHold);
-                            Debug.Log(itemInHold + "Color Change");
-                            //UnHoldItem(target);
-                        }
-                    }
-                }*/
             }
 		}
 	}
@@ -333,6 +316,8 @@ public class PlayerRayCast : MonoBehaviour
         temp.x = 0;
         temp.z = 0;
         target.transform.localPosition = temp;
+	    Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
+	    target.transform.localRotation = tempQuaternion;
         holding = false;
         target.GetComponent<FoodItem>().SetFoodOnStove(true);
     }
@@ -345,6 +330,8 @@ public class PlayerRayCast : MonoBehaviour
         temp.x = 0;
         temp.z = 0;
         target.transform.localPosition = temp;
+	    Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
+	    target.transform.localRotation = tempQuaternion;
         holding = false;
         target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(true);
     }

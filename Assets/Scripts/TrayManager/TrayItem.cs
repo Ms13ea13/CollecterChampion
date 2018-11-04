@@ -46,7 +46,7 @@ public class TrayItem : MonoBehaviour
 	{
 		foreach (var item in itemInTray)
 		{
-			if (customer.RecieveOrder(item.gameObject.GetComponent<FoodItem>().GetFoodItemId()))
+			if (customer.RecieveOrder(item.gameObject.GetComponent<FoodItem>()))
 			{
 				itemInTray.Remove(item);
 				Destroy(item.gameObject);

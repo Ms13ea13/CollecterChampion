@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using System.Linq;
+using UnityEngine.Experimental.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -31,24 +32,7 @@ public class CustomerManager : MonoBehaviour
 	
 	void Start()
 	{
-        RandomFoodAmount();
-        StartCoroutine(DelayCustomerOrdering());
-	}
-    
-	void Update()
-	{
-        CheckOrderAmount();
-	}
-
-	private void ClearAllOrderPanel()
-	{
-		if (customerPanel.transform.childCount <= 0)
-			return;
-		
-		for (int i = 0; i < customerPanel.transform.childCount; i++)
-		{
-			Destroy(customerPanel.transform.GetChild(i).gameObject);
-		}
+		OrderingFood();
 	}
 	
 	private void RandomFoodAmount()
@@ -64,19 +48,17 @@ public class CustomerManager : MonoBehaviour
 		}
 	}
 	
-	public bool RecieveOrder(int id)
+	public bool RecieveOrder(FoodItem foodRecieve)
 	{
-		if (customerOrders.Count > 0)
+		if (customerOrders.Count > 0 && foodRecieve)
 		{
 			foreach (var item in customerOrders)
 			{
-				if (item.GetOrderId() == id)
+				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.GetCookState())
 				{
 					customerOrders.Remove(item);
-                    StartCoroutine(DelayCustomerPayMent(item.GetOrderPrice()));
-					//Payment(item.GetOrderPrice());	
+					DelayPayment(item.GetOrderPrice());
 					Destroy(item.gameObject);
-					//PlayEatingAnimation();
 					return true;
 				}
 			}
@@ -88,16 +70,9 @@ public class CustomerManager : MonoBehaviour
 		}
 	}
 
-	private void CheckOrderAmount()
-	{
-		if (customerOrders.Count == 0)
-		{
-            PlayerWalkOutAnimation();
-        }
-	}
-
 	private void OrderingFood()
 	{
+		RandomFoodAmount();
 		if (customerOrders.Count > 0)
 		{
 			foreach (var item in customerOrders)
@@ -107,51 +82,22 @@ public class CustomerManager : MonoBehaviour
 		}	
 	}
 
-	private void PlayerWalkOutAnimation()
-	{
-        //Play walk out animation here
-        //StartCoroutine(DelayCustomerExit());
-        RandomFoodAmount();
-        StartCoroutine(DelayCustomerOrdering());
-    }
-
-    /*private void PlayEatingAnimation()
-	{
-		//Play Eat animation here
-		
-		//When Eat animation done
-		EmptyPlate();
-	}
-
-	private void EmptyPlate()
-	{
-		
-	}*/
-
     private void Payment(int moneyAmount) 
 	{
 		//Play coin vfx here
 		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
 	}
+	
+	void DelayPayment(int moneyAmount)
+	{
+		var seq = LeanTween.sequence();
+		seq.append(3f);
+		seq.append(() =>
+		{
+			Payment(moneyAmount);
+			if (customerOrders.Count == 0)
+			OrderingFood();
+		});
 
-    IEnumerator DelayCustomerOrdering()
-    {
-        yield return new WaitForSeconds(3f);
-        OrderingFood();
-        Debug.Log("Customer Ordering");
-    }
-
-    IEnumerator DelayCustomerPayMent(int payment)
-    {
-        yield return new WaitForSeconds(3f);
-        Payment(payment);
-        Debug.Log("Customer Pay Money");
-    }
-
-    IEnumerator DelayCustomerExit()
-    {
-        yield return new WaitForSeconds(3f);
-        Destroy(gameObject);
-        Debug.Log("Customer Exit");
-    }
+	}
 }
