@@ -17,8 +17,8 @@ public class TrayItem : MonoBehaviour
     [SerializeField]
 	private List<GameObject> itemInTray;
 
-    //[SerializeField]
-	public int currentIndex;
+    [SerializeField]
+	private int currentIndex;
 
 	private bool onHold;
 	private Vector3 temp;

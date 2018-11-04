@@ -111,15 +111,9 @@ public class CustomerManager : MonoBehaviour
 	private void PlayerWalkOutAnimation()
 	{
         //Play walk out animation here
-        StartCoroutine(DelayCustomerExit());
-
-        /*var seq = LeanTween.sequence();
-        seq.append(3f);
-        seq.append(() =>
-        {
-            Destroy(gameObject);
-            Debug.Log("Customer Exit");
-        });*/
+        //StartCoroutine(DelayCustomerExit());
+        RandomFoodAmount();
+        StartCoroutine(DelayCustomerOrdering());
     }
 
     /*private void PlayEatingAnimation()
