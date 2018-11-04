@@ -8,7 +8,6 @@ using System.Linq;
 
 public class CustomerManager : MonoBehaviour
 {
-
 	[SerializeField]
 	private List<FoodOrder> customerOrders;
 

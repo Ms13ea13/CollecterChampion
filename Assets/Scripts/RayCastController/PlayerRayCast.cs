@@ -22,6 +22,12 @@ public class PlayerRayCast : MonoBehaviour
 	[SerializeField]
 	private TrayItem currentTrayInFront;
 
+    [SerializeField]
+    private StoveManager currentStoveInFront;
+
+    [SerializeField]
+    private ChoppingBoardManager currentChoppingBoardInFront;
+
     /*[SerializeField]
     private FoodStockManager[] foodStockManager;*/
 
@@ -58,7 +64,9 @@ public class PlayerRayCast : MonoBehaviour
 			DropOBj(ref itemInHold);
 			GetCustomerInFront();
 			GetBinInFront();
-		}
+            GetStoveInFront();
+            GetChoppingBoardInFront();
+        }
 		else
 		{
 			GetTrayHolderInFront();
@@ -128,7 +136,33 @@ public class PlayerRayCast : MonoBehaviour
 		
 	}
 
-	private void PickUpObj()
+    private void GetStoveInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Stove"))
+        {
+            distanceToObstacle = hit.distance;
+            currentStoveInFront = hit.transform.gameObject.GetComponent<StoveManager>();
+        }
+        else
+        {
+            currentStoveInFront = null;
+        }
+    }
+
+    private void GetChoppingBoardInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "ChoppingBoard"))
+        {
+            distanceToObstacle = hit.distance;
+            currentChoppingBoardInFront = hit.transform.gameObject.GetComponent<ChoppingBoardManager>();
+        }
+        else
+        {
+            currentChoppingBoardInFront = null;
+        }
+    }
+
+    private void PickUpObj()
 	{
 		if (holding )
 		{
@@ -150,10 +184,10 @@ public class PlayerRayCast : MonoBehaviour
 		{
 			if (currentTrayInFront)
 				TakeObjIntoHold(currentTrayInFront.gameObject);
-				
-			/*if (currentFoodInFront)
+
+            /*if (currentFoodInFront)
 				TakeObjIntoHold(currentFoodInFront.gameObject);*/
-		}
+        }
 	}
 
 	private void DropOBj(ref GameObject target)
