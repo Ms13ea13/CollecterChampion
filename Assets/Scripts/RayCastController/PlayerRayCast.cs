@@ -81,12 +81,7 @@ public class PlayerRayCast : MonoBehaviour
 
         if (Input.GetKey(KeyCode.H))
         {
-            GrillObj();
-        }
-
-        if (Input.GetKey(KeyCode.J))
-        {
-            ChopObj();
+            FoodActions();
         }
     }
 
@@ -255,7 +250,7 @@ public class PlayerRayCast : MonoBehaviour
 		}
 	}
 
-    private void GrillObj()
+    private void FoodActions()
     {
         if (!holding)
         {
@@ -265,27 +260,15 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     currentFoodInFront.GetComponent<FoodItem>().PrepareFood(currentFoodInFront.gameObject);
                 }
+	            
+	            if (currentFoodInFront.GetFoodOnChoppingBoard())
+	            {
+		            currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
+	            }
             }
         }
     }
-
-    private void ChopObj()
-    {
-        if (!holding)
-        {
-            if (currentFoodInFront)
-            {
-                if (currentFoodInFront.GetFoodOnChoppingBoard())
-                {
-                    if (currentFoodInFront.GetFoodIsGrilled())
-                    {
-                        currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
-                    }
-                }
-            }
-        }
-    }
-
+	
     private void UnHoldItem(GameObject target)
 	{
 		target.transform.parent = null;
@@ -304,8 +287,6 @@ public class PlayerRayCast : MonoBehaviour
 		itemInHold = target;
 		itemInHold.GetComponent<Collider>().enabled = false;
         holding = true;
-        //target.GetComponent<FoodItem>().SetFoodOnStove(false);
-        //target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(false);
     }
 
     private void PlaceObjIntoStove(GameObject target)

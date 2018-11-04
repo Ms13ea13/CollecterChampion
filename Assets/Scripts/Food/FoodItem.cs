@@ -5,36 +5,25 @@ using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
 {
-	[SerializeField]
-	private int foodID;
-	
-	[SerializeField]
-	private string FoodName;
+    [SerializeField] private int foodID;
 
-	[SerializeField]
-	private int trayBandedId;
+    [SerializeField] private string FoodName;
 
-    [SerializeField]
-    private bool foodOnStove;
+    [SerializeField] private int trayBandedId;
 
-    [SerializeField]
-    private bool foodOnChoppingBoard;
+    [SerializeField] private bool foodOnStove;
 
-    [SerializeField]
-    private bool grilledFood;
+    [SerializeField] private bool foodOnChoppingBoard;
 
-    [SerializeField]
-    private bool cooked;
+    [SerializeField] private bool grilledFood;
 
-    [SerializeField]
-    private Slider timerSlider;
-    [SerializeField]
-    private int min;
-    [SerializeField]
-    private int max;
+    [SerializeField] private bool cooked;
 
-    [SerializeField]
-    private float tempSliderValue;
+    [SerializeField] private Slider timerSlider;
+    [SerializeField] private int min;
+    [SerializeField] private int max;
+
+    [SerializeField] private float tempSliderValue;
 
     void Start()
     {
@@ -47,41 +36,40 @@ public class FoodItem : MonoBehaviour
 
     private void SetShowTimerSlider(bool show)
     {
-        
         timerSlider.gameObject.SetActive(show);
     }
 
 
     public void SetUpFoodItem(int id)
-	{
-		foodID = id;
-		FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
-	}
+    {
+        foodID = id;
+        FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
+    }
 
-	public int GetFoodItemId()
-	{
-		return foodID;
-	}
+    public int GetFoodItemId()
+    {
+        return foodID;
+    }
 
     public bool GetCookState()
     {
         return cooked;
     }
 
-	public string GetFoodItemName()
-	{
-		return FoodName;
-	}
+    public string GetFoodItemName()
+    {
+        return FoodName;
+    }
 
-	public int GetBanedID()
-	{
-		return trayBandedId;
-	}
+    public int GetBanedID()
+    {
+        return trayBandedId;
+    }
 
-	public void SetBannedId(int id)
-	{
-		trayBandedId = id;
-	}
+    public void SetBannedId(int id)
+    {
+        trayBandedId = id;
+    }
 
     public void SetFoodOnStove(bool isOnStove)
     {
@@ -102,6 +90,7 @@ public class FoodItem : MonoBehaviour
     {
         return foodOnChoppingBoard;
     }
+
     public bool GetFoodIsGrilled()
     {
         return grilledFood;
@@ -109,60 +98,60 @@ public class FoodItem : MonoBehaviour
 
     public void PrepareFood(GameObject target)
     {
-        
         if (!target)
             return;
-                
-        if (timerSlider.value>0)
-        SetShowTimerSlider(true);
-        
-        if (timerSlider.value < max &&  !grilledFood && !cooked)
+
+        if (timerSlider.value > 0)
+            SetShowTimerSlider(true);
+
+        if (timerSlider.value < max && !grilledFood && !cooked)
         {
             Debug.LogError("Hold H");
             timerSlider.value += Time.deltaTime;
-            
+
             if (timerSlider.value >= max)
             {
                 grilledFood = true;
                 SetShowTimerSlider(false);
-                GrillFoodChangeMat(target);
+                ChangeFoodVisualAccordingToStates(target);
                 timerSlider.value = 0;
             }
 
             tempSliderValue = timerSlider.value;
-
-
         }
     }
 
     public void ChopFood(GameObject target)
     {
-        if (timerSlider.value < max)
+        if (!target)
+            return;
+
+        if (timerSlider.value > 0)
+            SetShowTimerSlider(true);
+
+        if (timerSlider.value < max && grilledFood && !cooked)
         {
+            Debug.LogError("Hold H");
             timerSlider.value += Time.deltaTime;
-            timerSlider.gameObject.SetActive(true);
-            //SetFoodIsCooked(false);
-        }
-        else if (timerSlider.value >= max)
-        {
-            timerSlider.gameObject.SetActive(false);
-            //SetFoodIsCooked(true);
 
-            if (!target)
-                return;
+            if (timerSlider.value >= max)
+            {
+                cooked = true;
+                SetShowTimerSlider(false);
+                ChangeFoodVisualAccordingToStates(target);
+                timerSlider.value = 0;
+            }
 
-            ChopFoodChangeMat(target);
+            tempSliderValue = timerSlider.value;
         }
     }
 
-    
-    private void GrillFoodChangeMat(GameObject food)
+
+    private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
-        food.GetComponent<Renderer>().material.color =  Color.green;
-    }
-    
-    private void ChopFoodChangeMat(GameObject food)
-    {
-        food.GetComponent<Renderer>().material.color = Color.blue;
+        if (grilledFood && !cooked)
+            food.GetComponent<Renderer>().material.color = Color.green;
+        if (cooked)
+            food.GetComponent<Renderer>().material.color = Color.blue;
     }
 }

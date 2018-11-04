@@ -26,9 +26,6 @@ public class CustomerManager : MonoBehaviour
 
 	[SerializeField]
 	private GameObject customerPanel;
-    
-	[SerializeField]
-	private bool correctOrder;
 	
 	void Start()
 	{
