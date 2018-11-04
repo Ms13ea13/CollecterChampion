@@ -7,220 +7,185 @@ using UnityEngine.XR.WSA.Input;
 
 public class PlayerRayCast : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject itemInHold;
-	
-	[SerializeField]
-	private FoodItem currentFoodInFront;
+    [SerializeField] private GameObject itemInHold;
 
-	[SerializeField]
-	private CustomerManager currentCustomerInFront;
-	
-	[SerializeField]
-	private BinManager currentBinInFront;
+    [SerializeField] private FoodItem currentFoodInFront;
 
-	[SerializeField]
-	private TrayItem currentTrayInFront;
+    [SerializeField] private CustomerManager currentCustomerInFront;
 
-    [SerializeField]
-    private StoveManager currentStoveInFront;
+    [SerializeField] private BinManager currentBinInFront;
 
-    [SerializeField]
-    private ChoppingBoardManager currentChoppingBoardInFront;
+    [SerializeField] private TrayItem currentTrayInFront;
+
+    [SerializeField] private StoveManager currentStoveInFront;
+
+    [SerializeField] private ChoppingBoardManager currentChoppingBoardInFront;
 
     /*[SerializeField]
     private FoodStockManager[] foodStockManager;*/
 
-    [SerializeField]
-	private CharacterController charContr;
-	
-	[SerializeField]
-	private float playerSightLength = 10f;
+    [SerializeField] private CharacterController charContr;
 
-	[SerializeField]
-	private float distanceToObstacle;
-	
-	[SerializeField]
-	private bool holding;
+    [SerializeField] private float playerSightLength = 10f;
+
+    [SerializeField] private float distanceToObstacle;
+
+    [SerializeField] private bool holding;
 
     private int foodInHoldId;
-	private RaycastHit hit;
-	private Vector3 p1;
-	private Vector3 p2;
+    private RaycastHit hit;
+    private Vector3 p1;
+    private Vector3 p2;
 
-	void Start()
-	{
-		holding = false;
+    void Start()
+    {
+        holding = false;
         distanceToObstacle = 0;
-	}
+    }
 
-	public void ShootRayCast()
-	{
-		p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
-		p2 = p1 + Vector3.up * charContr.height;
-		
-		if (holding)
-		{
-			DropOBj(ref itemInHold);
+    public void ShootRayCast()
+    {
+        p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
+        p2 = p1 + Vector3.up * charContr.height;
+
+        if (holding)
+        {
+            DropOBj(ref itemInHold);
             GetCustomerInFront();
-			GetBinInFront();
+            GetBinInFront();
         }
-		else
-		{
-			GetTrayHolderInFront();
-        }
-		
-		GetFoodInFront();
+        else
+            GetTrayHolderInFront();
+
+        GetFoodInFront();
         GetStoveInFront();
         GetChoppingBoardInFront();
 
         if (Input.GetKeyUp(KeyCode.Space))
-		{
             PickUpObj();
-		}
 
         if (Input.GetKey(KeyCode.H))
-        {
             FoodActions();
+    }
+
+    private void GetFoodInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Food"))
+        {
+            distanceToObstacle = hit.distance;
+            currentFoodInFront = hit.transform.gameObject.GetComponent<FoodItem>();
+        }
+        else
+        {
+            currentFoodInFront = null;
         }
     }
 
-	private void GetFoodInFront()
-	{
-		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Food") )
-		{
-			distanceToObstacle = hit.distance;
-			currentFoodInFront = hit.transform.gameObject.GetComponent<FoodItem>();
-		}
-		else
-		{
-			currentFoodInFront = null;
-		}
-	}
-	
-	private void GetCustomerInFront()
-	{
-		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Customer") )
-		{
-			distanceToObstacle = hit.distance;
-			currentCustomerInFront = hit.transform.gameObject.GetComponent<CustomerManager>();
-		}
-		else
-		{
-			currentCustomerInFront = null;
-		}
-	}
-	
-	private void GetBinInFront()
-	{
-		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Bin") )
-		{
-			distanceToObstacle = hit.distance;
-			currentBinInFront = hit.transform.gameObject.GetComponent<BinManager>();
-		}
-		else
-		{
-			currentBinInFront = null;
-		}
-		
-	}
-	
-	private void GetTrayHolderInFront()
-	{
-		// Cast character controller shape 10 meters forward to see if it is about to hit anything.
-		if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Tray") )
-		{
-			distanceToObstacle = hit.distance;
-			currentTrayInFront = hit.transform.gameObject.GetComponent<TrayItem>();
-		}
-		else
-			currentTrayInFront = null;
-		
-	}
+    private void GetCustomerInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Customer"))
+        {
+            distanceToObstacle = hit.distance;
+            currentCustomerInFront = hit.transform.gameObject.GetComponent<CustomerManager>();
+        }
+        else
+            currentCustomerInFront = null;
+    }
+
+    private void GetBinInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Bin"))
+        {
+            distanceToObstacle = hit.distance;
+            currentBinInFront = hit.transform.gameObject.GetComponent<BinManager>();
+        }
+        else
+            currentBinInFront = null;
+    }
+
+    private void GetTrayHolderInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Tray"))
+        {
+            distanceToObstacle = hit.distance;
+            currentTrayInFront = hit.transform.gameObject.GetComponent<TrayItem>();
+        }
+        else
+            currentTrayInFront = null;
+    }
 
     private void GetStoveInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "Stove"))
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Stove"))
         {
             distanceToObstacle = hit.distance;
             currentStoveInFront = hit.transform.gameObject.GetComponent<StoveManager>();
         }
         else
-        {
             currentStoveInFront = null;
-        }
     }
 
     private void GetChoppingBoardInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) && hit.transform.tag == "ChoppingBoard"))
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "ChoppingBoard"))
         {
             distanceToObstacle = hit.distance;
             currentChoppingBoardInFront = hit.transform.gameObject.GetComponent<ChoppingBoardManager>();
         }
         else
-        {
             currentChoppingBoardInFront = null;
-        }
     }
 
     private void PickUpObj()
-	{
-		if (holding)
-		{
-			if (currentTrayInFront)
-			{
-				if (currentFoodInFront)
-                {
+    {
+        if (holding)
+        {
+            if (currentTrayInFront)
+                if (currentFoodInFront)
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
-
-                    /*if (currentTrayInFront.currentIndex < 3)
-                    {
-                        currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
-                        foodStockManager[currentFoodInFront.GetFoodItemId()].RemoveFoodNumber(1);
-                    }*/
-                }
-			}
-		}
-		else
-		{
-			if (currentTrayInFront)
-				TakeObjIntoHold(currentTrayInFront.gameObject);
+        }
+        else
+        {
+            if (currentTrayInFront)
+                TakeObjIntoHold(currentTrayInFront.gameObject);
 
             if (currentFoodInFront)
-				TakeObjIntoHold(currentFoodInFront.gameObject);
+                TakeObjIntoHold(currentFoodInFront.gameObject);
         }
-	}
+    }
 
-	private void DropOBj(ref GameObject target)
-	{
-		if (target && holding)
-		{
-			if (Input.GetKeyUp(KeyCode.B))
-			{
-				if (currentCustomerInFront)
-				{
-					if (target.GetComponent<FoodItem>())
-					{
-						FoodItem foodToServe = target.GetComponent<FoodItem>();
-						if (currentCustomerInFront.RecieveOrder(foodToServe))
-						{
+    private void DropOBj(ref GameObject target)
+    {
+        if (target && holding)
+        {
+            if (Input.GetKeyUp(KeyCode.B))
+            {
+                if (currentCustomerInFront)
+                {
+                    if (target.GetComponent<FoodItem>())
+                    {
+                        FoodItem foodToServe = target.GetComponent<FoodItem>();
+                        if (currentCustomerInFront.RecieveOrder(foodToServe))
+                        {
                             Destroy(target);
                             ResetHolding();
-						}
-					}
-					else if (target.GetComponent<TrayItem>())
-					{
-						target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
-					}
-                    else
-					{
-                        UnHoldItem(target);
+                        }
                     }
-				}
+                    else if (target.GetComponent<TrayItem>())
+                        target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
+                    else
+                        UnHoldItem(target);
+                }
                 else if (currentBinInFront)
                 {
                     currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
@@ -230,7 +195,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (target)
                     {
-                        PlaceObjIntoStove(target);
+                        currentStoveInFront.PlaceObjIntoStove(target, ref holding);
                         UnHoldItem(target);
                     }
                 }
@@ -238,17 +203,15 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (target)
                     {
-                        PlaceObjIntoChoppingBoard(target);
+                        currentChoppingBoardInFront.PlaceFoodOnChopingBoard(target, ref holding);
                         UnHoldItem(target);
                     }
                 }
                 else
-                {
                     UnHoldItem(target);
-                }
             }
-		}
-	}
+        }
+    }
 
     private void FoodActions()
     {
@@ -257,73 +220,41 @@ public class PlayerRayCast : MonoBehaviour
             if (currentFoodInFront)
             {
                 if (currentFoodInFront.GetFoodOnStove())
-                {
                     currentFoodInFront.GetComponent<FoodItem>().PrepareFood(currentFoodInFront.gameObject);
-                }
-	            
-	            if (currentFoodInFront.GetFoodOnChoppingBoard())
-	            {
-		            currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
-	            }
+
+                if (currentFoodInFront.GetFoodOnChoppingBoard())
+                    currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
             }
         }
     }
-	
+
     private void UnHoldItem(GameObject target)
-	{
-		target.transform.parent = null;
-		target.GetComponent<Collider>().enabled = true;
-		ResetHolding();
-	}
-	
-	private void TakeObjIntoHold(GameObject target)
-	{
-		target.transform.parent = transform;
-		Vector3 temp = target.transform.localPosition;
-		temp.y = 0;
-		temp.x = 0;
-		temp.z = 1.5f;
-		target.transform.localPosition = temp;
-		itemInHold = target;
-		itemInHold.GetComponent<Collider>().enabled = false;
+    {
+        target.transform.parent = null;
+        target.GetComponent<Collider>().enabled = true;
+        ResetHolding();
+    }
+
+    private void TakeObjIntoHold(GameObject target)
+    {
+        target.transform.parent = transform;
+        Vector3 temp = target.transform.localPosition;
+        temp.y = 0;
+        temp.x = 0;
+        temp.z = 1.5f;
+        target.transform.localPosition = temp;
+        itemInHold = target;
+        itemInHold.GetComponent<Collider>().enabled = false;
         holding = true;
     }
 
-    private void PlaceObjIntoStove(GameObject target)
-    {
-        target.transform.parent = currentStoveInFront.transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.8f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-	    Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
-	    target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnStove(true);
-    }
-
-    private void PlaceObjIntoChoppingBoard(GameObject target)
-    {
-        target.transform.parent = currentChoppingBoardInFront.transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.8f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-	    Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
-	    target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(true);
-    }
-
     private void ResetHolding()
-	{
-		currentFoodInFront = null;
-		currentCustomerInFront = null;
-		currentTrayInFront = null;
-		itemInHold = null;
-		holding = false;
+    {
+        currentFoodInFront = null;
+        currentCustomerInFront = null;
+        currentTrayInFront = null;
+        itemInHold = null;
+        holding = false;
         currentBinInFront = null;
-	}
+    }
 }
