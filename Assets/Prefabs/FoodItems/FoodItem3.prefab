@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -458,7 +458,7 @@ MonoBehaviour:
   foodOnStove: 0
   foodOnChoppingBoard: 0
   grilledFood: 0
-  targetSlider: {fileID: 114572704725919820}
+  timerSlider: {fileID: 114572704725919820}
   min: 0
   max: 1
 --- !u!114 &114849958505977514
