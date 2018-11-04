@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,9 @@ public class TimeManager : MonoBehaviour
 
     public void SetTimeText(string newMessage)
     {
+        if (ForTimeTextUI)
         ForTimeTextUI.text = "Time : " +  newMessage;
+        else throw new Exception("ForTimeTextUI is null");
     }
 
     public float GetTimer()

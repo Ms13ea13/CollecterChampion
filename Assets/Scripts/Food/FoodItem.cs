@@ -24,16 +24,33 @@ public class FoodItem : MonoBehaviour
     private bool grilledFood;
 
     [SerializeField]
-    private Slider targetSlider;
+    private bool cooked;
+
+    [SerializeField]
+    private Slider timerSlider;
     [SerializeField]
     private int min;
     [SerializeField]
     private int max;
 
+    [SerializeField]
+    private float tempSliderValue;
+
     void Start()
     {
-        targetSlider.gameObject.SetActive(false);
+        timerSlider.value = 0;
+        grilledFood = false;
+        cooked = false;
+        timerSlider.wholeNumbers = false;
+        SetShowTimerSlider(false);
     }
+
+    private void SetShowTimerSlider(bool show)
+    {
+        
+        timerSlider.gameObject.SetActive(show);
+    }
+
 
     public void SetUpFoodItem(int id)
 	{
@@ -80,15 +97,6 @@ public class FoodItem : MonoBehaviour
     {
         return foodOnChoppingBoard;
     }
-
-    public void SetFoodIsGrilled(bool isGrilled)
-    {
-        if (!isGrilled)
-        {
-            grilledFood = isGrilled;
-        }
-    }
-
     public bool GetFoodIsGrilled()
     {
         return grilledFood;
@@ -96,43 +104,43 @@ public class FoodItem : MonoBehaviour
 
     public void PrepareFood(GameObject target)
     {
-        if (targetSlider.value < max)
-        {
-            targetSlider.value += Time.deltaTime;
-            targetSlider.gameObject.SetActive(true);
-            //SetFoodIsGrilled(false);
-        }
-
-        if (targetSlider.value >= max)
-        {
-            //targetSlider.gameObject.SetActive(false);
-            //SetFoodIsGrilled(true);
-
-            if (!target)
-                return;
-
-            GrillFoodChangeMat(target);
-            targetSlider.value = 0;
+        
+        if (!target)
             return;
-        }
-    }
+                
+        if (timerSlider.value>0)
+        SetShowTimerSlider(true);
+        
+        if (timerSlider.value < max &&  !grilledFood && !cooked)
+        {
+            Debug.LogError("Hold H");
+            timerSlider.value += Time.deltaTime;
+            
+            if (timerSlider.value >= max)
+            {
+                grilledFood = true;
+                SetShowTimerSlider(false);
+                GrillFoodChangeMat(target);
+                timerSlider.value = 0;
+            }
 
-    private void GrillFoodChangeMat(GameObject food)
-    {
-        food.GetComponent<Renderer>().material.color =  Color.green;
+            tempSliderValue = timerSlider.value;
+
+
+        }
     }
 
     public void ChopFood(GameObject target)
     {
-        if (targetSlider.value < max)
+        if (timerSlider.value < max)
         {
-            targetSlider.value += Time.deltaTime;
-            targetSlider.gameObject.SetActive(true);
+            timerSlider.value += Time.deltaTime;
+            timerSlider.gameObject.SetActive(true);
             //SetFoodIsCooked(false);
         }
-        else if (targetSlider.value >= max)
+        else if (timerSlider.value >= max)
         {
-            targetSlider.gameObject.SetActive(false);
+            timerSlider.gameObject.SetActive(false);
             //SetFoodIsCooked(true);
 
             if (!target)
@@ -142,6 +150,12 @@ public class FoodItem : MonoBehaviour
         }
     }
 
+    
+    private void GrillFoodChangeMat(GameObject food)
+    {
+        food.GetComponent<Renderer>().material.color =  Color.green;
+    }
+    
     private void ChopFoodChangeMat(GameObject food)
     {
         food.GetComponent<Renderer>().material.color = Color.blue;

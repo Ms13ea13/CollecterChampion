@@ -44,7 +44,7 @@ public class GameSceneManager : MonoBehaviour
 
     //Game Area----------------------------------------------------------------------
 
-    void Awake()
+    void Start()
     {
         Initialized();
     }
@@ -67,7 +67,9 @@ public class GameSceneManager : MonoBehaviour
     {
         _instance = this;
         timeManager = TimeManager.GetInstance();
+        if (timeManager)
         timeManager.SetTimeText(TimeManager.GetInstance().GetTimer().ToString());
+        else throw new Exception("TimeManager is null");
     }
 
     //Public static Area----------------------------------------------------------------------
