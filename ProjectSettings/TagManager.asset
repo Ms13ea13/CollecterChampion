@@ -11,6 +11,8 @@ TagManager:
   - Food
   - Customer
   - Tray
+  - Stove
+  - ChoppingBoard
   layers:
   - Default
   - TransparentFX
