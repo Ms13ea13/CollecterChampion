@@ -21,6 +21,8 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private ChoppingBoardManager currentChoppingBoardInFront;
 
+    [SerializeField] private CounterManager currentCounterInFront;
+
     /*[SerializeField]
     private FoodStockManager[] foodStockManager;*/
 
@@ -146,6 +148,18 @@ public class PlayerRayCast : MonoBehaviour
             currentChoppingBoardInFront = null;
     }
 
+    private void GetCounterInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Counter"))
+        {
+            distanceToObstacle = hit.distance;
+            currentCounterInFront = hit.transform.gameObject.GetComponent<CounterManager>();
+        }
+        else
+            currentCounterInFront = null;
+    }
+
     private void PickUpObj()
     {
         if (holding)
@@ -207,6 +221,14 @@ public class PlayerRayCast : MonoBehaviour
                         UnHoldItem(target);
                     }
                 }
+                else if (currentCounterInFront)
+                {
+                    if (target)
+                    {
+                        currentCounterInFront.PlaceFoodOnCounter(target, ref holding);
+                        UnHoldItem(target);
+                    }
+                }
                 else
                     UnHoldItem(target);
             }
@@ -239,9 +261,9 @@ public class PlayerRayCast : MonoBehaviour
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 0;
+        temp.y = 11.8f;
         temp.x = 0;
-        temp.z = 1.5f;
+        temp.z = 16.3f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;
