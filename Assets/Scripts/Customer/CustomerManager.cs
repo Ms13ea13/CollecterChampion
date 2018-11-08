@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
-using System.Linq;
-using UnityEngine.Experimental.UIElements;
-using Image = UnityEngine.UI.Image;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -27,10 +25,11 @@ public class CustomerManager : MonoBehaviour
 	[SerializeField]
 	private GameObject customerPanel;
 	
-	void Start()
-	{
-		OrderingFood();
-	}
+
+    void Start()
+    {
+        OrderingFood();
+    }
 	
 	private void RandomFoodAmount()
 	{
@@ -70,14 +69,14 @@ public class CustomerManager : MonoBehaviour
 	private void OrderingFood()
 	{
 		RandomFoodAmount();
-		if (customerOrders.Count > 0)
-		{
-			foreach (var item in customerOrders)
-			{
-				item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
-			}
-		}	
-	}
+        if (customerOrders.Count > 0)
+        {
+            foreach (var item in customerOrders)
+            {
+                item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
+            }
+        }
+    }
 
     private void Payment(int moneyAmount) 
 	{
@@ -95,6 +94,5 @@ public class CustomerManager : MonoBehaviour
 			if (customerOrders.Count == 0)
 			OrderingFood();
 		});
-
 	}
 }

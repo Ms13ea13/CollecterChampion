@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bin
-  - Table
   - Item
   - Ground
   - Food
@@ -13,6 +12,12 @@ TagManager:
   - Tray
   - Stove
   - ChoppingBoard
+  - Counter
+  - Knife
+  - Pot
+  - RiceBox
+  - Sink
+  - DuckBox
   layers:
   - Default
   - TransparentFX

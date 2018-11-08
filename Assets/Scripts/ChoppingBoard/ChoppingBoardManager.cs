@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ChoppingBoardManager : MonoBehaviour
 {
-    public void PlaceFoodOnChopingBoard(GameObject target  , ref bool holding)
+    public void PlaceFoodOnChoppingBoard(GameObject target  , ref bool holding)
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 0.8f;
+        temp.y = 14.8f;
         temp.x = 0;
         temp.z = 0;
         target.transform.localPosition = temp;

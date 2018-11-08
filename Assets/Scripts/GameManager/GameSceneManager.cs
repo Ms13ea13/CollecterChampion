@@ -44,7 +44,7 @@ public class GameSceneManager : MonoBehaviour
 
     //Game Area----------------------------------------------------------------------
 
-    void Start()
+    void Awake()
     {
         Initialized();
     }

@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.WSA.Input;
 
 public class PlayerRayCast : MonoBehaviour
 {
@@ -20,6 +18,10 @@ public class PlayerRayCast : MonoBehaviour
     [SerializeField] private StoveManager currentStoveInFront;
 
     [SerializeField] private ChoppingBoardManager currentChoppingBoardInFront;
+
+    [SerializeField] private CounterManager currentCounterInFront;
+
+    [SerializeField] private PotManager currentPotInFront;
 
     /*[SerializeField]
     private FoodStockManager[] foodStockManager;*/
@@ -53,13 +55,16 @@ public class PlayerRayCast : MonoBehaviour
             DropOBj(ref itemInHold);
             GetCustomerInFront();
             GetBinInFront();
+            GetStoveInFront();
+            GetChoppingBoardInFront();
+            GetCounterInFront();
+            GetPotInFront();
         }
         else
             GetTrayHolderInFront();
 
         GetFoodInFront();
-        GetStoveInFront();
-        GetChoppingBoardInFront();
+        
 
         if (Input.GetKeyUp(KeyCode.Space))
             PickUpObj();
@@ -146,6 +151,31 @@ public class PlayerRayCast : MonoBehaviour
             currentChoppingBoardInFront = null;
     }
 
+    private void GetCounterInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Counter"))
+        {
+            distanceToObstacle = hit.distance;
+            currentCounterInFront = hit.transform.gameObject.GetComponent<CounterManager>();
+        }
+        else
+            currentCounterInFront = null;
+    }
+
+    private void GetPotInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Pot"))
+        {
+            distanceToObstacle = hit.distance;
+            currentPotInFront = hit.transform.gameObject.GetComponent<PotManager>();
+        }
+        else
+            currentPotInFront = null;
+    }
+
     private void PickUpObj()
     {
         if (holding)
@@ -203,7 +233,23 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (target)
                     {
-                        currentChoppingBoardInFront.PlaceFoodOnChopingBoard(target, ref holding);
+                        currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(target, ref holding);
+                        UnHoldItem(target);
+                    }
+                }
+                else if (currentCounterInFront)
+                {
+                    if (target)
+                    {
+                        currentCounterInFront.PlaceFoodOnCounter(target, ref holding);
+                        UnHoldItem(target);
+                    }
+                }
+                else if (currentPotInFront)
+                {
+                    if (target)
+                    {
+                        currentPotInFront.PlaceFoodIntoPot(target, ref holding);
                         UnHoldItem(target);
                     }
                 }
@@ -224,6 +270,9 @@ public class PlayerRayCast : MonoBehaviour
 
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
+
+                if (currentFoodInFront.GetFoodIntoPot())
+                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);
             }
         }
     }
@@ -239,9 +288,9 @@ public class PlayerRayCast : MonoBehaviour
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 0;
+        temp.y = 11.8f;
         temp.x = 0;
-        temp.z = 1.5f;
+        temp.z = 16.3f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;
@@ -250,11 +299,15 @@ public class PlayerRayCast : MonoBehaviour
 
     private void ResetHolding()
     {
+        holding = false;
+        itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
         currentTrayInFront = null;
-        itemInHold = null;
-        holding = false;
         currentBinInFront = null;
+        currentStoveInFront = null;
+        currentChoppingBoardInFront = null;
+        currentCounterInFront = null;
+        currentPotInFront = null;
     }
 }
