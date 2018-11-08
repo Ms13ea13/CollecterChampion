@@ -26,7 +26,7 @@ public class CustomerManager : MonoBehaviour
 	private GameObject customerPanel;
 	
 
-    void Awake()
+    void Start()
     {
         OrderingFood();
     }
@@ -68,8 +68,7 @@ public class CustomerManager : MonoBehaviour
 
 	private void OrderingFood()
 	{
-        //RandomFoodAmount();
-        
+		RandomFoodAmount();
         if (customerOrders.Count > 0)
         {
             foreach (var item in customerOrders)
@@ -77,7 +76,6 @@ public class CustomerManager : MonoBehaviour
                 item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
             }
         }
-        RandomFoodAmount();
     }
 
     private void Payment(int moneyAmount) 
