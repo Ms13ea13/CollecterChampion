@@ -155,6 +155,7 @@ MonoBehaviour:
   currentStoveInFront: {fileID: 0}
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
+  currentPotInFront: {fileID: 0}
   charContr: {fileID: 143896340599446444}
   playerSightLength: 6
   distanceToObstacle: 0

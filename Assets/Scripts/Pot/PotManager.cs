@@ -8,7 +8,7 @@ public class PotManager : MonoBehaviour
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 14.8f;
+        temp.y = 0.148f;
         temp.x = 0;
         temp.z = 0;
         target.transform.localPosition = temp;

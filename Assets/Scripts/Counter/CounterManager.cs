@@ -8,7 +8,7 @@ public class CounterManager : MonoBehaviour
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 13.9f;
+        temp.y = 0.139f;
         temp.x = 0;
         temp.z = 0;
         target.transform.localPosition = temp;

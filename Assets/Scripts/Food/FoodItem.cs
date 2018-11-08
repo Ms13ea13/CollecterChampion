@@ -23,20 +23,26 @@ public class FoodItem : MonoBehaviour
         Grilled,
         Cooked,
         Boiled,
-        Burnt
+        Alert,
+        OnFire
     }
 
     private FoodState currentFoodState;
     
     [SerializeField] private Slider timerSlider;
-    [SerializeField] private int min;
-    [SerializeField] private int max;
+    [SerializeField] private int min = 0;
+    [SerializeField] private int max = 100;
 
+    [SerializeField] private float percentage;
+    [SerializeField] private float foodValue;
+    [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
 
     void Start()
     {
         timerSlider.value = 0;
+        onFireValue = 2;
+
         currentFoodState = FoodState.Raw;
         timerSlider.wholeNumbers = false;
         SetShowTimerSlider(false);
@@ -135,15 +141,35 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Cooked))
         {
             timerSlider.value += Time.deltaTime;
+            foodValue += Time.deltaTime;
+            percentage = (foodValue / onFireValue) * 100;
 
-            if (timerSlider.value >= max)
+            if (timerSlider.value >= max /*percentage >= 50 && percentage < 70*/)
             {
                 currentFoodState = FoodState.Grilled;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates(target);
-                timerSlider.value = 0;
+                timerSlider.value = percentage;
             }
 
+            if (percentage >= 70 && percentage <= 80)
+            {
+                currentFoodState = FoodState.Cooked;
+                timerSlider.value = percentage;
+                Debug.Log("Cooked");
+            }
+
+            if (percentage > 80 && percentage <= 90)
+            {
+                currentFoodState = FoodState.Alert;
+            }
+
+            if (percentage > 90)
+            {
+                currentFoodState = FoodState.OnFire;
+            }
+
+            timerSlider.value = percentage;
             tempSliderValue = timerSlider.value;
         }
     }

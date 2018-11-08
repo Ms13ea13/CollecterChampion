@@ -321,11 +321,14 @@ MonoBehaviour:
   trayBandedId: 0
   foodOnStove: 0
   foodOnChoppingBoard: 0
-  grilledFood: 0
-  cooked: 0
+  foodOnCounter: 0
+  foodIntoPot: 0
   timerSlider: {fileID: 114773545503641638}
   min: 0
-  max: 1
+  max: 100
+  percentage: 0
+  foodValue: 0
+  onFireValue: 0
   tempSliderValue: 0
 --- !u!114 &114632828991023312
 MonoBehaviour:
