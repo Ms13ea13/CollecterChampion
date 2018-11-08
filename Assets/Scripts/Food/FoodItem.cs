@@ -15,9 +15,15 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodOnChoppingBoard;
 
+    [SerializeField] private bool foodOnCounter;
+
+    [SerializeField] private bool foodIntoPot;
+
     [SerializeField] private bool grilledFood;
 
     [SerializeField] private bool cooked;
+
+    [SerializeField] private bool boiled;
 
     [SerializeField] private Slider timerSlider;
     [SerializeField] private int min;
@@ -30,6 +36,7 @@ public class FoodItem : MonoBehaviour
         timerSlider.value = 0;
         grilledFood = false;
         cooked = false;
+        boiled = false;
         timerSlider.wholeNumbers = false;
         SetShowTimerSlider(false);
     }
@@ -91,6 +98,26 @@ public class FoodItem : MonoBehaviour
         return foodOnChoppingBoard;
     }
 
+    public void SetFoodOnCounter(bool isOnCounter)
+    {
+        foodOnCounter = isOnCounter;
+    }
+
+    public bool GetFoodOnCounter()
+    {
+        return foodOnCounter;
+    }
+
+    public void SetFoodIntoPot(bool isIntoPot)
+    {
+        foodIntoPot = isIntoPot;
+    }
+
+    public bool GetFoodIntoPot()
+    {
+        return foodIntoPot;
+    }
+
     public bool GetFoodIsGrilled()
     {
         return grilledFood;
@@ -130,7 +157,6 @@ public class FoodItem : MonoBehaviour
 
         if (timerSlider.value < max && grilledFood && !cooked)
         {
-            Debug.LogError("Hold H");
             timerSlider.value += Time.deltaTime;
 
             if (timerSlider.value >= max)
@@ -145,6 +171,29 @@ public class FoodItem : MonoBehaviour
         }
     }
 
+    public void BoilFood(GameObject target)
+    {
+        if (!target)
+            return;
+
+        if (timerSlider.value > 0)
+            SetShowTimerSlider(true);
+
+        if (timerSlider.value < max && !boiled)
+        {
+            timerSlider.value += Time.deltaTime;
+
+            if (timerSlider.value >= max)
+            {
+                boiled = true;
+                SetShowTimerSlider(false);
+                ChangeFoodVisualAccordingToStates(target);
+                timerSlider.value = 0;
+            }
+
+            tempSliderValue = timerSlider.value;
+        }
+    }
 
     private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
@@ -152,5 +201,7 @@ public class FoodItem : MonoBehaviour
             food.GetComponent<Renderer>().material.color = Color.green;
         if (cooked)
             food.GetComponent<Renderer>().material.color = Color.blue;
+        if (boiled)
+            food.GetComponent<Renderer>().material.color = Color.red;
     }
 }

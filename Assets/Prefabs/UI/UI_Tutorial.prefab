@@ -561,10 +561,12 @@ MonoBehaviour:
     orderName:
     - Duck
     - Rice
+    - steak
     foodPicture:
     - {fileID: 21300000, guid: 5a2311622d6dc684d8e0d06613920873, type: 3}
     - {fileID: 21300000, guid: 807984d81635159499c17edaf562b0ed, type: 3}
-    price: 320000000a000000
+    - {fileID: 21300000, guid: d57498b0dcb2af242a0f55f0b08bda74, type: 3}
+    price: 320000000a00000008000000
 --- !u!114 &114944937003548556
 MonoBehaviour:
   m_ObjectHideFlags: 1

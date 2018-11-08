@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4124404334096550}
   m_Layer: 0
   m_Name: ChoppingBoard
-  m_TagString: ChoppingBoard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4960879101541228}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Pot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 23334503585704886}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Pot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,9 +399,11 @@ GameObject:
   - component: {fileID: 4737964238923354}
   - component: {fileID: 33179378035540836}
   - component: {fileID: 23808879164563232}
+  - component: {fileID: 65125154804277098}
+  - component: {fileID: 114434107401326578}
   m_Layer: 0
   m_Name: Counter (5)
-  m_TagString: Counter
+  m_TagString: Pot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,9 +503,10 @@ GameObject:
   - component: {fileID: 33429363279052186}
   - component: {fileID: 23739635717246610}
   - component: {fileID: 65512331658651502}
+  - component: {fileID: 114359898656349688}
   m_Layer: 0
   m_Name: Counter (4)
-  m_TagString: Untagged
+  m_TagString: ChoppingBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1818,6 +1821,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65125154804277098
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628596120159408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.000006, y: 14, z: 35.000008}
+  m_Center: {x: -0.000015258789, y: 7, z: 0.0000076293945}
 --- !u!65 &65239305789732014
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1976,6 +1991,28 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &114359898656349688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809634748241296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bab71eb2da3a04392d1241a6f8d816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114434107401326578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628596120159408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707327450a4fab94f86b55111c94ce7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114616063111927920
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,6 +23,8 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private CounterManager currentCounterInFront;
 
+    [SerializeField] private PotManager currentPotInFront;
+
     /*[SerializeField]
     private FoodStockManager[] foodStockManager;*/
 
@@ -55,13 +57,16 @@ public class PlayerRayCast : MonoBehaviour
             DropOBj(ref itemInHold);
             GetCustomerInFront();
             GetBinInFront();
+            GetStoveInFront();
+            GetChoppingBoardInFront();
+            GetCounterInFront();
+            GetPotInFront();
         }
         else
             GetTrayHolderInFront();
 
         GetFoodInFront();
-        GetStoveInFront();
-        GetChoppingBoardInFront();
+        
 
         if (Input.GetKeyUp(KeyCode.Space))
             PickUpObj();
@@ -160,6 +165,19 @@ public class PlayerRayCast : MonoBehaviour
             currentCounterInFront = null;
     }
 
+    private void GetPotInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Pot"))
+        {
+            distanceToObstacle = hit.distance;
+            currentPotInFront = hit.transform.gameObject.GetComponent<PotManager>();
+        }
+        else
+            currentPotInFront = null;
+    }
+
     private void PickUpObj()
     {
         if (holding)
@@ -217,7 +235,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (target)
                     {
-                        currentChoppingBoardInFront.PlaceFoodOnChopingBoard(target, ref holding);
+                        currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(target, ref holding);
                         UnHoldItem(target);
                     }
                 }
@@ -226,6 +244,14 @@ public class PlayerRayCast : MonoBehaviour
                     if (target)
                     {
                         currentCounterInFront.PlaceFoodOnCounter(target, ref holding);
+                        UnHoldItem(target);
+                    }
+                }
+                else if (currentPotInFront)
+                {
+                    if (target)
+                    {
+                        currentPotInFront.PlaceFoodIntoPot(target, ref holding);
                         UnHoldItem(target);
                     }
                 }
@@ -246,6 +272,9 @@ public class PlayerRayCast : MonoBehaviour
 
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
+
+                if (currentFoodInFront.GetFoodIntoPot())
+                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);
             }
         }
     }
