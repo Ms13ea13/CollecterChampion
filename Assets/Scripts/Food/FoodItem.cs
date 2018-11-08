@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
@@ -19,12 +17,17 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodIntoPot;
 
-    [SerializeField] private bool grilledFood;
+    public enum FoodState
+    {
+        Raw,
+        Grilled,
+        Cooked,
+        Boiled,
+        Burnt
+    }
 
-    [SerializeField] private bool cooked;
-
-    [SerializeField] private bool boiled;
-
+    private FoodState currentFoodState;
+    
     [SerializeField] private Slider timerSlider;
     [SerializeField] private int min;
     [SerializeField] private int max;
@@ -34,9 +37,7 @@ public class FoodItem : MonoBehaviour
     void Start()
     {
         timerSlider.value = 0;
-        grilledFood = false;
-        cooked = false;
-        boiled = false;
+        currentFoodState = FoodState.Raw;
         timerSlider.wholeNumbers = false;
         SetShowTimerSlider(false);
     }
@@ -58,9 +59,9 @@ public class FoodItem : MonoBehaviour
         return foodID;
     }
 
-    public bool GetCookState()
+    public bool IsFoodCooked()
     {
-        return cooked;
+        return currentFoodState == FoodState.Cooked;
     }
 
     public string GetFoodItemName()
@@ -118,9 +119,9 @@ public class FoodItem : MonoBehaviour
         return foodIntoPot;
     }
 
-    public bool GetFoodIsGrilled()
+    public bool CompareCurrentFoodState(FoodState foodState)
     {
-        return grilledFood;
+        return currentFoodState == foodState;
     }
 
     public void PrepareFood(GameObject target)
@@ -131,13 +132,13 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && !grilledFood && !cooked)
+        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Cooked))
         {
             timerSlider.value += Time.deltaTime;
 
             if (timerSlider.value >= max)
             {
-                grilledFood = true;
+                currentFoodState = FoodState.Grilled;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates(target);
                 timerSlider.value = 0;
@@ -155,13 +156,13 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && grilledFood && !cooked)
+        if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Cooked))
         {
             timerSlider.value += Time.deltaTime;
 
             if (timerSlider.value >= max)
             {
-                cooked = true;
+                currentFoodState = FoodState.Cooked;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates(target);
                 timerSlider.value = 0;
@@ -179,13 +180,13 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && !boiled)
+        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Boiled))
         {
             timerSlider.value += Time.deltaTime;
 
             if (timerSlider.value >= max)
             {
-                boiled = true;
+                currentFoodState = FoodState.Boiled;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates(target);
                 timerSlider.value = 0;
@@ -197,11 +198,11 @@ public class FoodItem : MonoBehaviour
 
     private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
-        if (grilledFood && !cooked)
+        if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodCooked())
             food.GetComponent<Renderer>().material.color = Color.green;
-        if (cooked)
+        if (IsFoodCooked())
             food.GetComponent<Renderer>().material.color = Color.blue;
-        if (boiled)
+        if (CompareCurrentFoodState(FoodState.Boiled))
             food.GetComponent<Renderer>().material.color = Color.red;
     }
 }

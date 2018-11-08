@@ -50,7 +50,7 @@ public class CustomerManager : MonoBehaviour
 		{
 			foreach (var item in customerOrders)
 			{
-				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.GetCookState())
+				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodCooked())
 				{
 					customerOrders.Remove(item);
 					DelayPayment(item.GetOrderPrice());
