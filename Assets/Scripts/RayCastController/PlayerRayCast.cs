@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.WSA.Input;
 
 public class PlayerRayCast : MonoBehaviour
 {
@@ -301,11 +299,15 @@ public class PlayerRayCast : MonoBehaviour
 
     private void ResetHolding()
     {
+        holding = false;
+        itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
         currentTrayInFront = null;
-        itemInHold = null;
-        holding = false;
         currentBinInFront = null;
+        currentStoveInFront = null;
+        currentChoppingBoardInFront = null;
+        currentCounterInFront = null;
+        currentPotInFront = null;
     }
 }
