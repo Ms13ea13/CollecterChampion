@@ -235,7 +235,7 @@ MonoBehaviour:
   foodInTrayOrders: []
   foodInTrayImagePrefab: {fileID: 1326593529557490, guid: beb2c952bc2c4a74090e836074f6279b,
     type: 2}
-  trayPanel: {fileID: 1715408696969776}
+  trayPanel: {fileID: 1612705732291634}
   itemInTray: []
   currentIndex: 0
 --- !u!114 &114650002572142804
