@@ -52,7 +52,12 @@ public class TrayItem : MonoBehaviour
 				Destroy(item.gameObject);
                 ClearTargetOrderPanel(item.gameObject.GetComponent<FoodItem>().GetFoodItemId());
 				currentIndex -= 1;
-				break;
+
+                if (currentIndex == 0)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 			}
 		}
 	}
