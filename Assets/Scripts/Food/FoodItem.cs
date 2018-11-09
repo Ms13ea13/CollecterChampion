@@ -29,13 +29,18 @@ public class FoodItem : MonoBehaviour
     }
 
     private FoodState currentFoodState;
-    
+
     [SerializeField] private Slider timerSlider;
     [SerializeField] private int min = 0;
-   [FormerlySerializedAs("max")] [SerializeField] private int maxFoodCookLevel = 100;
+
+    [FormerlySerializedAs("max")] [SerializeField]
+    private int maxFoodCookLevel = 100;
 
     [SerializeField] private float percentage;
-    [FormerlySerializedAs("foodValue")] [SerializeField] private float currentFoodCookLevel;
+
+    [FormerlySerializedAs("foodValue")] [SerializeField]
+    private float currentFoodCookLevel;
+
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
 
@@ -152,10 +157,11 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < maxFoodCookLevel && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        if (timerSlider.value < maxFoodCookLevel && !CompareCurrentFoodState(FoodState.Grilled) &&
+            !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
-            
+
             if (percentage >= 50)
             {
                 currentFoodState = FoodState.Grilled;
@@ -168,7 +174,8 @@ public class FoodItem : MonoBehaviour
             Debug.Log(percentage + "Grilled");
         }
 
-        else if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        else if (timerSlider.value < maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) &&
+                 !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
 
@@ -196,7 +203,8 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        if (timerSlider.value < maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) &&
+            !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
 
