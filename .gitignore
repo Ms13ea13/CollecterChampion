@@ -34,6 +34,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Rider stuff
 Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll.meta
 Assets/Plugins/Editor/JetBrains.meta
 .idea/.idea.CollectorChampionClone/riderModule.iml
@@ -42,3 +44,4 @@ Assets/Plugins/Editor/JetBrains.meta
 .idea/.idea.CollectorChampionClone/.idea/modules.xml
 .idea/.idea.CollectorChampionClone/.idea/indexLayout.xml
 .idea/.idea.CollectorChampionClone/.idea/contentModel.xml
+.idea/
