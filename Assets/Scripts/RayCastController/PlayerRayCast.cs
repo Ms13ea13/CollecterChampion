@@ -271,8 +271,8 @@ public class PlayerRayCast : MonoBehaviour
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
 
-                if (currentFoodInFront.GetFoodIntoPot())
-                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);
+                /*if (currentFoodInFront.GetFoodIntoPot())
+                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);*/
             }
         }
     }

@@ -21,7 +21,7 @@ public class FoodItem : MonoBehaviour
     {
         Raw,
         Grilled,
-        Cooked,
+        Chop,
         Boiled,
         Alert,
         OnFire
@@ -65,9 +65,14 @@ public class FoodItem : MonoBehaviour
         return foodID;
     }
 
-    public bool IsFoodCooked()
+    public bool IsFoodChoped()
     {
-        return currentFoodState == FoodState.Cooked;
+        return currentFoodState == FoodState.Chop;
+    }
+
+    public bool IsFoodOnFire()
+    {
+        return currentFoodState == FoodState.OnFire;
     }
 
     public string GetFoodItemName()
@@ -132,73 +137,77 @@ public class FoodItem : MonoBehaviour
 
     public void PrepareFood(GameObject target)
     {
+        foodValue += Time.deltaTime;
+        percentage = (foodValue / onFireValue) * 100;
+
         if (!target)
             return;
 
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Cooked))
+        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
-            foodValue += Time.deltaTime;
-            percentage = (foodValue / onFireValue) * 100;
-
-            if (timerSlider.value >= max /*percentage >= 50 && percentage < 70*/)
+            
+            if (percentage >= 50)
             {
                 currentFoodState = FoodState.Grilled;
-                SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates(target);
-                timerSlider.value = percentage;
-            }
-
-            if (percentage >= 70 && percentage <= 80)
-            {
-                currentFoodState = FoodState.Cooked;
-                timerSlider.value = percentage;
-                Debug.Log("Cooked");
-            }
-
-            if (percentage > 80 && percentage <= 90)
-            {
-                currentFoodState = FoodState.Alert;
-            }
-
-            if (percentage > 90)
-            {
-                currentFoodState = FoodState.OnFire;
-            }
-
-            timerSlider.value = percentage;
-            tempSliderValue = timerSlider.value;
-        }
-    }
-
-    public void ChopFood(GameObject target)
-    {
-        if (!target)
-            return;
-
-        if (timerSlider.value > 0)
-            SetShowTimerSlider(true);
-
-        if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Cooked))
-        {
-            timerSlider.value += Time.deltaTime;
-
-            if (timerSlider.value >= max)
-            {
-                currentFoodState = FoodState.Cooked;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates(target);
                 timerSlider.value = 0;
             }
 
-            tempSliderValue = timerSlider.value;
+            tempSliderValue = percentage;
+            Debug.Log(percentage + "Grilled");
+        }
+
+        else if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        {
+            timerSlider.value += Time.deltaTime;
+
+            if (percentage >= 100)
+            {
+                currentFoodState = FoodState.OnFire;
+                SetShowTimerSlider(false);
+                ChangeFoodVisualAccordingToStates(target);
+                timerSlider.value = 0;
+            }
+
+            tempSliderValue = percentage;
+            Debug.Log(percentage + "Onfire");
         }
     }
 
-    public void BoilFood(GameObject target)
+    public void ChopFood(GameObject target)
+    {
+        foodValue += Time.deltaTime;
+        percentage = (foodValue / onFireValue) * 100;
+
+        if (!target)
+            return;
+
+        if (timerSlider.value > 0)
+            SetShowTimerSlider(true);
+
+        if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        {
+            timerSlider.value += Time.deltaTime;
+
+            if (percentage >= 100)
+            {
+                currentFoodState = FoodState.Chop;
+                SetShowTimerSlider(false);
+                ChangeFoodVisualAccordingToStates(target);
+                timerSlider.value = 0;
+            }
+
+            tempSliderValue = percentage;
+            Debug.Log(percentage + "Choped");
+        }
+    }
+
+    /*public void BoilFood(GameObject target)
     {
         if (!target)
             return;
@@ -220,15 +229,20 @@ public class FoodItem : MonoBehaviour
 
             tempSliderValue = timerSlider.value;
         }
-    }
+    }*/
 
     private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
-        if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodCooked())
+        if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodChoped() && !IsFoodOnFire())
             food.GetComponent<Renderer>().material.color = Color.green;
-        if (IsFoodCooked())
-            food.GetComponent<Renderer>().material.color = Color.blue;
-        if (CompareCurrentFoodState(FoodState.Boiled))
+
+        if (CompareCurrentFoodState(FoodState.OnFire) && !IsFoodChoped() && IsFoodOnFire())
             food.GetComponent<Renderer>().material.color = Color.red;
+
+        if (IsFoodChoped())
+            food.GetComponent<Renderer>().material.color = Color.blue;
+
+        /*if (CompareCurrentFoodState(FoodState.Boiled))
+            food.GetComponent<Renderer>().material.color = Color.red;*/
     }
 }
