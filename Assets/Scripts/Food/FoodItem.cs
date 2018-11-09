@@ -75,6 +75,11 @@ public class FoodItem : MonoBehaviour
         return currentFoodState == FoodState.OnFire;
     }
 
+    public bool IsFoodBoiled()
+    {
+        return currentFoodState == FoodState.Boiled;
+    }
+
     public string GetFoodItemName()
     {
         return FoodName;
@@ -207,7 +212,7 @@ public class FoodItem : MonoBehaviour
         }
     }
 
-    /*public void BoilFood(GameObject target)
+    public void BoilFood(GameObject target)
     {
         if (!target)
             return;
@@ -219,7 +224,7 @@ public class FoodItem : MonoBehaviour
         {
             timerSlider.value += Time.deltaTime;
 
-            if (timerSlider.value >= max)
+            if (timerSlider.value >= 1)
             {
                 currentFoodState = FoodState.Boiled;
                 SetShowTimerSlider(false);
@@ -228,8 +233,9 @@ public class FoodItem : MonoBehaviour
             }
 
             tempSliderValue = timerSlider.value;
+            Debug.Log("Boiled");
         }
-    }*/
+    }
 
     private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
@@ -242,7 +248,7 @@ public class FoodItem : MonoBehaviour
         if (IsFoodChoped())
             food.GetComponent<Renderer>().material.color = Color.blue;
 
-        /*if (CompareCurrentFoodState(FoodState.Boiled))
-            food.GetComponent<Renderer>().material.color = Color.red;*/
+        if (CompareCurrentFoodState(FoodState.Boiled))
+            food.GetComponent<Renderer>().material.color = Color.blue;
     }
 }
