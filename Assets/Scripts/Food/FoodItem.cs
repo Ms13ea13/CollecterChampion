@@ -268,7 +268,13 @@ public class FoodItem : MonoBehaviour
             if (CompareCurrentFoodState(FoodState.Boiled))
                 return false;
         }
-        
+
+        if (FoodName == "Duck")
+        {
+            if (CompareCurrentFoodState(FoodState.Chop))
+                return false;
+        }
+
         return true;
     }
 }
