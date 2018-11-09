@@ -75,25 +75,25 @@ public class TrayItem : MonoBehaviour
 		{
 			case 0:
 			{
-				temp.y = 4f;
-				break;
+                temp.z = -0.12f;
+                break;
 			}
 			case 1:
 			{
-				temp.y = 10f;
-				break;
+                temp.z = 0f;
+                break;
 			}
 			case 2:
 			{
-				temp.y = 16f;
-				break;
+                temp.z = 0.12f;
+                break;
 			}
 			default:
 				break;
 		}
 
-		temp.x = 0f;
-		temp.z = 0f;
+        temp.x = 0f;
+        temp.y = 0.013f;
 		currentIndex += 1;
 		return temp;
 	}

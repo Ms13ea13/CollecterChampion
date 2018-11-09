@@ -18,8 +18,9 @@ public class SpawnCheckByChildren : MonoBehaviour
 		{
 			GameObject spawnGameobj = Instantiate(prefab);
 			spawnGameobj.transform.parent = transform;
-			Vector3 temp = Vector3.zero;
-			temp.y = .5f;
+            spawnGameobj.transform.localScale = new Vector3(1, 1, 1);
+            Vector3 temp = Vector3.zero;
+			temp.y = 0.14f;
 			spawnGameobj.transform.localPosition = temp;
 		}
 	}
