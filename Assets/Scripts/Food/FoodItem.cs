@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
@@ -17,6 +18,8 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodIntoPot;
 
+    [SerializeField] private Renderer foodRenderer;
+
     public enum FoodState
     {
         Raw,
@@ -32,6 +35,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Slider timerSlider;
     [SerializeField] private int min = 0;
     [SerializeField] private int max = 100;
+    [SerializeField] private float cookTimer = 60f;
 
     [SerializeField] private float percentage;
     [SerializeField] private float foodValue;
@@ -46,6 +50,10 @@ public class FoodItem : MonoBehaviour
         currentFoodState = FoodState.Raw;
         timerSlider.wholeNumbers = false;
         SetShowTimerSlider(false);
+        foodRenderer = GetComponent<Renderer>();
+        if (!foodRenderer)
+            gameObject.AddComponent<Renderer>();
+
     }
 
     private void SetShowTimerSlider(bool show)
@@ -140,13 +148,11 @@ public class FoodItem : MonoBehaviour
         return currentFoodState == foodState;
     }
 
-    public void PrepareFood(GameObject target)
+    public void PutFoodInTheStove()
     {
         foodValue += Time.deltaTime;
         percentage = (foodValue / onFireValue) * 100;
 
-        if (!target)
-            return;
 
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
@@ -159,7 +165,7 @@ public class FoodItem : MonoBehaviour
             {
                 currentFoodState = FoodState.Grilled;
                 SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates(target);
+                ChangeFoodVisualAccordingToStates();
                 timerSlider.value = 0;
             }
 
@@ -175,7 +181,7 @@ public class FoodItem : MonoBehaviour
             {
                 currentFoodState = FoodState.OnFire;
                 SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates(target);
+                ChangeFoodVisualAccordingToStates();
                 timerSlider.value = 0;
             }
 
@@ -203,7 +209,7 @@ public class FoodItem : MonoBehaviour
             {
                 currentFoodState = FoodState.Chop;
                 SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates(target);
+                ChangeFoodVisualAccordingToStates();
                 timerSlider.value = 0;
             }
 
@@ -212,43 +218,60 @@ public class FoodItem : MonoBehaviour
         }
     }
 
-    public void BoilFood(GameObject target)
+    public void PutFoodInThePot()
     {
-        if (!target)
+        if (currentFoodState != FoodState.Raw)
             return;
 
-        if (timerSlider.value > 0)
-            SetShowTimerSlider(true);
-
-        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Boiled))
+        
+        SetShowTimerSlider(true);
+        tempSliderValue = 0f;
+        float SetFoodOnFireValue = max + 50f;
+        LeanTween.value(tempSliderValue , SetFoodOnFireValue +50f, cookTimer).setOnUpdate((float Value) =>
         {
-            timerSlider.value += Time.deltaTime;
-
-            if (timerSlider.value >= 1)
+            tempSliderValue = Value;
+            timerSlider.value = Value;
+            
+            Debug.Log("Val : " + Value);
+            if ( timerSlider.value >= timerSlider.maxValue)
             {
+//                throw new Exception("food is cooked");
+              
                 currentFoodState = FoodState.Boiled;
-                SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates(target);
-                timerSlider.value = 0;
+                ChangeFoodVisualAccordingToStates();
+                Debug.Log("food is cooked");
             }
-
-            tempSliderValue = timerSlider.value;
-            Debug.Log("Boiled");
-        }
+            if ( tempSliderValue >= SetFoodOnFireValue)
+            {
+//                throw new Exception("food is Overcooked");
+                currentFoodState = FoodState.Alert;
+                ChangeFoodVisualAccordingToStates();
+                Debug.Log("food is in Alert state");
+            }
+          
+        }).setOnComplete(() =>
+        {
+            currentFoodState = FoodState.OnFire;
+            ChangeFoodVisualAccordingToStates();
+            SetShowTimerSlider(false);
+            Debug.Log("food is Overcooked");
+        });
     }
 
-    private void ChangeFoodVisualAccordingToStates(GameObject food)
+    private void ChangeFoodVisualAccordingToStates()
     {
+        
+        
         if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodChoped() && !IsFoodOnFire())
-            food.GetComponent<Renderer>().material.color = Color.green;
+            foodRenderer.material.color = Color.green;
 
         if (CompareCurrentFoodState(FoodState.OnFire) && !IsFoodChoped() && IsFoodOnFire())
-            food.GetComponent<Renderer>().material.color = Color.red;
+            foodRenderer.material.color  = Color.red;
 
         if (IsFoodChoped())
-            food.GetComponent<Renderer>().material.color = Color.blue;
+            foodRenderer.material.color  = Color.blue;
 
         if (CompareCurrentFoodState(FoodState.Boiled))
-            food.GetComponent<Renderer>().material.color = Color.blue;
+            foodRenderer.material.color  = Color.blue;
     }
 }

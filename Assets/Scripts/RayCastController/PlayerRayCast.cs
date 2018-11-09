@@ -229,6 +229,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (target.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
                         currentStoveInFront.PlaceObjIntoStove(target, ref holding);
+                        target.GetComponent<FoodItem>().PutFoodInTheStove();
                         UnHoldItem(target);
                     }
                 }
@@ -253,6 +254,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (target.GetComponent<FoodItem>().GetFoodItemId() == 1)
                     {
                         currentPotInFront.PlaceFoodIntoPot(target, ref holding);
+                        target.GetComponent<FoodItem>().PutFoodInThePot();
                         UnHoldItem(target);
                     }
                 }
@@ -268,14 +270,12 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetFoodOnStove())
-                    currentFoodInFront.GetComponent<FoodItem>().PrepareFood(currentFoodInFront.gameObject);
+               
 
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
 
-                if (currentFoodInFront.GetFoodIntoPot())
-                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);
+                    
             }
         }
     }
