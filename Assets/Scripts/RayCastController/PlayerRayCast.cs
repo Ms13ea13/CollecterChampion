@@ -190,7 +190,10 @@ public class PlayerRayCast : MonoBehaviour
                 TakeObjIntoHold(currentTrayInFront.gameObject);
 
             if (currentFoodInFront)
-                TakeObjIntoHold(currentFoodInFront.gameObject);
+            {
+                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
+                    TakeObjIntoHold(currentFoodInFront.gameObject);
+            }
         }
     }
 

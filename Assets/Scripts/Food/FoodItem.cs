@@ -260,4 +260,15 @@ public class FoodItem : MonoBehaviour
         if (CompareCurrentFoodState(FoodState.Boiled))
             food.GetComponent<Renderer>().material.color = Color.blue;
     }
+
+    public bool CanPickupWithHands()
+    {
+        if (FoodName == "Rice")
+        {
+            if (CompareCurrentFoodState(FoodState.Boiled))
+                return false;
+        }
+        
+        return true;
+    }
 }
