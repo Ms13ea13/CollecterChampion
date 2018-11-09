@@ -75,7 +75,7 @@ public class TrayItem : MonoBehaviour
 		{
 			case 0:
 			{
-				temp.y = 4f;
+				temp.y = 0.013f;
 				break;
 			}
 			case 1:
@@ -112,6 +112,7 @@ public class TrayItem : MonoBehaviour
     {
         GameObject spawnOrderPicture = Instantiate(foodInTrayImagePrefab);
         spawnOrderPicture.GetComponent<Image>().sprite = GameSceneManager.GetInstance().GetFoodPictureById(foodIndex);
+        spawnOrderPicture.transform.localPosition = Vector3.zero;
         spawnOrderPicture.transform.parent = trayPanel.transform;
         spawnOrderPicture.GetComponent<FoodInTray>().SetOrder(foodIndex);
     }
