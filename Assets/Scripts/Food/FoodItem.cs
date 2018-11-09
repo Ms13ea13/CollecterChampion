@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
@@ -31,10 +32,10 @@ public class FoodItem : MonoBehaviour
     
     [SerializeField] private Slider timerSlider;
     [SerializeField] private int min = 0;
-    [SerializeField] private int max = 100;
+   [FormerlySerializedAs("max")] [SerializeField] private int maxFoodCookLevel = 100;
 
     [SerializeField] private float percentage;
-    [SerializeField] private float foodValue;
+    [FormerlySerializedAs("foodValue")] [SerializeField] private float currentFoodCookLevel;
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
 
@@ -65,7 +66,7 @@ public class FoodItem : MonoBehaviour
         return foodID;
     }
 
-    public bool IsFoodChoped()
+    public bool IsFoodChopped()
     {
         return currentFoodState == FoodState.Chop;
     }
@@ -142,8 +143,8 @@ public class FoodItem : MonoBehaviour
 
     public void PrepareFood(GameObject target)
     {
-        foodValue += Time.deltaTime;
-        percentage = (foodValue / onFireValue) * 100;
+        currentFoodCookLevel += Time.deltaTime;
+        percentage = (currentFoodCookLevel / onFireValue) * 100;
 
         if (!target)
             return;
@@ -151,7 +152,7 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        if (timerSlider.value < maxFoodCookLevel && !CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
             
@@ -186,8 +187,8 @@ public class FoodItem : MonoBehaviour
 
     public void ChopFood(GameObject target)
     {
-        foodValue += Time.deltaTime;
-        percentage = (foodValue / onFireValue) * 100;
+        currentFoodCookLevel += Time.deltaTime;
+        percentage = (currentFoodCookLevel / onFireValue) * 100;
 
         if (!target)
             return;
@@ -195,7 +196,7 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        if (timerSlider.value < maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) && !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
         {
             timerSlider.value += Time.deltaTime;
 
@@ -208,7 +209,7 @@ public class FoodItem : MonoBehaviour
             }
 
             tempSliderValue = percentage;
-            Debug.Log(percentage + "Choped");
+            Debug.Log(percentage + "Chopped");
         }
     }
 
@@ -220,7 +221,7 @@ public class FoodItem : MonoBehaviour
         if (timerSlider.value > 0)
             SetShowTimerSlider(true);
 
-        if (timerSlider.value < max && !CompareCurrentFoodState(FoodState.Boiled))
+        if (timerSlider.value < maxFoodCookLevel && !CompareCurrentFoodState(FoodState.Boiled))
         {
             timerSlider.value += Time.deltaTime;
 
@@ -239,13 +240,13 @@ public class FoodItem : MonoBehaviour
 
     private void ChangeFoodVisualAccordingToStates(GameObject food)
     {
-        if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodChoped() && !IsFoodOnFire())
+        if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodChopped() && !IsFoodOnFire())
             food.GetComponent<Renderer>().material.color = Color.green;
 
-        if (CompareCurrentFoodState(FoodState.OnFire) && !IsFoodChoped() && IsFoodOnFire())
+        if (CompareCurrentFoodState(FoodState.OnFire) && !IsFoodChopped() && IsFoodOnFire())
             food.GetComponent<Renderer>().material.color = Color.red;
 
-        if (IsFoodChoped())
+        if (IsFoodChopped())
             food.GetComponent<Renderer>().material.color = Color.blue;
 
         if (CompareCurrentFoodState(FoodState.Boiled))

@@ -52,7 +52,7 @@ public class PlayerRayCast : MonoBehaviour
 
         if (holding)
         {
-            DropOBj(ref itemInHold);
+            DropObj(ref itemInHold);
             GetCustomerInFront();
             GetBinInFront();
             GetStoveInFront();
@@ -64,7 +64,7 @@ public class PlayerRayCast : MonoBehaviour
             GetTrayHolderInFront();
 
         GetFoodInFront();
-        
+
 
         if (Input.GetKeyUp(KeyCode.Space))
             PickUpObj();
@@ -194,30 +194,30 @@ public class PlayerRayCast : MonoBehaviour
         }
     }
 
-    private void DropOBj(ref GameObject target)
+    private void DropObj(ref GameObject holdingItem)
     {
-        if (target && holding)
+        if (holdingItem && holding)
         {
             if (Input.GetKeyUp(KeyCode.B))
             {
                 if (currentCustomerInFront)
                 {
-                    if (target.GetComponent<FoodItem>())
+                    if (holdingItem.GetComponent<FoodItem>())
                     {
-                        FoodItem foodToServe = target.GetComponent<FoodItem>();
+                        FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.RecieveOrder(foodToServe))
                         {
-                            Destroy(target);
+                            Destroy(holdingItem);
                             ResetHolding();
                         }
                     }
-                    else if (target.GetComponent<TrayItem>())
+                    else if (holdingItem.GetComponent<TrayItem>())
                     {
-                        target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
+                        holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
                         ResetHolding();
                     }
                     else
-                        UnHoldItem(target);
+                        UnHoldItem(holdingItem);
                 }
                 else if (currentBinInFront)
                 {
@@ -226,38 +226,38 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentStoveInFront)
                 {
-                    if (target.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-                        currentStoveInFront.PlaceObjIntoStove(target, ref holding);
-                        UnHoldItem(target);
+                        currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
                     }
                 }
                 else if (currentChoppingBoardInFront)
                 {
-                    if (target.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-                        currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(target, ref holding);
-                        UnHoldItem(target);
+                        currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
                     }
                 }
                 else if (currentCounterInFront)
                 {
-                    if (target)
+                    if (holdingItem)
                     {
-                        currentCounterInFront.PlaceFoodOnCounter(target, ref holding);
-                        UnHoldItem(target);
+                        currentCounterInFront.PlaceFoodOnCounter(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
                     }
                 }
                 else if (currentPotInFront)
                 {
-                    if (target.GetComponent<FoodItem>().GetFoodItemId() == 1)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1)
                     {
-                        currentPotInFront.PlaceFoodIntoPot(target, ref holding);
-                        UnHoldItem(target);
+                        currentPotInFront.PlaceFoodIntoPot(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
                     }
                 }
                 else
-                    UnHoldItem(target);
+                    UnHoldItem(holdingItem);
             }
         }
     }

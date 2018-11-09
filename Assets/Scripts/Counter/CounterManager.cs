@@ -15,6 +15,8 @@ public class CounterManager : MonoBehaviour
         Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
         target.transform.localRotation = tempQuaternion;
         holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnCounter(true);
+        
+        if (target.GetComponent<FoodItem>() != null) // Can be a TrayItem
+            target.GetComponent<FoodItem>().SetFoodOnCounter(true);
     }
 }
