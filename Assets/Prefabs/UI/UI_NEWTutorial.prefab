@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.16215563, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -288,7 +288,7 @@ MonoBehaviour:
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 4
+    m_MinSize: 40
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ebcdab352e78b4f8d96edde2cb3c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 61
+  timer: 121
   ForTimeTextUI: {fileID: 114290110927892268}
 --- !u!114 &114277021995100926
 MonoBehaviour:
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.16215563, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -956,8 +956,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298, y: 172.99998}
-  m_SizeDelta: {x: 157.2, y: 29.5}
+  m_AnchoredPosition: {x: -256, y: 171.5}
+  m_SizeDelta: {x: 239.95, y: 45.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224918198650620696
 RectTransform:

@@ -82,12 +82,12 @@ public class TrayItem : MonoBehaviour
         {
             case 0:
             {
-                temp.z = -0.12f;
+                temp.z = 0f;
                 break;
             }
             case 1:
             {
-                temp.z = 0f;
+                temp.z = -0.12f;
                 break;
             }
             case 2:

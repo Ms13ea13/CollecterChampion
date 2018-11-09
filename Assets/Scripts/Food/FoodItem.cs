@@ -33,30 +33,27 @@ public class FoodItem : MonoBehaviour
         OnFire
     }
     
-    [SerializeField]
-    private FoodState currentFoodState;
-
+    [SerializeField] private FoodState currentFoodState;
     [SerializeField] private Slider timerSlider;
     [SerializeField] private Image foodStateUI;
     [SerializeField] private Sprite cookedPicture;
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
+
+    private int leantweenID;
     private const float cookTimer = 20f;
     
     [SerializeField] private int min = 0;
-
     [FormerlySerializedAs("max")] [SerializeField]
     private int maxFoodCookLevel = 100;
 
     [SerializeField] private float percentage;
-
     [FormerlySerializedAs("foodValue")] [SerializeField]
     private float currentFoodCookLevel;
 
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
-    private int leantweenID;
-
+    
     void Start()
     {
         timerSlider.value = 0;
@@ -93,7 +90,6 @@ public class FoodItem : MonoBehaviour
         foodStateUI.gameObject.SetActive(true);
         switch (currentFoodState)
         {
-              
             case FoodState.Alert:
                 foodStateUI.sprite = alertPicture;
                 break;
@@ -111,8 +107,6 @@ public class FoodItem : MonoBehaviour
                 break;
         }   
     }
-   
-
 
     public void SetUpFoodItem(int id)
     {
@@ -208,7 +202,8 @@ public class FoodItem : MonoBehaviour
         SetShowTimerSlider(true);
         tempSliderValue = timerSlider.value;
         float SetFoodOnFireValue = maxFoodCookLevel + 50f;
-        leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue +100f, cookTimer).setOnUpdate((Value) =>
+
+        leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((Value) =>
         {
             tempSliderValue = Value;
             if ( timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
@@ -229,11 +224,9 @@ public class FoodItem : MonoBehaviour
                 Debug.Log("food is in Alert state");
             }
             
-           
           SetFoodUIState();
         }).setOnComplete(() =>
         {
-           
             currentFoodState = FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
@@ -268,12 +261,12 @@ public class FoodItem : MonoBehaviour
     {
         if (currentFoodState != FoodState.Raw)
             return;
-
         
         SetShowTimerSlider(true);
         tempSliderValue = timerSlider.value;
         float SetFoodOnFireValue = maxFoodCookLevel + 50f;
-        leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue +100f, cookTimer).setOnUpdate((float Value) =>
+
+        leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((float Value) =>
         {
             tempSliderValue = Value;
             if ( timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
@@ -295,7 +288,6 @@ public class FoodItem : MonoBehaviour
             }
          
             SetFoodUIState();
-          
         }).setOnComplete(() =>
         {
             currentFoodState = FoodState.OnFire;
@@ -307,8 +299,6 @@ public class FoodItem : MonoBehaviour
 
     private void ChangeFoodVisualAccordingToStates()
     {
-        
-        
         if (CompareCurrentFoodState(FoodState.Grilled) && !IsFoodChopped() && !IsFoodOnFire())
             foodRenderer.material.color = Color.green;
 

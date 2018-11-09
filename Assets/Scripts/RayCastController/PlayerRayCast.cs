@@ -198,7 +198,6 @@ public class PlayerRayCast : MonoBehaviour
                 currentFoodInFront.SetDefaultFoodUI();
                 TakeObjIntoHold(currentFoodInFront.gameObject);
             }
-              
         }
     }
 
@@ -278,12 +277,8 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentFoodInFront)
             {
-               
-
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
-
-                    
             }
         }
     }
