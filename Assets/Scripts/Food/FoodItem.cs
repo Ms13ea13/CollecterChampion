@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
 {
+    //TODO: Move UI away from the logic please why is slider attached to the actual cooking
+    
     [SerializeField] private int foodID;
 
     [SerializeField] private string FoodName;
@@ -30,7 +32,8 @@ public class FoodItem : MonoBehaviour
         Alert,
         OnFire
     }
-
+    
+    [SerializeField]
     private FoodState currentFoodState;
 
     [SerializeField] private Slider timerSlider;
@@ -208,12 +211,13 @@ public class FoodItem : MonoBehaviour
         leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue +100f, cookTimer).setOnUpdate((Value) =>
         {
             tempSliderValue = Value;
+            if ( timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
             timerSlider.value = Value;
             
             if ( timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
             {
-                SetShowTimerSlider(false);
                 timerSlider.value = 0;
+                SetShowTimerSlider(false);
                 currentFoodState = FoodState.Grilled;
                 ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is cooked");
@@ -224,9 +228,12 @@ public class FoodItem : MonoBehaviour
                 ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is in Alert state");
             }
+            
+           
           SetFoodUIState();
         }).setOnComplete(() =>
         {
+           
             currentFoodState = FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
@@ -234,32 +241,26 @@ public class FoodItem : MonoBehaviour
         }).id;
     }
 
-    public void ChopFood(GameObject target)
+    public void ChopFood()
     {
-        currentFoodCookLevel += Time.deltaTime;
-        percentage = (currentFoodCookLevel / onFireValue) * 100;
-
-        if (!target)
-            return;
-
-        if (timerSlider.value > 0)
-            SetShowTimerSlider(true);
-
-        if (timerSlider.value < maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) &&
-            !CompareCurrentFoodState(FoodState.Chop) && !CompareCurrentFoodState(FoodState.OnFire))
+        if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) )
         {
-            timerSlider.value += Time.deltaTime;
-
+            if (!timerSlider.gameObject.activeInHierarchy)
+                SetShowTimerSlider(true);
+            
+            currentFoodCookLevel += Time.deltaTime * 40f;
+            percentage = (currentFoodCookLevel / maxFoodCookLevel) * 100;
+            timerSlider.value = percentage;
+            tempSliderValue = percentage;
+            
             if (percentage >= 100)
             {
                 currentFoodState = FoodState.Chop;
+                timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates();
-                timerSlider.value = 0;
+                Debug.Log(percentage + "Chopped");
             }
-
-            tempSliderValue = percentage;
-            Debug.Log(percentage + "Chopped");
         }
     }
 
@@ -275,12 +276,13 @@ public class FoodItem : MonoBehaviour
         leantweenID = LeanTween.value(tempSliderValue , SetFoodOnFireValue +100f, cookTimer).setOnUpdate((float Value) =>
         {
             tempSliderValue = Value;
+            if ( timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
             timerSlider.value = Value;
             
             if ( timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
             {
-                SetShowTimerSlider(false);
                 timerSlider.value = 0;
+                SetShowTimerSlider(false);
                 currentFoodState = FoodState.Boiled;
                 ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is cooked");
@@ -291,7 +293,7 @@ public class FoodItem : MonoBehaviour
                 ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is in Alert state");
             }
-            
+         
             SetFoodUIState();
           
         }).setOnComplete(() =>

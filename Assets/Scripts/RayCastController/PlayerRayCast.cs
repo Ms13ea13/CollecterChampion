@@ -281,7 +281,7 @@ public class PlayerRayCast : MonoBehaviour
                
 
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
-                    currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
+                    currentFoodInFront.GetComponent<FoodItem>().ChopFood();
 
                     
             }
