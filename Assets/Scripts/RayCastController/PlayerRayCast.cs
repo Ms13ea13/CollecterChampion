@@ -182,7 +182,11 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentTrayInFront)
                 if (currentFoodInFront)
+                {
+                    currentFoodInFront.SetDefaultFoodUI();
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                }
+                    
         }
         else
         {
@@ -191,9 +195,10 @@ public class PlayerRayCast : MonoBehaviour
 
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
-                    TakeObjIntoHold(currentFoodInFront.gameObject);
+                currentFoodInFront.SetDefaultFoodUI();
+                TakeObjIntoHold(currentFoodInFront.gameObject);
             }
+              
         }
     }
 
@@ -232,6 +237,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
+                        holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
                         UnHoldItem(holdingItem);
                     }
                 }
@@ -256,6 +262,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1)
                     {
                         currentPotInFront.PlaceFoodIntoPot(holdingItem, ref holding);
+                        holdingItem.GetComponent<FoodItem>().PutFoodInThePot();
                         UnHoldItem(holdingItem);
                     }
                 }
@@ -271,14 +278,12 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetFoodOnStove())
-                    currentFoodInFront.GetComponent<FoodItem>().PrepareFood(currentFoodInFront.gameObject);
+               
 
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood(currentFoodInFront.gameObject);
 
-                if (currentFoodInFront.GetFoodIntoPot())
-                    currentFoodInFront.GetComponent<FoodItem>().BoilFood(currentFoodInFront.gameObject);
+                    
             }
         }
     }

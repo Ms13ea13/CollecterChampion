@@ -401,7 +401,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224101489920667264}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -425,11 +425,15 @@ MonoBehaviour:
   trayBandedId: 0
   foodOnStove: 0
   foodOnChoppingBoard: 0
-  grilledFood: 0
-  cooked: 0
+  foodOnCounter: 0
+  foodIntoPot: 0
   timerSlider: {fileID: 114722404536899226}
   min: 0
   max: 1
+  cookTimer: 10
+  percentage: 0
+  foodValue: 0
+  onFireValue: 0
   tempSliderValue: 0
 --- !u!114 &114806497149425496
 MonoBehaviour:
