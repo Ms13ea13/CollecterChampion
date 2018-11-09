@@ -25,7 +25,6 @@ public class CustomerManager : MonoBehaviour
 	[SerializeField]
 	private GameObject customerPanel;
 	
-
     void Start()
     {
         OrderingFood();
@@ -50,7 +49,7 @@ public class CustomerManager : MonoBehaviour
 		{
 			foreach (var item in customerOrders)
 			{
-				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodChopped() || item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodBoiled())
+				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodChopped() || item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodBoiled() || item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodAlert())
 				{
 					customerOrders.Remove(item);
 					DelayPayment(item.GetOrderPrice());

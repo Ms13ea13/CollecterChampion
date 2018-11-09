@@ -134,6 +134,11 @@ public class FoodItem : MonoBehaviour
         return currentFoodState == FoodState.Boiled;
     }
 
+    public bool IsFoodAlert()
+    {
+        return currentFoodState == FoodState.Alert;
+    }
+
     public string GetFoodItemName()
     {
         return FoodName;

@@ -195,8 +195,11 @@ public class PlayerRayCast : MonoBehaviour
 
             if (currentFoodInFront)
             {
-                currentFoodInFront.SetDefaultFoodUI();
-                TakeObjIntoHold(currentFoodInFront.gameObject);
+                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
+                {
+                    currentFoodInFront.SetDefaultFoodUI();
+                    TakeObjIntoHold(currentFoodInFront.gameObject);
+                }
             }
         }
     }
@@ -221,7 +224,7 @@ public class PlayerRayCast : MonoBehaviour
                     else if (holdingItem.GetComponent<TrayItem>())
                     {
                         holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
-                        ResetHolding();
+                        //ResetHolding();
                     }
                     else
                         UnHoldItem(holdingItem);
