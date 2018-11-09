@@ -182,7 +182,11 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentTrayInFront)
                 if (currentFoodInFront)
+                {
+                    currentFoodInFront.SetDefaultFoodUI();
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                }
+                    
         }
         else
         {
@@ -190,7 +194,11 @@ public class PlayerRayCast : MonoBehaviour
                 TakeObjIntoHold(currentTrayInFront.gameObject);
 
             if (currentFoodInFront)
+            {
+                currentFoodInFront.SetDefaultFoodUI();
                 TakeObjIntoHold(currentFoodInFront.gameObject);
+            }
+              
         }
     }
 
