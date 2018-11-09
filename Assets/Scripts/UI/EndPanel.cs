@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EndPanel : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private Text[] scoreShow;
 
     [SerializeField]
@@ -66,5 +66,5 @@ public class EndPanel : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

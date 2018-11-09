@@ -85,7 +85,7 @@ public class GameSceneManager : MonoBehaviour
     {
         Time.timeScale = 0;
         m_EndPanel.gameObject.SetActive(checkEnd);
-        m_EndPanel.SettingEndPanel(players);
+        //m_EndPanel.SettingEndPanel(players);
     }
 
     public string GetFoodNameById(int id)
