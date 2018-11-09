@@ -212,7 +212,10 @@ public class PlayerRayCast : MonoBehaviour
                         }
                     }
                     else if (target.GetComponent<TrayItem>())
+                    {
                         target.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
+                        ResetHolding();
+                    }
                     else
                         UnHoldItem(target);
                 }
@@ -288,9 +291,9 @@ public class PlayerRayCast : MonoBehaviour
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 11.8f;
+        temp.y = 0.165f;
         temp.x = 0;
-        temp.z = 16.3f;
+        temp.z = 0.185f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;

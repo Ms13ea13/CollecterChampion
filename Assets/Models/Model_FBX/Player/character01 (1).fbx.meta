@@ -1,16 +1,14 @@
 fileFormatVersion: 2
-guid: 4bb23c0fed1692840891f8f8860f2504
+guid: bb5ca418e7234194cae77acf8e7d192b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: knife
-    100002: //RootNode
-    400000: knife
-    400002: //RootNode
-    2100000: palette
-    2300000: knife
-    3300000: knife
-    4300000: knife
+    100000: //RootNode
+    400000: //RootNode
+    2100000: character_try_waite07_palette1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: character_try_waite07:character_try_waite07
   externalObjects: {}
   materials:
     importMaterials: 1
