@@ -1,73 +1,146 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CustomerManager : MonoBehaviour
 {
-	[SerializeField]
-	private List<FoodOrder> customerOrders;
+    [SerializeField] private List<FoodOrder> customerOrders;
 
-	[SerializeField]
-	private int orderLength;
+    [SerializeField] private int orderLength;
 
-	[SerializeField]
-	private Image showStatus;
+    [SerializeField] private Image showStatus;
 
-	[SerializeField]
-	private GameObject orderImagePrefab;
+    [SerializeField] private GameObject orderImagePrefab;
 
-	[SerializeField]
-	private Sprite[] statusImages;
+    [SerializeField] private Sprite[] statusImages;
 
-	[SerializeField]
-	private GameObject customerPanel;
-	
+    [SerializeField] private GameObject customerPanel;
+
     void Start()
     {
         OrderingFood();
     }
-	
-	private void RandomFoodAmount()
-	{
-		customerOrders = new List<FoodOrder>();
-		int foodAmount = Random.Range(1, 4);
-		
-		for (int i = 0; i < foodAmount; i++)
-		{
-			GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
-			spawnOrderPicture.transform.parent = customerPanel.transform;
-			customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
-		}
-	}
-	
-	public bool RecieveOrder(FoodItem foodRecieve)
-	{
-		if (customerOrders.Count > 0 && foodRecieve)
-		{
-			foreach (var item in customerOrders)
-			{
-				if (item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodChopped() || item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodBoiled() || item.GetOrderId() == foodRecieve.GetFoodItemId() && foodRecieve.IsFoodAlert())
-				{
-					customerOrders.Remove(item);
-					DelayPayment(item.GetOrderPrice());
-					Destroy(item.gameObject);
-					return true;
-				}
-			}
-			return false;
-		}
-		else
-		{
-			return false;
-		}
-	}
 
-	private void OrderingFood()
-	{
-		RandomFoodAmount();
+    private void RandomFoodAmount()
+    {
+        customerOrders = new List<FoodOrder>();
+        int foodAmount = Random.Range(1, 4);
+
+        for (int i = 0; i < foodAmount; i++)
+        {
+            GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
+            spawnOrderPicture.transform.parent = customerPanel.transform;
+            customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
+        }
+    }
+
+    public Dictionary<int, int> GetCustomerOrderDict()
+    {
+        var orderDict = new Dictionary<int, int>();
+
+        foreach (var order in customerOrders)
+        {
+            var orderId = order.GetOrderId();
+            if (orderDict.ContainsKey(orderId))
+                orderDict[orderId] += 1;
+            else
+                orderDict.Add(orderId, 1);
+        }
+
+        return orderDict;
+    }
+
+    public bool ReceiveOrder(Dictionary<int, int> trayDict)
+    {
+        var orderValid = DoesTrayMatchOrder(trayDict);
+
+        if (orderValid)
+            ClearCustomerOrder();
+
+        return orderValid;
+    }
+
+    private bool DoesTrayMatchOrder(Dictionary<int, int> trayDict)
+    {
+        var customerDict = GetCustomerOrderDict();
+
+        if (trayDict.Count != customerDict.Count) return false;
+
+        var isEqual = true;
+        foreach (var pair in trayDict)
+        {
+            int value;
+            if (customerDict.TryGetValue(pair.Key, out value))
+            {
+                if (value == pair.Value)
+                    continue;
+                isEqual = false;
+                break;
+            }
+
+            isEqual = false;
+            break;
+        }
+
+        return isEqual;
+    }
+
+    private static bool CheckFood(FoodOrder foodOrder, FoodItem foodReceive)
+    {
+        if (foodReceive.IsFoodChopped() || foodReceive.IsFoodBoiled() || foodReceive.IsFoodAlert())
+        {
+            if (foodOrder.GetOrderId() == foodReceive.GetFoodItemId())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void ClearCustomerOrder()
+    {
+        for (var i = customerOrders.Count - 1; i >= 0; i--)
+        {
+            var order = customerOrders[i];
+            customerOrders.Remove(order);
+            DelayPayment(order.GetOrderPrice());
+            Destroy(order.gameObject);
+        }
+    }
+
+    public bool ReceiveOrder(FoodItem foodReceive)
+    {
+        if (customerOrders.Count > 0 && foodReceive)
+        {
+            foreach (var item in customerOrders)
+            {
+                if (CheckFood(item, foodReceive)) return true;
+                
+                if (item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodChopped() ||
+                    item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodBoiled() ||
+                    item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodAlert())
+                {
+                     customerOrders.Remove(item);
+                      DelayPayment(item.GetOrderPrice());
+                     Destroy(item.gameObject);
+                    return true;
+                } 
+            }
+
+            return false;
+        }
+
+        return false;
+    }
+
+
+    private void OrderingFood()
+    {
+        RandomFoodAmount();
         if (customerOrders.Count > 0)
         {
             foreach (var item in customerOrders)
@@ -77,22 +150,22 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
-    private void Payment(int moneyAmount) 
-	{
-		//Play coin vfx here
-		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
-	}
+    private void Payment(int moneyAmount)
+    {
+        //Play coin vfx here
+        GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
+    }
 
     void DelayPayment(int moneyAmount)
-	{
-		var seq = LeanTween.sequence();
-		seq.append(3f);
-		seq.append(() =>
-		{
-			Payment(moneyAmount);
+    {
+        var seq = LeanTween.sequence();
+        seq.append(3f);
+        seq.append(() =>
+        {
+            Payment(moneyAmount);
 
             if (customerOrders.Count == 0)
-			OrderingFood();
-		});
-	}
+                OrderingFood();
+        });
+    }
 }

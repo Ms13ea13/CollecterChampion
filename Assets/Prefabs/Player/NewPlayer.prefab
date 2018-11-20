@@ -159,7 +159,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bb5ca418e7234194cae77acf8e7d192b, type: 3}
+  - {fileID: 2100000, guid: a249e94b5aa190141838a549c5c5bb3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
   currentPotInFront: {fileID: 0}
+  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 143453297893972322}
   playerSightLength: 6
   distanceToObstacle: 0
@@ -251,7 +252,7 @@ CharacterController:
   m_Height: 40
   m_Radius: 6
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.03
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 20, z: 2}

@@ -204,7 +204,6 @@ public class PlayerRayCast : MonoBehaviour
                     currentFoodInFront.SetDefaultFoodUI();
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
                 }
-                    
         }
         else
         {
@@ -233,7 +232,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (holdingItem.GetComponent<FoodItem>())
                     {
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
-                        if (currentCustomerInFront.RecieveOrder(foodToServe))
+                        if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
                             Destroy(holdingItem);
                             ResetHolding();
@@ -241,9 +240,8 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else if (holdingItem.GetComponent<TrayItem>())
                     {
-                        holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
-                        Debug.Log("Deliver Food");
-                        //ResetHolding();
+                        if (holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront))
+                            ResetHolding();
                     }
                     else
                         UnHoldItem(holdingItem);
