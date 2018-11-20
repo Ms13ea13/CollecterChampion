@@ -157,7 +157,6 @@ public class TrayItem : MonoBehaviour
         }
 
         Destroy(gameObject);
-
         return true;
 
     }

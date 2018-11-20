@@ -240,7 +240,8 @@ public class FoodItem : MonoBehaviour
 
     public void ChopFood()
     {
-        if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) )
+        if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) ||
+            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Alert))
         {
             if (!timerSlider.gameObject.activeInHierarchy)
                 SetShowTimerSlider(true);
