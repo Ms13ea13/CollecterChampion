@@ -395,15 +395,16 @@ MonoBehaviour:
   foodOnCounter: 0
   foodIntoPot: 0
   foodRenderer: {fileID: 0}
+  currentFoodState: 0
   timerSlider: {fileID: 114781523158488652}
   foodStateUI: {fileID: 114712103505927292}
   cookedPicture: {fileID: 21300000, guid: d6550889bb383284c95ec85cebc9f18e, type: 3}
   onFirePicture: {fileID: 21300000, guid: c0849c816a053ec4484dd1de4aa06a4a, type: 3}
   alertPicture: {fileID: 21300000, guid: e44dbb4cfff1caf4f9e984745e6cc10c, type: 3}
   min: 0
-  max: 100
+  maxFoodCookLevel: 100
   percentage: 0
-  foodValue: 0
+  currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
 --- !u!114 &114781523158488652
@@ -547,7 +548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 17}
   m_SizeDelta: {x: 57.398, y: 12.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224402607722235912

@@ -44,12 +44,12 @@ public class FoodItem : MonoBehaviour
     private const float cookTimer = 20f;
     
     [SerializeField] private int min = 0;
-    [FormerlySerializedAs("max")] [SerializeField]
-    private int maxFoodCookLevel = 100;
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxFoodCookLevel = 100;
 
     [SerializeField] private float percentage;
-    [FormerlySerializedAs("foodValue")] [SerializeField]
-    private float currentFoodCookLevel;
+    [FormerlySerializedAs("foodValue")]
+    [SerializeField] private float currentFoodCookLevel;
 
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
@@ -66,7 +66,6 @@ public class FoodItem : MonoBehaviour
         
         if (!foodRenderer)
             gameObject.AddComponent<Renderer>();
-
     }
 
     public void SetDefaultFoodUI()

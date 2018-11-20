@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TrayItem : MonoBehaviour
@@ -14,6 +15,28 @@ public class TrayItem : MonoBehaviour
 
     [SerializeField] private int currentIndex;
 
+    public enum TrayState
+    {
+        Clean,
+        Dirty
+    }
+
+    [SerializeField] private TrayState currentTrayState;
+    [SerializeField] private Slider timerSlider;
+    private int leantweenID;
+    private const float trayTimer = 20f;
+
+    [SerializeField] private int min = 0;
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxTrayCleanLevel = 100;
+
+    [SerializeField] private float percentage;
+    [FormerlySerializedAs("trayValue")]
+    [SerializeField] private float currentTrayCleanLevel;
+
+    [SerializeField] private bool trayIntoSink;
+    [SerializeField] private float tempSliderValue;
+    
     private bool onHold;
     private Vector3 temp;
 
@@ -21,6 +44,62 @@ public class TrayItem : MonoBehaviour
     {
         currentIndex = 0;
         itemInTray = new List<GameObject>();
+
+        timerSlider.value = 0;
+        SetDefaultTrayUI();
+    }
+
+    private void SetShowTimerSlider(bool show)
+    {
+        timerSlider.gameObject.SetActive(show);
+    }
+
+    public void SetDefaultTrayUI()
+    {
+        if (currentTrayState == TrayState.Dirty && timerSlider.value > 0)
+            SetShowTimerSlider(true);
+        else
+            SetShowTimerSlider(false);
+
+        LeanTween.cancel(leantweenID);
+    }
+
+    public void SetTrayIntoSink(bool isIntoSink)
+    {
+        trayIntoSink = isIntoSink;
+    }
+
+    public bool GetTrayIntoSink()
+    {
+        return trayIntoSink;
+    }
+
+    public bool CompareCurrentTrayState(TrayState trayState)
+    {
+        return currentTrayState == trayState;
+    }
+
+    public void WashTray()
+    {
+        if (timerSlider.value <= maxTrayCleanLevel && CompareCurrentTrayState(TrayState.Dirty))
+        {
+            if (!timerSlider.gameObject.activeInHierarchy)
+                SetShowTimerSlider(true);
+
+            currentTrayCleanLevel += Time.deltaTime * 40f;
+            percentage = (currentTrayCleanLevel / maxTrayCleanLevel) * 100;
+            timerSlider.value = percentage;
+            tempSliderValue = percentage;
+
+            if (percentage >= 100)
+            {
+                currentTrayState = TrayState.Clean;
+                timerSlider.value = 0;
+                SetShowTimerSlider(false);
+                Destroy(gameObject);
+                Debug.Log(percentage + "Tray is clean");
+            }
+        }
     }
 
     public void AddFoodToTray(GameObject food)

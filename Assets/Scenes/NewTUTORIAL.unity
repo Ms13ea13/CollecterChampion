@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &410847416
+--- !u!1001 &466036609
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -212,7 +212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100070, guid: 2ae49bac9d4356e428d9e590984f6af7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ae49bac9d4356e428d9e590984f6af7, type: 3}
@@ -488,6 +488,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224917702972523240, guid: e698882b3fd4ea54ea3965f2554aa904,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -195
+      objectReference: {fileID: 0}
+    - target: {fileID: 224917702972523240, guid: e698882b3fd4ea54ea3965f2554aa904,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -317
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e698882b3fd4ea54ea3965f2554aa904, type: 2}
