@@ -320,7 +320,7 @@ public class FoodItem : MonoBehaviour
     {
         if (FoodName == "Rice")
         {
-            if (CompareCurrentFoodState(FoodState.Boiled))
+            if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Alert))
                 return false;
         }
 

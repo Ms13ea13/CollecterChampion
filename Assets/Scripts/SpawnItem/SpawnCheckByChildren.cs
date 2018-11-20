@@ -7,7 +7,7 @@ public class SpawnCheckByChildren : MonoBehaviour
 	[SerializeField]
 	private GameObject prefab;
 
-	void Start()
+    void Start()
 	{
 		SpawnItemOnPosition();
 	}

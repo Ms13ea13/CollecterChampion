@@ -82,15 +82,16 @@ public class CustomerManager : MonoBehaviour
 		//Play coin vfx here
 		GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
 	}
-	
-	void DelayPayment(int moneyAmount)
+
+    void DelayPayment(int moneyAmount)
 	{
 		var seq = LeanTween.sequence();
 		seq.append(3f);
 		seq.append(() =>
 		{
 			Payment(moneyAmount);
-			if (customerOrders.Count == 0)
+
+            if (customerOrders.Count == 0)
 			OrderingFood();
 		});
 	}

@@ -242,6 +242,7 @@ public class PlayerRayCast : MonoBehaviour
                     else if (holdingItem.GetComponent<TrayItem>())
                     {
                         holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
+                        Debug.Log("Deliver Food");
                         //ResetHolding();
                     }
                     else

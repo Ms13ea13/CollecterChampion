@@ -499,6 +499,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -317
       objectReference: {fileID: 0}
+    - target: {fileID: 114243233795680752, guid: e698882b3fd4ea54ea3965f2554aa904,
+        type: 2}
+      propertyPath: timer
+      value: 1000000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e698882b3fd4ea54ea3965f2554aa904, type: 2}
   m_IsPrefabAsset: 0

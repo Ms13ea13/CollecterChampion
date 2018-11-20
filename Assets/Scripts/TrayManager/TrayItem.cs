@@ -124,7 +124,7 @@ public class TrayItem : MonoBehaviour
 
     public void DeliverFoodViaTray(CustomerManager customer)
     {
-        foreach (var item in itemInTray)
+        /*foreach (var item in itemInTray)
         {
             if (customer.RecieveOrder(item.gameObject.GetComponent<FoodItem>()))
             {
@@ -140,6 +140,22 @@ public class TrayItem : MonoBehaviour
 
                 break;
             }
+        }*/
+
+        for (int i = itemInTray.Count - 1; i >= 0; i--)
+        {
+            if (customer.RecieveOrder(gameObject.GetComponent<FoodItem>()))
+            {
+                itemInTray.Remove(gameObject);
+                Destroy(gameObject);
+                ClearTargetOrderPanel(gameObject.GetComponent<FoodItem>().GetFoodItemId());
+                currentIndex -= 1;
+
+                if (currentIndex <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
@@ -147,11 +163,6 @@ public class TrayItem : MonoBehaviour
     {
         itemInTray.Clear();
         currentIndex = 0;
-    }
-
-    public void RemoveFoodFromTray()
-    {
-        currentIndex -= 1;
     }
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
