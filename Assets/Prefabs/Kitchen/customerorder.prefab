@@ -277,6 +277,7 @@ MonoBehaviour:
     type: 2}
   statusImages: []
   customerPanel: {fileID: 1810999173603880}
+  spawnDirtyDish: {fileID: 0}
 --- !u!114 &114680381580943142
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -467,7 +467,8 @@ MonoBehaviour:
   foodInTrayImagePrefab: {fileID: 1326593529557490, guid: beb2c952bc2c4a74090e836074f6279b,
     type: 2}
   trayPanel: {fileID: 1504618001531588}
-  itemInTray: []
+  spawnCleanDish: {fileID: 0}
+  itemsInTray: []
   currentIndex: 0
   currentTrayState: 1
   timerSlider: {fileID: 114135400347388744}

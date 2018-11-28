@@ -11,6 +11,8 @@ public class TrayItem : MonoBehaviour
 
     [SerializeField] private GameObject trayPanel;
 
+    [SerializeField] private SpawnCleanDish spawnCleanDish;
+
     [FormerlySerializedAs("itemInTray")] [SerializeField]
     private List<GameObject> itemsInTray;
 
@@ -157,6 +159,7 @@ public class TrayItem : MonoBehaviour
         }
 
         Destroy(gameObject);
+        spawnCleanDish.SpawnDish();
         return true;
 
     }

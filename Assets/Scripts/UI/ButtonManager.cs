@@ -17,11 +17,6 @@ public class ButtonManager : MonoBehaviour
     {
         optionPanel.SetActive(true);
         //muteButton.SetActive(false);
-
-        /*exitPanel.SetActive(false);
-        yesButton.SetActive(false);
-        noButton.SetActive(false);
-        text.SetActive(false);*/
     }
 
     public void closeOptionPanel()
