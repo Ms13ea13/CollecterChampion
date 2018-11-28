@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using SpawnItem;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerRayCast : MonoBehaviour
 {
@@ -25,10 +23,9 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private SinkManager currentSinkInFront;
 
-    /*[SerializeField]
-    private FoodStockManager[] foodStockManager;*/
-
     [SerializeField] private CharacterController charContr;
+    
+    [SerializeField] private SpawnCleanDish spawnCleanDish;
 
     [SerializeField] private float playerSightLength = 10f;
 
@@ -318,7 +315,15 @@ public class PlayerRayCast : MonoBehaviour
             if (currentTrayInFront)
             {
                 if (currentTrayInFront.GetTrayIntoSink())
+                {
                     currentTrayInFront.GetComponent<TrayItem>().WashTray();
+
+                    if (currentTrayInFront.washDone == true)
+                    {
+                        spawnCleanDish.SpawnDish();
+                        currentTrayInFront.washDone = false;
+                    }
+                }
             }
         }
     }

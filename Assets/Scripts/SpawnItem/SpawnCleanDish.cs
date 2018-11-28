@@ -1,25 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawnCleanDish : MonoBehaviour
+namespace SpawnItem
 {
-    [SerializeField] private GameObject prefabToInstantiate;
-
-    public void SpawnDish()
+    public class SpawnCleanDish : MonoBehaviour
     {
-        var spawnGameObj = Instantiate(prefabToInstantiate);
-        spawnGameObj.transform.parent = transform;
-        spawnGameObj.transform.localScale = new Vector3(1, 1, 1);
+        [SerializeField] private GameObject prefabToInstantiate;
 
-        var spawnPos = Vector3.zero;
+        private Vector3 temp;
+        private int currentIndex;
 
-        spawnGameObj.transform.localScale = new Vector3(100, 100, 100);
-        spawnGameObj.transform.localPosition = spawnPos;
+        void Start()
+        {
+            currentIndex = 0;
+        }
+
+        public void SpawnDish()
+        {
+            var spawnGameObj = Instantiate(prefabToInstantiate);
+            spawnGameObj.transform.parent = transform;
+            spawnGameObj.transform.localScale = new Vector3(1, 1, 1);
+
+            var spawnPos = Vector3.zero;
+            spawnGameObj.transform.localScale = new Vector3(100, 100, 100);
+            spawnGameObj.transform.localPosition = StackDirtyDishes(currentIndex, spawnGameObj.transform);
+        }
+
+        private Vector3 StackDirtyDishes(int index, Transform targetTransform)
+        {
+            temp = targetTransform.localPosition;
+            switch (index)
+            {
+                case 0:
+                    {
+                        temp.y = 1;
+                        break;
+                    }
+                case 1:
+                    {
+                        temp.y = 3;
+                        currentIndex = 0;
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            temp.x = 0;
+            temp.z = 0f;
+
+            if (currentIndex <= 1)
+            {
+                currentIndex += 1;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            return temp;
+        }
     }
-
-    /*public void DelaySpawnDish(float timeToSpawn)
-    {
-        LeanTween.delayedCall(timeToSpawn, SpawnDish);
-    }*/
 }

@@ -11,12 +11,12 @@ public class TrayItem : MonoBehaviour
 
     [SerializeField] private GameObject trayPanel;
 
-    [SerializeField] private SpawnCleanDish spawnCleanDish;
-
-    [FormerlySerializedAs("itemInTray")] [SerializeField]
-    private List<GameObject> itemsInTray;
+    [FormerlySerializedAs("itemInTray")]
+    [SerializeField] private List<GameObject> itemsInTray;
 
     [SerializeField] private int currentIndex;
+
+    public bool washDone = false;
 
     public enum TrayState
     {
@@ -31,13 +31,13 @@ public class TrayItem : MonoBehaviour
 
     [SerializeField] private int min = 0;
 
-    [FormerlySerializedAs("max")] [SerializeField]
-    private int maxTrayCleanLevel = 100;
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxTrayCleanLevel = 100;
 
     [SerializeField] private float percentage;
 
-    [FormerlySerializedAs("trayValue")] [SerializeField]
-    private float currentTrayCleanLevel;
+    [FormerlySerializedAs("trayValue")]
+    [SerializeField] private float currentTrayCleanLevel;
 
     [SerializeField] private bool trayIntoSink;
     [SerializeField] private float tempSliderValue;
@@ -102,6 +102,7 @@ public class TrayItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 Destroy(gameObject);
+                washDone = true;
                 Debug.Log(percentage + "Tray is clean");
             }
         }
@@ -159,15 +160,8 @@ public class TrayItem : MonoBehaviour
         }
 
         Destroy(gameObject);
-        spawnCleanDish.SpawnDish();
         return true;
 
-    }
-
-    public void RemoveAllFoodFromTray()
-    {
-        itemsInTray.Clear();
-        currentIndex = 0;
     }
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
@@ -177,7 +171,7 @@ public class TrayItem : MonoBehaviour
         {
             case 0:
             {
-                temp.z = 0f;
+                temp.z = 0;
                 break;
             }
             case 1:
@@ -194,7 +188,7 @@ public class TrayItem : MonoBehaviour
                 break;
         }
 
-        temp.x = 0f;
+        temp.x = 0;
         temp.y = 0.013f;
         currentIndex += 1;
         return temp;

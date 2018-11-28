@@ -236,6 +236,7 @@ MonoBehaviour:
   currentPotInFront: {fileID: 0}
   currentSinkInFront: {fileID: 0}
   charContr: {fileID: 143453297893972322}
+  spawnCleanDish: {fileID: 0}
   playerSightLength: 6
   distanceToObstacle: 0
   holding: 0
