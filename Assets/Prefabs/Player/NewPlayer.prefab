@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1461584422026486}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -46.7}
+  m_LocalPosition: {x: 0, y: 0, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4690263764848536}
@@ -159,7 +159,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bb5ca418e7234194cae77acf8e7d192b, type: 3}
+  - {fileID: 2100000, guid: a249e94b5aa190141838a549c5c5bb3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,7 +234,9 @@ MonoBehaviour:
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
   currentPotInFront: {fileID: 0}
+  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 143453297893972322}
+  spawnCleanDish: {fileID: 0}
   playerSightLength: 6
   distanceToObstacle: 0
   holding: 0
@@ -251,7 +253,7 @@ CharacterController:
   m_Height: 40
   m_Radius: 6
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.03
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 20, z: 2}

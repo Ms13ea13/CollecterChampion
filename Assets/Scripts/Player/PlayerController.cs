@@ -21,20 +21,6 @@ public class PlayerController : PlayerBase
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            var tempSliderValue = 0f;
-            var SetFoodOnFireValue = 100f;
-            var cookTimer = 60f;
-            LeanTween.value(tempSliderValue, SetFoodOnFireValue + 50f, cookTimer)
-                .setOnUpdate(Value =>
-                {
-                    Debug.Log("val: " + Value);
-                    tempSliderValue = Value;
-                })
-                .setOnComplete(() => { Debug.Log("food is Overcooked"); });
-        }
-
         MovePlayer();
         playerRayCast.ShootRayCast();
     }

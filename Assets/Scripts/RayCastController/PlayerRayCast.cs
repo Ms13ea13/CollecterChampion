@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using SpawnItem;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerRayCast : MonoBehaviour
 {
@@ -23,10 +21,11 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private PotManager currentPotInFront;
 
-    /*[SerializeField]
-    private FoodStockManager[] foodStockManager;*/
+    [SerializeField] private SinkManager currentSinkInFront;
 
     [SerializeField] private CharacterController charContr;
+    
+    [SerializeField] private SpawnCleanDish spawnCleanDish;
 
     [SerializeField] private float playerSightLength = 10f;
 
@@ -59,6 +58,7 @@ public class PlayerRayCast : MonoBehaviour
             GetChoppingBoardInFront();
             GetCounterInFront();
             GetPotInFront();
+            GetSinkInFront();
         }
         else
             GetTrayHolderInFront();
@@ -70,7 +70,10 @@ public class PlayerRayCast : MonoBehaviour
             PickUpObj();
 
         if (Input.GetKey(KeyCode.H))
+        {
             FoodActions();
+            TrayActions();
+        }
     }
 
     private void GetFoodInFront()
@@ -176,6 +179,18 @@ public class PlayerRayCast : MonoBehaviour
             currentPotInFront = null;
     }
 
+    private void GetSinkInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Sink"))
+        {
+            distanceToObstacle = hit.distance;
+            currentSinkInFront = hit.transform.gameObject.GetComponent<SinkManager>();
+        }
+        else
+            currentSinkInFront = null;
+    }
+
     private void PickUpObj()
     {
         if (holding)
@@ -186,7 +201,6 @@ public class PlayerRayCast : MonoBehaviour
                     currentFoodInFront.SetDefaultFoodUI();
                     currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
                 }
-                    
         }
         else
         {
@@ -215,7 +229,7 @@ public class PlayerRayCast : MonoBehaviour
                     if (holdingItem.GetComponent<FoodItem>())
                     {
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
-                        if (currentCustomerInFront.RecieveOrder(foodToServe))
+                        if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
                             Destroy(holdingItem);
                             ResetHolding();
@@ -223,8 +237,8 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else if (holdingItem.GetComponent<TrayItem>())
                     {
-                        holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront);
-                        //ResetHolding();
+                        if (holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront))
+                            ResetHolding();
                     }
                     else
                         UnHoldItem(holdingItem);
@@ -268,6 +282,14 @@ public class PlayerRayCast : MonoBehaviour
                         UnHoldItem(holdingItem);
                     }
                 }
+                else if (currentSinkInFront)
+                {
+                    if (holdingItem)
+                    {
+                        currentSinkInFront.PlaceTrayIntoSink(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
+                    }
+                }
                 else
                     UnHoldItem(holdingItem);
             }
@@ -282,6 +304,26 @@ public class PlayerRayCast : MonoBehaviour
             {
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
+            }
+        }
+    }
+
+    private void TrayActions()
+    {
+        if (!holding)
+        {
+            if (currentTrayInFront)
+            {
+                if (currentTrayInFront.GetTrayIntoSink())
+                {
+                    currentTrayInFront.GetComponent<TrayItem>().WashTray();
+
+                    if (currentTrayInFront.washDone == true)
+                    {
+                        spawnCleanDish.SpawnDish();
+                        currentTrayInFront.washDone = false;
+                    }
+                }
             }
         }
     }
@@ -318,5 +360,6 @@ public class PlayerRayCast : MonoBehaviour
         currentChoppingBoardInFront = null;
         currentCounterInFront = null;
         currentPotInFront = null;
+        currentSinkInFront = null;
     }
 }

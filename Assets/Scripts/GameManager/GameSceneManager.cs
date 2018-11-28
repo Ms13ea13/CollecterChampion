@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = System.Random;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -52,6 +47,22 @@ public class GameSceneManager : MonoBehaviour
     void Update()
     {
         TimeManageMent();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!OnOffPanel)
+            {
+                OnOffPanel = true;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                OnOffPanel = false;
+                Time.timeScale = 1;
+            }
+
+            PausePanel.SetActive(OnOffPanel);
+        }
     }
 
     //Private Area----------------------------------------------------------------------
@@ -113,6 +124,17 @@ public class GameSceneManager : MonoBehaviour
     {
         scoreManager.AddScoreNumber(price);
     }
+
+    //Pause Panel -------------------------------------------------------------------
+    public GameObject PausePanel;
+
+    void Start()
+    {
+        Time.timeScale = 1;
+        PausePanel.SetActive(false);
+    }
+
+    bool OnOffPanel;
 }
 
 [Serializable]

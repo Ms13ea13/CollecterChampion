@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TrayItem : MonoBehaviour
@@ -10,9 +11,36 @@ public class TrayItem : MonoBehaviour
 
     [SerializeField] private GameObject trayPanel;
 
-    [SerializeField] private List<GameObject> itemInTray;
+    [FormerlySerializedAs("itemInTray")]
+    [SerializeField] private List<GameObject> itemsInTray;
 
     [SerializeField] private int currentIndex;
+
+    public bool washDone = false;
+
+    public enum TrayState
+    {
+        Clean,
+        Dirty
+    }
+
+    [SerializeField] private TrayState currentTrayState;
+    [SerializeField] private Slider timerSlider;
+    private int leantweenID;
+    private const float trayTimer = 20f;
+
+    [SerializeField] private int min = 0;
+
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxTrayCleanLevel = 100;
+
+    [SerializeField] private float percentage;
+
+    [FormerlySerializedAs("trayValue")]
+    [SerializeField] private float currentTrayCleanLevel;
+
+    [SerializeField] private bool trayIntoSink;
+    [SerializeField] private float tempSliderValue;
 
     private bool onHold;
     private Vector3 temp;
@@ -20,59 +48,120 @@ public class TrayItem : MonoBehaviour
     void Start()
     {
         currentIndex = 0;
-        itemInTray = new List<GameObject>();
+        itemsInTray = new List<GameObject>();
+
+        timerSlider.value = 0;
+        SetDefaultTrayUI();
+    }
+
+    private void SetShowTimerSlider(bool show)
+    {
+        timerSlider.gameObject.SetActive(show);
+    }
+
+    public void SetDefaultTrayUI()
+    {
+        if (currentTrayState == TrayState.Dirty && timerSlider.value > 0)
+            SetShowTimerSlider(true);
+        else
+            SetShowTimerSlider(false);
+
+        LeanTween.cancel(leantweenID);
+    }
+
+    public void SetTrayIntoSink(bool isIntoSink)
+    {
+        trayIntoSink = isIntoSink;
+    }
+
+    public bool GetTrayIntoSink()
+    {
+        return trayIntoSink;
+    }
+
+    public bool CompareCurrentTrayState(TrayState trayState)
+    {
+        return currentTrayState == trayState;
+    }
+
+    public void WashTray()
+    {
+        if (timerSlider.value <= maxTrayCleanLevel && CompareCurrentTrayState(TrayState.Dirty))
+        {
+            if (!timerSlider.gameObject.activeInHierarchy)
+                SetShowTimerSlider(true);
+
+            currentTrayCleanLevel += Time.deltaTime * 40f;
+            percentage = (currentTrayCleanLevel / maxTrayCleanLevel) * 100;
+            timerSlider.value = percentage;
+            tempSliderValue = percentage;
+
+            if (percentage >= 100)
+            {
+                currentTrayState = TrayState.Clean;
+                timerSlider.value = 0;
+                SetShowTimerSlider(false);
+                Destroy(gameObject);
+                washDone = true;
+                Debug.Log(percentage + "Tray is clean");
+            }
+        }
     }
 
     public void AddFoodToTray(GameObject food)
     {
         var foodItem = food.GetComponent<FoodItem>();
-        
+
         if (foodItem.CompareCurrentFoodState(FoodItem.FoodState.Raw) ||
             foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled))
             return;
 
-        if (itemInTray.Count < 3)
+        if (itemsInTray.Count < 3)
         {
-            itemInTray.Add(food);
+            itemsInTray.Add(food);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;
             food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
             foodItem.SetBannedId(currentIndex);
             FoodInTrayAmount(foodItem.GetFoodItemId());
-           
         }
     }
 
-    public void DeliverFoodViaTray(CustomerManager customer)
+    private Dictionary<int, int> GetFoodInTray()
     {
-        foreach (var item in itemInTray)
+        var trayDict = new Dictionary<int, int>();
+
+        foreach (var foodObj in itemsInTray)
         {
-            if (customer.RecieveOrder(item.gameObject.GetComponent<FoodItem>()))
+            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId();
+            if (trayDict.ContainsKey(foodId))
             {
-                itemInTray.Remove(item);
-                Destroy(item.gameObject);
-                ClearTargetOrderPanel(item.gameObject.GetComponent<FoodItem>().GetFoodItemId());
-                currentIndex -= 1;
-
-                if (currentIndex <= 0)
-                {
-                    Destroy(gameObject);
-                }
-
-                break;
+                trayDict[foodId] += 1;
+            }
+            else
+            {
+                trayDict.Add(foodId, 1);
             }
         }
+
+        return trayDict;
     }
 
-    public void RemoveAllFoodFromTray()
+    public bool DeliverFoodViaTray(CustomerManager customer)
     {
-        itemInTray.Clear();
-        currentIndex = 0;
-    }
+        if (!customer.ReceiveOrder(GetFoodInTray())) return false;
+        
+        for (var i = itemsInTray.Count - 1; i >= 0; i--)
+        {
+            var item = itemsInTray[i];
+            itemsInTray.Remove(item);
+            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
+            Destroy(item.gameObject);
+        }
 
-    public void RemoveFoodFromTray()
-    {
-        currentIndex -= 1;
+        Destroy(gameObject);
+        return true;
+
     }
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
@@ -82,7 +171,7 @@ public class TrayItem : MonoBehaviour
         {
             case 0:
             {
-                temp.z = 0f;
+                temp.z = 0;
                 break;
             }
             case 1:
@@ -99,7 +188,7 @@ public class TrayItem : MonoBehaviour
                 break;
         }
 
-        temp.x = 0f;
+        temp.x = 0;
         temp.y = 0.013f;
         currentIndex += 1;
         return temp;
