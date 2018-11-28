@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using SpawnItem;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -19,7 +18,9 @@ public class CustomerManager : MonoBehaviour
 
     [SerializeField] private GameObject customerPanel;
 
-    void Start()
+    [SerializeField] private SpawnDirtyDish spawnDirtyDish;
+
+    private void Start()
     {
         OrderingFood();
     }
@@ -58,11 +59,14 @@ public class CustomerManager : MonoBehaviour
         var orderValid = DoesTrayMatchOrder(trayDict);
 
         if (orderValid)
+        {
             ClearCustomerOrder();
+            spawnDirtyDish.DelaySpawnDish(3f);
+        }
 
         return orderValid;
     }
-
+    
     private bool DoesTrayMatchOrder(Dictionary<int, int> trayDict)
     {
         var customerDict = GetCustomerOrderDict();
@@ -119,16 +123,16 @@ public class CustomerManager : MonoBehaviour
             foreach (var item in customerOrders)
             {
                 if (CheckFood(item, foodReceive)) return true;
-                
+
                 if (item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodChopped() ||
                     item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodBoiled() ||
                     item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodAlert())
                 {
-                     customerOrders.Remove(item);
-                      DelayPayment(item.GetOrderPrice());
-                     Destroy(item.gameObject);
+                    customerOrders.Remove(item);
+                    DelayPayment(item.GetOrderPrice());
+                    Destroy(item.gameObject);
                     return true;
-                } 
+                }
             }
 
             return false;
@@ -163,7 +167,6 @@ public class CustomerManager : MonoBehaviour
         seq.append(() =>
         {
             Payment(moneyAmount);
-
             if (customerOrders.Count == 0)
                 OrderingFood();
         });

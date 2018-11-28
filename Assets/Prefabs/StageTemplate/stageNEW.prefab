@@ -558,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4836770563251418}
   m_Layer: 0
-  m_Name: OldDishSpawn
+  m_Name: DirtyDishCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,6 +678,22 @@ GameObject:
   m_Layer: 0
   m_Name: counter (6)
   m_TagString: Pot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1605077706084748
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4285786078203798}
+  - component: {fileID: 114703921646239896}
+  m_Layer: 0
+  m_Name: Dirty Dish Spawn Pos
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -922,7 +938,7 @@ GameObject:
   - component: {fileID: 54490908703150968}
   - component: {fileID: 114004090770332162}
   m_Layer: 0
-  m_Name: customerorder
+  m_Name: CustomerManager
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,6 +1569,19 @@ Transform:
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!4 &4285786078203798
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605077706084748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4836770563251418}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4290726472730960
 Transform:
   m_ObjectHideFlags: 1
@@ -1913,10 +1942,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505901670795608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.8, y: 0, z: 76.7}
+  m_LocalPosition: {x: 158.7, y: 0, z: 54.7}
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 4896800666923404}
+  - {fileID: 4285786078203798}
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1966,7 +1996,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982091252350292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.9, y: 0, z: -18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4836770563251418}
@@ -4537,6 +4567,7 @@ MonoBehaviour:
     type: 2}
   statusImages: []
   customerPanel: {fileID: 1247627897645956}
+  spawnDirtyDish: {fileID: 114703921646239896}
 --- !u!114 &114033820969773942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4728,6 +4759,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114703921646239896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605077706084748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d16e93c23855da4ea24a7fa15413aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToInstantiate: {fileID: 1832558611167212, guid: 471fc3e62be8a854d99e6c6c91e31870,
+    type: 2}
 --- !u!114 &114737037790515214
 MonoBehaviour:
   m_ObjectHideFlags: 1
