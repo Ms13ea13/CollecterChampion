@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114777321465429258, guid: a0f5bae9945957d43a3eb6562e02441d,
+        type: 2}
+      propertyPath: foodRice
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0f5bae9945957d43a3eb6562e02441d, type: 2}
   m_IsPrefabAsset: 0
@@ -205,6 +210,11 @@ Prefab:
       propertyPath: spawnCleanDish
       value: 
       objectReference: {fileID: 607097766}
+    - target: {fileID: 114269669472329754, guid: 1bed0f5fdf3069a4b9ed089a47ef47a0,
+        type: 2}
+      propertyPath: spawnDuckMeat
+      value: 
+      objectReference: {fileID: 1822584010}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bed0f5fdf3069a4b9ed089a47ef47a0, type: 2}
   m_IsPrefabAsset: 0
@@ -336,6 +346,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1822584010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114780092931828512, guid: a0f5bae9945957d43a3eb6562e02441d,
+    type: 2}
+  m_PrefabInternal: {fileID: 210039516}
+  m_Script: {fileID: 11500000, guid: 86c94959c1e4670458a2c093eaa41c2e, type: 3}
 --- !u!1001 &1939650388
 Prefab:
   m_ObjectHideFlags: 0
@@ -432,11 +448,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114243233795680752, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: timer
-      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e698882b3fd4ea54ea3965f2554aa904, type: 2}

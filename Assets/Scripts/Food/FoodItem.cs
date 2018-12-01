@@ -1,12 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
 {
-    //TODO: Move UI away from the logic please why is slider attached to the actual cooking
-    
     [SerializeField] private int foodID;
 
     [SerializeField] private string FoodName;
@@ -32,7 +29,7 @@ public class FoodItem : MonoBehaviour
         Alert,
         OnFire
     }
-    
+
     [SerializeField] private FoodState currentFoodState;
     [SerializeField] private Slider timerSlider;
     [SerializeField] private Image foodStateUI;
@@ -40,6 +37,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
 
+    public bool chopDone = false;
     private int leantweenID;
     private const float cookTimer = 20f;
     
@@ -59,7 +57,7 @@ public class FoodItem : MonoBehaviour
         timerSlider.value = 0;
         onFireValue = 2;
 
-        currentFoodState = FoodState.Raw;
+        //currentFoodState = FoodState.Raw;
         timerSlider.wholeNumbers = false;
         SetDefaultFoodUI();
         foodRenderer = GetComponent<Renderer>();
@@ -111,6 +109,11 @@ public class FoodItem : MonoBehaviour
     {
         foodID = id;
         FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
+    }
+
+    public void SetFoodStateToChop()
+    {
+        currentFoodState = FoodState.Chop;
     }
 
     public int GetFoodItemId()
@@ -256,7 +259,9 @@ public class FoodItem : MonoBehaviour
                 currentFoodState = FoodState.Chop;
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates();
+                //ChangeFoodVisualAccordingToStates();
+                Destroy(gameObject);
+                chopDone = true;
                 Debug.Log(percentage + "Chopped");
             }
         }
@@ -282,13 +287,13 @@ public class FoodItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 currentFoodState = FoodState.Boiled;
-                ChangeFoodVisualAccordingToStates();
+                //ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is cooked");
             }
             if ( tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
             {
                 currentFoodState = FoodState.Alert;
-                ChangeFoodVisualAccordingToStates();
+                //ChangeFoodVisualAccordingToStates();
                 Debug.Log("food is in Alert state");
             }
          
@@ -296,7 +301,7 @@ public class FoodItem : MonoBehaviour
         }).setOnComplete(() =>
         {
             currentFoodState = FoodState.OnFire;
-            ChangeFoodVisualAccordingToStates();
+            //ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
             Debug.Log("food is Overcooked");
         }).id;
@@ -311,21 +316,21 @@ public class FoodItem : MonoBehaviour
             foodRenderer.material.color  = Color.red;
 
         if (IsFoodChopped())
-            foodRenderer.material.color  = Color.blue;
-
+            foodRenderer.material.color = Color.blue;
+            
         if (CompareCurrentFoodState(FoodState.Boiled))
             foodRenderer.material.color  = Color.blue;
     }
 
     public bool CanPickupWithHands()
     {
-        if (FoodName == "Rice")
+        if (FoodName == "Rice Boiled")
         {
             if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Alert))
                 return false;
         }
 
-        if (FoodName == "Duck")
+        if (FoodName == "Duck Meat")
         {
             if (CompareCurrentFoodState(FoodState.Chop))
                 return false;

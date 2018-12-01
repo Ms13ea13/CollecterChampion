@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665589255193336}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 15.88, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 224979023416123068}
@@ -374,6 +374,7 @@ MonoBehaviour:
   cookedPicture: {fileID: 21300000, guid: d6550889bb383284c95ec85cebc9f18e, type: 3}
   onFirePicture: {fileID: 21300000, guid: c0849c816a053ec4484dd1de4aa06a4a, type: 3}
   alertPicture: {fileID: 21300000, guid: e44dbb4cfff1caf4f9e984745e6cc10c, type: 3}
+  chopDone: 0
   min: 0
   maxFoodCookLevel: 100
   percentage: 0

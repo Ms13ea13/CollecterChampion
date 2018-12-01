@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ebcdab352e78b4f8d96edde2cb3c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 121
+  timer: 10000
   ForTimeTextUI: {fileID: 114290110927892268}
 --- !u!114 &114265677632760930
 MonoBehaviour:
@@ -2300,12 +2300,10 @@ MonoBehaviour:
     orderName:
     - Duck
     - Rice
-    - steak
     foodPicture:
-    - {fileID: 21300000, guid: 5a2311622d6dc684d8e0d06613920873, type: 3}
-    - {fileID: 21300000, guid: 807984d81635159499c17edaf562b0ed, type: 3}
-    - {fileID: 21300000, guid: d57498b0dcb2af242a0f55f0b08bda74, type: 3}
-    price: 320000000a00000008000000
+    - {fileID: 21300008, guid: 5a2a213664ae9ce4ca3f359814180ca8, type: 3}
+    - {fileID: 21300006, guid: 5a2a213664ae9ce4ca3f359814180ca8, type: 3}
+    price: 320000000a000000
   PausePanel: {fileID: 1884294471776280}
 --- !u!114 &114904986853524234
 MonoBehaviour:

@@ -201,6 +201,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1148608556226540
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4975586883644344}
+  - component: {fileID: 114399459605449156}
+  m_Layer: 0
+  m_Name: Clean Dish Spawn Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1153206418401150
 GameObject:
   m_ObjectHideFlags: 1
@@ -708,9 +724,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4285786078203798}
-  - component: {fileID: 114399459605449156}
+  - component: {fileID: 114416688480489158}
   m_Layer: 0
-  m_Name: Clean Dish Spawn Pos
+  m_Name: Rice Boiled Spawn Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,6 +776,22 @@ GameObject:
   - component: {fileID: 33711795038062068}
   m_Layer: 0
   m_Name: Model_20
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1649288883354522
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4009108372741940}
+  - component: {fileID: 114780092931828512}
+  m_Layer: 0
+  m_Name: Duck Meat Spawn Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1232,6 +1264,19 @@ Transform:
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4009108372741940
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649288883354522}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -80.1, y: 14.9, z: -35.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4953414669098252}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4016836374955846
 Transform:
   m_ObjectHideFlags: 1
@@ -1594,12 +1639,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1605077706084748}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81, y: 13.3, z: 44.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -80.1, y: 14.9, z: 34.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4577205570851024}
-  m_RootOrder: 3
+  m_Father: {fileID: 4795273237327000}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4290726472730960
 Transform:
@@ -1817,7 +1862,7 @@ Transform:
   - {fileID: 4020691715501208}
   - {fileID: 4016836374955846}
   - {fileID: 4292608185797572}
-  - {fileID: 4285786078203798}
+  - {fileID: 4975586883644344}
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -1913,6 +1958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4714512009551568}
+  - {fileID: 4285786078203798}
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -2098,9 +2144,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4224935548970190}
+  - {fileID: 4009108372741940}
   m_Father: {fileID: 4004866889993524}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!4 &4975586883644344
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1148608556226540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 81, y: 13.3, z: 44.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4577205570851024}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23008869145171712
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -4742,7 +4802,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1605077706084748}
+  m_GameObject: {fileID: 1148608556226540}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de4fd9586fa2c264ebe2e76ac431ec2b, type: 3}
@@ -4777,6 +4837,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114416688480489158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605077706084748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cbff0b910fc9c42bdfb2baa17980a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToInstantiate: {fileID: 1453829201675040, guid: f6543337b90d917418d2069f278c153d,
+    type: 2}
 --- !u!114 &114487725733929724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4899,6 +4972,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707327450a4fab94f86b55111c94ce7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodRice: {fileID: 114500764207918158, guid: f6543337b90d917418d2069f278c153d, type: 2}
+  spawnRiceBoil: {fileID: 114416688480489158}
+--- !u!114 &114780092931828512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649288883354522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c94959c1e4670458a2c093eaa41c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToInstantiate: {fileID: 1914834328023752, guid: 007084191d2c5c7409775eedb6fff174,
+    type: 2}
 --- !u!114 &114804021395078596
 MonoBehaviour:
   m_ObjectHideFlags: 1
