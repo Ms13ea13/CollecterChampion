@@ -39,7 +39,6 @@ public class ButtonManager : MonoBehaviour
 
     public void ExitButton()
     {
-        //optionPanel.SetActive(false);
         //muteButton.SetActive(false);
 
         exitPanel.SetActive(true);
@@ -50,7 +49,6 @@ public class ButtonManager : MonoBehaviour
 
     public void NoButton()
     {
-        //optionPanel.SetActive(false);
         //muteButton.SetActive(false);
 
         exitPanel.SetActive(false);

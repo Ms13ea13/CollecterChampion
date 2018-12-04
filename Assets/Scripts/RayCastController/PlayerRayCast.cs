@@ -303,7 +303,15 @@ public class PlayerRayCast : MonoBehaviour
             if (currentFoodInFront)
             {
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
+                {
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
+
+                    /*if (currentFoodInFront.chopDone == true)
+                    {
+//                        spawnDuckMeat.SpawnDuckMeat();
+                        currentFoodInFront.chopDone = false;
+                    }*/
+                }
             }
         }
     }
