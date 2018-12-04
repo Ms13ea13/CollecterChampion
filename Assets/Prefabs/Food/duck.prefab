@@ -30,6 +30,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1198682727315324
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4118820313886738}
+  - component: {fileID: 33871295483811632}
+  - component: {fileID: 23255629900243844}
+  m_Layer: 0
+  m_Name: Raw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1478112367139488
 GameObject:
   m_ObjectHideFlags: 1
@@ -58,6 +75,21 @@ GameObject:
   - component: {fileID: 114850143929045322}
   m_Layer: 0
   m_Name: Fill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1580611422238372
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4191462100768928}
+  m_Layer: 0
+  m_Name: Choped
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,14 +137,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4287585336603066}
-  - component: {fileID: 33095264314827546}
-  - component: {fileID: 23619319341182352}
   - component: {fileID: 65316122371255016}
   - component: {fileID: 54673784786951478}
   - component: {fileID: 114848234262544468}
   m_Layer: 0
   m_Name: duck
   m_TagString: Food
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1679749056341496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4875479602543494}
+  m_Layer: 0
+  m_Name: FoodModelContainer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +194,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1909856051922826
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4434477991181318}
+  m_Layer: 0
+  m_Name: Grilled
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1957423093372462
 GameObject:
   m_ObjectHideFlags: 1
@@ -164,6 +224,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4118820313886738
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198682727315324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4875479602543494}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4191462100768928
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580611422238372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4875479602543494}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4287585336603066
 Transform:
   m_ObjectHideFlags: 1
@@ -171,19 +257,49 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665589255193336}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -39.87805, y: 5.95, z: 41.682495}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
+  - {fileID: 4875479602543494}
   - {fileID: 224979023416123068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!23 &23619319341182352
+--- !u!4 &4434477991181318
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909856051922826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4875479602543494}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4875479602543494
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679749056341496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4118820313886738}
+  - {fileID: 4434477991181318}
+  - {fileID: 4191462100768928}
+  m_Father: {fileID: 4287585336603066}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23255629900243844
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1665589255193336}
+  m_GameObject: {fileID: 1198682727315324}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -213,12 +329,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33095264314827546
+--- !u!33 &33871295483811632
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1665589255193336}
+  m_GameObject: {fileID: 1198682727315324}
   m_Mesh: {fileID: 4300000, guid: 4b62b8ceae664fe4f9ec626cbe85110b, type: 3}
 --- !u!54 &54673784786951478
 Rigidbody:
@@ -368,13 +484,17 @@ MonoBehaviour:
   foodOnCounter: 0
   foodIntoPot: 0
   foodRenderer: {fileID: 0}
+  rawModel: {fileID: 0}
+  grilledModel: {fileID: 0}
+  chopModel: {fileID: 0}
+  boiledModel: {fileID: 0}
   currentFoodState: 0
   timerSlider: {fileID: 114994116796992412}
   foodStateUI: {fileID: 114272665699404796}
   cookedPicture: {fileID: 21300000, guid: d6550889bb383284c95ec85cebc9f18e, type: 3}
   onFirePicture: {fileID: 21300000, guid: c0849c816a053ec4484dd1de4aa06a4a, type: 3}
   alertPicture: {fileID: 21300000, guid: e44dbb4cfff1caf4f9e984745e6cc10c, type: 3}
-  chopDone: 0
+  modelContainer: {fileID: 0}
   min: 0
   maxFoodCookLevel: 100
   percentage: 0
@@ -675,7 +795,7 @@ RectTransform:
   - {fileID: 224220354320103320}
   - {fileID: 224291129731564162}
   m_Father: {fileID: 4287585336603066}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

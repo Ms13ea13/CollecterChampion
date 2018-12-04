@@ -54,6 +54,17 @@ public class FoodItem : MonoBehaviour
         Alert,
         OnFire
     }
+    
+    [SerializeField]
+    private GameObject rawModel;
+    [SerializeField]
+    private GameObject grilledModel;
+    
+    [SerializeField]
+    private GameObject chopModel;
+    
+    [SerializeField]
+    private GameObject boiledModel;
 
     [SerializeField] private FoodState currentFoodState;
     [SerializeField] private Slider timerSlider;
@@ -61,6 +72,11 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Sprite cookedPicture;
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
+
+   
+
+    [SerializeField]
+    private GameObject modelContainer;
 
     private PotManager potManage;
 
@@ -86,7 +102,8 @@ public class FoodItem : MonoBehaviour
         timerSlider.value = 0;
         onFireValue = 2;
 
-//        currentFoodState = FoodState.Raw;
+        currentFoodState = FoodState.Raw;
+        ChangeFoodVisualAccordingToStates();
         timerSlider.wholeNumbers = false;
         SetDefaultFoodUI();
         foodRenderer = GetComponent<Renderer>();
@@ -283,21 +300,39 @@ public class FoodItem : MonoBehaviour
     {
         switch (currentFoodState)
         {
-            case FoodState.Alert:
-//                foodStateUI.sprite = alertPicture; //setactive ู //animator.settrigger 
-                break;
-            case FoodState.OnFire:
-//                foodStateUI.sprite = onFirePicture;
+            case FoodState.Raw :
+                if (rawModel == null) return;
+                    rawModel.SetActive(true);
+                DisableUnusedModel(rawModel);
                 break;
             case FoodState.Boiled:
-//                foodStateUI.sprite = cookedPicture; 
+                if (boiledModel == null) return;
+                boiledModel.SetActive(true);
+                DisableUnusedModel(boiledModel);
                 break;
             case FoodState.Grilled:
-//                foodStateUI.sprite = cookedPicture;
+                if (grilledModel == null) return;
+                grilledModel.SetActive(true);
+                DisableUnusedModel(grilledModel);
                 break;
-//            default:
-//                foodStateUI.gameObject.SetActive(false);
-//                break;
+            case FoodState.Alert:
+                Debug.LogError("Food in Alert");
+                break;
+            case FoodState.OnFire:
+                Debug.LogError("Food OnFire");
+                break;
+            default:
+                return;
+                break;
+        }
+    }
+
+    private void DisableUnusedModel(GameObject exceptionChild)
+    {
+        for (int i = 0; i < modelContainer.transform.childCount; i++)
+        {
+            if (modelContainer.transform.GetChild(i) != exceptionChild && modelContainer.transform.GetChild(i).gameObject.activeInHierarchy == true)
+                modelContainer.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
