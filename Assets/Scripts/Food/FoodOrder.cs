@@ -32,7 +32,10 @@ public class FoodOrder : MonoBehaviour
         return orderName;
     }
 
-    public int GetOrderId => orderId;
+    public int GetOrderId()
+    {
+        return orderId;
+    }
     
     public int GetOrderPrice()
     {

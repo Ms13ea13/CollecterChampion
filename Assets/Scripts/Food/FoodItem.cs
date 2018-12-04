@@ -21,29 +21,65 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private Renderer foodRenderer;
 
-    public string GetFoodItemName => FoodName;
+    public string GetFoodItemName()
+    {
+        return FoodName;
+    }
 
-    public int GetBanedID => trayBandedId;
+    public int GetBanedID()
+    {
+        return trayBandedId;
+    }
 
-    public bool GetFoodOnCounter => foodOnCounter;
+    public bool GetFoodOnCounter()
+    {
+        return foodOnCounter;
+    }
 
-    public bool GetFoodIntoPot => foodIntoPot;
+    public bool GetFoodIntoPot()
+    {
+        return foodIntoPot;
+    }
 
-    public int GetFoodItemId => foodID;
+    public int GetFoodItemId()
+    {
+        return foodID;
+    }
 
-    public bool IsFoodChopped => currentFoodState == FoodState.Chop;
+    public bool IsFoodChopped()
+    {
+        return currentFoodState == FoodState.Chop;
+    }
 
-    public bool IsFoodOnFire => currentFoodState == FoodState.OnFire;
+    public bool IsFoodOnFire()
+    {
+        return currentFoodState == FoodState.OnFire;
+    }
 
-    public bool IsFoodBoiled => currentFoodState == FoodState.Boiled;
+    public bool IsFoodBoiled()
+    {
+        return currentFoodState == FoodState.Boiled;
+    }
 
-    public bool IsFoodAlert => currentFoodState == FoodState.Alert;
+    public bool IsFoodAlert()
+    {
+        return currentFoodState == FoodState.Alert;
+    }
 
-    public bool GetFoodOnStove => foodOnStove;
+    public bool GetFoodOnStove()
+    {
+        return foodOnStove;
+    }
 
-    public bool GetFoodOnChoppingBoard => foodOnChoppingBoard;
+    public bool GetFoodOnChoppingBoard()
+    {
+        return foodOnChoppingBoard;
+    }
 
-    public bool CompareCurrentFoodState(FoodState foodState) => currentFoodState == foodState;
+    public bool CompareCurrentFoodState(FoodState foodState)
+    {
+        return currentFoodState == foodState;
+    }
 
     public enum FoodState
     {
@@ -322,7 +358,7 @@ public class FoodItem : MonoBehaviour
                 Debug.LogError("Food OnFire");
                 break;
             default:
-                return;
+                Debug.LogError("Default");
                 break;
         }
     }

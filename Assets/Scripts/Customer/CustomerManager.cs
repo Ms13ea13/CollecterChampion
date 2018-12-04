@@ -44,7 +44,7 @@ public class CustomerManager : MonoBehaviour
 
         foreach (var order in customerOrders)
         {
-            var orderId = order.GetOrderId;
+            var orderId = order.GetOrderId();
             if (orderDict.ContainsKey(orderId))
                 orderDict[orderId] += 1;
             else
@@ -94,9 +94,9 @@ public class CustomerManager : MonoBehaviour
 
     private static bool CheckFood(FoodOrder foodOrder, FoodItem foodReceive)
     {
-        if (foodReceive.IsFoodChopped || foodReceive.IsFoodBoiled || foodReceive.IsFoodAlert)
+        if (foodReceive.IsFoodChopped() || foodReceive.IsFoodBoiled() || foodReceive.IsFoodAlert())
         {
-            if (foodOrder.GetOrderId == foodReceive.GetFoodItemId)
+            if (foodOrder.GetOrderId() == foodReceive.GetFoodItemId())
             {
                 return true;
             }
@@ -124,9 +124,9 @@ public class CustomerManager : MonoBehaviour
             {
                 if (CheckFood(item, foodReceive)) return true;
 
-                if (item.GetOrderId == foodReceive.GetFoodItemId && foodReceive.IsFoodChopped ||
-                    item.GetOrderId == foodReceive.GetFoodItemId && foodReceive.IsFoodBoiled ||
-                    item.GetOrderId == foodReceive.GetFoodItemId && foodReceive.IsFoodAlert)
+                if (item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodChopped() ||
+                    item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodBoiled() ||
+                    item.GetOrderId() == foodReceive.GetFoodItemId() && foodReceive.IsFoodAlert())
                 {
                     customerOrders.Remove(item);
                     DelayPayment(item.GetOrderPrice());
