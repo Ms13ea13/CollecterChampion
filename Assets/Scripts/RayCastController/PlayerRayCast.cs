@@ -27,7 +27,7 @@ public class PlayerRayCast : MonoBehaviour
     
     [SerializeField] private SpawnCleanDish spawnCleanDish;
 
-    [SerializeField] private SpawnChopDuck spawnDuckMeat;
+    //[SerializeField] private SpawnChopDuck spawnDuckMeat;
 
     [SerializeField] private float playerSightLength = 10f;
 
@@ -308,11 +308,11 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
 
-                    if (currentFoodInFront.chopDone == true)
+                    /*if (currentFoodInFront.chopDone == true)
                     {
                         spawnDuckMeat.SpawnDuckMeat();
                         currentFoodInFront.chopDone = false;
-                    }
+                    }*/
                 }
             }
         }

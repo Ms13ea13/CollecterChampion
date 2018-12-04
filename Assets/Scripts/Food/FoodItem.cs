@@ -39,7 +39,7 @@ public class FoodItem : MonoBehaviour
 
     private PotManager potManage;
 
-    public bool chopDone = false;
+    //public bool chopDone = false;
     private int leantweenID;
     private const float cookTimer = 20f;
     
@@ -256,8 +256,9 @@ public class FoodItem : MonoBehaviour
                 currentFoodState = FoodState.Chop;
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
-                Destroy(gameObject);
-                chopDone = true;
+                ChangeFoodVisualAccordingToStates();
+                //Destroy(gameObject);
+                //chopDone = true;
                 Debug.Log(percentage + "Chopped");
             }
         }
@@ -283,16 +284,16 @@ public class FoodItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 currentFoodState = FoodState.Boiled;
-                //ChangeFoodVisualAccordingToStates();
-                Destroy(gameObject);
-                potManage.SpawnRice();
+                ChangeFoodVisualAccordingToStates();
+                //Destroy(gameObject);
+                //potManage.SpawnRice();
                 SetFoodUIState();
                 Debug.Log("food is cooked");
             }
             if ( tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
             {
                 currentFoodState = FoodState.Alert;
-                //ChangeFoodVisualAccordingToStates();
+                ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
                 Debug.Log("food is in Alert state");
             }
@@ -301,7 +302,7 @@ public class FoodItem : MonoBehaviour
         }).setOnComplete(() =>
         {
             currentFoodState = FoodState.OnFire;
-            //ChangeFoodVisualAccordingToStates();
+            ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
             Debug.Log("food is Overcooked");
         }).id;
