@@ -27,8 +27,6 @@ public class PlayerRayCast : MonoBehaviour
     
     [SerializeField] private SpawnCleanDish spawnCleanDish;
 
-    [SerializeField] private SpawnChopDuck spawnDuckMeat;
-
     [SerializeField] private float playerSightLength = 10f;
 
     [SerializeField] private float distanceToObstacle;
@@ -252,7 +250,7 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentStoveInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId == 0)
                     {
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
@@ -261,7 +259,7 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentChoppingBoardInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId == 0)
                     {
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
@@ -277,7 +275,7 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentPotInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId == 1)
                     {
                         currentPotInFront.PlaceFoodIntoPot(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInThePot();
@@ -304,13 +302,13 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetFoodOnChoppingBoard())
+                if (currentFoodInFront.GetFoodOnChoppingBoard)
                 {
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
 
                     if (currentFoodInFront.chopDone == true)
                     {
-                        spawnDuckMeat.SpawnDuckMeat();
+//                        spawnDuckMeat.SpawnDuckMeat();
                         currentFoodInFront.chopDone = false;
                     }
                 }

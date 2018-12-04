@@ -123,7 +123,7 @@ public class TrayItem : MonoBehaviour
             food.GetComponent<Collider>().enabled = false;
             food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
             foodItem.SetBannedId(currentIndex);
-            FoodInTrayAmount(foodItem.GetFoodItemId());
+            FoodInTrayAmount(foodItem.GetFoodItemId);
         }
     }
 
@@ -133,7 +133,7 @@ public class TrayItem : MonoBehaviour
 
         foreach (var foodObj in itemsInTray)
         {
-            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId();
+            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId;
             if (trayDict.ContainsKey(foodId))
             {
                 trayDict[foodId] += 1;
@@ -155,7 +155,7 @@ public class TrayItem : MonoBehaviour
         {
             var item = itemsInTray[i];
             itemsInTray.Remove(item);
-            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
+            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId);
             Destroy(item.gameObject);
         }
 
