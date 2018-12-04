@@ -37,6 +37,8 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
 
+    private PotManager potManage;
+
     public bool chopDone = false;
     private int leantweenID;
     private const float cookTimer = 20f;
@@ -109,11 +111,6 @@ public class FoodItem : MonoBehaviour
     {
         foodID = id;
         FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
-    }
-
-    public void SetFoodStateToChop()
-    {
-        currentFoodState = FoodState.Chop;
     }
 
     public int GetFoodItemId()
@@ -259,7 +256,6 @@ public class FoodItem : MonoBehaviour
                 currentFoodState = FoodState.Chop;
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
-                //ChangeFoodVisualAccordingToStates();
                 Destroy(gameObject);
                 chopDone = true;
                 Debug.Log(percentage + "Chopped");
@@ -288,16 +284,20 @@ public class FoodItem : MonoBehaviour
                 SetShowTimerSlider(false);
                 currentFoodState = FoodState.Boiled;
                 //ChangeFoodVisualAccordingToStates();
+                Destroy(gameObject);
+                potManage.SpawnRice();
+                SetFoodUIState();
                 Debug.Log("food is cooked");
             }
             if ( tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
             {
                 currentFoodState = FoodState.Alert;
                 //ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
                 Debug.Log("food is in Alert state");
             }
-         
-            SetFoodUIState();
+
+            //SetFoodUIState();
         }).setOnComplete(() =>
         {
             currentFoodState = FoodState.OnFire;

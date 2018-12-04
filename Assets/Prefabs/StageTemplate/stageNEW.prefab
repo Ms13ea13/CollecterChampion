@@ -4972,8 +4972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707327450a4fab94f86b55111c94ce7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodRice: {fileID: 114500764207918158, guid: f6543337b90d917418d2069f278c153d, type: 2}
-  spawnRiceBoil: {fileID: 114416688480489158}
+  spawnRiceObj: {fileID: 114416688480489158}
 --- !u!114 &114780092931828512
 MonoBehaviour:
   m_ObjectHideFlags: 1

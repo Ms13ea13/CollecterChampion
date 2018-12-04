@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using SpawnItem;
 using UnityEngine;
 
 public class PotManager : MonoBehaviour
 {
+    [SerializeField] private SpawnRiceBoiled spawnRiceObj;
+
     public void PlaceFoodIntoPot(GameObject target, ref bool holding)
     {
         target.transform.parent = transform;
@@ -16,5 +17,10 @@ public class PotManager : MonoBehaviour
         target.transform.localRotation = tempQuaternion;
         holding = false;
         target.GetComponent<FoodItem>().SetFoodIntoPot(true);
+    }
+
+    public void SpawnRice()
+    {
+        spawnRiceObj.SpawnRiceBoil();
     }
 }
