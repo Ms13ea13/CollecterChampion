@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446580159984664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.016, y: 0.0091233, z: -0.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4482662933319474}
@@ -525,7 +525,6 @@ MonoBehaviour:
   foodOnChoppingBoard: 0
   foodOnCounter: 0
   foodIntoPot: 0
-  foodRenderer: {fileID: 0}
   rawModel: {fileID: 1844462054185884}
   grilledModel: {fileID: 0}
   chopModel: {fileID: 0}
