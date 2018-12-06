@@ -431,20 +431,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79833567dde4ba4a8d51f2df3d45eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodInTrayOrders: []
-  foodInTrayImagePrefab: {fileID: 1326593529557490, guid: beb2c952bc2c4a74090e836074f6279b,
+  foodInPlateImagePrefab: {fileID: 1326593529557490, guid: beb2c952bc2c4a74090e836074f6279b,
     type: 2}
-  trayPanel: {fileID: 1612705732291634}
-  spawnClean: {fileID: 0}
-  itemsInTray: []
+  platePanel: {fileID: 1612705732291634}
+  itemsInPlate: []
   currentIndex: 0
-  currentTrayState: 0
+  washDone: 0
+  _currentPlateState: 0
   timerSlider: {fileID: 114607957958024020}
   min: 0
-  maxTrayCleanLevel: 100
+  maxPlateCleanLevel: 100
   percentage: 0
-  currentTrayCleanLevel: 0
-  trayIntoSink: 0
+  currentPlateCleanLevel: 0
+  plateIntoSink: 0
   tempSliderValue: 0
 --- !u!114 &114650002572142804
 MonoBehaviour:

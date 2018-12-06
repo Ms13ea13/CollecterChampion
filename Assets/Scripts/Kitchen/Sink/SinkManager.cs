@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SinkManager : MonoBehaviour
 {
-    public void PlaceTrayIntoSink(GameObject target, ref bool holding)
+    public void PlacePlateIntoSink(GameObject target, ref bool holding)
     {
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
@@ -15,6 +15,6 @@ public class SinkManager : MonoBehaviour
         Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
         target.transform.localRotation = tempQuaternion;
         holding = false;
-        target.GetComponent<TrayItem>().SetTrayIntoSink(true);
+        target.GetComponent<PlateItem>().SetPlateIntoSink(true);
     }
 }

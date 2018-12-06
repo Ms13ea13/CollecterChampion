@@ -10,9 +10,9 @@ public class BinManager : MonoBehaviour
 		PlayFoodGoDownTrash(target);
 	}
 
-	private void PlayFoodGoDownTrash(GameObject tray)
+	private void PlayFoodGoDownTrash(GameObject item)
 	{
 		//Set fall down position here
-		Destroy(tray);
+		Destroy(item);
 	}
 }

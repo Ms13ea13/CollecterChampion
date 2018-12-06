@@ -11,7 +11,7 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private BinManager currentBinInFront;
 
-    [SerializeField] private TrayItem currentTrayInFront;
+    [SerializeField] private PlateItem _currentPlateInFront;
 
     [SerializeField] private StoveManager currentStoveInFront;
 
@@ -62,7 +62,7 @@ public class PlayerRayCast : MonoBehaviour
             GetSinkInFront();
         }
         else
-            GetTrayHolderInFront();
+            GetPlateHolderInFront();
 
         GetFoodInFront();
 
@@ -74,7 +74,7 @@ public class PlayerRayCast : MonoBehaviour
         { 
            
             FoodActions();
-            TrayActions();
+            PlateActions();
         }
     }
 
@@ -119,17 +119,17 @@ public class PlayerRayCast : MonoBehaviour
             currentBinInFront = null;
     }
 
-    private void GetTrayHolderInFront()
+    private void GetPlateHolderInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
         if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
              hit.transform.tag == "Tray"))
         {
             distanceToObstacle = hit.distance;
-            currentTrayInFront = hit.transform.gameObject.GetComponent<TrayItem>();
+            _currentPlateInFront = hit.transform.gameObject.GetComponent<PlateItem>();
         }
         else
-            currentTrayInFront = null;
+            _currentPlateInFront = null;
     }
 
     private void GetStoveInFront()
@@ -198,18 +198,18 @@ public class PlayerRayCast : MonoBehaviour
         if (holding)
         {
             
-            if (currentTrayInFront)
+            if (_currentPlateInFront)
                 if (currentFoodInFront)
                 {
                     currentFoodInFront.SetDefaultFoodUI();
-                    currentTrayInFront.GetComponent<TrayItem>().AddFoodToTray(currentFoodInFront.gameObject);
+                    _currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
                 }
         }
         else
         {
            
-            if (currentTrayInFront)
-                TakeObjIntoHold(currentTrayInFront.gameObject);
+            if (_currentPlateInFront)
+                TakeObjIntoHold(_currentPlateInFront.gameObject);
 
             if (currentFoodInFront)
             {
@@ -246,9 +246,9 @@ public class PlayerRayCast : MonoBehaviour
                         }
                         
                     }
-                    else if (holdingItem.GetComponent<TrayItem>())
+                    else if (holdingItem.GetComponent<PlateItem>())
                     {
-                        if (holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront))
+                        if (holdingItem.GetComponent<PlateItem>().DeliverFoodViaPlate(currentCustomerInFront))
                             ResetHolding();
 
                         AudioSource audio1 = GetComponent<AudioSource>();//
@@ -259,8 +259,26 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentBinInFront)
                 {
-                    currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
-                    ResetHolding();
+                    PlateItem plateOnHold= itemInHold.GetComponent<PlateItem>();
+                    
+                    if (plateOnHold != null)
+                    {
+                        
+                        if (plateOnHold.ItemInPlate().Count > 0)
+                        {
+                            Debug.LogError("PlateOnHold have : " + plateOnHold.ItemInPlate().Count);
+
+                            plateOnHold.ClearAllItemInPlate();
+                        }
+                        else
+                            return;
+                    }
+                    else
+                    {
+                        currentBinInFront.GetComponent<BinManager>().ThrowItemToBin(itemInHold);
+                        ResetHolding();
+                    }
+                        
                 }
                 else if (currentStoveInFront)
                 {
@@ -304,7 +322,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem)
                     {
-                        currentSinkInFront.PlaceTrayIntoSink(holdingItem, ref holding);
+                        currentSinkInFront.PlacePlateIntoSink(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
                     }
                 }
@@ -322,20 +340,20 @@ public class PlayerRayCast : MonoBehaviour
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
     }
 
-    private void TrayActions()
+    private void PlateActions()
     {
         if (!holding)
         {
-            if (currentTrayInFront)
+            if (_currentPlateInFront)
             {
-                if (currentTrayInFront.GetTrayIntoSink())
+                if (_currentPlateInFront.GetPlateIntoSink())
                 {
-                    currentTrayInFront.GetComponent<TrayItem>().WashTray();
+                    _currentPlateInFront.GetComponent<PlateItem>().WashPlate();
 
-                    if (currentTrayInFront.washDone == true)
+                    if (_currentPlateInFront.washDone == true)
                     {
                         spawnCleanDish.SpawnDish();
-                        currentTrayInFront.washDone = false;
+                        _currentPlateInFront.washDone = false;
                     }
                 }
             }
@@ -370,7 +388,7 @@ public class PlayerRayCast : MonoBehaviour
         itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
-        currentTrayInFront = null;
+        _currentPlateInFront = null;
         currentBinInFront = null;
         currentStoveInFront = null;
         currentChoppingBoardInFront = null;

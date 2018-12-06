@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 [Serializable]
-public class FoodInTray : MonoBehaviour
+public class FoodInPlate : MonoBehaviour
 {
     [SerializeField]
     private int orderId;
