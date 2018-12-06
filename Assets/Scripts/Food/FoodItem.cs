@@ -129,6 +129,9 @@ public class FoodItem : MonoBehaviour
 
     private AudioSource FoodItemAudioSource;
 
+    private float chopSoundLength;
+    private float chopSoundStart = 0f;
+
     void Start()
     {
         timerSlider.value = 0;
@@ -275,9 +278,13 @@ public class FoodItem : MonoBehaviour
             timerSlider.value = percentage;
             tempSliderValue = percentage;
 
-            if (Input.GetKeyDown(KeyCode.H)) {
-                FoodItemAudioSource.PlayOneShot(chopping);//
-            }
+            chopSoundLength = chopping.length;
+            
+
+           
+//            if (Input.GetKeyDown(KeyCode.H)) {
+//                FoodItemAudioSource.PlayOneShot(chopping);//
+//            }
             
             if (percentage >= 100)
             {
@@ -285,6 +292,17 @@ public class FoodItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates();
+            }
+            else
+            {
+                chopSoundStart += Time.deltaTime;
+                if (chopSoundStart >= chopSoundLength)
+                {
+                    FoodItemAudioSource.PlayOneShot(chopping);
+                    chopSoundStart = 0;
+                }
+                
+               
             }
         }
     }
