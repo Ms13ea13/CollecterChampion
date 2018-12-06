@@ -309,6 +309,7 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentPotInFront)
                 {
+                    if (holdingItem.GetComponent<FoodItem>() == null) return;
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1)
                     {
                         currentPotInFront.PlaceFoodIntoPot(holdingItem, ref holding);
