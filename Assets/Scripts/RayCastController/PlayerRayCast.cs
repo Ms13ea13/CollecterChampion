@@ -37,6 +37,7 @@ public class PlayerRayCast : MonoBehaviour
     private RaycastHit hit;
     private Vector3 p1;
     private Vector3 p2;
+    public AudioClip grill, pick_up,sent_food;
 
     void Start()
     {
@@ -68,9 +69,10 @@ public class PlayerRayCast : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
             PickUpObj();
-
+            
         if (Input.GetKey(KeyCode.H))
-        {
+        { 
+           
             FoodActions();
             TrayActions();
         }
@@ -195,6 +197,7 @@ public class PlayerRayCast : MonoBehaviour
     {
         if (holding)
         {
+            
             if (currentTrayInFront)
                 if (currentFoodInFront)
                 {
@@ -204,13 +207,17 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
         {
+           
             if (currentTrayInFront)
                 TakeObjIntoHold(currentTrayInFront.gameObject);
 
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
+                if (currentFoodInFront.GetComponent<FoodItem>().CanNotPickupWithHands())
                 {
+                    AudioSource audio = GetComponent<AudioSource>();//
+                    audio.PlayOneShot(pick_up);//
+
                     currentFoodInFront.SetDefaultFoodUI();
                     TakeObjIntoHold(currentFoodInFront.gameObject);
                 }
@@ -220,25 +227,32 @@ public class PlayerRayCast : MonoBehaviour
 
     private void DropObj(ref GameObject holdingItem)
     {
+       
         if (holdingItem && holding)
         {
             if (Input.GetKeyUp(KeyCode.B))
             {
+                AudioSource audio = GetComponent<AudioSource>();//
+                audio.PlayOneShot(pick_up);//
                 if (currentCustomerInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>())
-                    {
+                    { 
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
                             Destroy(holdingItem);
                             ResetHolding();
                         }
+                        
                     }
                     else if (holdingItem.GetComponent<TrayItem>())
                     {
                         if (holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront))
                             ResetHolding();
+
+                        AudioSource audio1 = GetComponent<AudioSource>();//
+                        audio1.PlayOneShot(sent_food);//
                     }
                     else
                         UnHoldItem(holdingItem);
@@ -252,6 +266,9 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
+                        AudioSource audio1 = GetComponent<AudioSource>();//
+                        audio1.PlayOneShot(grill);//
+
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
                         UnHoldItem(holdingItem);
@@ -261,6 +278,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
+                     
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
                     }
@@ -299,21 +317,9 @@ public class PlayerRayCast : MonoBehaviour
     private void FoodActions()
     {
         if (!holding)
-        {
             if (currentFoodInFront)
-            {
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
-                {
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
-
-                    /*if (currentFoodInFront.chopDone == true)
-                    {
-//                        spawnDuckMeat.SpawnDuckMeat();
-                        currentFoodInFront.chopDone = false;
-                    }*/
-                }
-            }
-        }
     }
 
     private void TrayActions()
@@ -345,6 +351,8 @@ public class PlayerRayCast : MonoBehaviour
 
     private void TakeObjIntoHold(GameObject target)
     {
+        AudioSource audio = GetComponent<AudioSource>();//
+        audio.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
         temp.y = 0.165f;

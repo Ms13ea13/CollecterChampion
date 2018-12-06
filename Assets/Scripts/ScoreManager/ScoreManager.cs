@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ScoreManager : MonoBehaviour
 {
-	[SerializeField]
+    public AudioClip score_sound;
+    [SerializeField]
 	private Text scoreText;
 	
 	[SerializeField]
@@ -15,10 +17,13 @@ public class ScoreManager : MonoBehaviour
 	{
 		score += plusScore;
 		SetScoreContent(score.ToString());
+
 	}
 
 	private void SetScoreContent(string message)
 	{
 		scoreText.text = message;
-	}
+        AudioSource audio = GetComponent<AudioSource>();//
+        audio.PlayOneShot(score_sound);//
+    }
 }

@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 65316122371255016}
   - component: {fileID: 54673784786951478}
   - component: {fileID: 114848234262544468}
+  - component: {fileID: 82556576433186152}
   m_Layer: 0
   m_Name: duck
   m_TagString: Food
@@ -449,8 +450,103 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27098307, y: 0.14999999, z: 0.09}
-  m_Center: {x: -0.0037533052, y: 0.074999996, z: 1.2286623e-17}
+  m_Size: {x: 0.22294402, y: 0.14999999, z: 0.089999996}
+  m_Center: {x: 0.02410641, y: 0.074999996, z: -2.5105387e-16}
+--- !u!82 &82556576433186152
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665589255193336}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c75c1f8e44048f841a715be2e663609d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114071406146703892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,7 +667,9 @@ MonoBehaviour:
   foodOnChoppingBoard: 0
   foodOnCounter: 0
   foodIntoPot: 0
-  foodRenderer: {fileID: 0}
+  chopping: {fileID: 8300000, guid: 9c3a11d60f5683d4091c6b7194b853a6, type: 3}
+  Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
+  complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
   rawModel: {fileID: 1198682727315324}
   grilledModel: {fileID: 1909856051922826}
   chopModel: {fileID: 1580611422238372}

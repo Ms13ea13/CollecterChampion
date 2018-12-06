@@ -2,6 +2,7 @@
 using SpawnItem;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CustomerManager : MonoBehaviour
@@ -20,9 +21,34 @@ public class CustomerManager : MonoBehaviour
 
     [SerializeField] private SpawnDirtyDish spawnDirtyDish;
 
+    //--------------------------------------------------------------------------------------------
+
+    private int leantweenID;
+    private const float waitTimer = 60f;
+
+    [SerializeField] private int minWaitLevel = 0;
+
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxWaitLevel = 100;
+
+    [SerializeField] private float percentage;
+
+    [FormerlySerializedAs("foodValue")]
+    [SerializeField] private float currentWaitLevel;
+
+    [SerializeField] private float changeMenuValue;
+    [SerializeField] private float tempSliderValue;
+
+    [SerializeField] private Slider timerSlider;
+
     private void Start()
     {
         OrderingFood();
+
+        timerSlider.value = 0;
+        changeMenuValue = 2;
+        
+        timerSlider.wholeNumbers = false;
     }
 
     private void RandomFoodAmount()
@@ -62,6 +88,8 @@ public class CustomerManager : MonoBehaviour
         {
             ClearCustomerOrder();
             spawnDirtyDish.DelaySpawnDish(3f);
+            
+            SetShowTimerSlider(false);
         }
 
         return orderValid;
@@ -116,6 +144,16 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
+    private void ClearCustomerOrderWhenNotSendFood()
+    {
+        for (var i = customerOrders.Count - 1; i >= 0; i--)
+        {
+            var order = customerOrders[i];
+            customerOrders.Remove(order);
+            Destroy(order.gameObject);
+        }
+    }
+
     public bool ReceiveOrder(FoodItem foodReceive)
     {
         if (customerOrders.Count > 0 && foodReceive)
@@ -131,6 +169,9 @@ public class CustomerManager : MonoBehaviour
                     customerOrders.Remove(item);
                     DelayPayment(item.GetOrderPrice());
                     Destroy(item.gameObject);
+                    
+                    SetShowTimerSlider(false);
+
                     return true;
                 }
             }
@@ -141,7 +182,6 @@ public class CustomerManager : MonoBehaviour
         return false;
     }
 
-
     private void OrderingFood()
     {
         RandomFoodAmount();
@@ -150,6 +190,7 @@ public class CustomerManager : MonoBehaviour
             foreach (var item in customerOrders)
             {
                 item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
+                customerOrderWait();
             }
         }
     }
@@ -170,5 +211,40 @@ public class CustomerManager : MonoBehaviour
             if (customerOrders.Count == 0)
                 OrderingFood();
         });
+    }
+
+    //-------------------------------------------------------------------------------------------
+
+    private void SetShowTimerSlider(bool show)
+    {
+        timerSlider.gameObject.SetActive(show);
+    }
+
+    public void customerOrderWait()
+    {
+        currentWaitLevel += Time.deltaTime;
+        percentage = (currentWaitLevel / changeMenuValue) * 0.1f;
+
+        timerSlider.value = 0;
+        SetShowTimerSlider(true);
+        tempSliderValue = timerSlider.value;
+        float SetChangeMenuValue = maxWaitLevel + 0.000001f;
+
+        leantweenID = LeanTween.value(tempSliderValue, SetChangeMenuValue + 0.001f, waitTimer).setOnUpdate((Value) =>
+        {
+            tempSliderValue = Value;
+            if (timerSlider.value <= timerSlider.maxValue)
+                timerSlider.value = Value;
+
+            if (timerSlider.value >= 100)
+            {
+                timerSlider.value = 0;
+                SetShowTimerSlider(false);
+                Debug.Log("Change Order");
+                ClearCustomerOrderWhenNotSendFood();
+                OrderingFood();
+                LeanTween.cancel(leantweenID);
+            }
+        }).id;
     }
 }
