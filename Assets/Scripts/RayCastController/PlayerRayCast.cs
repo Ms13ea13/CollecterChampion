@@ -38,11 +38,13 @@ public class PlayerRayCast : MonoBehaviour
     private Vector3 p1;
     private Vector3 p2;
     public AudioClip grill, pick_up,sent_food;
+    private AudioSource playerAudioSource;
 
     void Start()
     {
         holding = false;
         distanceToObstacle = 0;
+        playerAudioSource = GetComponent<AudioSource>();//
     }
 
     public void ShootRayCast()
@@ -202,6 +204,7 @@ public class PlayerRayCast : MonoBehaviour
                 if (currentFoodInFront)
                 {
                     currentFoodInFront.SetDefaultFoodUI();
+                    currentFoodInFront.StopFoodItemSoundEffect();
                     _currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
                 }
         }
@@ -215,9 +218,8 @@ public class PlayerRayCast : MonoBehaviour
             {
                 if (currentFoodInFront.GetComponent<FoodItem>().CanNotPickupWithHands())
                 {
-                    AudioSource audio = GetComponent<AudioSource>();//
-                    audio.PlayOneShot(pick_up);//
-
+                    playerAudioSource.PlayOneShot(pick_up);//
+                    currentFoodInFront.StopFoodItemSoundEffect();
                     currentFoodInFront.SetDefaultFoodUI();
                     TakeObjIntoHold(currentFoodInFront.gameObject);
                 }
@@ -232,8 +234,8 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.B))
             {
-                AudioSource audio = GetComponent<AudioSource>();//
-                audio.PlayOneShot(pick_up);//
+               
+                playerAudioSource.PlayOneShot(pick_up);//
                 if (currentCustomerInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>())
@@ -251,8 +253,7 @@ public class PlayerRayCast : MonoBehaviour
                         if (holdingItem.GetComponent<PlateItem>().DeliverFoodViaPlate(currentCustomerInFront))
                             ResetHolding();
 
-                        AudioSource audio1 = GetComponent<AudioSource>();//
-                        audio1.PlayOneShot(sent_food);//
+                        playerAudioSource.PlayOneShot(sent_food);//
                     }
                     else
                         UnHoldItem(holdingItem);
@@ -282,8 +283,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-                        AudioSource audio1 = GetComponent<AudioSource>();//
-                        audio1.PlayOneShot(grill);//
+                        playerAudioSource.PlayOneShot(grill);//
 
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
@@ -367,8 +367,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void TakeObjIntoHold(GameObject target)
     {
-        AudioSource audio = GetComponent<AudioSource>();//
-        audio.PlayOneShot(pick_up);//
+        playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
         temp.y = 0.165f;

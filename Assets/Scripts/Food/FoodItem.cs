@@ -127,6 +127,8 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
 
+    private AudioSource FoodItemAudioSource;
+
     void Start()
     {
         timerSlider.value = 0;
@@ -137,6 +139,7 @@ public class FoodItem : MonoBehaviour
         ChangeFoodVisualAccordingToStates();
         timerSlider.wholeNumbers = false;
         SetDefaultFoodUI();
+        FoodItemAudioSource = GetComponent<AudioSource>();//
     }
 
     public void SetDefaultFoodUI()
@@ -232,15 +235,14 @@ public class FoodItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 currentFoodState = FoodState.Grilled;
-                AudioSource audio = GetComponent<AudioSource>();//
-                audio.PlayOneShot(complete);//
+                FoodItemAudioSource.PlayOneShot(complete);
             }
 
             if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Grilled)
             {
                 currentFoodState = FoodState.Alert;
-                AudioSource audio = GetComponent<AudioSource>();//
-                audio.PlayOneShot(Alert_fire);//
+              
+                FoodItemAudioSource.PlayOneShot(Alert_fire);//
             }
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
@@ -253,6 +255,11 @@ public class FoodItem : MonoBehaviour
             
 
         }).id;
+    }
+
+    public void StopFoodItemSoundEffect()
+    {
+        FoodItemAudioSource.Stop();
     }
 
     public void ChopFood()
@@ -269,8 +276,7 @@ public class FoodItem : MonoBehaviour
             tempSliderValue = percentage;
 
             if (Input.GetKeyDown(KeyCode.H)) {
-                AudioSource audio = GetComponent<AudioSource>();//
-                audio.PlayOneShot(chopping);//
+                FoodItemAudioSource.PlayOneShot(chopping);//
             }
             
             if (percentage >= 100)
@@ -305,15 +311,13 @@ public class FoodItem : MonoBehaviour
                     SetShowTimerSlider(false);
                     currentFoodState = FoodState.Boiled;
 
-                    AudioSource audio1 = GetComponent<AudioSource>();//
-                    audio1.PlayOneShot(complete);//
+                    FoodItemAudioSource.PlayOneShot(complete);//
                 }
 
                 if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
                 {
                     currentFoodState = FoodState.Alert;
-                    AudioSource audio = GetComponent<AudioSource>();//
-                    audio.PlayOneShot(Alert_fire);//
+                    FoodItemAudioSource.PlayOneShot(Alert_fire);//
                 }
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();

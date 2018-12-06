@@ -13,6 +13,13 @@ public class ScoreManager : MonoBehaviour
 	[SerializeField]
 	private int score;
 
+	private AudioSource ScoreMAudioSource;
+
+	private void Start()
+	{
+		ScoreMAudioSource = GetComponent<AudioSource>();//
+	}
+
 	public void AddScoreNumber(int plusScore)
 	{
 		score += plusScore;
@@ -23,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 	private void SetScoreContent(string message)
 	{
 		scoreText.text = message;
-        AudioSource audio = GetComponent<AudioSource>();//
-        audio.PlayOneShot(score_sound);//
+       
+        ScoreMAudioSource.PlayOneShot(score_sound);//
     }
 }
