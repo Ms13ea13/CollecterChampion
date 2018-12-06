@@ -332,29 +332,31 @@ public class FoodItem : MonoBehaviour
             case FoodState.Raw:
                 if (rawModel == null) return;
                 SelectFoodModel(rawModel);
-              
                 break;
+
             case FoodState.Chop:
                 if (chopModel == null) return;
-
                 SelectFoodModel(chopModel);
                 break;
+
             case FoodState.Boiled:
                 if (boiledModel == null) return;
-                
                 SelectFoodModel(boiledModel);
                 break;
+
             case FoodState.Grilled:
                 if (grilledModel == null) return;
-                
                 SelectFoodModel(grilledModel);
                 break;
+
             case FoodState.Alert:
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
                 break;
+
             case FoodState.OnFire:
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
                 break;
+
             default:
                 Debug.LogError("Default wtf");
                 break;
