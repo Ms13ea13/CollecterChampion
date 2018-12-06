@@ -266,8 +266,6 @@ public class PlayerRayCast : MonoBehaviour
                         
                         if (plateOnHold.ItemInPlate().Count > 0)
                         {
-                            Debug.LogError("PlateOnHold have : " + plateOnHold.ItemInPlate().Count);
-
                             plateOnHold.ClearAllItemInPlate();
                         }
                         else
