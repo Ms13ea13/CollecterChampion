@@ -24,7 +24,7 @@ public class CustomerManager : MonoBehaviour
     //--------------------------------------------------------------------------------------------
 
     private int leantweenID;
-    private const float waitTimer = 20f;
+    private const float waitTimer = 60f;
 
     [SerializeField] private int minWaitLevel = 0;
 
@@ -54,7 +54,7 @@ public class CustomerManager : MonoBehaviour
     private void RandomFoodAmount()
     {
         customerOrders = new List<FoodOrder>();
-        int foodAmount = Random.Range(1, 3);
+        int foodAmount = Random.Range(1, 4);
 
         for (int i = 0; i < foodAmount; i++)
         {
@@ -88,6 +88,8 @@ public class CustomerManager : MonoBehaviour
         {
             ClearCustomerOrder();
             spawnDirtyDish.DelaySpawnDish(3f);
+            
+            SetShowTimerSlider(false);
         }
 
         return orderValid;
@@ -167,6 +169,9 @@ public class CustomerManager : MonoBehaviour
                     customerOrders.Remove(item);
                     DelayPayment(item.GetOrderPrice());
                     Destroy(item.gameObject);
+                    
+                    SetShowTimerSlider(false);
+
                     return true;
                 }
             }
@@ -220,6 +225,7 @@ public class CustomerManager : MonoBehaviour
         currentWaitLevel += Time.deltaTime;
         percentage = (currentWaitLevel / changeMenuValue) * 0.1f;
 
+        timerSlider.value = 0;
         SetShowTimerSlider(true);
         tempSliderValue = timerSlider.value;
         float SetChangeMenuValue = maxWaitLevel + 0.000001f;

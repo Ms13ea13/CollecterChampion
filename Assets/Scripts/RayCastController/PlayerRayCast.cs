@@ -213,7 +213,7 @@ public class PlayerRayCast : MonoBehaviour
 
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
+                if (currentFoodInFront.GetComponent<FoodItem>().CanNotPickupWithHands())
                 {
                     AudioSource audio = GetComponent<AudioSource>();//
                     audio.PlayOneShot(pick_up);//
@@ -241,10 +241,8 @@ public class PlayerRayCast : MonoBehaviour
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
-                           
                             Destroy(holdingItem);
                             ResetHolding();
-                            
                         }
                         
                     }
@@ -252,6 +250,7 @@ public class PlayerRayCast : MonoBehaviour
                     {
                         if (holdingItem.GetComponent<TrayItem>().DeliverFoodViaTray(currentCustomerInFront))
                             ResetHolding();
+
                         AudioSource audio1 = GetComponent<AudioSource>();//
                         audio1.PlayOneShot(sent_food);//
                     }

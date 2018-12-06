@@ -379,10 +379,9 @@ public class FoodItem : MonoBehaviour
         }
     }
 
-    public bool CanPickupWithHands()
+    public bool CanNotPickupWithHands()
     {
-        if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Alert) ||
-            CompareCurrentFoodState(FoodState.Chop))
+        if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Chop))
             return false;
 
         return true;
