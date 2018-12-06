@@ -670,6 +670,7 @@ MonoBehaviour:
   chopping: {fileID: 8300000, guid: 9c3a11d60f5683d4091c6b7194b853a6, type: 3}
   Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
+  grilling: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
   rawModel: {fileID: 1198682727315324}
   grilledModel: {fileID: 1909856051922826}
   chopModel: {fileID: 1580611422238372}

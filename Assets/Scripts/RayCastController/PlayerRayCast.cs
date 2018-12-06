@@ -11,7 +11,7 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private BinManager currentBinInFront;
 
-    [SerializeField] private PlateItem _currentPlateInFront;
+    [SerializeField] private PlateItem currentPlateInFront;
 
     [SerializeField] private StoveManager currentStoveInFront;
 
@@ -37,7 +37,7 @@ public class PlayerRayCast : MonoBehaviour
     private RaycastHit hit;
     private Vector3 p1;
     private Vector3 p2;
-    public AudioClip grill, pick_up,sent_food;
+    public AudioClip  pick_up,sent_food;
     private AudioSource playerAudioSource;
 
     void Start()
@@ -128,10 +128,10 @@ public class PlayerRayCast : MonoBehaviour
              hit.transform.tag == "Tray"))
         {
             distanceToObstacle = hit.distance;
-            _currentPlateInFront = hit.transform.gameObject.GetComponent<PlateItem>();
+            currentPlateInFront = hit.transform.gameObject.GetComponent<PlateItem>();
         }
         else
-            _currentPlateInFront = null;
+            currentPlateInFront = null;
     }
 
     private void GetStoveInFront()
@@ -200,23 +200,23 @@ public class PlayerRayCast : MonoBehaviour
         if (holding)
         {
             
-            if (_currentPlateInFront)
+            if (currentPlateInFront)
                 if (currentFoodInFront)
                 {
-                    currentFoodInFront.SetDefaultFoodUI();
                     currentFoodInFront.StopFoodItemSoundEffect();
-                    _currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
+                    currentFoodInFront.SetDefaultFoodUI();
+                    currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
                 }
         }
         else
         {
            
-            if (_currentPlateInFront)
-                TakeObjIntoHold(_currentPlateInFront.gameObject);
+            if (currentPlateInFront)
+                TakeObjIntoHold(currentPlateInFront.gameObject);
 
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetComponent<FoodItem>().CanNotPickupWithHands())
+                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
                 {
                     playerAudioSource.PlayOneShot(pick_up);//
                     currentFoodInFront.StopFoodItemSoundEffect();
@@ -283,7 +283,6 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-                        playerAudioSource.PlayOneShot(grill);//
 
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
@@ -343,16 +342,16 @@ public class PlayerRayCast : MonoBehaviour
     {
         if (!holding)
         {
-            if (_currentPlateInFront)
+            if (currentPlateInFront)
             {
-                if (_currentPlateInFront.GetPlateIntoSink())
+                if (currentPlateInFront.GetPlateIntoSink())
                 {
-                    _currentPlateInFront.GetComponent<PlateItem>().WashPlate();
+                    currentPlateInFront.GetComponent<PlateItem>().WashPlate();
 
-                    if (_currentPlateInFront.washDone == true)
+                    if (currentPlateInFront.washDone == true)
                     {
                         spawnCleanDish.SpawnDish();
-                        _currentPlateInFront.washDone = false;
+                        currentPlateInFront.washDone = false;
                     }
                 }
             }
@@ -386,7 +385,7 @@ public class PlayerRayCast : MonoBehaviour
         itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
-        _currentPlateInFront = null;
+        currentPlateInFront = null;
         currentBinInFront = null;
         currentStoveInFront = null;
         currentChoppingBoardInFront = null;

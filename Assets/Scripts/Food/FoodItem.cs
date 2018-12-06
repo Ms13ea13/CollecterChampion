@@ -20,8 +20,414 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodIntoPot;
 
-    public AudioClip chopping, Alert_fire, complete;//
+    public AudioClip chopping, Alert_fire, complete, grilling;
 
+    public enum FoodState
+    {
+        Raw,
+        Grilled,
+        Chop,
+        Boiled,
+        Alert,
+        OnFire
+    }
+
+    [SerializeField] private GameObject rawModel;
+
+    [SerializeField] private GameObject grilledModel;
+
+    [SerializeField] private GameObject chopModel;
+
+    [SerializeField] private GameObject boiledModel;
+
+    [SerializeField] private GameObject modelContainer;
+
+    private GameObject currentFoodModel;
+
+    [SerializeField] private FoodState currentFoodState;
+    [SerializeField] private Slider timerSlider;
+    [SerializeField] private Image foodStateUI;
+    [SerializeField] private Sprite cookedPicture;
+    [SerializeField] private Sprite onFirePicture;
+    [SerializeField] private Sprite alertPicture;
+
+    private int leantweenID;
+    private const float cookTimer = 20f;
+
+    [SerializeField] private int min = 0;
+
+    [FormerlySerializedAs("max")] [SerializeField]
+    private int maxFoodCookLevel = 150;
+
+    [SerializeField] private float percentage;
+
+    [FormerlySerializedAs("foodValue")] [SerializeField]
+    private float currentFoodCookLevel;
+
+    [SerializeField] private float onFireValue;
+    [SerializeField] private float tempSliderValue;
+    private float SetFoodOnFireValue;
+
+    private AudioSource FoodItemAudioSource;
+
+    private float soundLength;
+    private float soundStart = 0f;
+
+    void Start()
+    {
+        timerSlider.value = 0;
+
+        onFireValue = 2;
+
+        currentFoodState = FoodState.Raw;
+        ChangeFoodVisualAccordingToStates();
+        timerSlider.wholeNumbers = false;
+        SetDefaultFoodUI();
+        FoodItemAudioSource = GetComponent<AudioSource>(); //
+    }
+
+    public FoodState GetFoodItemState()
+    {
+        return currentFoodState;
+    }
+
+    public void SetDefaultFoodUI()
+    {
+        if (currentFoodState == FoodState.Raw && timerSlider.value > 0)
+            SetShowTimerSlider(true);
+        else
+            SetShowTimerSlider(false);
+
+        LeanTween.cancel(leantweenID);
+        foodStateUI.gameObject.SetActive(false);
+    }
+
+    private void SetShowTimerSlider(bool show)
+    {
+        timerSlider.gameObject.SetActive(show);
+    }
+
+    private void SetFoodUIState()
+    {
+        if (foodStateUI == null)
+            throw new Exception("ควย null ไอเหี้ย");
+
+        foodStateUI.gameObject.SetActive(true);
+        switch (currentFoodState)
+        {
+            case FoodState.Alert:
+                foodStateUI.sprite = alertPicture;
+                break;
+            case FoodState.OnFire:
+                foodStateUI.sprite = onFirePicture;
+                break;
+            case FoodState.Boiled:
+                foodStateUI.sprite = cookedPicture; //ไปเเยกมา
+                break;
+            case FoodState.Grilled:
+                foodStateUI.sprite = cookedPicture;
+                break;
+            default:
+                foodStateUI.gameObject.SetActive(false);
+                break;
+        }
+    }
+
+
+    public void PutFoodInTheStove()
+    {
+        if (tempSliderValue != 0)
+            timerSlider.value = tempSliderValue;
+
+        SetFoodOnFireValue = maxFoodCookLevel;
+        if (!CheckFoodStateBeforeActions())
+            return;
+
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((Value) =>
+        {
+            if (!FoodItemAudioSource.isPlaying && grilling != null)
+                FoodItemAudioSource.PlayOneShot(grilling);
+
+            tempSliderValue = Value;
+            if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            {
+                if (!timerSlider.gameObject.activeInHierarchy)
+                    SetShowTimerSlider(true);
+                timerSlider.value = Value;
+            }
+            else
+                SetShowTimerSlider(false);
+
+            if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            {
+                currentFoodState = FoodState.Grilled;
+                FoodItemAudioSource.PlayOneShot(complete);
+            }
+
+            if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Grilled)
+            {
+                currentFoodState = FoodState.Alert;
+                timerSlider.value = 0;
+                FoodItemAudioSource.PlayOneShot(Alert_fire); //
+            }
+
+            ChangeFoodVisualAccordingToStates();
+            SetFoodUIState();
+        }).setOnComplete(() =>
+        {
+            currentFoodState = FoodState.OnFire;
+            ChangeFoodVisualAccordingToStates();
+            tempSliderValue = 0f;
+            SetFoodUIState();
+        }).id;
+    }
+
+    private bool CheckFoodStateBeforeActions()
+    {
+        switch (currentFoodState)
+        {
+            case FoodState.Grilled:
+                tempSliderValue = SetFoodOnFireValue + 50f;
+                ForceFoodState();
+                return false;
+            case FoodState.Boiled:
+                tempSliderValue = SetFoodOnFireValue + 50f;
+                ForceFoodState();
+                return false;
+            case FoodState.Alert:
+                currentFoodState = FoodState.OnFire;
+                ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
+                return false;
+            case FoodState.OnFire:
+                currentFoodState = FoodState.OnFire;
+                ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    private void ForceFoodState()
+    {
+        SetShowTimerSlider(false);
+        soundStart = 0;
+        soundLength = chopping.length;
+       
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, 3f).setOnUpdate((float Value) =>
+        {
+            if (!FoodItemAudioSource.isPlaying && grilling != null)
+                FoodItemAudioSource.PlayOneShot(grilling);
+
+            currentFoodState = FoodState.Alert;
+            timerSlider.value = 0;
+            
+            soundStart += Time.deltaTime;
+            if (soundStart >= soundLength && currentFoodState != FoodState.OnFire)
+            {
+                FoodItemAudioSource.PlayOneShot(Alert_fire);
+                soundStart = 0;
+            }
+           
+            ChangeFoodVisualAccordingToStates();
+            SetFoodUIState();
+        }).setOnComplete(() =>
+        {
+            currentFoodState = FoodState.OnFire;
+            ChangeFoodVisualAccordingToStates();
+            tempSliderValue = 0f;
+            SetFoodUIState();
+        }).id;
+    }
+
+    public void ChopFood()
+    {
+        if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) ||
+            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Alert))
+        {
+            if (!timerSlider.gameObject.activeInHierarchy)
+                SetShowTimerSlider(true);
+
+            currentFoodCookLevel += Time.deltaTime * 40f;
+            percentage = (currentFoodCookLevel / maxFoodCookLevel) * 100;
+            timerSlider.value = percentage;
+            tempSliderValue = percentage;
+
+            soundStart = 0;
+            soundLength = chopping.length;
+
+            if (percentage >= 100)
+            {
+                currentFoodState = FoodState.Chop;
+                timerSlider.value = 0;
+                SetShowTimerSlider(false);
+                ChangeFoodVisualAccordingToStates();
+            }
+            else
+            {
+                soundStart += Time.deltaTime;
+                if (soundStart >= soundLength)
+                {
+                    FoodItemAudioSource.PlayOneShot(chopping);
+                    soundStart = 0;
+                }
+            }
+        }
+    }
+
+
+    public void PutFoodInThePot()
+    {
+        if (currentFoodState != FoodState.Raw)
+            return;
+
+        if (tempSliderValue != 0)
+            timerSlider.value = tempSliderValue;
+
+        SetFoodOnFireValue = maxFoodCookLevel;
+
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate(
+            (float Value) =>
+            {
+                tempSliderValue = Value;
+                if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+                {
+                    if (!timerSlider.gameObject.activeInHierarchy)
+                        SetShowTimerSlider(true);
+                    timerSlider.value = Value;
+                }
+                else
+                    SetShowTimerSlider(false);
+
+                if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+                {
+                    timerSlider.value = 0;
+                    currentFoodState = FoodState.Boiled;
+                    FoodItemAudioSource.PlayOneShot(complete); //
+                }
+
+                if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Boiled)
+                {
+                    currentFoodState = FoodState.Alert;
+                    FoodItemAudioSource.PlayOneShot(Alert_fire); //
+                }
+
+
+                ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
+            }).setOnComplete(() =>
+        {
+            currentFoodState = FoodState.OnFire;
+            ChangeFoodVisualAccordingToStates();
+            SetFoodUIState();
+        }).id;
+    }
+
+    private void ChangeFoodVisualAccordingToStates() // show visual
+    {
+        switch (currentFoodState)
+        {
+            case FoodState.Raw:
+                if (rawModel == null) return;
+                SelectFoodModel(rawModel);
+                break;
+
+            case FoodState.Chop:
+                if (chopModel == null) return;
+                SelectFoodModel(chopModel);
+                break;
+
+            case FoodState.Boiled:
+                if (boiledModel == null) return;
+                SelectFoodModel(boiledModel);
+                break;
+
+            case FoodState.Grilled:
+                if (grilledModel == null) return;
+                SelectFoodModel(grilledModel);
+                break;
+
+            case FoodState.Alert:
+                currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
+                break;
+
+            case FoodState.OnFire:
+                currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
+                break;
+
+            default:
+                Debug.LogError("Default wtf");
+                break;
+        }
+    }
+
+    private void SelectFoodModel(GameObject targetFoodModel)
+    {
+        currentFoodModel = targetFoodModel;
+        targetFoodModel.SetActive(true);
+        DisableUnusedModel(targetFoodModel);
+    }
+
+    public void StopFoodItemSoundEffect()
+    {
+        FoodItemAudioSource.Stop();
+    }
+
+    private void DisableUnusedModel(GameObject exceptionChild)
+    {
+        for (int i = 0; i < modelContainer.transform.childCount; i++)
+        {
+            if (modelContainer.transform.GetChild(i).gameObject != exceptionChild)
+                modelContainer.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public bool CanPickupWithHands()
+    {
+        if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Chop))
+            return false;
+
+        return true;
+    }
+
+    void OnDestroy()
+    {
+        LeanTween.cancel(leantweenID);
+    }
+
+    public void SetUpFoodItem(int id)
+    {
+        foodID = id;
+        FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
+    }
+
+    public void SetBannedId(int id)
+    {
+        trayBandedId = id;
+    }
+
+    public void SetFoodOnStove(bool isOnStove)
+    {
+        foodOnStove = isOnStove;
+    }
+
+    public void SetFoodOnChoppingBoard(bool isOnChoppingBoard)
+    {
+        foodOnChoppingBoard = isOnChoppingBoard;
+    }
+
+    public void SetFoodOnCounter(bool isOnCounter)
+    {
+        foodOnCounter = isOnCounter;
+    }
+
+    public void SetFoodIntoPot(bool isIntoPot)
+    {
+        foodIntoPot = isIntoPot;
+    }
+
+    
     public string GetFoodItemName()
     {
         return FoodName;
@@ -80,337 +486,5 @@ public class FoodItem : MonoBehaviour
     public bool CompareCurrentFoodState(FoodState foodState)
     {
         return currentFoodState == foodState;
-    }
-
-    public enum FoodState
-    {
-        Raw,
-        Grilled,
-        Chop,
-        Boiled,
-        Alert,
-        OnFire
-    }
-
-    [SerializeField] private GameObject rawModel;
-
-    [SerializeField] private GameObject grilledModel;
-
-    [SerializeField] private GameObject chopModel;
-
-    [SerializeField] private GameObject boiledModel;
-
-    [SerializeField] private GameObject modelContainer;
-
-    private GameObject currentFoodModel;
-
-    [SerializeField] private FoodState currentFoodState;
-    [SerializeField] private Slider timerSlider;
-    [SerializeField] private Image foodStateUI;
-    [SerializeField] private Sprite cookedPicture;
-    [SerializeField] private Sprite onFirePicture;
-    [SerializeField] private Sprite alertPicture;
-
-    private int leantweenID;
-    private const float cookTimer = 20f;
-
-    [SerializeField] private int min = 0;
-
-    [FormerlySerializedAs("max")]
-    [SerializeField] private int maxFoodCookLevel = 100;
-
-    [SerializeField] private float percentage;
-
-    [FormerlySerializedAs("foodValue")]
-    [SerializeField] private float currentFoodCookLevel;
-
-    [SerializeField] private float onFireValue;
-    [SerializeField] private float tempSliderValue;
-
-    private AudioSource FoodItemAudioSource;
-
-    private float chopSoundLength;
-    private float chopSoundStart = 0f;
-
-    void Start()
-    {
-        timerSlider.value = 0;
-
-        onFireValue = 2;
-
-        currentFoodState = FoodState.Raw;
-        ChangeFoodVisualAccordingToStates();
-        timerSlider.wholeNumbers = false;
-        SetDefaultFoodUI();
-        FoodItemAudioSource = GetComponent<AudioSource>();//
-    }
-
-    public void SetDefaultFoodUI()
-    {
-        if (currentFoodState == FoodState.Raw && timerSlider.value > 0)
-            SetShowTimerSlider(true);
-        else
-            SetShowTimerSlider(false);
-
-        LeanTween.cancel(leantweenID);
-        foodStateUI.gameObject.SetActive(false);
-    }
-
-    private void SetShowTimerSlider(bool show)
-    {
-        timerSlider.gameObject.SetActive(show);
-    }
-
-    private void SetFoodUIState()
-    {
-        if (foodStateUI == null)
-            throw new Exception("ควย null ไอเหี้ย");
-
-        foodStateUI.gameObject.SetActive(true);
-        switch (currentFoodState)
-        {
-            case FoodState.Alert:
-                foodStateUI.sprite = alertPicture;
-                break;
-            case FoodState.OnFire:
-                foodStateUI.sprite = onFirePicture;
-                break;
-            case FoodState.Boiled:
-                foodStateUI.sprite = cookedPicture; //ไปเเยกมา
-                break;
-            case FoodState.Grilled:
-                foodStateUI.sprite = cookedPicture;
-                break;
-            default:
-                foodStateUI.gameObject.SetActive(false);
-                break;
-        }
-    }
-
-    public void SetUpFoodItem(int id)
-    {
-        foodID = id;
-        FoodName = GameSceneManager.GetInstance().GetFoodNameById(foodID);
-    }
-
-    public void SetBannedId(int id)
-    {
-        trayBandedId = id;
-    }
-
-    public void SetFoodOnStove(bool isOnStove)
-    {
-        foodOnStove = isOnStove;
-    }
-
-    public void SetFoodOnChoppingBoard(bool isOnChoppingBoard)
-    {
-        foodOnChoppingBoard = isOnChoppingBoard;
-    }
-
-    public void SetFoodOnCounter(bool isOnCounter)
-    {
-        foodOnCounter = isOnCounter;
-    }
-
-    public void SetFoodIntoPot(bool isIntoPot)
-    {
-        foodIntoPot = isIntoPot;
-    }
-
-    public void PutFoodInTheStove()
-    {
-        currentFoodCookLevel += Time.deltaTime;
-        percentage = (currentFoodCookLevel / onFireValue) * 100;
-
-        SetShowTimerSlider(true);
-        tempSliderValue = timerSlider.value;
-        float SetFoodOnFireValue = maxFoodCookLevel + 50f;
-
-        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((Value) =>
-        {
-            tempSliderValue = Value;
-            if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
-                timerSlider.value = Value;
-
-            if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
-            {
-                timerSlider.value = 0;
-                SetShowTimerSlider(false);
-                currentFoodState = FoodState.Grilled;
-                FoodItemAudioSource.PlayOneShot(complete);
-            }
-
-            if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Grilled)
-            {
-                currentFoodState = FoodState.Alert;
-              
-                FoodItemAudioSource.PlayOneShot(Alert_fire);//
-            }
-            ChangeFoodVisualAccordingToStates();
-            SetFoodUIState();
-           
-        }).setOnComplete(() =>
-        {
-            currentFoodState = FoodState.OnFire;
-            ChangeFoodVisualAccordingToStates();
-            SetFoodUIState();
-            
-
-        }).id;
-    }
-
-    public void StopFoodItemSoundEffect()
-    {
-        FoodItemAudioSource.Stop();
-    }
-
-    public void ChopFood()
-    {
-        if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) ||
-            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Alert))
-        {
-            if (!timerSlider.gameObject.activeInHierarchy)
-                SetShowTimerSlider(true);
-
-            currentFoodCookLevel += Time.deltaTime * 40f;
-            percentage = (currentFoodCookLevel / maxFoodCookLevel) * 100;
-            timerSlider.value = percentage;
-            tempSliderValue = percentage;
-
-            chopSoundLength = chopping.length;
-            
-
-           
-//            if (Input.GetKeyDown(KeyCode.H)) {
-//                FoodItemAudioSource.PlayOneShot(chopping);//
-//            }
-            
-            if (percentage >= 100)
-            {
-                currentFoodState = FoodState.Chop;
-                timerSlider.value = 0;
-                SetShowTimerSlider(false);
-                ChangeFoodVisualAccordingToStates();
-            }
-            else
-            {
-                chopSoundStart += Time.deltaTime;
-                if (chopSoundStart >= chopSoundLength)
-                {
-                    FoodItemAudioSource.PlayOneShot(chopping);
-                    chopSoundStart = 0;
-                }
-                
-               
-            }
-        }
-    }
-
-    public void PutFoodInThePot()
-    {
-        if (currentFoodState != FoodState.Raw)
-            return;
-
-        SetShowTimerSlider(true);
-        tempSliderValue = timerSlider.value;
-        float SetFoodOnFireValue = maxFoodCookLevel + 50f;
-
-        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate(
-            (float Value) =>
-            {
-                tempSliderValue = Value;
-                if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
-                    timerSlider.value = Value;
-
-                if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
-                {
-                    timerSlider.value = 0;
-                    SetShowTimerSlider(false);
-                    currentFoodState = FoodState.Boiled;
-
-                    FoodItemAudioSource.PlayOneShot(complete);//
-                }
-
-                if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
-                {
-                    currentFoodState = FoodState.Alert;
-                    FoodItemAudioSource.PlayOneShot(Alert_fire);//
-                }
-                ChangeFoodVisualAccordingToStates();
-                SetFoodUIState();
-            }).setOnComplete(() =>
-        {
-            currentFoodState = FoodState.OnFire;
-            ChangeFoodVisualAccordingToStates();
-            SetFoodUIState();
-        }).id;
-    }
-
-    private void ChangeFoodVisualAccordingToStates() // show visual
-    {
-        switch (currentFoodState)
-        {
-            case FoodState.Raw:
-                if (rawModel == null) return;
-                SelectFoodModel(rawModel);
-                break;
-
-            case FoodState.Chop:
-                if (chopModel == null) return;
-                SelectFoodModel(chopModel);
-                break;
-
-            case FoodState.Boiled:
-                if (boiledModel == null) return;
-                SelectFoodModel(boiledModel);
-                break;
-
-            case FoodState.Grilled:
-                if (grilledModel == null) return;
-                SelectFoodModel(grilledModel);
-                break;
-
-            case FoodState.Alert:
-                currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
-                break;
-
-            case FoodState.OnFire:
-                currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
-                break;
-
-            default:
-                Debug.LogError("Default wtf");
-                break;
-        }
-    }
-
-    private void SelectFoodModel(GameObject targetFoodModel)
-    {
-        currentFoodModel = targetFoodModel;
-        targetFoodModel.SetActive(true);
-        DisableUnusedModel(targetFoodModel);
-    }
-
-    private void DisableUnusedModel(GameObject exceptionChild)
-    {
-        for (int i = 0; i < modelContainer.transform.childCount; i++)
-        {
-            if (modelContainer.transform.GetChild(i).gameObject != exceptionChild)
-                modelContainer.transform.GetChild(i).gameObject.SetActive(false);
-        }
-    }
-
-    public bool CanNotPickupWithHands()
-    {
-        if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Chop))
-            return false;
-
-        return true;
-    }
-
-    void OnDestroy()
-    {
-        LeanTween.cancel(leantweenID);
     }
 }
