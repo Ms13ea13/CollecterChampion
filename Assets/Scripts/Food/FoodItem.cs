@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
+
 {
     [SerializeField] private int foodID;
 
@@ -18,6 +19,8 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private bool foodOnCounter;
 
     [SerializeField] private bool foodIntoPot;
+
+    public AudioClip chopping, Alert_fire, complete;//
 
     public string GetFoodItemName()
     {
@@ -90,6 +93,7 @@ public class FoodItem : MonoBehaviour
     }
 
     [SerializeField] private GameObject rawModel;
+
     [SerializeField] private GameObject grilledModel;
 
     [SerializeField] private GameObject chopModel;
@@ -112,13 +116,13 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private int min = 0;
 
-    [FormerlySerializedAs("max")] [SerializeField]
-    private int maxFoodCookLevel = 100;
+    [FormerlySerializedAs("max")]
+    [SerializeField] private int maxFoodCookLevel = 100;
 
     [SerializeField] private float percentage;
 
-    [FormerlySerializedAs("foodValue")] [SerializeField]
-    private float currentFoodCookLevel;
+    [FormerlySerializedAs("foodValue")]
+    [SerializeField] private float currentFoodCookLevel;
 
     [SerializeField] private float onFireValue;
     [SerializeField] private float tempSliderValue;
@@ -126,6 +130,7 @@ public class FoodItem : MonoBehaviour
     void Start()
     {
         timerSlider.value = 0;
+
         onFireValue = 2;
 
         currentFoodState = FoodState.Raw;
@@ -227,18 +232,26 @@ public class FoodItem : MonoBehaviour
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 currentFoodState = FoodState.Grilled;
+                AudioSource audio = GetComponent<AudioSource>();//
+                audio.PlayOneShot(complete);//
             }
 
             if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Grilled)
+            {
                 currentFoodState = FoodState.Alert;
-
+                AudioSource audio = GetComponent<AudioSource>();//
+                audio.PlayOneShot(Alert_fire);//
+            }
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
+           
         }).setOnComplete(() =>
         {
             currentFoodState = FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
+            
+
         }).id;
     }
 
@@ -255,6 +268,11 @@ public class FoodItem : MonoBehaviour
             timerSlider.value = percentage;
             tempSliderValue = percentage;
 
+            if (Input.GetKeyDown(KeyCode.H)) {
+                AudioSource audio = GetComponent<AudioSource>();//
+                audio.PlayOneShot(chopping);//
+            }
+            
             if (percentage >= 100)
             {
                 currentFoodState = FoodState.Chop;
@@ -286,11 +304,17 @@ public class FoodItem : MonoBehaviour
                     timerSlider.value = 0;
                     SetShowTimerSlider(false);
                     currentFoodState = FoodState.Boiled;
+
+                    AudioSource audio1 = GetComponent<AudioSource>();//
+                    audio1.PlayOneShot(complete);//
                 }
 
                 if (tempSliderValue >= SetFoodOnFireValue && currentFoodState == FoodState.Boiled)
+                {
                     currentFoodState = FoodState.Alert;
-
+                    AudioSource audio = GetComponent<AudioSource>();//
+                    audio.PlayOneShot(Alert_fire);//
+                }
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
             }).setOnComplete(() =>
@@ -361,7 +385,6 @@ public class FoodItem : MonoBehaviour
 
         return true;
     }
-
 
     void OnDestroy()
     {
