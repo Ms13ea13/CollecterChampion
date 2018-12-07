@@ -45,7 +45,7 @@ public class ScoreManager : MonoBehaviour
             plusStar.ResetStars();
             plusStar.StarCollect(0);
         }
-        else if (totalScore >= 800 && totalScore < 100)
+        else if (totalScore >= 80 && totalScore < 100)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(1);
