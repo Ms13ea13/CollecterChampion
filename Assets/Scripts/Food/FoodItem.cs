@@ -254,7 +254,6 @@ public class FoodItem : MonoBehaviour
             timerSlider.value = percentage;
             tempSliderValue = percentage;
 
-            soundStart = 0;
             soundLength = chopping.length;
 
             if (percentage >= 100)
