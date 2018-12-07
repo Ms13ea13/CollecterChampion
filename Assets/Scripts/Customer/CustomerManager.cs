@@ -222,12 +222,11 @@ public class CustomerManager : MonoBehaviour
 
     public void customerOrderWait()
     {
-        currentWaitLevel += Time.deltaTime;
-        percentage = (currentWaitLevel / changeMenuValue) * 0.1f;
 
         timerSlider.value = 0;
+        tempSliderValue = 0;
         SetShowTimerSlider(true);
-        tempSliderValue = timerSlider.value;
+     
         float SetChangeMenuValue = maxWaitLevel + 0.000001f;
 
         leantweenID = LeanTween.value(tempSliderValue, SetChangeMenuValue + 0.001f, waitTimer).setOnUpdate((Value) =>
@@ -239,6 +238,7 @@ public class CustomerManager : MonoBehaviour
             if (timerSlider.value >= 100)
             {
                 timerSlider.value = 0;
+                tempSliderValue = 0f;
                 SetShowTimerSlider(false);
                 Debug.Log("Change Order");
                 ClearCustomerOrderWhenNotSendFood();
