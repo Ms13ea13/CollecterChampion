@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class EndPanel : MonoBehaviour
 {
+    public GameObject[] disableOBJ;
+
+    void Update()
+    {
+        disableOBJ[0].SetActive(false);
+        disableOBJ[1].SetActive(false);
+    }
+
     /*[SerializeField]
     private Text[] scoreShow;
 

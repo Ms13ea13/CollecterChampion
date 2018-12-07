@@ -1200,6 +1200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26292e44ab941a14499aab8c2398a49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableOBJ:
+  - {fileID: 1900512332}
+  - {fileID: 623541014}
 --- !u!114 &449787335
 MonoBehaviour:
   m_ObjectHideFlags: 0
