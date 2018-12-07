@@ -1924,6 +1924,7 @@ GameObject:
   - component: {fileID: 4914465505454846}
   - component: {fileID: 33983797711546068}
   - component: {fileID: 23301463625224130}
+  - component: {fileID: 65352779514781898}
   m_Layer: 0
   m_Name: bottle02 (1)
   m_TagString: Untagged
@@ -2734,6 +2735,7 @@ GameObject:
   - component: {fileID: 4520200965189018}
   - component: {fileID: 33521788206689072}
   - component: {fileID: 23676166575881024}
+  - component: {fileID: 65201666478095378}
   m_Layer: 0
   m_Name: bottle02
   m_TagString: Untagged
@@ -12808,6 +12810,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 5, z: 3}
   m_Center: {x: -0.050000012, y: -0.049999714, z: -0.050000012}
+--- !u!65 &65201666478095378
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838416941112380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.26, y: 0.22999999, z: 0.44}
+  m_Center: {x: 0, y: 0.114999995, z: 0}
 --- !u!65 &65226595919970068
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -12964,6 +12978,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 5, z: 30}
   m_Center: {x: -0.0000019073486, y: -0.049999952, z: -0.05000019}
+--- !u!65 &65352779514781898
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635254546314286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.26, y: 0.22999999, z: 0.44}
+  m_Center: {x: 0, y: 0.114999995, z: 0}
 --- !u!65 &65359823228094086
 BoxCollider:
   m_ObjectHideFlags: 1

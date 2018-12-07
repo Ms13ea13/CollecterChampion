@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : PlayerBase
 {
+    private Animator playerAnim;
+
     [SerializeField] private string HorizontalKey;
     [SerializeField] private string VertivalKey;
 
@@ -14,6 +16,7 @@ public class PlayerController : PlayerBase
 
     void Start()
     {
+        playerAnim = GetComponent<Animator>();
         playercontrol = GetComponentInParent<CharacterController>();
         playerRayCast = GetComponent<PlayerRayCast>();
         rigibody = GetComponentInParent<Rigidbody>();
@@ -41,6 +44,11 @@ public class PlayerController : PlayerBase
                 transform.forward = moveMentControlInput;
                 velocity.x /= 1 + drag.x * Time.deltaTime;
                 velocity.z /= 1 + drag.z * Time.deltaTime;
+                playerAnim.SetBool("isWalk", true);
+            }
+            else
+            {
+                playerAnim.SetBool("isWalk", false);
             }
         }
 

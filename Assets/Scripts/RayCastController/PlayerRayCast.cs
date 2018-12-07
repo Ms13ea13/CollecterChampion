@@ -280,7 +280,6 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
                         UnHoldItem(holdingItem);
@@ -290,7 +289,6 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
                     {
-                     
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
                     }
@@ -367,9 +365,9 @@ public class PlayerRayCast : MonoBehaviour
         playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 0.165f;
+        temp.y = 10.1f;
         temp.x = 0;
-        temp.z = 0.185f;
+        temp.z = 13.6f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;
