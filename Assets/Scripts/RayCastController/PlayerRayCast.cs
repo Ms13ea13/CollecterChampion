@@ -69,12 +69,11 @@ public class PlayerRayCast : MonoBehaviour
         GetFoodInFront();
 
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("PickUp"))
             PickUpObj();
             
-        if (Input.GetKey(KeyCode.H))
+        if (Input.GetButton("Interact"))
         { 
-           
             FoodActions();
             PlateActions();
         }
@@ -199,7 +198,6 @@ public class PlayerRayCast : MonoBehaviour
     {
         if (holding)
         {
-            
             if (currentPlateInFront)
                 if (currentFoodInFront)
                 {
@@ -210,7 +208,6 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
         {
-           
             if (currentPlateInFront)
                 TakeObjIntoHold(currentPlateInFront.gameObject);
 
@@ -233,9 +230,8 @@ public class PlayerRayCast : MonoBehaviour
        
         if (holdingItem && holding)
         {
-            if (Input.GetKeyUp(KeyCode.B))
+            if (Input.GetButtonUp("DropOBJ"))
             {
-               
                 playerAudioSource.PlayOneShot(pick_up);//
                 if (currentCustomerInFront)
                 {
