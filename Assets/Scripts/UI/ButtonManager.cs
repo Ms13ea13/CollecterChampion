@@ -5,14 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    /*  public AudioClip MainMenu;//
-      private AudioSource BGAudioSource;//*/
-
-    
-
     public GameObject optionPanel;
     public GameObject mainMenuPanel;
-    //public GameObject muteButton;
 
     public GameObject exitPanel;
     public GameObject yesButton;
@@ -23,7 +17,6 @@ public class ButtonManager : MonoBehaviour
     public void OptionButton()
     {
         optionPanel.SetActive(true);
-        //muteButton.SetActive(false);
     }
 
     public void closeOptionPanel()
@@ -36,10 +29,7 @@ public class ButtonManager : MonoBehaviour
 
     public void backToMainMenu()
     {
-        StartCoroutine(LoadingLevel_backToMainMenu());
-      /*  BGAudioSource = GetComponent<AudioSource>();//
-        BGAudioSource.PlayOneShot(MainMenu);//*/
-
+        SceneManager.LoadScene(1);
     }
 
     public void Replay()
@@ -54,7 +44,7 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-    public void GoToState()//
+    public void GoToState()
     {
         StartCoroutine(LoadingLevel_GoToState());
        
@@ -65,28 +55,19 @@ public class ButtonManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
        
             SceneManager.LoadScene("04Story");
-        
-       
-        
-    }//
+    }
 
     IEnumerator LoadingLevel_GoToState()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("State");
-    }//
+    }
 
     IEnumerator LoadingLevel_Replay()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("NewTUTORIAL");
-    }//
-
-    IEnumerator LoadingLevel_backToMainMenu()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("03MainMenu");
-    }//
+    }
 
     public void MainMenuButton()
     {
@@ -98,8 +79,6 @@ public class ButtonManager : MonoBehaviour
 
     public void ExitButton()
     {
-        //muteButton.SetActive(false);
-
         exitPanel.SetActive(true);
         yesButton.SetActive(true);
         noButton.SetActive(true);
@@ -108,9 +87,7 @@ public class ButtonManager : MonoBehaviour
 
     public void NoButton()
     {
-        //muteButton.SetActive(false);
         mainMenuPanel.SetActive(false);
-
         exitPanel.SetActive(false);
         yesButton.SetActive(false);
         noButton.SetActive(false);
