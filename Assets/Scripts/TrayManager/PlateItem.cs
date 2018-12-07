@@ -173,17 +173,17 @@ public class PlateItem : MonoBehaviour
         {
             case 0:
             {
-                temp.z = 0;
+                temp.y = 0.013f;
                 break;
             }
             case 1:
             {
-                temp.z = -0.12f;
+                temp.y = 0.045f;
                 break;
             }
             case 2:
             {
-                temp.z = 0.12f;
+                temp.y = 0.08f;
                 break;
             }
             default:
@@ -191,7 +191,8 @@ public class PlateItem : MonoBehaviour
         }
 
         temp.x = 0;
-        temp.y = 0.013f;
+        temp.z = 0;
+
         currentIndex += 1;
         return temp;
     }
