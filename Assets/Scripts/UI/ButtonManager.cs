@@ -27,25 +27,33 @@ public class ButtonManager : MonoBehaviour
 
     //---------------------------------------------------------------------------------------------------------------------
 
-    public void backToMainMenu()
+    public void BackToMainMenu()
     {
         SceneManager.LoadScene(1);
     }
 
     public void Replay()
     {
+        if (Time.timeScale == 0) 
+            Time.timeScale = 1;
         StartCoroutine(LoadingLevel_Replay());
        
     }
 
     public void GoToStory()
     {
+        StopAllCoroutines();
+        if (Time.timeScale == 0) 
+            Time.timeScale = 1;
         StartCoroutine(LoadingLevel_GoToStory());
         
     }
 
     public void GoToState()
     {
+        StopAllCoroutines();
+        if (Time.timeScale == 0) 
+            Time.timeScale = 1;
         StartCoroutine(LoadingLevel_GoToState());
        
     }
@@ -53,7 +61,6 @@ public class ButtonManager : MonoBehaviour
     IEnumerator LoadingLevel_GoToStory()
     {
         yield return new WaitForSeconds(1f);
-       
             SceneManager.LoadScene("04Story");
     }
 
