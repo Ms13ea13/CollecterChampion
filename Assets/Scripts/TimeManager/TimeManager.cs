@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
     public void SetTimeText(string newMessage)
     {
         if (ForTimeTextUI)
-        ForTimeTextUI.text = "Time : " +  newMessage;
+        ForTimeTextUI.text = newMessage;
         else throw new Exception("ForTimeTextUI is null");
     }
 
