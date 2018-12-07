@@ -664,56 +664,6 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 59911112}
-    - target: {fileID: 224010925261806720, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0195605
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010925261806720, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.0195605
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010925261806720, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0195605
-      objectReference: {fileID: 0}
-    - target: {fileID: 224373836744662356, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0195627
-      objectReference: {fileID: 0}
-    - target: {fileID: 224373836744662356, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.0195627
-      objectReference: {fileID: 0}
-    - target: {fileID: 224373836744662356, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0195627
-      objectReference: {fileID: 0}
-    - target: {fileID: 224373836744662356, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -496
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010925261806720, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 494
-      objectReference: {fileID: 0}
-    - target: {fileID: 224010925261806720, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 303.00003
-      objectReference: {fileID: 0}
-    - target: {fileID: 224373836744662356, guid: e698882b3fd4ea54ea3965f2554aa904,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 303
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e698882b3fd4ea54ea3965f2554aa904, type: 2}
   m_IsPrefabAsset: 0
