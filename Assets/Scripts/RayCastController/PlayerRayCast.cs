@@ -219,6 +219,7 @@ public class PlayerRayCast : MonoBehaviour
                 if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
                 {
                     playerAudioSource.PlayOneShot(pick_up);//
+
                     currentFoodInFront.StopFoodItemSoundEffect();
                     currentFoodInFront.SetDefaultFoodUI();
                     TakeObjIntoHold(currentFoodInFront.gameObject);

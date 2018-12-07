@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    /*  public AudioClip MainMenu;//
+      private AudioSource BGAudioSource;//*/
+
+    
+
     public GameObject optionPanel;
     public GameObject mainMenuPanel;
     //public GameObject muteButton;
@@ -14,6 +19,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject noButton;
     public GameObject text;
 
+   
     public void OptionButton()
     {
         optionPanel.SetActive(true);
@@ -30,18 +36,57 @@ public class ButtonManager : MonoBehaviour
 
     public void backToMainMenu()
     {
-        SceneManager.LoadScene("03MainMenu");
+        StartCoroutine(LoadingLevel_backToMainMenu());
+      /*  BGAudioSource = GetComponent<AudioSource>();//
+        BGAudioSource.PlayOneShot(MainMenu);//*/
+
     }
 
     public void Replay()
     {
-        SceneManager.LoadScene("NewTUTORIAL");
+        StartCoroutine(LoadingLevel_Replay());
+       
     }
 
     public void GoToStory()
     {
-        SceneManager.LoadScene("04Story");
+        StartCoroutine(LoadingLevel_GoToStory());
+        
     }
+
+    public void GoToState()//
+    {
+        StartCoroutine(LoadingLevel_GoToState());
+       
+    }
+
+    IEnumerator LoadingLevel_GoToStory()
+    {
+        yield return new WaitForSeconds(1f);
+       
+            SceneManager.LoadScene("04Story");
+        
+       
+        
+    }//
+
+    IEnumerator LoadingLevel_GoToState()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("State");
+    }//
+
+    IEnumerator LoadingLevel_Replay()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("NewTUTORIAL");
+    }//
+
+    IEnumerator LoadingLevel_backToMainMenu()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("03MainMenu");
+    }//
 
     public void MainMenuButton()
     {
