@@ -421,7 +421,7 @@ MonoBehaviour:
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
   currentBinInFront: {fileID: 0}
-  currentTrayInFront: {fileID: 0}
+  currentPlateInFront: {fileID: 0}
   currentStoveInFront: {fileID: 0}
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
@@ -432,7 +432,6 @@ MonoBehaviour:
   playerSightLength: 6
   distanceToObstacle: 0
   holding: 0
-  grill: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
   pick_up: {fileID: 8300000, guid: 0bf8926b6d5cbcd478bfdac510d24bd8, type: 3}
   sent_food: {fileID: 8300000, guid: e06447c06f558d5439e8cf41ac4acc16, type: 3}
 --- !u!143 &143453297893972322

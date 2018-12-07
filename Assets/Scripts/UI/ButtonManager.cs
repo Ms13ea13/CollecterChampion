@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject optionPanel;
+    public GameObject mainMenuPanel;
     //public GameObject muteButton;
 
     public GameObject exitPanel;
@@ -29,12 +30,25 @@ public class ButtonManager : MonoBehaviour
 
     public void backToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("03MainMenu");
     }
 
     public void Replay()
     {
         SceneManager.LoadScene("NewTUTORIAL");
+    }
+
+    public void GoToStory()
+    {
+        SceneManager.LoadScene("04Story");
+    }
+
+    public void MainMenuButton()
+    {
+        mainMenuPanel.SetActive(true);
+        yesButton.SetActive(true);
+        noButton.SetActive(true);
+        text.SetActive(true);
     }
 
     public void ExitButton()
@@ -50,6 +64,7 @@ public class ButtonManager : MonoBehaviour
     public void NoButton()
     {
         //muteButton.SetActive(false);
+        mainMenuPanel.SetActive(false);
 
         exitPanel.SetActive(false);
         yesButton.SetActive(false);
