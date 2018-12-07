@@ -9,10 +9,12 @@ public class ScoreManager : MonoBehaviour
     public AudioClip score_sound;
 
     [SerializeField] private Text scoreText;
-	
-	[SerializeField] private int score;
 
-    [SerializeField] private int totalScore;
+    [SerializeField] private Text totalScoreText;
+
+    [SerializeField] private int score;
+
+    //[SerializeField] private int totalScore;
 
     [SerializeField] private StarManager plusStar;
 
@@ -34,7 +36,8 @@ public class ScoreManager : MonoBehaviour
 	private void SetScoreContent(string message)
 	{
 		scoreText.text = message;
-       
+        totalScoreText.text = message;
+
         ScoreMAudioSource.PlayOneShot(score_sound);//
     }
 
