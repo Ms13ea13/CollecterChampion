@@ -116,7 +116,7 @@ public class PlateItem : MonoBehaviour
         var foodItem = food.GetComponent<FoodItem>();
 
         if (foodItem.CompareCurrentFoodState(FoodItem.FoodState.Raw) ||
-            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled))
+            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) || foodItem.CompareCurrentFoodState(FoodItem.FoodState.OnFire)  )
             return;
 
         if (itemsInPlate.Count < 3)
