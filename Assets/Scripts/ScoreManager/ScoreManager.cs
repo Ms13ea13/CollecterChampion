@@ -18,11 +18,16 @@ public class ScoreManager : MonoBehaviour
 
     private AudioSource ScoreMAudioSource;
 
+    void Start()
+    {
+        ScoreMAudioSource = GetComponent<AudioSource>();
+    }
+
 	public void AddScoreNumber(int plusScore)
 	{
 		score += plusScore;
 		SetScoreContent(score.ToString());
-	    ScoreMAudioSource = GetComponent<AudioSource>();
+        
         CheckScore(score);
     }
 
@@ -35,17 +40,17 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckScore(int totalScore)
     {
-        if (totalScore >= 100 && totalScore < 120)
+        if (totalScore >= 60 && totalScore < 80)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(0);
         }
-        else if (totalScore >= 120 && totalScore < 150)
+        else if (totalScore >= 80 && totalScore < 100)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(1);
         }
-        else if (totalScore >= 150)
+        else if (totalScore >= 100)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(2);

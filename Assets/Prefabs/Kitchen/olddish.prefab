@@ -469,7 +469,7 @@ MonoBehaviour:
   itemsInPlate: []
   currentIndex: 0
   washDone: 0
-  _currentPlateState: 0
+  _currentPlateState: 1
   timerSlider: {fileID: 114135400347388744}
   min: 0
   maxPlateCleanLevel: 100
