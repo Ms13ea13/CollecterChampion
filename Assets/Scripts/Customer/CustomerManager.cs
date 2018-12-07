@@ -190,8 +190,9 @@ public class CustomerManager : MonoBehaviour
             foreach (var item in customerOrders)
             {
                 item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
-                customerOrderWait();
+               
             }
+            customerOrderWait();
         }
     }
 
@@ -223,13 +224,14 @@ public class CustomerManager : MonoBehaviour
     public void customerOrderWait()
     {
 
-        timerSlider.value = 0;
-        tempSliderValue = 0;
-        SetShowTimerSlider(true);
-     
         float SetChangeMenuValue = maxWaitLevel + 0.000001f;
 
-        leantweenID = LeanTween.value(tempSliderValue, SetChangeMenuValue + 0.001f, waitTimer).setOnUpdate((Value) =>
+        leantweenID = LeanTween.value(tempSliderValue, SetChangeMenuValue + 0.001f, waitTimer).setOnStart(() =>
+        {
+            timerSlider.value = 0;
+            tempSliderValue = 0;
+            SetShowTimerSlider(true);
+        }).setOnUpdate((Value) =>
         {
             tempSliderValue = Value;
             if (timerSlider.value <= timerSlider.maxValue)
@@ -243,7 +245,6 @@ public class CustomerManager : MonoBehaviour
                 Debug.Log("Change Order");
                 ClearCustomerOrderWhenNotSendFood();
                 OrderingFood();
-                LeanTween.cancel(leantweenID);
             }
         }).id;
     }
