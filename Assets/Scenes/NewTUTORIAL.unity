@@ -410,10 +410,6 @@ Prefab:
       propertyPath: spawnCleanDish
       value: 
       objectReference: {fileID: 607097766}
-    - target: {fileID: 1926947783194434, guid: b842c197fbfbaed4285abc2a846245b7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b842c197fbfbaed4285abc2a846245b7, type: 2}
   m_IsPrefabAsset: 0
@@ -421,7 +417,7 @@ Prefab:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114399459605449156, guid: a0f5bae9945957d43a3eb6562e02441d,
     type: 2}
-  m_PrefabInternal: {fileID: 954007884}
+  m_PrefabInternal: {fileID: 889234546}
   m_Script: {fileID: 11500000, guid: de4fd9586fa2c264ebe2e76ac431ec2b, type: 3}
 --- !u!1 &643782987 stripped
 GameObject:
@@ -472,7 +468,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &954007884
+--- !u!1001 &889234546
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
