@@ -1421,6 +1421,7 @@ GameObject:
   - component: {fileID: 4108386605230344}
   - component: {fileID: 23638280330406048}
   - component: {fileID: 33814302887859492}
+  - component: {fileID: 65587214090201832}
   m_Layer: 0
   m_Name: Model_17
   m_TagString: Untagged
@@ -11740,6 +11741,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.26, y: 0.32, z: 0.25}
   m_Center: {x: -0.004999995, y: 0.16, z: 0}
+--- !u!65 &65587214090201832
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1500601279607446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 33.6, y: 2.5, z: 1}
+  m_Center: {x: -0.05000031, y: 0, z: -0.049999997}
 --- !u!65 &65636590266629088
 BoxCollider:
   m_ObjectHideFlags: 1
