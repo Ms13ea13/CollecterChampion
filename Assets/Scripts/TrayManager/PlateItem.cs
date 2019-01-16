@@ -166,6 +166,22 @@ public class PlateItem : MonoBehaviour
         return true;
     }
 
+    public bool DeliverFood2ViaPlate(CustomerManagerStage2 customer)
+    {
+        if (!customer.ReceiveOrder(GetFoodInPlate())) return false;
+
+        for (var i = itemsInPlate.Count - 1; i >= 0; i--)
+        {
+            var item = itemsInPlate[i];
+            itemsInPlate.Remove(item);
+            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
+            Destroy(item.gameObject);
+        }
+
+        Destroy(gameObject);
+        return true;
+    }
+
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
     {
         temp = targetTransform.localPosition;
@@ -235,7 +251,6 @@ public class PlateItem : MonoBehaviour
         if (platePanel.transform.childCount <= 0)
             return;
 
-
         for (int i = 0; i < platePanel.transform.childCount; i++)
         {
             Destroy(platePanel.transform.GetChild(i).gameObject);
@@ -246,7 +261,6 @@ public class PlateItem : MonoBehaviour
     {
         if (itemsInPlate.Count <=0)
             return;
-
 
         foreach (var foodObj in itemsInPlate)
         {

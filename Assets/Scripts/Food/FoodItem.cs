@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
-
 {
     [SerializeField] private int foodID;
 
@@ -16,6 +15,8 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodOnChoppingBoard;
 
+    [SerializeField] private bool foodOnPan;
+
     [SerializeField] private bool foodOnCounter;
 
     [SerializeField] private bool foodIntoPot;
@@ -26,7 +27,8 @@ public class FoodItem : MonoBehaviour
     {
         Raw,
         Grilled,
-        Chop,
+        Chopped,
+        Fried,
         Boiled,
         Alert,
         OnFire
@@ -35,6 +37,8 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private GameObject rawModel;
 
     [SerializeField] private GameObject grilledModel;
+
+    [SerializeField] private GameObject friedModel;
 
     [SerializeField] private GameObject chopModel;
 
@@ -133,7 +137,6 @@ public class FoodItem : MonoBehaviour
         }
     }
 
-
     public void PutFoodInTheStove()
     {
         if (tempSliderValue != 0)
@@ -182,6 +185,54 @@ public class FoodItem : MonoBehaviour
         }).id;
     }
 
+    public void PutFoodInThePan()
+    {
+        if (tempSliderValue != 0)
+            timerSlider.value = tempSliderValue;
+
+        SetFoodOnFireValue = maxFoodCookLevel;
+        if (!CheckFoodStateBeforeActions())
+            return;
+
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((Value) =>
+        {
+            if (!FoodItemAudioSource.isPlaying && grilling != null)
+                FoodItemAudioSource.PlayOneShot(grilling);
+
+            tempSliderValue = Value;
+            if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            {
+                if (!timerSlider.gameObject.activeInHierarchy)
+                    SetShowTimerSlider(true);
+                timerSlider.value = Value;
+            }
+            else
+                SetShowTimerSlider(false);
+
+            if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            {
+                currentFoodState = FoodState.Fried;
+                FoodItemAudioSource.PlayOneShot(complete);
+            }
+
+            if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Fried)
+            {
+                currentFoodState = FoodState.Alert;
+                timerSlider.value = 0;
+                FoodItemAudioSource.PlayOneShot(Alert_fire);
+            }
+
+            ChangeFoodVisualAccordingToStates();
+            SetFoodUIState();
+        }).setOnComplete(() =>
+        {
+            currentFoodState = FoodState.OnFire;
+            ChangeFoodVisualAccordingToStates();
+            tempSliderValue = 0f;
+            SetFoodUIState();
+        }).id;
+    }
+
     private bool CheckFoodStateBeforeActions()
     {
         switch (currentFoodState)
@@ -203,6 +254,10 @@ public class FoodItem : MonoBehaviour
                 currentFoodState = FoodState.OnFire;
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
+                return false;
+            case FoodState.Fried:
+                tempSliderValue = SetFoodOnFireValue + 50f;
+                ForceFoodState();
                 return false;
             default:
                 return true;
@@ -244,6 +299,7 @@ public class FoodItem : MonoBehaviour
     public void ChopFood()
     {
         if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) ||
+            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Fried) ||
             timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Alert))
         {
             if (!timerSlider.gameObject.activeInHierarchy)
@@ -258,7 +314,7 @@ public class FoodItem : MonoBehaviour
 
             if (percentage >= 100)
             {
-                currentFoodState = FoodState.Chop;
+                currentFoodState = FoodState.Chopped;
                 timerSlider.value = 0;
                 SetShowTimerSlider(false);
                 ChangeFoodVisualAccordingToStates();
@@ -274,7 +330,6 @@ public class FoodItem : MonoBehaviour
             }
         }
     }
-
 
     public void PutFoodInThePot()
     {
@@ -312,7 +367,6 @@ public class FoodItem : MonoBehaviour
                     FoodItemAudioSource.PlayOneShot(Alert_fire); //
                 }
 
-
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
             }).setOnComplete(() =>
@@ -332,7 +386,7 @@ public class FoodItem : MonoBehaviour
                 SelectFoodModel(rawModel);
                 break;
 
-            case FoodState.Chop:
+            case FoodState.Chopped:
                 if (chopModel == null) return;
                 SelectFoodModel(chopModel);
                 break;
@@ -345,6 +399,11 @@ public class FoodItem : MonoBehaviour
             case FoodState.Grilled:
                 if (grilledModel == null) return;
                 SelectFoodModel(grilledModel);
+                break;
+
+            case FoodState.Fried:
+                if (friedModel == null) return;
+                SelectFoodModel(friedModel);
                 break;
 
             case FoodState.Alert:
@@ -386,7 +445,7 @@ public class FoodItem : MonoBehaviour
     {
         if (FoodName == "Duck")
         {
-            if (CompareCurrentFoodState(FoodState.Chop))
+            if (CompareCurrentFoodState(FoodState.Chopped))
                 return false;
         }
         
@@ -395,7 +454,19 @@ public class FoodItem : MonoBehaviour
             if (CompareCurrentFoodState(FoodState.Boiled) || CompareCurrentFoodState(FoodState.Alert))
                 return false;
         }
-        
+
+        if (FoodName == "BarbecuedSucklingPig")
+        {
+            if (CompareCurrentFoodState(FoodState.Grilled) || CompareCurrentFoodState(FoodState.Alert))
+                return false;
+        }
+
+        if (FoodName == "CrispyPork")
+        {
+            if (CompareCurrentFoodState(FoodState.Chopped))
+                return false;
+        }
+
         return true;
     }
 
@@ -425,6 +496,11 @@ public class FoodItem : MonoBehaviour
         foodOnChoppingBoard = isOnChoppingBoard;
     }
 
+    public void SetFoodOnPan(bool isOnPan)
+    {
+        foodOnPan = isOnPan;
+    }
+
     public void SetFoodOnCounter(bool isOnCounter)
     {
         foodOnCounter = isOnCounter;
@@ -434,7 +510,6 @@ public class FoodItem : MonoBehaviour
     {
         foodIntoPot = isIntoPot;
     }
-
     
     public string GetFoodItemName()
     {
@@ -463,7 +538,17 @@ public class FoodItem : MonoBehaviour
 
     public bool IsFoodChopped()
     {
-        return currentFoodState == FoodState.Chop;
+        return currentFoodState == FoodState.Chopped;
+    }
+
+    public bool IsFoodGriled()
+    {
+        return currentFoodState == FoodState.Grilled;
+    }
+
+    public bool IsFoodFried()
+    {
+        return currentFoodState == FoodState.Fried;
     }
 
     public bool IsFoodOnFire()
@@ -489,6 +574,11 @@ public class FoodItem : MonoBehaviour
     public bool GetFoodOnChoppingBoard()
     {
         return foodOnChoppingBoard;
+    }
+
+    public bool GetFoodOnPan()
+    {
+        return foodOnPan;
     }
 
     public bool CompareCurrentFoodState(FoodState foodState)

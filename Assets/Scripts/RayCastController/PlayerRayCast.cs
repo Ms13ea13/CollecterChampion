@@ -11,6 +11,8 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private CustomerManager currentCustomerInFront;
 
+    [SerializeField] private CustomerManagerStage2 currentCustomerStage2InFront;
+
     [SerializeField] private BinManager currentBinInFront;
 
     [SerializeField] private PlateItem currentPlateInFront;
@@ -20,6 +22,8 @@ public class PlayerRayCast : MonoBehaviour
     [SerializeField] private ChoppingBoardManager currentChoppingBoardInFront;
 
     [SerializeField] private CounterManager currentCounterInFront;
+
+    [SerializeField] private PanManager currentPanInFront;
 
     [SerializeField] private PotManager currentPotInFront;
 
@@ -58,10 +62,12 @@ public class PlayerRayCast : MonoBehaviour
         {
             DropObj(ref itemInHold);
             GetCustomerInFront();
+            GetCustomerStage2InFront();
             GetBinInFront();
             GetStoveInFront();
             GetChoppingBoardInFront();
             GetCounterInFront();
+            GetPanInFront();
             GetPotInFront();
             GetSinkInFront();
         }
@@ -107,6 +113,19 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
             currentCustomerInFront = null;
+    }
+
+    private void GetCustomerStage2InFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Customer"))
+        {
+            distanceToObstacle = hit.distance;
+            currentCustomerStage2InFront = hit.transform.gameObject.GetComponent<CustomerManagerStage2>();
+        }
+        else
+            currentCustomerStage2InFront = null;
     }
 
     private void GetBinInFront()
@@ -169,6 +188,18 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
             currentCounterInFront = null;
+    }
+
+    private void GetPanInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+             hit.transform.tag == "Pan"))
+        {
+            distanceToObstacle = hit.distance;
+            currentPanInFront = hit.transform.gameObject.GetComponent<PanManager>();
+        }
+        else
+            currentPanInFront = null;
     }
 
     private void GetPotInFront()
@@ -257,6 +288,28 @@ public class PlayerRayCast : MonoBehaviour
                     else
                         UnHoldItem(holdingItem);
                 }
+                else if (currentCustomerStage2InFront)
+                {
+                    if (holdingItem.GetComponent<FoodItem>())
+                    {
+                        FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
+                        if (currentCustomerStage2InFront.ReceiveOrder(foodToServe))
+                        {
+                            Destroy(holdingItem);
+                            ResetHolding();
+                        }
+
+                    }
+                    else if (holdingItem.GetComponent<PlateItem>())
+                    {
+                        if (holdingItem.GetComponent<PlateItem>().DeliverFood2ViaPlate(currentCustomerStage2InFront))
+                            ResetHolding();
+
+                        playerAudioSource.PlayOneShot(sent_food);//
+                    }
+                    else
+                        UnHoldItem(holdingItem);
+                }
                 else if (currentBinInFront)
                 {
                     PlateItem plateOnHold= itemInHold.GetComponent<PlateItem>();
@@ -280,7 +333,8 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentStoveInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 2)
                     {
                         currentStoveInFront.PlaceObjIntoStove(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInTheStove();
@@ -289,7 +343,8 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentChoppingBoardInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3)
                     {
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
@@ -300,6 +355,15 @@ public class PlayerRayCast : MonoBehaviour
                     if (holdingItem)
                     {
                         currentCounterInFront.PlaceFoodOnCounter(holdingItem, ref holding);
+                        UnHoldItem(holdingItem);
+                    }
+                }
+                else if (currentPanInFront)
+                {
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3)
+                    {
+                        currentPanInFront.PlaceObjIntoPan(holdingItem, ref holding);
+                        holdingItem.GetComponent<FoodItem>().PutFoodInThePan();
                         UnHoldItem(holdingItem);
                     }
                 }
@@ -367,9 +431,9 @@ public class PlayerRayCast : MonoBehaviour
         playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 10.1f;
+        temp.y = 15.9f;
         temp.x = 0;
-        temp.z = 13.6f;
+        temp.z = 15.4f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;
@@ -382,11 +446,13 @@ public class PlayerRayCast : MonoBehaviour
         itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
+        currentCustomerStage2InFront = null;
         currentPlateInFront = null;
         currentBinInFront = null;
         currentStoveInFront = null;
         currentChoppingBoardInFront = null;
         currentCounterInFront = null;
+        currentPanInFront = null;
         currentPotInFront = null;
         currentSinkInFront = null;
     }

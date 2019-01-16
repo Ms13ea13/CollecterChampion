@@ -1324,11 +1324,13 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
+  currentCustomerStage2InFront: {fileID: 0}
   currentBinInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
   currentStoveInFront: {fileID: 0}
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
+  currentPanInFront: {fileID: 0}
   currentPotInFront: {fileID: 0}
   currentSinkInFront: {fileID: 0}
   charContr: {fileID: 143032049423330512}

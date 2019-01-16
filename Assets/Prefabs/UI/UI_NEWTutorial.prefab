@@ -3457,10 +3457,12 @@ MonoBehaviour:
     orderName:
     - Duck
     - Rice
+    - BarbecuedSucklingPig
     foodPicture:
     - {fileID: 21300008, guid: 5a2a213664ae9ce4ca3f359814180ca8, type: 3}
     - {fileID: 21300006, guid: 5a2a213664ae9ce4ca3f359814180ca8, type: 3}
-    price: 320000000a000000
+    - {fileID: 21300000, guid: 24ecbc82897b2f1469e9413a34cc2dfa, type: 3}
+    price: 320000000a00000078000000
   PausePanel: {fileID: 1884294471776280}
 --- !u!114 &114900899106295238
 MonoBehaviour:
