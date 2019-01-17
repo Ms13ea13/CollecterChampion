@@ -77,7 +77,7 @@ public class ButtonManager : MonoBehaviour
     IEnumerator LoadingLevel_Replay()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("NewTUTORIAL");
+        SceneManager.LoadScene("Stage1");
     }
 
     public void MainMenuButton()
