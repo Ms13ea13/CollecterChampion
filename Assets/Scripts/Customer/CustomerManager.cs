@@ -24,7 +24,7 @@ public class CustomerManager : MonoBehaviour
     //--------------------------------------------------------------------------------------------
 
     private int leantweenID;
-    private const float waitTimer = 2f;
+    private const float waitTimer = 60f;
 
     [SerializeField] private int minWaitLevel = 0;
 

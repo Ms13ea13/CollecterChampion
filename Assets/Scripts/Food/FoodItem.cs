@@ -55,6 +55,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Sprite cookedPicture;
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
+    [SerializeField] private Sprite friedPicture;
 
     private int leantweenID;
     private const float cookTimer = 20f;
@@ -133,6 +134,9 @@ public class FoodItem : MonoBehaviour
                 break;
             case FoodState.Grilled:
                 foodStateUI.sprite = cookedPicture;
+                break;
+            case FoodState.Fried:
+                foodStateUI.sprite = friedPicture;
                 break;
             case FoodState.Done:
                 foodStateUI.sprite = cookedPicture;
