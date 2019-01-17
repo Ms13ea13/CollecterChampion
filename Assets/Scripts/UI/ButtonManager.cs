@@ -32,13 +32,20 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Replay()
+    public void ReplayStage1()
     {
         LeanTween.cancelAll();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
-        StartCoroutine(LoadingLevel_Replay());
-       
+        StartCoroutine(LoadingLevel_ReplayStage1());
+    }
+
+    public void ReplayStage2()
+    {
+        LeanTween.cancelAll();
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
+        StartCoroutine(LoadingLevel_ReplayStage2());
     }
 
     public void GoToStory()
@@ -71,13 +78,19 @@ public class ButtonManager : MonoBehaviour
     IEnumerator LoadingLevel_GoToState()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("State");
+        SceneManager.LoadScene("SelectStage");
     }
 
-    IEnumerator LoadingLevel_Replay()
+    IEnumerator LoadingLevel_ReplayStage1()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("NewTUTORIAL");
+        SceneManager.LoadScene("Stage1");
+    }
+
+    IEnumerator LoadingLevel_ReplayStage2()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Stage2");
     }
 
     public void MainMenuButton()

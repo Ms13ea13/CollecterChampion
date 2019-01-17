@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -115,14 +116,11 @@ public class PlateItem : MonoBehaviour
     {
         var foodItem = food.GetComponent<FoodItem>();
 
-        if (foodItem.CompareCurrentFoodState(FoodItem.FoodState.Raw) ||
-            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) || foodItem.CompareCurrentFoodState(FoodItem.FoodState.Alert)||
-            foodItem.CompareCurrentFoodState(FoodItem.FoodState.OnFire))
+        if (!foodItem.CompareCurrentFoodState(FoodItem.FoodState.Done))
         {
             Debug.LogError("Nope food is : " + foodItem.GetFoodItemState().ToString());
             return false;
         }
-          
 
         if (itemsInPlate.Count < 3)
         {
@@ -142,6 +140,7 @@ public class PlateItem : MonoBehaviour
     private Dictionary<int, int> GetFoodInPlate()
     {
         var plateDict = new Dictionary<int, int>();
+        
 
         foreach (var foodObj in itemsInPlate)
         {
@@ -161,23 +160,7 @@ public class PlateItem : MonoBehaviour
 
     public bool DeliverFoodViaPlate(CustomerManager customer)
     {
-        if (!customer.ReceiveOrder(GetFoodInPlate())) return false;
-
-        for (var i = itemsInPlate.Count - 1; i >= 0; i--)
-        {
-            var item = itemsInPlate[i];
-            itemsInPlate.Remove(item);
-            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
-            Destroy(item.gameObject);
-        }
-
-        Destroy(gameObject);
-        return true;
-    }
-
-    public bool DeliverFood2ViaPlate(CustomerManagerStage2 customer)
-    {
-        if (!customer.ReceiveOrder(GetFoodInPlate())) return false;
+        if (!customer.CheckOrderValidation(GetFoodInPlate())) return false;
 
         for (var i = itemsInPlate.Count - 1; i >= 0; i--)
         {

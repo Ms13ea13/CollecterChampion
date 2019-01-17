@@ -250,9 +250,9 @@ public class PlayerRayCast : MonoBehaviour
 
             if (currentFoodInFront)
             {
-                if (currentFoodInFront.GetComponent<FoodItem>().CanPickupWithHands())
+                if (!currentFoodInFront.GetComponent<FoodItem>().IsFoodDoneCooking())
                 {
-                    playerAudioSource.PlayOneShot(pick_up);//
+                    playerAudioSource.PlayOneShot(pick_up);
 
                     currentFoodInFront.StopFoodItemSoundEffect();
                     currentFoodInFront.SetDefaultFoodUI();
@@ -269,7 +269,7 @@ public class PlayerRayCast : MonoBehaviour
         {
             if (Input.GetButtonUp("DropOBJ"))
             {
-                playerAudioSource.PlayOneShot(pick_up);//
+                playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>())
@@ -287,29 +287,7 @@ public class PlayerRayCast : MonoBehaviour
                         if (holdingItem.GetComponent<PlateItem>().DeliverFoodViaPlate(currentCustomerInFront))
                             ResetHolding();
 
-                        playerAudioSource.PlayOneShot(sent_food);//
-                    }
-                    else
-                        UnHoldItem(holdingItem);
-                }
-                else if (currentCustomerStage2InFront)
-                {
-                    if (holdingItem.GetComponent<FoodItem>())
-                    {
-                        FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
-                        if (currentCustomerStage2InFront.ReceiveOrder(foodToServe))
-                        {
-                            Destroy(holdingItem);
-                            ResetHolding();
-                        }
-
-                    }
-                    else if (holdingItem.GetComponent<PlateItem>())
-                    {
-                        if (holdingItem.GetComponent<PlateItem>().DeliverFood2ViaPlate(currentCustomerStage2InFront))
-                            ResetHolding();
-
-                        playerAudioSource.PlayOneShot(sent_food);//
+                        playerAudioSource.PlayOneShot(sent_food);
                     }
                     else
                         UnHoldItem(holdingItem);
@@ -413,7 +391,7 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     currentPlateInFront.GetComponent<PlateItem>().WashPlate();
 
-                    if (currentPlateInFront.washDone == true)
+                    if (currentPlateInFront.washDone)
                     {
                         spawnCleanDish.SpawnDish();
                         currentPlateInFront.washDone = false;
