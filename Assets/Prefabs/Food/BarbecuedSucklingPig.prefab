@@ -629,6 +629,7 @@ MonoBehaviour:
   trayBandedId: 0
   foodOnStove: 0
   foodOnChoppingBoard: 0
+  foodOnPan: 0
   foodOnCounter: 0
   foodIntoPot: 0
   chopping: {fileID: 8300000, guid: 9c3a11d60f5683d4091c6b7194b853a6, type: 3}
@@ -637,10 +638,10 @@ MonoBehaviour:
   grilling: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
   rawModel: {fileID: 1434428380948726}
   grilledModel: {fileID: 1169509121661804}
+  friedModel: {fileID: 0}
   chopModel: {fileID: 0}
   boiledModel: {fileID: 0}
   modelContainer: {fileID: 1054433962697480}
-  currentFoodState: 0
   timerSlider: {fileID: 114125351930514074}
   foodStateUI: {fileID: 114162110774563134}
   cookedPicture: {fileID: 21300000, guid: d6550889bb383284c95ec85cebc9f18e, type: 3}
@@ -652,6 +653,8 @@ MonoBehaviour:
   currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
+  DoneState: 1
+  currentFoodState: 0
 --- !u!114 &114614522673509928
 MonoBehaviour:
   m_ObjectHideFlags: 1
