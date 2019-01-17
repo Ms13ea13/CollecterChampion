@@ -34,6 +34,7 @@ public class ButtonManager : MonoBehaviour
 
     public void Replay()
     {
+        LeanTween.cancelAll();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
         StartCoroutine(LoadingLevel_Replay());
@@ -42,6 +43,7 @@ public class ButtonManager : MonoBehaviour
 
     public void GoToStory()
     {
+        LeanTween.cancelAll();
         StopAllCoroutines();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
@@ -51,9 +53,11 @@ public class ButtonManager : MonoBehaviour
 
     public void GoToState()
     {
+        LeanTween.cancelAll();
         StopAllCoroutines();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
+        
         StartCoroutine(LoadingLevel_GoToState());
        
     }

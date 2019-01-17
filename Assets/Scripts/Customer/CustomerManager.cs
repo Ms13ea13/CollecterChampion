@@ -24,7 +24,7 @@ public class CustomerManager : MonoBehaviour
     //--------------------------------------------------------------------------------------------
 
     private int leantweenID;
-    private const float waitTimer = 60f;
+    private const float waitTimer = 2f;
 
     [SerializeField] private int minWaitLevel = 0;
 
@@ -59,7 +59,10 @@ public class CustomerManager : MonoBehaviour
         for (int i = 0; i < foodAmount; i++)
         {
             GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
+            if (customerPanel != null)
             spawnOrderPicture.transform.parent = customerPanel.transform;
+            else 
+            Debug.LogError("customerPanel is null");
             customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
         }
     }
@@ -140,6 +143,8 @@ public class CustomerManager : MonoBehaviour
             var order = customerOrders[i];
             customerOrders.Remove(order);
             DelayPayment(order.GetOrderPrice());
+            if (order.gameObject != null)
+                LeanTween.cancel(order.gameObject);
             Destroy(order.gameObject);
         }
     }
@@ -150,6 +155,8 @@ public class CustomerManager : MonoBehaviour
         {
             var order = customerOrders[i];
             customerOrders.Remove(order);
+            if (order.gameObject != null)
+                LeanTween.cancel(order.gameObject);
             Destroy(order.gameObject);
         }
     }
@@ -168,6 +175,8 @@ public class CustomerManager : MonoBehaviour
                 {
                     customerOrders.Remove(item);
                     DelayPayment(item.GetOrderPrice());
+                    if (item.gameObject != null)
+                        LeanTween.cancel(item.gameObject);
                     Destroy(item.gameObject);
                     
                     SetShowTimerSlider(false);
@@ -184,10 +193,10 @@ public class CustomerManager : MonoBehaviour
 
     private void OrderingFood()
     {
+        LeanTween.cancel(leantweenID);
         RandomFoodAmount();
         tempSliderValue = 0;
         timerSlider.value = 0;
-        LeanTween.cancel(leantweenID);
         if (customerOrders.Count > 0)
         {
             foreach (var item in customerOrders)
@@ -221,7 +230,12 @@ public class CustomerManager : MonoBehaviour
 
     private void SetShowTimerSlider(bool show)
     {
+        if (timerSlider != null)
         timerSlider.gameObject.SetActive(show);
+        else
+        {
+            Debug.LogError("timerslider is null");
+        }
     }
 
     private void customerOrderWait()
@@ -238,7 +252,7 @@ public class CustomerManager : MonoBehaviour
 
             if (timerSlider.value >= timerSlider.maxValue)
             {
-                Debug.Log("Change Order");
+//                Debug.Log("Change Order");
                 ClearCustomerOrderWhenNotSendFood();
                 SetShowTimerSlider(false);
                 OrderingFood();

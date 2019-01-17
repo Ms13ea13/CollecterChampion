@@ -116,11 +116,18 @@ public class PlateItem : MonoBehaviour
         var foodItem = food.GetComponent<FoodItem>();
 
         if (foodItem.CompareCurrentFoodState(FoodItem.FoodState.Raw) ||
-            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) || foodItem.CompareCurrentFoodState(FoodItem.FoodState.OnFire)  )
+            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) ||
+            foodItem.CompareCurrentFoodState(FoodItem.FoodState.OnFire))
+        {
+            Debug.LogError("fodd is : " + foodItem.GetFoodItemState().ToString());
             return;
+        }
+          
 
         if (itemsInPlate.Count < 3)
         {
+            
+            Debug.LogError("addFoodTo item in plate : " + foodItem.name + " state : " +foodItem.GetFoodItemState().ToString());
             itemsInPlate.Add(food);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;

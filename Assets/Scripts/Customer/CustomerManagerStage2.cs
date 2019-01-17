@@ -55,9 +55,10 @@ public class CustomerManagerStage2 : MonoBehaviour
     {
         customerOrders = new List<FoodOrder>();
         int foodAmount = Random.Range(1, 4);
-
+        Debug.LogError("foodAmount in randomFoodAmount : " +foodAmount);
         for (int i = 0; i < foodAmount; i++)
         {
+           
             GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
             spawnOrderPicture.transform.parent = customerPanel.transform;
             customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
@@ -213,7 +214,10 @@ public class CustomerManagerStage2 : MonoBehaviour
         {
             Payment(moneyAmount);
             if (customerOrders.Count == 0)
+            {
                 OrderingFood();
+            }
+               
         });
     }
 
@@ -226,7 +230,6 @@ public class CustomerManagerStage2 : MonoBehaviour
 
     private void customerOrderWait()
     {
-
         float SetChangeMenuValue = maxWaitLevel + 0.000001f;
         SetShowTimerSlider(true);
 

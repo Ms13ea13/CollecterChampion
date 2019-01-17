@@ -231,7 +231,7 @@ public class PlayerRayCast : MonoBehaviour
     {
         if (holding)
         {
-            if (currentPlateInFront)
+            if (currentPlateInFront) //Holding a plate
                 if (currentFoodInFront)
                 {
                     currentFoodInFront.StopFoodItemSoundEffect();
