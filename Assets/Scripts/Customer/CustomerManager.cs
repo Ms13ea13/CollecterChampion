@@ -83,7 +83,7 @@ public class CustomerManager : MonoBehaviour
         return orderDict;
     }
 
-    public bool ReceiveOrder(Dictionary<int, int> trayDict)
+    public bool CheckOrderValidation(Dictionary<int, int> trayDict)
     {
         var orderValid = DoesTrayMatchOrder(trayDict);
 
