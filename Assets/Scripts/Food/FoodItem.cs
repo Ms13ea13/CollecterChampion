@@ -31,7 +31,8 @@ public class FoodItem : MonoBehaviour
         Fried,
         Boiled,
         Alert,
-        OnFire
+        OnFire,
+        Done
     }
 
     [SerializeField] private GameObject rawModel;
@@ -48,7 +49,7 @@ public class FoodItem : MonoBehaviour
 
     private GameObject currentFoodModel;
 
-    [SerializeField] private FoodState currentFoodState;
+  
     [SerializeField] private Slider timerSlider;
     [SerializeField] private Image foodStateUI;
     [SerializeField] private Sprite cookedPicture;
@@ -76,6 +77,8 @@ public class FoodItem : MonoBehaviour
 
     private float soundLength;
     private float soundStart = 0f;
+    [SerializeField] private FoodState DoneState;
+    [SerializeField] private FoodState currentFoodState;
 
     void Start()
     {
