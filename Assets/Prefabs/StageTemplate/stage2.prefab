@@ -1774,25 +1774,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1466547422294344
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224971899807741604}
-  - component: {fileID: 222490527552356270}
-  - component: {fileID: 114935635496848496}
-  - component: {fileID: 114210742727649892}
-  - component: {fileID: 114350286829405654}
-  m_Layer: 0
-  m_Name: OrderImage(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1468597317620912
 GameObject:
   m_ObjectHideFlags: 1
@@ -3207,9 +3188,9 @@ GameObject:
   - component: {fileID: 23229412253890296}
   - component: {fileID: 65536810551601596}
   - component: {fileID: 54892305522725246}
-  - component: {fileID: 114871336897873288}
+  - component: {fileID: 114712600747551630}
   m_Layer: 0
-  m_Name: CustomerManagerStage2
+  m_Name: CustomerManager
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15158,17 +15139,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114210742727649892
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466547422294344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085b6a61452147843bae1620332f9f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114233052004178568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15363,21 +15333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8770e213d60966f4984aa2a9918e73a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114350286829405654
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466547422294344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e749800c8e8fb08478a4e31a6b72aa14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orderId: 3
-  orderName: CrispyPork
-  foodImage: {fileID: 114935635496848496}
-  Price: 50
 --- !u!114 &114368234169831790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16060,6 +16015,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8770e213d60966f4984aa2a9918e73a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114712600747551630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800583857985486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba9dcd177223214eaeb87fa4b047704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerOrders: []
+  orderLength: 0
+  showStatus: {fileID: 114558398276271144}
+  orderImagePrefab: {fileID: 1850671274903486, guid: 5bc94f1e0dc21f444a5c44702bef9807,
+    type: 2}
+  statusImages: []
+  customerPanel: {fileID: 1797518639052804}
+  spawnDirtyDish: {fileID: 114623487736432054}
+  minWaitLevel: 0
+  maxWaitLevel: 100
+  percentage: 0
+  currentWaitLevel: 0
+  changeMenuValue: 0
+  tempSliderValue: 0
+  timerSlider: {fileID: 114785380025601730}
 --- !u!114 &114723706502040040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16283,33 +16264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8770e213d60966f4984aa2a9918e73a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114871336897873288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1800583857985486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5573585ec94c7db4c91d3a43f9836b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customerOrders:
-  - {fileID: 114350286829405654}
-  orderLength: 0
-  showStatus: {fileID: 114558398276271144}
-  orderImagePrefab: {fileID: 1850671274903486, guid: 5bc94f1e0dc21f444a5c44702bef9807,
-    type: 2}
-  statusImages: []
-  customerPanel: {fileID: 1797518639052804}
-  spawnDirtyDish: {fileID: 114623487736432054}
-  minWaitLevel: 0
-  maxWaitLevel: 100
-  percentage: 0
-  currentWaitLevel: 0
-  changeMenuValue: 2
-  tempSliderValue: 15.918459
-  timerSlider: {fileID: 114785380025601730}
 --- !u!114 &114873213867644496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16380,33 +16334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToInstantiate: {fileID: 0}
---- !u!114 &114935635496848496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466547422294344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7ec4faa92273e7b44a5a9c695af7ef1a, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114948749992314572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16524,13 +16451,6 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740317430062388}
-  m_CullTransparentMesh: 0
---- !u!222 &222490527552356270
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466547422294344}
   m_CullTransparentMesh: 0
 --- !u!222 &222567197917950568
 CanvasRenderer:
@@ -17267,8 +17187,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.3356092, z: 1}
-  m_Children:
-  - {fileID: 224971899807741604}
+  m_Children: []
   m_Father: {fileID: 224684640149228868}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17444,24 +17363,6 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -0, y: 2.134}
   m_SizeDelta: {x: 0, y: 4.268}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224971899807741604
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466547422294344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224756921065266220}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224981185517835646
 RectTransform:
