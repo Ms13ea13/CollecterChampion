@@ -234,9 +234,13 @@ public class PlayerRayCast : MonoBehaviour
             if (currentPlateInFront) //Holding a plate
                 if (currentFoodInFront)
                 {
-                    currentFoodInFront.StopFoodItemSoundEffect();
-                    currentFoodInFront.SetDefaultFoodUI();
-                    currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
+                    bool added = currentPlateInFront.GetComponent<PlateItem>().AddFoodToPlate(currentFoodInFront.gameObject);
+                    
+                    if (added)
+                    {
+                        currentFoodInFront.StopFoodItemSoundEffect();
+                        currentFoodInFront.SetDefaultFoodUI();
+                    }
                 }
         }
         else

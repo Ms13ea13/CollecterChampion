@@ -111,16 +111,16 @@ public class PlateItem : MonoBehaviour
         }
     }
 
-    public void AddFoodToPlate(GameObject food)
+    public bool AddFoodToPlate(GameObject food)
     {
         var foodItem = food.GetComponent<FoodItem>();
 
         if (foodItem.CompareCurrentFoodState(FoodItem.FoodState.Raw) ||
-            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) ||
+            foodItem.CompareCurrentFoodState(FoodItem.FoodState.Grilled) || foodItem.CompareCurrentFoodState(FoodItem.FoodState.Alert)||
             foodItem.CompareCurrentFoodState(FoodItem.FoodState.OnFire))
         {
-            Debug.LogError("fodd is : " + foodItem.GetFoodItemState().ToString());
-            return;
+            Debug.LogError("Nope food is : " + foodItem.GetFoodItemState().ToString());
+            return false;
         }
           
 
@@ -135,6 +135,8 @@ public class PlateItem : MonoBehaviour
             foodItem.SetBannedId(currentIndex);
             FoodInPlateAmount(foodItem.GetFoodItemId());
         }
+
+        return true;
     }
 
     private Dictionary<int, int> GetFoodInPlate()
