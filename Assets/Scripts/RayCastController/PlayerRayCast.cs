@@ -41,16 +41,22 @@ public class PlayerRayCast : MonoBehaviour
 
     private int foodInHoldId;
     private RaycastHit hit;
+
     private Vector3 p1;
     private Vector3 p2;
+
     public AudioClip  pick_up,sent_food;
     private AudioSource playerAudioSource;
+
+    public Animator animPlayer;
 
     void Start()
     {
         holding = false;
         distanceToObstacle = 0;
         playerAudioSource = GetComponent<AudioSource>();//
+
+        animPlayer = GetComponent<Animator>();
     }
 
     public void ShootRayCast()
@@ -73,9 +79,8 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
             GetPlateHolderInFront();
-
+            
         GetFoodInFront();
-
 
         if (Input.GetButtonUp("PickUp"))
             PickUpObj();
@@ -229,6 +234,8 @@ public class PlayerRayCast : MonoBehaviour
 
     private void PickUpObj()
     {
+        //animPlayer.Play("PickupItem");
+
         if (holding)
         {
             if (currentPlateInFront) //Holding a plate
@@ -378,7 +385,11 @@ public class PlayerRayCast : MonoBehaviour
         if (!holding)
             if (currentFoodInFront)
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
+                {
+                    //animPlayer.SetBool("isChop", true);
                     currentFoodInFront.GetComponent<FoodItem>().ChopFood();
+                    //animPlayer.SetBool("isChop", false);
+                }
     }
 
     private void PlateActions()
@@ -419,12 +430,16 @@ public class PlayerRayCast : MonoBehaviour
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;
+
         holding = true;
+        animPlayer.SetBool("isPickup", true);
     }
 
     private void ResetHolding()
     {
+        animPlayer.SetBool("isPickup", false);
         holding = false;
+
         itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;

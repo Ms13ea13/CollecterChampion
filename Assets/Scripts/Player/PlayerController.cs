@@ -44,11 +44,11 @@ public class PlayerController : PlayerBase
                 transform.forward = moveMentControlInput;
                 velocity.x /= 1 + drag.x * Time.deltaTime;
                 velocity.z /= 1 + drag.z * Time.deltaTime;
-                playerAnim.SetBool("isWalk", true);
+                playerAnim.SetBool("isRun", true);
             }
             else
             {
-                playerAnim.SetBool("isWalk", false);
+                playerAnim.SetBool("isRun", false);
             }
         }
 
