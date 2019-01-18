@@ -1013,17 +1013,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114685702717228446, guid: f2463cc8fa953ee449ca3c84ac4f6b57,
-        type: 2}
-      propertyPath: prefabToInstantiate
-      value: 
-      objectReference: {fileID: 1914834328023752, guid: 007084191d2c5c7409775eedb6fff174,
-        type: 2}
     - target: {fileID: 114891529681889214, guid: f2463cc8fa953ee449ca3c84ac4f6b57,
         type: 2}
       propertyPath: prefabToInstantiate
       value: 
       objectReference: {fileID: 1453829201675040, guid: f6543337b90d917418d2069f278c153d,
+        type: 2}
+    - target: {fileID: 114685702717228446, guid: f2463cc8fa953ee449ca3c84ac4f6b57,
+        type: 2}
+      propertyPath: prefabToInstantiate
+      value: 
+      objectReference: {fileID: 1914834328023752, guid: 007084191d2c5c7409775eedb6fff174,
         type: 2}
     - target: {fileID: 224262545433278654, guid: f2463cc8fa953ee449ca3c84ac4f6b57,
         type: 2}
