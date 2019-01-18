@@ -370,7 +370,7 @@ Transform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114275961775038644, guid: f2463cc8fa953ee449ca3c84ac4f6b57,
     type: 2}
-  m_PrefabInternal: {fileID: 1793863012}
+  m_PrefabInternal: {fileID: 1767811039}
   m_Script: {fileID: 11500000, guid: de4fd9586fa2c264ebe2e76ac431ec2b, type: 3}
 --- !u!1 &643782987 stripped
 GameObject:
@@ -974,7 +974,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 31.455002, y: -54.616, z: -19.289001}
---- !u!1001 &1793863012
+--- !u!1001 &1767811039
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
