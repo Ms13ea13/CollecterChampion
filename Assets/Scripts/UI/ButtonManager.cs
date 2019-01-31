@@ -58,15 +58,14 @@ public class ButtonManager : MonoBehaviour
         
     }
 
-    public void GoToState()
+    public void SelectStage()
     {
         LeanTween.cancelAll();
         StopAllCoroutines();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
         
-        StartCoroutine(LoadingLevel_GoToState());
-       
+        StartCoroutine(LoadingLevel_SelectStage());
     }
 
     IEnumerator LoadingLevel_GoToStory()
@@ -75,7 +74,7 @@ public class ButtonManager : MonoBehaviour
             SceneManager.LoadScene("04Story");
     }
 
-    IEnumerator LoadingLevel_GoToState()
+    IEnumerator LoadingLevel_SelectStage()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("SelectStage");

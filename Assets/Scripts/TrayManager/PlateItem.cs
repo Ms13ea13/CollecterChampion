@@ -125,7 +125,7 @@ public class PlateItem : MonoBehaviour
         if (itemsInPlate.Count < 3)
         {
             
-            Debug.LogError("addFoodTo item in plate : " + foodItem.name + " state : " +foodItem.GetFoodItemState().ToString());
+            Debug.LogError("addFoodTo item in plate : " + foodItem.name + " state : " + foodItem.GetFoodItemState().ToString());
             itemsInPlate.Add(food);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;

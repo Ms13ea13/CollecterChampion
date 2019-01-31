@@ -1340,6 +1340,7 @@ MonoBehaviour:
   holding: 0
   pick_up: {fileID: 8300000, guid: 0bf8926b6d5cbcd478bfdac510d24bd8, type: 3}
   sent_food: {fileID: 8300000, guid: e06447c06f558d5439e8cf41ac4acc16, type: 3}
+  animPlayer: {fileID: 0}
 --- !u!137 &137394392201005852
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
