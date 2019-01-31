@@ -175,8 +175,10 @@ public class CustomerManager : MonoBehaviour
                 {
                     customerOrders.Remove(item);
                     DelayPayment(item.GetOrderPrice());
+
                     if (item.gameObject != null)
                         LeanTween.cancel(item.gameObject);
+
                     Destroy(item.gameObject);
                     
                     SetShowTimerSlider(false);

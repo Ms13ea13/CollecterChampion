@@ -21,7 +21,7 @@ namespace SpawnItem
             spawnGameObj.transform.localScale = new Vector3(1, 1, 1);
 
             var spawnPos = Vector3.zero;
-            spawnGameObj.transform.localScale = new Vector3(100, 100, 100);
+            spawnGameObj.transform.localScale = new Vector3(1, 1, 1);
             spawnGameObj.transform.localPosition = StackDirtyDishes(currentIndex, spawnGameObj.transform);
         }
 
@@ -37,12 +37,12 @@ namespace SpawnItem
             {
                 case 0:
                     {
-                        temp.y = 1;
+                        temp.y = 0;
                         break;
                     }
                 case 1:
                     {
-                        temp.y = 3;
+                        temp.y = 0.025f;
                         break;
                     }
                 default:
