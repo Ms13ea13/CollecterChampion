@@ -39,6 +39,10 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private bool holding;
 
+    [SerializeField] private string PickUpKey;
+    [SerializeField] private string DropKey;
+    [SerializeField] private string InteractKey;
+
     private int foodInHoldId;
     private RaycastHit hit;
 
@@ -82,10 +86,10 @@ public class PlayerRayCast : MonoBehaviour
             
         GetFoodInFront();
 
-        if (Input.GetButtonUp("PickUp"))
+        if (Input.GetButtonUp(PickUpKey))
             PickUpObj();
             
-        if (Input.GetButton("Interact"))
+        if (Input.GetButton(InteractKey))
         { 
             FoodActions();
             PlateActions();
@@ -274,7 +278,7 @@ public class PlayerRayCast : MonoBehaviour
        
         if (holdingItem && holding)
         {
-            if (Input.GetButtonUp("DropOBJ"))
+            if (Input.GetButtonUp(DropKey))
             {
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)

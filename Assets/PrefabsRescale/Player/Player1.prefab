@@ -1333,7 +1333,7 @@ MonoBehaviour:
   currentPanInFront: {fileID: 0}
   currentPotInFront: {fileID: 0}
   currentSinkInFront: {fileID: 0}
-  charContr: {fileID: 0}
+  charContr: {fileID: 143682270956847024}
   spawnCleanDish: {fileID: 0}
   playerSightLength: 6
   distanceToObstacle: 0
