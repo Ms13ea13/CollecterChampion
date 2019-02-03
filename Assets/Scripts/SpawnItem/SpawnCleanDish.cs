@@ -37,7 +37,7 @@ namespace SpawnItem
                     }
                 case 1:
                     {
-                        temp.y = 0.025f;
+                        temp.y = 0.0205f;
                         currentIndex = 0;
                         break;
                     }
