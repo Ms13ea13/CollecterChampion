@@ -7,12 +7,12 @@ public class EndPanel : MonoBehaviour
 {
     [SerializeField] private AudioSource[] stopSound;
 
-    public GameObject[] disableOBJ;
+    //public GameObject[] disableOBJ;
 
     void Update()
     {
-        disableOBJ[0].SetActive(false);
-        disableOBJ[1].SetActive(false);
+        /*disableOBJ[0].SetActive(false);
+        disableOBJ[1].SetActive(false);*/
 
         stopSound[0].Stop();
         stopSound[1].Stop();

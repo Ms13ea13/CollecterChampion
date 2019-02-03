@@ -32,6 +32,16 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void GameEndReplayStage1()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void GameEndReplayStage2()
+    {
+        SceneManager.LoadScene(5);
+    }
+
     public void ReplayStage1()
     {
         LeanTween.cancelAll();
@@ -45,6 +55,8 @@ public class ButtonManager : MonoBehaviour
         LeanTween.cancelAll();
         if (Time.timeScale == 0)
             Time.timeScale = 1;
+        else
+            Time.timeScale = 1;
         StartCoroutine(LoadingLevel_ReplayStage2());
     }
 
@@ -55,7 +67,6 @@ public class ButtonManager : MonoBehaviour
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
         StartCoroutine(LoadingLevel_GoToStory());
-        
     }
 
     public void SelectStage()
@@ -64,14 +75,13 @@ public class ButtonManager : MonoBehaviour
         StopAllCoroutines();
         if (Time.timeScale == 0) 
             Time.timeScale = 1;
-        
         StartCoroutine(LoadingLevel_SelectStage());
     }
 
     IEnumerator LoadingLevel_GoToStory()
     {
         yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("04Story");
+        SceneManager.LoadScene("04Story");
     }
 
     IEnumerator LoadingLevel_SelectStage()
