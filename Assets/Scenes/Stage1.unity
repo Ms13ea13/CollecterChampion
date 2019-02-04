@@ -793,6 +793,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114101581509202464, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: plusStar
+      value: 
+      objectReference: {fileID: 858645528}
     - target: {fileID: 114725632149298616, guid: 9241752178d5f124a8a6918088faca54,
         type: 2}
       propertyPath: stopSound.Array.data[0]
@@ -803,11 +808,6 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
-    - target: {fileID: 114101581509202464, guid: 9241752178d5f124a8a6918088faca54,
-        type: 2}
-      propertyPath: plusStar
-      value: 
-      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9241752178d5f124a8a6918088faca54, type: 2}
   m_IsPrefabAsset: 0

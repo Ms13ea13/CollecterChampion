@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 114427443297487274}
   - component: {fileID: 114075923150160736}
   m_Layer: 5
-  m_Name: MainMenuButton
+  m_Name: StageSelectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1406,7 +1406,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114450276067302838}
-        m_MethodName: BackToMainMenu
+        m_MethodName: BackToSelectStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3401,7 +3401,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MainMenu
+  m_Text: 'Stage
+
+    Select'
 --- !u!114 &114821885162453142
 MonoBehaviour:
   m_ObjectHideFlags: 1

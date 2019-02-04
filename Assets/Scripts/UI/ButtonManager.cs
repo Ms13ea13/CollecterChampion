@@ -32,6 +32,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void BackToSelectStage()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void GameEndReplayStage1()
     {
         SceneManager.LoadScene(4);
