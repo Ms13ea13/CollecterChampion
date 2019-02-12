@@ -276,6 +276,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1278238485978280, guid: 57b75c8e07d3a8d4c8f1a46335004007,
     type: 2}
   m_PrefabInternal: {fileID: 1902593814}
+--- !u!1 &644489143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1750411593862332, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+    type: 2}
+  m_PrefabInternal: {fileID: 1902593814}
 --- !u!1 &730997558
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +963,16 @@ Prefab:
       propertyPath: plusStar
       value: 
       objectReference: {fileID: 858645528}
+    - target: {fileID: 114236681165829952, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383633721783536, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: howToCook
+      value: 
+      objectReference: {fileID: 644489143}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
   m_IsPrefabAsset: 0

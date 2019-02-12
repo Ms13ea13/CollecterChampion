@@ -15,7 +15,7 @@ public class HowToCook : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             Time.timeScale = 1;
             howToCook.SetActive(false);
