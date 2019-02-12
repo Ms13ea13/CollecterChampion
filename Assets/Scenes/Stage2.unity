@@ -298,7 +298,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 730997558}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 61bf5752e8985c142b94854c70ec0bc5, type: 3}
@@ -491,7 +491,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4fbe87b28010f474a9f7aae46a951819, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2612e1ca8159c1943a6d8e4cac6c3b33, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -943,11 +943,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114242163762502832, guid: 57b75c8e07d3a8d4c8f1a46335004007,
-        type: 2}
-      propertyPath: plusStar
-      value: 
-      objectReference: {fileID: 858645528}
     - target: {fileID: 114501583323986062, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
       propertyPath: stopSound.Array.data[0]
@@ -958,6 +953,11 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
+    - target: {fileID: 114242163762502832, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: plusStar
+      value: 
+      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
   m_IsPrefabAsset: 0
