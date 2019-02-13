@@ -27,7 +27,7 @@ public class ButtonManager : MonoBehaviour
 
     //---------------------------------------------------------------------------------------------------------------------
 
-    public void BackToMainMenu()
+    /*public void BackToMainMenu()
     {
         SceneManager.LoadScene(1);
     }
@@ -45,7 +45,7 @@ public class ButtonManager : MonoBehaviour
     public void GameEndReplayStage2()
     {
         SceneManager.LoadScene(5);
-    }
+    }*/
 
     public void ReplayStage1()
     {

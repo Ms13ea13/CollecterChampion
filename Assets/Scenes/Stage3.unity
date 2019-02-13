@@ -1441,6 +1441,31 @@ Prefab:
       propertyPath: plusStar
       value: 
       objectReference: {fileID: 858645528}
+    - target: {fileID: 114312790961419244, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: minScore
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114312790961419244, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: middleScore
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114312790961419244, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: maxScore
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502954130724010, guid: 051b05698df63624986138bac3a398e4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114579880789152668, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3154ca8e01ba6544cbbd6a6474ceb786,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
   m_IsPrefabAsset: 0
