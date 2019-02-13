@@ -14,9 +14,11 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private int score;
 
-    //[SerializeField] private int totalScore;
-
     [SerializeField] private StarManager plusStar;
+
+    [SerializeField] private int minScore;
+    [SerializeField] private int middleScore;
+    [SerializeField] private int maxScore;
 
     private AudioSource ScoreMAudioSource;
 
@@ -43,17 +45,17 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckScore(int totalScore)
     {
-        if (totalScore >= 60 && totalScore < 80)
+        if (totalScore >= minScore && totalScore < middleScore)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(0);
         }
-        else if (totalScore >= 80 && totalScore < 100)
+        else if (totalScore >= middleScore && totalScore < maxScore)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(1);
         }
-        else if (totalScore >= 100)
+        else if (totalScore >= maxScore)
         {
             plusStar.ResetStars();
             plusStar.StarCollect(2);

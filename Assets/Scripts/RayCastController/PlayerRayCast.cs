@@ -11,8 +11,6 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private CustomerManager currentCustomerInFront;
 
-    [SerializeField] private CustomerManagerStage2 currentCustomerStage2InFront;
-
     [SerializeField] private BinManager currentBinInFront;
 
     [SerializeField] private PlateItem currentPlateInFront;
@@ -33,7 +31,7 @@ public class PlayerRayCast : MonoBehaviour
     
     [SerializeField] private SpawnCleanDish spawnCleanDish;
 
-    [SerializeField] private float playerSightLength = 10f;
+    [SerializeField] private float playerSightLength;
 
     [SerializeField] private float distanceToObstacle;
 
@@ -72,7 +70,6 @@ public class PlayerRayCast : MonoBehaviour
         {
             DropObj(ref itemInHold);
             GetCustomerInFront();
-            GetCustomerStage2InFront();
             GetBinInFront();
             GetStoveInFront();
             GetChoppingBoardInFront();
@@ -99,7 +96,7 @@ public class PlayerRayCast : MonoBehaviour
     private void GetFoodInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Food"))
         {
             distanceToObstacle = hit.distance;
@@ -114,7 +111,7 @@ public class PlayerRayCast : MonoBehaviour
     private void GetCustomerInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Customer"))
         {
             distanceToObstacle = hit.distance;
@@ -124,23 +121,10 @@ public class PlayerRayCast : MonoBehaviour
             currentCustomerInFront = null;
     }
 
-    private void GetCustomerStage2InFront()
-    {
-        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
-             hit.transform.tag == "Customer"))
-        {
-            distanceToObstacle = hit.distance;
-            currentCustomerStage2InFront = hit.transform.gameObject.GetComponent<CustomerManagerStage2>();
-        }
-        else
-            currentCustomerStage2InFront = null;
-    }
-
     private void GetBinInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Bin"))
         {
             distanceToObstacle = hit.distance;
@@ -153,7 +137,7 @@ public class PlayerRayCast : MonoBehaviour
     private void GetPlateHolderInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 0.001f) &&
              hit.transform.tag == "Tray"))
         {
             distanceToObstacle = hit.distance;
@@ -165,7 +149,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void GetStoveInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Stove"))
         {
             distanceToObstacle = hit.distance;
@@ -177,7 +161,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void GetChoppingBoardInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "ChoppingBoard"))
         {
             distanceToObstacle = hit.distance;
@@ -189,7 +173,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void GetCounterInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Counter"))
         {
             distanceToObstacle = hit.distance;
@@ -201,7 +185,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void GetPanInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Pan"))
         {
             distanceToObstacle = hit.distance;
@@ -214,7 +198,7 @@ public class PlayerRayCast : MonoBehaviour
     private void GetPotInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Pot"))
         {
             distanceToObstacle = hit.distance;
@@ -226,7 +210,7 @@ public class PlayerRayCast : MonoBehaviour
 
     private void GetSinkInFront()
     {
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Sink"))
         {
             distanceToObstacle = hit.distance;
@@ -275,7 +259,6 @@ public class PlayerRayCast : MonoBehaviour
 
     private void DropObj(ref GameObject holdingItem)
     {
-       
         if (holdingItem && holding)
         {
             if (Input.GetButtonUp(DropKey))
@@ -447,7 +430,6 @@ public class PlayerRayCast : MonoBehaviour
         itemInHold = null;
         currentFoodInFront = null;
         currentCustomerInFront = null;
-        currentCustomerStage2InFront = null;
         currentPlateInFront = null;
         currentBinInFront = null;
         currentStoveInFront = null;
