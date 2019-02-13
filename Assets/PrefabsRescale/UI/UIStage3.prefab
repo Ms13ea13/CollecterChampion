@@ -771,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1505765761914934
 GameObject:
   m_ObjectHideFlags: 1
@@ -2290,9 +2290,9 @@ MonoBehaviour:
   totalScoreText: {fileID: 114821835609200178}
   score: 0
   plusStar: {fileID: 0}
-  minScore: 0
-  middleScore: 0
-  maxScore: 0
+  minScore: 100
+  middleScore: 200
+  maxScore: 300
 --- !u!114 &114320850622050742
 MonoBehaviour:
   m_ObjectHideFlags: 1
