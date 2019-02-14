@@ -11,6 +11,8 @@ public class LevelLoader : MonoBehaviour {
 
     public void Loadlevel(int SceneIndex)
     {
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
         StartCoroutine(LoadAsynchronously(SceneIndex));
     }
 
