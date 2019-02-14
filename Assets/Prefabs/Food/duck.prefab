@@ -690,6 +690,7 @@ MonoBehaviour:
   currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
+  foodtype: 0
   DoneState: 2
   currentFoodState: 0
 --- !u!114 &114850143929045322

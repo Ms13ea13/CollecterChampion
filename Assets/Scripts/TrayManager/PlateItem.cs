@@ -137,41 +137,54 @@ public class PlateItem : MonoBehaviour
         return true;
     }
 
-    private Dictionary<int, int> GetFoodInPlate()
-    {
-        var plateDict = new Dictionary<int, int>();
-        
-
-        foreach (var foodObj in itemsInPlate)
-        {
-            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId();
-            if (plateDict.ContainsKey(foodId))
-            {
-                plateDict[foodId] += 1;
-            }
-            else
-            {
-                plateDict.Add(foodId, 1);
-            }
-        }
-
-        return plateDict;
-    }
+//    private Dictionary<int, int> GetFoodInPlate()
+//    {
+//        Debug.LogError("GetFoodInPlate");
+//        var plateDict = new Dictionary<int, int>();
+//        
+//
+//        foreach (var foodObj in itemsInPlate)
+//        {
+//            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId();
+//            if (plateDict.ContainsKey(foodId))
+//            {
+//                plateDict[foodId] += 1;
+//            }
+//            else
+//            {
+//                plateDict.Add(foodId, 1);
+//            }
+//        }
+//
+//        return plateDict;
+//    }
 
     public bool DeliverFoodViaPlate(CustomerManager customer)
     {
-        if (!customer.CheckOrderValidation(GetFoodInPlate())) return false;
 
-        for (var i = itemsInPlate.Count - 1; i >= 0; i--)
+        if (customer.ProcessingFoodOnPlate(itemsInPlate,this) != null)
         {
-            var item = itemsInPlate[i];
-            itemsInPlate.Remove(item);
-            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
-            Destroy(item.gameObject);
+            return false;
         }
-
-        Destroy(gameObject);
-        return true;
+        else
+        {
+            Destroy(gameObject);
+            return true;
+        }
+//        if (!customer.CheckOrderValidation(GetFoodInPlate())) return false;
+//        Debug.LogError("send food via plate");
+//        
+//        
+//        for (var i = itemsInPlate.Count - 1; i >= 0; i--)
+//        {
+//            var item = itemsInPlate[i];
+//            itemsInPlate.Remove(item);
+//            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
+//            Destroy(item.gameObject);
+//        }
+//
+//        Destroy(gameObject);
+//        return true;
     }
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)

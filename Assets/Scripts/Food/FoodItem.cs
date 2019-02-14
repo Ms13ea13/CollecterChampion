@@ -34,7 +34,7 @@ public class FoodItem : MonoBehaviour
         OnFire,
         Done
     }
-
+    
     [SerializeField] private GameObject rawModel;
 
     [SerializeField] private GameObject grilledModel;
@@ -78,6 +78,12 @@ public class FoodItem : MonoBehaviour
 
     private float soundLength;
     private float soundStart = 0f;
+    [SerializeField] private FoodType.FoodItemType foodtype;
+
+    public FoodType.FoodItemType GetFoodType()
+    {
+        return foodtype;
+    }
     [SerializeField] private FoodState DoneState;
     [SerializeField] private FoodState currentFoodState;
 
@@ -130,7 +136,7 @@ public class FoodItem : MonoBehaviour
                 foodStateUI.sprite = onFirePicture;
                 break;
             case FoodState.Boiled:
-                foodStateUI.sprite = cookedPicture; //ไปเเยกมา
+                foodStateUI.sprite = cookedPicture;
                 break;
             case FoodState.Grilled:
                 foodStateUI.sprite = cookedPicture;
@@ -146,6 +152,8 @@ public class FoodItem : MonoBehaviour
                 break;
         }
     }
+    
+    
 
     public void PutFoodInTheStove()
     {
