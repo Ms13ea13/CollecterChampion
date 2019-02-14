@@ -406,7 +406,7 @@ public class FoodItem : MonoBehaviour
                     if (CompareCurrentFoodState(DoneState))
                     {
                         currentFoodState = FoodState.Done;   
-                        Debug.LogError("set done");;
+//                        Debug.LogError("set done");;
                     }
                 }
 

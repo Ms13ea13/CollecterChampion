@@ -18,13 +18,14 @@ public class FoodOrder : MonoBehaviour
     private int Price;
     
     [SerializeField]
-    private float orderTimer = 30f;
+    private float orderTimer = 180f;
     private int leantweenID;
     
     [SerializeField] private int minWaitLevel = 0;
 
     [SerializeField] private int maxWaitLevel = 100;
-    private bool timerSet = false;
+    [SerializeField]
+    private bool initiated = false;
     [SerializeField]
     private int tempValue ;
     
@@ -37,58 +38,44 @@ public class FoodOrder : MonoBehaviour
     [SerializeField]
     private FoodType.FoodItemType orderFoodType;
 
-    public bool GetTimerSet()
-    {
-        return timerSet;
-    }
-
-    void Start()
-    {
-        Initiate();
-    }
-    
-    private void Initiate()
-    {
-        tempValue = -5;
-        orderSliderTimer.minValue = minWaitLevel;
-        orderSliderTimer.value = tempValue;
-        orderSliderTimer.maxValue = maxWaitLevel;
-    }
-
-    void Update()
-    {
-        if (!HowToCook.IsShowingTutorial() || Time.timeScale != 0)
-        {
-            if (!timerSet)
-                SetTimer();
-        }
-    }
-
-    void SetTimer()
-    {
-        
-        timerSet = true;
-        leantweenID = LeanTween.value(tempValue, maxWaitLevel, orderTimer).setOnUpdate((tempValue) =>
-        {
-            orderSliderTimer.value = tempValue;
-            
-        }).setOnComplete(() =>
-        {
-            CustomerManager.ClearCustomerOrderWhenNotSendFood(this);
-            CustomerManager.GetInstance().OrderingFood();
-            Destroy(gameObject);
-        }).id;
-    }
-
-    public FoodType.FoodItemType SetOrder(int id)
+    public void SetOrder(int id)
     {
         orderId = id;
         Price = GameSceneManager.GetInstance().GetFoodPriceById(id);
         orderName = GameSceneManager.GetInstance().GetFoodNameById(id);
         foodImage.sprite = GameSceneManager.GetInstance().GetFoodPictureById(id);
         orderFoodType = GameSceneManager.GetInstance().GetFoodTypeById(id);
-        Debug.LogError("order : "  + orderName +" type : " + orderFoodType.ToString() );
-        return orderFoodType;
+        Initiate();
+    }
+    private void Initiate()
+    {
+        tempValue = -5;
+        orderSliderTimer.minValue = minWaitLevel;
+        orderSliderTimer.value = tempValue;
+        orderSliderTimer.maxValue = maxWaitLevel;
+        SetTimer();
+    }
+
+    void SetTimer()
+    {
+        leantweenID = LeanTween.value(tempValue, maxWaitLevel, orderTimer).setOnStart(() =>
+        {
+            initiated = true;
+        }).setOnUpdate((tempValue) =>
+        {
+            orderSliderTimer.value = tempValue;
+            
+        }).setOnComplete(() =>
+        {
+            CustomerManager.RemoveOrder(this);
+            CustomerManager.GetInstance().OrderingFood();
+            Destroy(gameObject);
+        }).id;
+    }
+    
+    public bool IsInitiated()
+    {
+        return initiated;
     }
 
     public FoodType.FoodItemType GetOrderFoodItemType()

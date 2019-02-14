@@ -266,10 +266,8 @@ public class PlayerRayCast : MonoBehaviour
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
-                    Debug.LogError("found customer");
                     if (holdingItem.GetComponent<FoodItem>())
                     { 
-                        Debug.LogError("holding foodItem");
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
@@ -281,11 +279,13 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else if (holdingItem.GetComponent<PlateItem>())
                     {
-                        Debug.LogError("holding PlateItem");
                         if (holdingItem.GetComponent<PlateItem>().DeliverFoodViaPlate(currentCustomerInFront))
                         {
-                          
                             ResetHolding();
+                        }
+                        else
+                        {
+                            
                         }
 
                         playerAudioSource.PlayOneShot(sent_food);
