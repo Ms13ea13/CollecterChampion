@@ -2304,8 +2304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1abd7b93202a140ad2e28fa0888c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFoodProvideID: 2
-  maxFoodProvideID: 4
+  minFoodProvideID: 4
+  maxFoodProvideID: 8
   players: []
   m_EndPanel: {fileID: 114968296693747642}
   scoreManager: {fileID: 114312790961419244}
@@ -2315,12 +2315,20 @@ MonoBehaviour:
     - Rice
     - BarbecuedSucklingPig
     - CrispyPork
+    - ShrimpDumpling
+    - PorkDumpling
+    - YellowPowder
+    - GreenPowder
     foodPicture:
     - {fileID: 21300000, guid: d28835c3c22ecb646ac5ff854903fe21, type: 3}
     - {fileID: 21300000, guid: 079bcaf42df26bc46bacdad69b14ee76, type: 3}
     - {fileID: 21300000, guid: fad678c07e96b2e43bf218dc3c097e0e, type: 3}
     - {fileID: 21300000, guid: 235cc82cfa17b1645a58845f0203f235, type: 3}
-    price: 320000000a0000007800000032000000
+    - {fileID: 21300000, guid: 8678e6c9999f5f24aa7820fbaa0df738, type: 3}
+    - {fileID: 21300000, guid: 24ecbc82897b2f1469e9413a34cc2dfa, type: 3}
+    - {fileID: 21300000, guid: 3577209e91db8a544ab39297e5b22db1, type: 3}
+    - {fileID: 21300000, guid: b1b306a0ca7214344a0aa9b56428c61d, type: 3}
+    price: 320000000a000000780000003200000001000000010000000100000001000000
   PausePanel: {fileID: 1471615907756766}
 --- !u!114 &114338837499433924
 MonoBehaviour:
@@ -2612,13 +2620,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114477598966059808}
-        m_MethodName: ReplayStage2
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: Loadlevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3024,13 +3032,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114477598966059808}
-        m_MethodName: MainMenuButton
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: Loadlevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

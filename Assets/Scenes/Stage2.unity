@@ -961,12 +961,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114242163762502832, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+    - target: {fileID: 114289279446807538, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
-      propertyPath: plusStar
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 858645528}
-    - target: {fileID: 114459959012960404, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+      objectReference: {fileID: 973825057}
+    - target: {fileID: 114729784076209316, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 973825057}
+    - target: {fileID: 114767098551945818, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 973825057}
+    - target: {fileID: 114048589510941010, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -981,16 +991,16 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
-    - target: {fileID: 114048589510941010, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+    - target: {fileID: 114459959012960404, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 973825057}
-    - target: {fileID: 114767098551945818, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+    - target: {fileID: 114242163762502832, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: plusStar
       value: 
-      objectReference: {fileID: 973825057}
+      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
   m_IsPrefabAsset: 0

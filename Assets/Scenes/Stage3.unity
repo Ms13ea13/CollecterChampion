@@ -1249,21 +1249,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 224808510733865108, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1354,17 +1339,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114312790961419244, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: plusStar
-      value: 
-      objectReference: {fileID: 858645528}
-    - target: {fileID: 114093083216256196, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114556504285517494, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1556619644}
-    - target: {fileID: 114001630208336390, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114439496142331568, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1556619644}
+    - target: {fileID: 114149570063735262, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1379,89 +1364,21 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
-    - target: {fileID: 114149570063735262, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114001630208336390, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1556619644}
-    - target: {fileID: 1502954130724010, guid: 051b05698df63624986138bac3a398e4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114093083216256196, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
-      propertyPath: minFoodProvideID
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: maxFoodProvideID
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[4]
-      value: ShrimpDumpling
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[5]
-      value: PorkDumpling
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[6]
-      value: YellowPowder
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.orderName.Array.data[7]
-      value: GreenPowder
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[4]
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21300000, guid: 8678e6c9999f5f24aa7820fbaa0df738,
-        type: 3}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+      objectReference: {fileID: 1556619644}
+    - target: {fileID: 114312790961419244, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[5]
+      propertyPath: plusStar
       value: 
-      objectReference: {fileID: 21300000, guid: 24ecbc82897b2f1469e9413a34cc2dfa,
-        type: 3}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[6]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3577209e91db8a544ab39297e5b22db1,
-        type: 3}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.foodPicture.Array.data[7]
-      value: 
-      objectReference: {fileID: 21300000, guid: b1b306a0ca7214344a0aa9b56428c61d,
-        type: 3}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[4]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[5]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[6]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: foodNmaeOrder.price.Array.data[7]
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
   m_IsPrefabAsset: 0
