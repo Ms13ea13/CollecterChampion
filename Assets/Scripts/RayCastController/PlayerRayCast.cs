@@ -271,7 +271,6 @@ public class PlayerRayCast : MonoBehaviour
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
-                           
                             Destroy(holdingItem);
                             ResetHolding();
                         }
@@ -327,7 +326,8 @@ public class PlayerRayCast : MonoBehaviour
                 else if (currentChoppingBoardInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0 ||
-                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3)
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 4)
                     {
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);
@@ -343,7 +343,8 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (currentPanInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 4)
                     {
                         currentPanInFront.PlaceObjIntoPan(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInThePan();
@@ -353,7 +354,8 @@ public class PlayerRayCast : MonoBehaviour
                 else if (currentPotInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>() == null) return;
-                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1)
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 1 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 5)
                     {
                         currentPotInFront.PlaceFoodIntoPot(holdingItem, ref holding);
                         holdingItem.GetComponent<FoodItem>().PutFoodInThePot();

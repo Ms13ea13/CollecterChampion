@@ -1145,6 +1145,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1832111412757964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224969494877264416}
+  - component: {fileID: 114753605994193446}
+  m_Layer: 5
+  m_Name: OrderPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1849196023195894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,9 +2306,9 @@ MonoBehaviour:
   totalScoreText: {fileID: 114821835609200178}
   score: 0
   plusStar: {fileID: 0}
-  minScore: 100
-  middleScore: 200
-  maxScore: 300
+  minScore: 50
+  middleScore: 80
+  maxScore: 110
 --- !u!114 &114320850622050742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2305,30 +2321,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minFoodProvideID: 4
-  maxFoodProvideID: 8
+  maxFoodProvideID: 6
   players: []
   m_EndPanel: {fileID: 114968296693747642}
   scoreManager: {fileID: 114312790961419244}
-  foodNmaeOrder:
+  foodNameOrder:
     orderName:
     - Duck
     - Rice
     - BarbecuedSucklingPig
     - CrispyPork
-    - ShrimpDumpling
-    - PorkDumpling
-    - YellowPowder
-    - GreenPowder
+    - Phongko
+    - Tofu
     foodPicture:
     - {fileID: 21300000, guid: d28835c3c22ecb646ac5ff854903fe21, type: 3}
     - {fileID: 21300000, guid: 079bcaf42df26bc46bacdad69b14ee76, type: 3}
     - {fileID: 21300000, guid: fad678c07e96b2e43bf218dc3c097e0e, type: 3}
     - {fileID: 21300000, guid: 235cc82cfa17b1645a58845f0203f235, type: 3}
-    - {fileID: 21300000, guid: 8678e6c9999f5f24aa7820fbaa0df738, type: 3}
-    - {fileID: 21300000, guid: 24ecbc82897b2f1469e9413a34cc2dfa, type: 3}
-    - {fileID: 21300000, guid: 3577209e91db8a544ab39297e5b22db1, type: 3}
-    - {fileID: 21300000, guid: b1b306a0ca7214344a0aa9b56428c61d, type: 3}
-    price: 320000000a000000780000003200000001000000010000000100000001000000
+    - {fileID: 21300000, guid: 40d18c26e105e3448a728082638e2376, type: 3}
+    - {fileID: 21300000, guid: 8ac9bf6cbdbd3fd4795f96d14e74af66, type: 3}
+    price: 320000000a00000078000000320000000a00000014000000
   PausePanel: {fileID: 1471615907756766}
 --- !u!114 &114338837499433924
 MonoBehaviour:
@@ -3097,7 +3109,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3154ca8e01ba6544cbbd6a6474ceb786, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 261042a5b6df7da4e97459c25add9cde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3825,6 +3837,28 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 960 x 540
+--- !u!114 &114753605994193446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832111412757964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!114 &114767741858581428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5769,7 +5803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.874001}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: 9}
+  m_AnchoredPosition: {x: -18, y: 76}
   m_SizeDelta: {x: 720, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224422961092885568
@@ -6358,6 +6392,7 @@ RectTransform:
   - {fileID: 224320214486603906}
   - {fileID: 224104983529789184}
   - {fileID: 224204052177738472}
+  - {fileID: 224969494877264416}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6604,4 +6639,22 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224969494877264416
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832111412757964}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224808510733865108}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 98, y: -59.00006}
+  m_SizeDelta: {x: 174.03, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

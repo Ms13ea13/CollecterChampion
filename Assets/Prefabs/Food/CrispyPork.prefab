@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 114702579247863612}
   - component: {fileID: 82161186501043856}
   m_Layer: 0
-  m_Name: PorkMeat
+  m_Name: CrispyPork
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

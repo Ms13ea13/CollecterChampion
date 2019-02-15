@@ -3492,7 +3492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ebcdab352e78b4f8d96edde2cb3c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 151
+  timer: 150
   ForTimeTextUI: {fileID: 114844053862622850}
 --- !u!114 &114662462720001694
 MonoBehaviour:
