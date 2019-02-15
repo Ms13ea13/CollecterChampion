@@ -11013,13 +11013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba9dcd177223214eaeb87fa4b047704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderLength: 0
   showStatus: {fileID: 0}
   orderPrefab: {fileID: 1283305104212696, guid: 14643d20426d0f04c8075a2d0f3be4d5,
     type: 2}
   statusImages: []
   customerPanel: {fileID: 0}
   spawnDirtyDish: {fileID: 114255511644545602}
+  delayOrderTimer: 50
 --- !u!114 &114940437828693752
 MonoBehaviour:
   m_ObjectHideFlags: 1
