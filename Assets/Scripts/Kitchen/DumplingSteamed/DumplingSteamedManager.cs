@@ -2,33 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DumplingSteamedManager : MonoBehaviour
+public class DumplingSteamedManager : InteractableManager
 {
-    /*public void ThrowItemToBin(GameObject target)
+    public override void Interact(GameObject target, ref bool holding)
     {
-        if (!target)
-            return;
+        FoodItem food = target.gameObject.GetComponent<FoodItem>();
+        if (food == null) return;
+        
+        int foodID = food.GetFoodItemId();
 
-        PlayFoodGoDownTrash(target);
-    }
-
-    private void PlayFoodGoDownTrash(GameObject item)
-    {
-        //Set fall down position here
-        Destroy(item);
-    }*/
-
-    public void PlaceObjIntoDumplingSteamed(GameObject target, ref bool holding)
-    {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.139f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodIntoDumplingSteamed(true);
+        if (foodID == 6 || foodID == 7 || foodID == 8 || foodID == 9)
+        {
+            SetTargetPosition(food.transform);
+            holding = false;
+            food.SetFoodIntoDumplingSteamed(true);
+            food.PutFoodInTheDumplingSteamed();
+        }
     }
 }

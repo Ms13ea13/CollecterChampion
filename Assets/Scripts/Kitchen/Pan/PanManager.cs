@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanManager : MonoBehaviour
+public class PanManager : InteractableManager
 {
-    public void PlaceObjIntoPan(GameObject target, ref bool holding)
+    public override void Interact(GameObject target, ref bool holding)
     {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = -0.0013f;
-        temp.x = 0.057f;
-        temp.z = 0.0049f;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnStove(true);
+        FoodItem food = target.gameObject.GetComponent<FoodItem>();
+        if (food == null) return;
+        
+        int foodID = food.GetFoodItemId();
+
+        if (foodID == 3 || foodID == 4 )
+        {
+            SetTargetPosition(food.transform);
+            holding = false;
+            food.SetFoodOnStove(true);
+            food.PutFoodInThePan();
+        }
     }
 }

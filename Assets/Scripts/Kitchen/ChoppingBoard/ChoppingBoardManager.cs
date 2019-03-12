@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 
-public class ChoppingBoardManager : MonoBehaviour
+public class ChoppingBoardManager : InteractableManager
 {
-    public void PlaceFoodOnChoppingBoard(GameObject target  , ref bool holding)
+    public override void Interact(GameObject target  , ref bool holding)
     {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.148f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnChoppingBoard(true);
+        FoodItem food = target.gameObject.GetComponent<FoodItem>();
+        if (food == null) return;
+        
+        int foodID = food.GetFoodItemId();
+
+        if (foodID == 0 || foodID == 3 || foodID == 4 || foodID == 6 || 
+            foodID == 7 || foodID == 8 || foodID == 9)
+        {
+            SetTargetPosition(food.transform);
+            holding = false;
+            food.SetFoodOnChoppingBoard(true);
+        }
     }
 }

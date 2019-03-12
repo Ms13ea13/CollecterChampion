@@ -1,16 +1,30 @@
 ﻿using UnityEngine;
 
-public class BinManager : MonoBehaviour
+public class BinManager : InteractableManager
 {
-	public void ThrowItemToBin(GameObject target)
+	public override void Interact(GameObject target  , ref bool holding )
 	{
 		if (!target)
 			return;
-
-		PlayFoodGoDownTrash(target);
+		
+		PlateItem plateOnHold = target.GetComponent<PlateItem>();
+		if (plateOnHold != null)
+		{
+                        
+			if (plateOnHold.ItemInPlate().Count > 0)
+			{
+				plateOnHold.ClearAllItemInPlate();
+			}
+			else
+				return;
+		}
+		else
+		{
+			ThowItemToTrash(target);
+		}
 	}
 
-	private void PlayFoodGoDownTrash(GameObject item)
+	private void ThowItemToTrash(GameObject item)
 	{
 		//Set fall down position here
 		Destroy(item);
