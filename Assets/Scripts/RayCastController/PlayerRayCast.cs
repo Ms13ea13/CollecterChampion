@@ -61,9 +61,8 @@ public class PlayerRayCast : MonoBehaviour
             GetCustomerInFront();
             GetInteractableInFront();
         }
-        else
-            GetPlateHolderInFront();
-            
+
+        GetPlateHolderInFront();
         GetFoodInFront();
 
         if (Input.GetButtonUp(PickUpKey))
@@ -107,7 +106,7 @@ public class PlayerRayCast : MonoBehaviour
     private void GetPlateHolderInFront()
     {
         // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 0.001f) &&
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
              hit.transform.tag == "Tray"))
         {
             distanceToObstacle = hit.distance;
