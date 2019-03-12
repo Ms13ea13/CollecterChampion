@@ -12840,6 +12840,21 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: bf5ac64445727514ab7575ba61766f52,
         type: 3}
+    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: foodNameOrder.orderName.Array.data[7]
+      value: GreenFlour
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: foodNameOrder.orderName.Array.data[6]
+      value: YellowFlour
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: foodNameOrder.orderName.Array.data[8]
+      value: PorkMeat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
   m_IsPrefabAsset: 0
