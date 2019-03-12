@@ -17,6 +17,8 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private StoveManager currentStoveInFront;
 
+    [SerializeField] private DumplingSteamedManager currentDumplingSteamedInFront;
+
     [SerializeField] private ChoppingBoardManager currentChoppingBoardInFront;
 
     [SerializeField] private CounterManager currentCounterInFront;
@@ -72,6 +74,7 @@ public class PlayerRayCast : MonoBehaviour
             GetCustomerInFront();
             GetBinInFront();
             GetStoveInFront();
+            GetDumplingSteamedInFront();
             GetChoppingBoardInFront();
             GetCounterInFront();
             GetPanInFront();
@@ -157,6 +160,18 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
             currentStoveInFront = null;
+    }
+
+    private void GetDumplingSteamedInFront()
+    {
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
+             hit.transform.tag == "DumplingSteamed"))
+        {
+            distanceToObstacle = hit.distance;
+            currentDumplingSteamedInFront = hit.transform.gameObject.GetComponent<DumplingSteamedManager>();
+        }
+        else
+            currentDumplingSteamedInFront = null;
     }
 
     private void GetChoppingBoardInFront()
@@ -323,6 +338,18 @@ public class PlayerRayCast : MonoBehaviour
                         UnHoldItem(holdingItem);
                     }
                 }
+                else if (currentDumplingSteamedInFront)
+                {
+                    if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 6 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 7 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 8 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 9)
+                    {
+                        currentDumplingSteamedInFront.PlaceObjIntoDumplingSteamed(holdingItem, ref holding);
+                        holdingItem.GetComponent<FoodItem>().PutFoodInTheDumplingSteamed();
+                        UnHoldItem(holdingItem);
+                    }
+                }
                 else if (currentChoppingBoardInFront)
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0 ||
@@ -446,6 +473,7 @@ public class PlayerRayCast : MonoBehaviour
         currentPlateInFront = null;
         currentBinInFront = null;
         currentStoveInFront = null;
+        currentDumplingSteamedInFront = null;
         currentChoppingBoardInFront = null;
         currentCounterInFront = null;
         currentPanInFront = null;

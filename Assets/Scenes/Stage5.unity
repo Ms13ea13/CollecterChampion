@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44075254, g: 0.48942858, b: 0.56954986, a: 1}
+  m_IndirectSpecularColor: {r: 0.1758686, g: 0.22008157, b: 0.3024098, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9268,7 +9268,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea5cde6733552c747bce12e588461a7e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 261405f49ae57d04cab686eee88e5d64, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -16270,6 +16270,7 @@ MonoBehaviour:
   currentBinInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
   currentStoveInFront: {fileID: 0}
+  currentDumplingSteamedInFront: {fileID: 0}
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
   currentPanInFront: {fileID: 0}
@@ -24211,6 +24212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5dd57d72de6a94884ef100480cdd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingStage: {fileID: 0}
 --- !u!4 &1863641613
 Transform:
   m_ObjectHideFlags: 0
@@ -24651,6 +24653,7 @@ MonoBehaviour:
   currentBinInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
   currentStoveInFront: {fileID: 0}
+  currentDumplingSteamedInFront: {fileID: 0}
   currentChoppingBoardInFront: {fileID: 0}
   currentCounterInFront: {fileID: 0}
   currentPanInFront: {fileID: 0}
@@ -25522,21 +25525,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1581251916493136, guid: 051b05698df63624986138bac3a398e4,
     type: 2}
   m_PrefabInternal: {fileID: 1902593814}
---- !u!1 &1902593825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1302098963354556, guid: 051b05698df63624986138bac3a398e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1902593814}
---- !u!1 &1902593826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1296956384592742, guid: 051b05698df63624986138bac3a398e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1902593814}
---- !u!1 &1902593827 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1226577114603872, guid: 051b05698df63624986138bac3a398e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1902593814}
 --- !u!1 &1902593828 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1492330273867720, guid: 051b05698df63624986138bac3a398e4,
@@ -26098,189 +26086,6 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902593824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29f29cd3da572f4fb6892847b81e287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1902593815}
-  hover: {fileID: 8300000, guid: bc1271a0b404ef449b55b6637faae34e, type: 3}
-  click: {fileID: 8300000, guid: 72f54424e9ab5f6428307d97a3313bd5, type: 3}
---- !u!114 &1902593850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593851}
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593851}
-          m_MethodName: OnClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &1902593851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29f29cd3da572f4fb6892847b81e287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1902593815}
-  hover: {fileID: 8300000, guid: bc1271a0b404ef449b55b6637faae34e, type: 3}
-  click: {fileID: 8300000, guid: 72f54424e9ab5f6428307d97a3313bd5, type: 3}
---- !u!114 &1902593852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593853}
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593853}
-          m_MethodName: OnClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &1902593853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29f29cd3da572f4fb6892847b81e287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 1902593815}
-  hover: {fileID: 8300000, guid: bc1271a0b404ef449b55b6637faae34e, type: 3}
-  click: {fileID: 8300000, guid: 72f54424e9ab5f6428307d97a3313bd5, type: 3}
---- !u!114 &1902593854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593855}
-          m_MethodName: OnHover
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1902593855}
-          m_MethodName: OnClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
---- !u!114 &1902593855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902593827}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f29f29cd3da572f4fb6892847b81e287, type: 3}

@@ -4,21 +4,16 @@ using UnityEngine;
 
 
 
-public class MoveCameraToMouse : MonoBehaviour {
+public class MoveCameraToMouse : MonoBehaviour
+{
     float speed = 5.0f;
     public Vector2 limitMax;
     public Vector2 limitMin;
    
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		if (Input.GetAxis("Mouse Y") > 0 && transform.position.y < limitMax.y)
         { 
-            
             transform.position += new Vector3(0.0f,Input.GetAxisRaw("Mouse Y")*Time.deltaTime*speed,0);
         }
 

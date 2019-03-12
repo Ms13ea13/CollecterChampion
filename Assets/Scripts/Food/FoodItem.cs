@@ -13,6 +13,8 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodOnStove;
 
+    [SerializeField] private bool foodIntoDumplingSteamed;
+
     [SerializeField] private bool foodOnChoppingBoard;
 
     [SerializeField] private bool foodOnPan;
@@ -210,6 +212,13 @@ public class FoodItem : MonoBehaviour
             SetFoodUIState();
         }).id;
     }
+
+    //-------------------------------------------------------------------------------------------------------------------------------
+    public void PutFoodInTheDumplingSteamed()
+    {
+        
+    }
+    //-------------------------------------------------------------------------------------------------------------------------------
 
     public void PutFoodInThePan()
     {
@@ -625,6 +634,13 @@ public class FoodItem : MonoBehaviour
     {
         foodOnStove = isOnStove;
     }
+
+    //-----------------------------------------------------------------------
+    public void SetFoodIntoDumplingSteamed(bool isIntoDumplingSteamed)
+    {
+        foodIntoDumplingSteamed = isIntoDumplingSteamed;
+    }
+    //-----------------------------------------------------------------------
 
     public void SetFoodOnChoppingBoard(bool isOnChoppingBoard)
     {

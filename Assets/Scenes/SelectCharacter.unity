@@ -253,7 +253,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f5121929c518b844bb9258b28401cddc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 220957325}
   hover: {fileID: 8300000, guid: bc1271a0b404ef449b55b6637faae34e, type: 3}
-  click: {fileID: 8300000, guid: 72f54424e9ab5f6428307d97a3313bd5, type: 3}
+  click: {fileID: 8300000, guid: c78844e3d7bed70428b3dc3d06d17d2b, type: 3}
 --- !u!1 &431154655
 GameObject:
   m_ObjectHideFlags: 0
