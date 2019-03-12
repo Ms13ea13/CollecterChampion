@@ -174,9 +174,10 @@ public class PlayerRayCast : MonoBehaviour
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
-                    FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
-                    if (foodToServe)
+                   
+                    if (holdingItem.GetComponent<FoodItem>())
                     { 
+                        FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
                         {
                             Destroy(holdingItem);
@@ -186,7 +187,9 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else if (holdingItem.GetComponent<PlateItem>())
                     {
-                        if (holdingItem.GetComponent<PlateItem>().DeliverFoodViaPlate(currentCustomerInFront))
+                        PlateItem plateToServe = holdingItem.GetComponent<PlateItem>();
+                        
+                        if (plateToServe.DeliverFoodViaPlate(currentCustomerInFront))
                         {
                             ResetHolding();
                         }
@@ -214,7 +217,7 @@ public class PlayerRayCast : MonoBehaviour
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
                     //animPlayer.SetBool("isChop", true);
-                    currentFoodInFront.GetComponent<FoodItem>().ChopFood();
+                    currentFoodInFront.ChopFood();
                     //animPlayer.SetBool("isChop", false);
                 }
     }
@@ -227,7 +230,7 @@ public class PlayerRayCast : MonoBehaviour
             {
                 if (currentPlateInFront.GetPlateIntoSink())
                 {
-                    currentPlateInFront.GetComponent<PlateItem>().WashPlate();
+                    currentPlateInFront.WashPlate();
 
                     if (currentPlateInFront.washDone)
                     {
