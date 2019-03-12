@@ -27,7 +27,7 @@ public class ButtonManager : MonoBehaviour
 
     //---------------------------------------------------------------------------------------------------------------------
 
-    public void BackToMainMenu()
+    /*public void BackToMainMenu()
     {
         SceneManager.LoadScene(1);
     }
@@ -45,7 +45,7 @@ public class ButtonManager : MonoBehaviour
     public void GameEndReplayStage2()
     {
         SceneManager.LoadScene(5);
-    }
+    }*/
 
     public void ReplayStage1()
     {
@@ -59,8 +59,6 @@ public class ButtonManager : MonoBehaviour
     {
         LeanTween.cancelAll();
         if (Time.timeScale == 0)
-            Time.timeScale = 1;
-        else
             Time.timeScale = 1;
         StartCoroutine(LoadingLevel_ReplayStage2());
     }

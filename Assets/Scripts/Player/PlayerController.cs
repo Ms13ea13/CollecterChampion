@@ -16,7 +16,7 @@ public class PlayerController : PlayerBase
 
     void Start()
     {
-        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
         playerAnim = GetComponent<Animator>();
         playercontrol = GetComponentInParent<CharacterController>();

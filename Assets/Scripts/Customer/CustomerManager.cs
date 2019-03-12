@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using SpawnItem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,120 +9,104 @@ using Random = UnityEngine.Random;
 
 public class CustomerManager : MonoBehaviour
 {
-    [SerializeField] private List<FoodOrder> customerOrders;
-
-    [SerializeField] private int orderLength;
+    private static List<FoodOrder> customerOrders = new List<FoodOrder>();
 
     [SerializeField] private Image showStatus;
 
-    [SerializeField] private GameObject orderImagePrefab;
+    [SerializeField] private GameObject orderPrefab;
 
     [SerializeField] private Sprite[] statusImages;
 
     [SerializeField] private GameObject customerPanel;
 
     [SerializeField] private SpawnDirtyDish spawnDirtyDish;
+    private static CustomerManager instance;
 
     //--------------------------------------------------------------------------------------------
 
-    private int leantweenID;
-    private const float waitTimer = 60f;
+    private int maxOrder = 5;
+    private int currentOrderAmount;
 
-    [SerializeField] private int minWaitLevel = 0;
+    [SerializeField]
+    private float delayOrderTimer = 50f;
 
-    [FormerlySerializedAs("max")]
-    [SerializeField] private int maxWaitLevel = 100;
-
-    [SerializeField] private float percentage;
-
-    [FormerlySerializedAs("foodValue")]
-    [SerializeField] private float currentWaitLevel;
-
-    [SerializeField] private float changeMenuValue;
-    [SerializeField] private float tempSliderValue;
-
-    [SerializeField] private Slider timerSlider;
-
-    private void Start()
+    private void Awake()
     {
-        OrderingFood();
-
-        timerSlider.value = 0;
-        changeMenuValue = 2;
+        instance = this;
         
-        timerSlider.wholeNumbers = false;
-    }
-
-    private void RandomFoodAmount()
-    {
-        customerOrders = new List<FoodOrder>();
-        int foodAmount = Random.Range(1, 4);
-
-        for (int i = 0; i < foodAmount; i++)
+        if (customerPanel == null)
         {
-            GameObject spawnOrderPicture = Instantiate(orderImagePrefab);
-            if (customerPanel != null)
-            spawnOrderPicture.transform.parent = customerPanel.transform;
-            else 
-            Debug.LogError("customerPanel is null");
-            customerOrders.Add(spawnOrderPicture.GetComponent<FoodOrder>());
+            customerPanel = GameObject.Find("OrderPanel");
         }
-    }
-
-    public Dictionary<int, int> GetCustomerOrderDict()
-    {
-        var orderDict = new Dictionary<int, int>();
-
-        foreach (var order in customerOrders)
-        {
-            var orderId = order.GetOrderId();
-            if (orderDict.ContainsKey(orderId))
-                orderDict[orderId] += 1;
-            else
-                orderDict.Add(orderId, 1);
-        }
-
-        return orderDict;
-    }
-
-    public bool CheckOrderValidation(Dictionary<int, int> trayDict)
-    {
-        var orderValid = DoesTrayMatchOrder(trayDict);
-
-        if (orderValid)
-        {
-            ClearCustomerOrder();
-            spawnDirtyDish.DelaySpawnDish(3f);
-            
-            SetShowTimerSlider(false);
-        }
-
-        return orderValid;
     }
     
-    private bool DoesTrayMatchOrder(Dictionary<int, int> trayDict)
+    public static CustomerManager GetInstance()
     {
-        var customerDict = GetCustomerOrderDict();
+        return instance;
+    }
 
-        if (trayDict.Count != customerDict.Count) return false;
+    public void Initiate()
+    {
+        OrderingFood();
+        
+        if (HowToCook.IsShowingTutorial())
+            customerPanel.SetActive(false);
 
-        var isEqual = true;
-        foreach (var pair in trayDict)
+    }
+
+
+    private void AutoOrderingFood()
+    {
+        LeanTween.delayedCall(delayOrderTimer, OrderingFood);
+    }
+
+    private void RandomFoodOrder()
+    {
+        GameObject spawnOrderPicture = Instantiate(orderPrefab);
+        FoodOrder order = spawnOrderPicture.GetComponent<FoodOrder>();
+        
+        if (customerPanel != null)
         {
-            int value;
-            if (customerDict.TryGetValue(pair.Key, out value))
-            {
-                if (value == pair.Value)
-                    continue;
-                isEqual = false;
-                break;
-            }
+            spawnOrderPicture.transform.parent = customerPanel.transform;
+            order.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderID());
+            customerOrders.Add(order);
+        }
+        else 
+            Debug.LogError("customerPanel is null");
 
-            isEqual = false;
-            break;
+    }
+
+    public List<GameObject> ProcessingFoodOnPlate( PlateItem plate)
+    {
+        if (plate.ItemInPlate().Count == 0)
+            return null;
+        
+        for (int i = 0; i < plate.ItemInPlate().Count; i++)
+        {
+
+            var fooditem = plate.ItemInPlate()[i].GetComponent<FoodItem>();
+
+            for (int j = 0; j < customerOrders.Count; j++)
+            {
+                if (customerOrders[j].GetOrderFoodItemType() == fooditem.GetFoodType())
+                {
+//                    Debug.LogError("matching food order : " + customerOrders[j].GetOrderName() +" with item : " + fooditem.GetFoodType());
+                    DelayPayment(customerOrders[j].GetOrderPrice());
+                    RemoveOrder(customerOrders[j]);
+                    Destroy(plate.ItemInPlate()[i]);
+                    plate.ItemInPlate().Remove(plate.ItemInPlate()[i]);
+                    plate.ClearTargetOrderPanel(fooditem.GetFoodItemId());
+                    spawnDirtyDish.DelaySpawnDish(3f);
+                    break;
+                }
+            }
         }
 
-        return isEqual;
+        if (plate.ItemInPlate().Count == 0)
+            return null;
+        else
+            return plate.ItemInPlate();
+
     }
 
     private static bool CheckFood(FoodOrder foodOrder, FoodItem foodReceive)
@@ -136,35 +122,18 @@ public class CustomerManager : MonoBehaviour
         return false;
     }
 
-    private void ClearCustomerOrder()
+    public static void RemoveOrder(FoodOrder order)
     {
-        for (var i = customerOrders.Count - 1; i >= 0; i--)
-        {
-            var order = customerOrders[i];
-            customerOrders.Remove(order);
-            DelayPayment(order.GetOrderPrice());
-            if (order.gameObject != null)
-                LeanTween.cancel(order.gameObject);
-            Destroy(order.gameObject);
-        }
-    }
-
-    private void ClearCustomerOrderWhenNotSendFood()
-    {
-        for (var i = customerOrders.Count - 1; i >= 0; i--)
-        {
-            var order = customerOrders[i];
-            customerOrders.Remove(order);
-            if (order.gameObject != null)
-                LeanTween.cancel(order.gameObject);
-            Destroy(order.gameObject);
-        }
+        customerOrders.Remove(order);
+        Destroy(order.gameObject);
     }
 
     public bool ReceiveOrder(FoodItem foodReceive)
     {
         if (customerOrders.Count > 0 && foodReceive)
         {
+            
+            Debug.LogError("ReceiveOrder");
             foreach (var item in customerOrders)
             {
                 if (CheckFood(item, foodReceive)) return true;
@@ -180,9 +149,6 @@ public class CustomerManager : MonoBehaviour
                         LeanTween.cancel(item.gameObject);
 
                     Destroy(item.gameObject);
-                    
-                    SetShowTimerSlider(false);
-
                     return true;
                 }
             }
@@ -193,21 +159,12 @@ public class CustomerManager : MonoBehaviour
         return false;
     }
 
-    private void OrderingFood()
+    public void OrderingFood()
     {
-        LeanTween.cancel(leantweenID);
-        RandomFoodAmount();
-        tempSliderValue = 0;
-        timerSlider.value = 0;
-        if (customerOrders.Count > 0)
-        {
-            foreach (var item in customerOrders)
-            {
-                item.SetOrder(GameSceneManager.GetInstance().RandomFoodOrderByOne());
-               
-            }
-            customerOrderWait();
-        }
+        if (customerOrders.Count >= maxOrder) return;
+        
+        RandomFoodOrder();
+        AutoOrderingFood();
     }
 
     private void Payment(int moneyAmount)
@@ -219,47 +176,12 @@ public class CustomerManager : MonoBehaviour
     void DelayPayment(int moneyAmount)
     {
         var seq = LeanTween.sequence();
-        seq.append(3f);
+        seq.append(1.5f);
         seq.append(() =>
         {
             Payment(moneyAmount);
             if (customerOrders.Count == 0)
-                OrderingFood();
+               AutoOrderingFood();
         });
-    }
-
-    //-------------------------------------------------------------------------------------------
-
-    private void SetShowTimerSlider(bool show)
-    {
-        if (timerSlider != null)
-        timerSlider.gameObject.SetActive(show);
-        else
-        {
-            Debug.LogError("timerslider is null");
-        }
-    }
-
-    private void customerOrderWait()
-    {
-
-        float SetChangeMenuValue = maxWaitLevel + 0.000001f;
-        SetShowTimerSlider(true);
-
-        leantweenID = LeanTween.value(tempSliderValue, SetChangeMenuValue + 0.001f, waitTimer).setOnUpdate((Value) =>
-        {
-            tempSliderValue = Value;
-            if (timerSlider.value <= timerSlider.maxValue)
-                timerSlider.value = Value;
-
-            if (timerSlider.value >= timerSlider.maxValue)
-            {
-//                Debug.Log("Change Order");
-                ClearCustomerOrderWhenNotSendFood();
-                SetShowTimerSlider(false);
-                OrderingFood();
-               
-            }
-        }).id;
     }
 }

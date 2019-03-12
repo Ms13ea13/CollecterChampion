@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -25,9 +26,8 @@ public class GameSceneManager : MonoBehaviour
     //Struct Area----------------------------------------------------------------------
 
     [SerializeField]
-    private FoodNameOrder foodNmaeOrder;
-
-
+    private FoodNameOrder foodNameOrder;
+    
     //Instance Area----------------------------------------------------------------------
 
     private static GameSceneManager _instance;
@@ -83,6 +83,11 @@ public class GameSceneManager : MonoBehaviour
         else throw new Exception("TimeManager is null");
     }
 
+    public void GameInitiate()
+    {
+        CustomerManager.GetInstance().Initiate();
+    }
+
     //Public static Area----------------------------------------------------------------------
 
     public static void UpdateTargetPicture(string _wantTag)
@@ -101,20 +106,25 @@ public class GameSceneManager : MonoBehaviour
 
     public string GetFoodNameById(int id)
     {
-        return foodNmaeOrder.GetStringFoodName(id);
+        return foodNameOrder.GetStringFoodName(id);
     }
 
     public Sprite GetFoodPictureById(int id)
     {
-        return foodNmaeOrder.GetFoodPicture(id);
+        return foodNameOrder.GetFoodPicture(id);
     }
 
     public int GetFoodPriceById(int id)
     {
-        return foodNmaeOrder.GetFoodPrice(id);
+        return foodNameOrder.GetFoodPrice(id);
     }
 
-    public int RandomFoodOrderByOne()
+    public FoodType.FoodItemType GetFoodTypeById(int id)
+    {
+        return (FoodType.FoodItemType)id;
+    }
+
+    public int RandomFoodOrderID()
     {
         int rd = UnityEngine.Random.Range(minFoodProvideID, maxFoodProvideID);
         return rd;

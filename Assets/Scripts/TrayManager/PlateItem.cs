@@ -35,12 +35,12 @@ public class PlateItem : MonoBehaviour
 
     [SerializeField] private int min = 0;
 
-    [FormerlySerializedAs("max")] [SerializeField]
+    [SerializeField]
     private int maxPlateCleanLevel = 100;
 
     [SerializeField] private float percentage;
 
-    [FormerlySerializedAs("trayValue")] [SerializeField]
+    [SerializeField]
     private float currentPlateCleanLevel;
 
     [SerializeField] private bool plateIntoSink;
@@ -53,9 +53,20 @@ public class PlateItem : MonoBehaviour
     {
         currentIndex = 0;
         itemsInPlate = new List<GameObject>();
-
         timerSlider.value = 0;
         SetDefaultPlateUI();
+    }
+
+    void Update()
+    {
+        if (itemsInPlate.Count == 0)
+        {
+            platePanel.SetActive(false);
+        }
+        else
+        {
+            platePanel.SetActive(true);
+        }
     }
 
     private void SetShowTimerSlider(bool show)
@@ -124,8 +135,6 @@ public class PlateItem : MonoBehaviour
 
         if (itemsInPlate.Count < 3)
         {
-            
-            Debug.LogError("addFoodTo item in plate : " + foodItem.name + " state : " + foodItem.GetFoodItemState().ToString());
             itemsInPlate.Add(food);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;
@@ -137,41 +146,18 @@ public class PlateItem : MonoBehaviour
         return true;
     }
 
-    private Dictionary<int, int> GetFoodInPlate()
-    {
-        var plateDict = new Dictionary<int, int>();
-        
-
-        foreach (var foodObj in itemsInPlate)
-        {
-            var foodId = foodObj.GetComponent<FoodItem>().GetFoodItemId();
-            if (plateDict.ContainsKey(foodId))
-            {
-                plateDict[foodId] += 1;
-            }
-            else
-            {
-                plateDict.Add(foodId, 1);
-            }
-        }
-
-        return plateDict;
-    }
-
     public bool DeliverFoodViaPlate(CustomerManager customer)
     {
-        if (!customer.CheckOrderValidation(GetFoodInPlate())) return false;
 
-        for (var i = itemsInPlate.Count - 1; i >= 0; i--)
+        if (customer.ProcessingFoodOnPlate(this) != null)
         {
-            var item = itemsInPlate[i];
-            itemsInPlate.Remove(item);
-            ClearTargetOrderPanel(item.GetComponent<FoodItem>().GetFoodItemId());
-            Destroy(item.gameObject);
+            return false;
         }
-
-        Destroy(gameObject);
-        return true;
+        else
+        {
+            Destroy(gameObject);
+            return true;
+        }
     }
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)

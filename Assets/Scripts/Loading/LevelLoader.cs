@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelLoader : MonoBehaviour {
-
+public class LevelLoader : MonoBehaviour
+{
     public GameObject LoadingScreen;
     public Slider Slider;
 
     public void Loadlevel(int SceneIndex)
     {
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
         StartCoroutine(LoadAsynchronously(SceneIndex));
     }
 
