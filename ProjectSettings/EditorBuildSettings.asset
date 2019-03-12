@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage4.unity
     guid: 8fe5679841d336149978900e77dd94b1
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 1ab14fafc9dcb6a43950a942edc18837
   m_configObjects: {}

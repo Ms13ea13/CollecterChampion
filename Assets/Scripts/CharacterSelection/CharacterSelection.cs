@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
     private GameObject[] characterContainer;
     private int characterIndex;
+
+    [SerializeField] private LevelLoader loadingStage;
 
     void Start()
     {
@@ -52,6 +53,6 @@ public class CharacterSelection : MonoBehaviour
     public void SelectButton()
     {
         PlayerPrefs.SetInt("CharacterSelect", characterIndex);
-        SceneManager.LoadScene("Stage1");
+        loadingStage.Loadlevel(1);
     }
 }

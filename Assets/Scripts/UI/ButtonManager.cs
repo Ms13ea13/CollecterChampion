@@ -27,6 +27,11 @@ public class ButtonManager : MonoBehaviour
 
     //---------------------------------------------------------------------------------------------------------------------
 
+    public void GoToHowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
+
     /*public void BackToMainMenu()
     {
         SceneManager.LoadScene(1);
