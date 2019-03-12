@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33906375992864908}
   - component: {fileID: 23119529725162770}
   m_Layer: 0
-  m_Name: Kanomjeep_Shrimp_No_bake
+  m_Name: PorkDumpling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
