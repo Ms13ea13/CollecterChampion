@@ -327,7 +327,11 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     if (holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 0 ||
                         holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 3 ||
-                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 4)
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 4 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 6 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 7 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 8 ||
+                        holdingItem.GetComponent<FoodItem>().GetFoodItemId() == 9)
                     {
                         currentChoppingBoardInFront.PlaceFoodOnChoppingBoard(holdingItem, ref holding);
                         UnHoldItem(holdingItem);

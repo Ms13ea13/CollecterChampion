@@ -388,7 +388,7 @@ public class FoodItem : MonoBehaviour
 
     public void ChopFood()
     {
-        if (foodID == 4)
+        if (foodID == 4 || foodID == 6 || foodID == 7 || foodID == 8 || foodID == 9)
         {
             if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Raw))
             {
