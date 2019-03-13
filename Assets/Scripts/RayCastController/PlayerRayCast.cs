@@ -61,8 +61,9 @@ public class PlayerRayCast : MonoBehaviour
             GetCustomerInFront();
             GetInteractableInFront();
         }
+        else
+            GetPlateHolderInFront();
 
-        GetPlateHolderInFront();
         GetFoodInFront();
 
         if (Input.GetButtonUp(PickUpKey))
