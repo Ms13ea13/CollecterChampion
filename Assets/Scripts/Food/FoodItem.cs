@@ -214,9 +214,11 @@ public class FoodItem : MonoBehaviour
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------
-    public void PutFoodInTheDumplingSteamed()
+    public bool PutFoodInTheDumplingSteamed()
     {
-        
+        //TODO make leantwen count down here then return
+        Debug.LogError("Put this " + GetFoodItemName()+  "id : " + GetFoodItemId().ToString() + "into the steamer");
+        return false;
     }
     //-------------------------------------------------------------------------------------------------------------------------------
 
