@@ -3528,6 +3528,30 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 468197837}
+    - target: {fileID: 114107677193360280, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: foodNameOrder.foodPicture.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e,
+        type: 3}
+    - target: {fileID: 114107677193360280, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: foodNameOrder.foodPicture.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e,
+        type: 3}
+    - target: {fileID: 114107677193360280, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: foodNameOrder.foodPicture.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e,
+        type: 3}
+    - target: {fileID: 114107677193360280, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: foodNameOrder.foodPicture.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f49d9114312d4042bfacad6923f3e64, type: 2}
   m_IsPrefabAsset: 0
