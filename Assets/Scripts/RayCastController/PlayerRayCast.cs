@@ -254,9 +254,12 @@ public class PlayerRayCast : MonoBehaviour
         playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        temp.y = 15.9f;
+        /*temp.y = 15.9f;
         temp.x = 0;
-        temp.z = 15.4f;
+        temp.z = 15.4f;*/
+        temp.x = 0;
+        temp.y = 0.175f;
+        temp.z = 0.185f;
         target.transform.localPosition = temp;
         itemInHold = target;
         itemInHold.GetComponent<Collider>().enabled = false;

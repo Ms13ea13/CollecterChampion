@@ -13,6 +13,7 @@ public class PlayerController : PlayerBase
     [SerializeField] private Vector3 moveMentControlInput;
 
     private PlayerRayCast playerRayCast;
+    private BoxCollider playerBoxColider;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerController : PlayerBase
         playercontrol = GetComponentInParent<CharacterController>();
         playerRayCast = GetComponent<PlayerRayCast>();
         rigibody = GetComponentInParent<Rigidbody>();
+        playerBoxColider = GetComponentInParent<BoxCollider>();
     }
 
     void Update()
