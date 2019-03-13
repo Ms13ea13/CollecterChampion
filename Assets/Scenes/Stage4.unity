@@ -603,7 +603,7 @@ Prefab:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114587231031027348, guid: 460f2bd6db9d1b04aa772d4963afd99d,
     type: 2}
-  m_PrefabInternal: {fileID: 516626878}
+  m_PrefabInternal: {fileID: 1337806618}
   m_Script: {fileID: 11500000, guid: de4fd9586fa2c264ebe2e76ac431ec2b, type: 3}
 --- !u!1001 &244901917
 Prefab:
@@ -900,53 +900,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &516626878
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114053878286913258, guid: 460f2bd6db9d1b04aa772d4963afd99d,
-        type: 2}
-      propertyPath: customerPanel
-      value: 
-      objectReference: {fileID: 1902593815}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &730997558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1574,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1337806618
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114053878286913258, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: customerPanel
+      value: 
+      objectReference: {fileID: 1902593815}
+    - target: {fileID: 114982748999623618, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: foodPrefab
+      value: 
+      objectReference: {fileID: 1010274552254188, guid: 18beab1a0de98444f8dfc58aed6933e1,
+        type: 2}
+    - target: {fileID: 114334049278146370, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: foodPrefab
+      value: 
+      objectReference: {fileID: 1399899465129732, guid: 64ead69f240665045aff21e387d62016,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1418798643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2780,7 +2792,7 @@ Prefab:
     - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: foodNameOrder.orderName.Array.data[8]
-      value: PorkMeat
+      value: Shrimp
       objectReference: {fileID: 0}
     - target: {fileID: 114699371343510330, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
@@ -2975,6 +2987,15 @@ Prefab:
         type: 2}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.7843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502954130724010, guid: 051b05698df63624986138bac3a398e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320850622050742, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: foodNameOrder.orderName.Array.data[9]
+      value: PorkMeat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
