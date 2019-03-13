@@ -2154,8 +2154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1abd7b93202a140ad2e28fa0888c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFoodProvideID: 6
-  maxFoodProvideID: 10
+  minFoodProvideID: 10
+  maxFoodProvideID: 12
   players: []
   m_EndPanel: {fileID: 114035159584842118}
   scoreManager: {fileID: 114173088185368224}
@@ -2171,6 +2171,8 @@ MonoBehaviour:
     - GreenFlour
     - Shrimp
     - PorkMeat
+    - ShrimpDumpling
+    - PorkDumpling
     foodPicture:
     - {fileID: 21300000, guid: d28835c3c22ecb646ac5ff854903fe21, type: 3}
     - {fileID: 21300000, guid: 079bcaf42df26bc46bacdad69b14ee76, type: 3}
@@ -2178,11 +2180,13 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 235cc82cfa17b1645a58845f0203f235, type: 3}
     - {fileID: 21300000, guid: 40d18c26e105e3448a728082638e2376, type: 3}
     - {fileID: 21300000, guid: 8ac9bf6cbdbd3fd4795f96d14e74af66, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 21300000, guid: ac0e0a186101f5a4bb2a67db466cd949, type: 3}
     - {fileID: 21300000, guid: cabbd2a2d922a1c4dafe9ee93b41790c, type: 3}
-    - {fileID: 21300000, guid: ac0e0a186101f5a4bb2a67db466cd949, type: 3}
-    - {fileID: 21300000, guid: cabbd2a2d922a1c4dafe9ee93b41790c, type: 3}
-    price: 320000000a00000078000000320000000a0000001400000005000000050000000500000005000000
+    price: 320000000a00000078000000320000000a0000001400000000000000000000000000000000000000320000001e000000
   PausePanel: {fileID: 1007038274115134}
 --- !u!114 &114111074685235140
 MonoBehaviour:
@@ -2709,8 +2713,8 @@ MonoBehaviour:
   score: 0
   plusStar: {fileID: 0}
   minScore: 50
-  middleScore: 65
-  maxScore: 80
+  middleScore: 80
+  maxScore: 120
 --- !u!114 &114174432537210854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5479,7 +5483,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 261042a5b6df7da4e97459c25add9cde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf5ac64445727514ab7575ba61766f52, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

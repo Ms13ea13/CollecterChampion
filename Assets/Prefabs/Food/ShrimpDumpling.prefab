@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1267442624590616}
+  m_RootGameObject: {fileID: 1364947404725016}
   m_IsPrefabAsset: 1
---- !u!1 &1267442624590616
+--- !u!1 &1364947404725016
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4190301042305152}
-  - component: {fileID: 33288251020602862}
-  - component: {fileID: 23845211791242134}
+  - component: {fileID: 4242688114654202}
+  - component: {fileID: 33876020953603632}
+  - component: {fileID: 23311859576785244}
   m_Layer: 0
   m_Name: ShrimpDumpling
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4190301042305152
+--- !u!4 &4242688114654202
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1267442624590616}
+  m_GameObject: {fileID: 1364947404725016}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,12 +41,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23845211791242134
+--- !u!23 &23311859576785244
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1267442624590616}
+  m_GameObject: {fileID: 1364947404725016}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e41325bb22767014783b7db1c24e2952, type: 3}
+  - {fileID: 2100000, guid: f06e0ad685ec123418677a0ec806eb67, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,10 +76,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33288251020602862
+--- !u!33 &33876020953603632
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1267442624590616}
-  m_Mesh: {fileID: 4300000, guid: e41325bb22767014783b7db1c24e2952, type: 3}
+  m_GameObject: {fileID: 1364947404725016}
+  m_Mesh: {fileID: 4300000, guid: c5696c1b2a3ff9849a923b65b3c493fc, type: 3}
