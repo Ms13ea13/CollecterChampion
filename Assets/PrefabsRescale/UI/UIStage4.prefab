@@ -2180,10 +2180,10 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 235cc82cfa17b1645a58845f0203f235, type: 3}
     - {fileID: 21300000, guid: 40d18c26e105e3448a728082638e2376, type: 3}
     - {fileID: 21300000, guid: 8ac9bf6cbdbd3fd4795f96d14e74af66, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e, type: 3}
+    - {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e, type: 3}
+    - {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e, type: 3}
+    - {fileID: 21300000, guid: 2a9d3a30820ea2841bf0889eda4d561e, type: 3}
     - {fileID: 21300000, guid: ac0e0a186101f5a4bb2a67db466cd949, type: 3}
     - {fileID: 21300000, guid: cabbd2a2d922a1c4dafe9ee93b41790c, type: 3}
     price: 320000000a00000078000000320000000a0000001400000000000000000000000000000000000000320000001e000000
