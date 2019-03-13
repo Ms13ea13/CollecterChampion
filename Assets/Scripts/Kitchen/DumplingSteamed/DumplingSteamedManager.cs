@@ -17,9 +17,6 @@ public class DumplingSteamedManager : InteractableManager
     
     private Dictionary<int,int> dumplingSets = new Dictionary<int, int>();
 
-    private int currentFlourID;
-    private int currentIngredientsPairID;
-
     void Start()
     {
         CreatingPairIngredients();
@@ -45,14 +42,12 @@ public class DumplingSteamedManager : InteractableManager
             if (dumplingSets.ContainsKey(foodID)) //if foodItem IS one of the flour type
             {
                 Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking flour");
-                currentFlourID = foodID;
             }
 
 
             if (dumplingSets.ContainsValue(foodID)) //if foodItem IS one of the ingredient pair type
             {
                 Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking ingredient");
-                currentIngredientsPairID = foodID;
             }
                
             
@@ -76,14 +71,14 @@ public class DumplingSteamedManager : InteractableManager
     private void SteamTheFuckOutOfYourDumpling()
     {
         Debug.LogError("Try steaming yo shit");
-        int temp = 0;
+        int currentIngredientPairID = 0;
         FoodItem tempFood = new FoodItem();
 
         foreach (var item in ingredientsContainer)
         {
-            if (dumplingSets.TryGetValue(item.GetFoodItemId(),out temp) && temp == currentIngredientsPairID) // Check if the food in the container can fetch the pair within the container
+            if (dumplingSets.TryGetValue(item.GetFoodItemId(),out currentIngredientPairID) ) // Check if the food in the container can fetch the pair within the container
             {
-                tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientsPairID);
+                tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientPairID);
                 if (tempFood) // Check if the container really have the pair item added inside
                 {
                     item.PutFoodInTheDumplingSteamed(); //TODO make this into one Object and use only one UI pop UP // also return this as one foodItem
