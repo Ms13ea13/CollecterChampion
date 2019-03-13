@@ -359,14 +359,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -564,14 +558,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -722,58 +710,6 @@ Prefab:
       propertyPath: customerPanel
       value: 
       objectReference: {fileID: 1074473931}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.321
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.029
-      objectReference: {fileID: 0}
-    - target: {fileID: 4071746927977876, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 65750886437465962, guid: c9cc7f5c081642a4493d4e47e64487e8,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.43116724
-      objectReference: {fileID: 0}
-    - target: {fileID: 65750886437465962, guid: c9cc7f5c081642a4493d4e47e64487e8,
-        type: 2}
-      propertyPath: m_Center.x
-      value: -0.020000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 65750886437465962, guid: c9cc7f5c081642a4493d4e47e64487e8,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 0.21558362
-      objectReference: {fileID: 0}
-    - target: {fileID: 65750886437465962, guid: c9cc7f5c081642a4493d4e47e64487e8,
-        type: 2}
-      propertyPath: m_Center.z
-      value: 6.217259e-17
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9cc7f5c081642a4493d4e47e64487e8, type: 2}
   m_IsPrefabAsset: 0
@@ -1006,14 +942,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -1445,14 +1375,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -1748,14 +1672,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -1953,14 +1871,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -2158,14 +2070,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -2363,14 +2269,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -2576,14 +2476,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -2843,14 +2737,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -3131,14 +3019,8 @@ MonoBehaviour:
   itemInHold: {fileID: 0}
   currentFoodInFront: {fileID: 0}
   currentCustomerInFront: {fileID: 0}
-  currentBinInFront: {fileID: 0}
+  interactableManagerInFront: {fileID: 0}
   currentPlateInFront: {fileID: 0}
-  currentStoveInFront: {fileID: 0}
-  currentChoppingBoardInFront: {fileID: 0}
-  currentCounterInFront: {fileID: 0}
-  currentPanInFront: {fileID: 0}
-  currentPotInFront: {fileID: 0}
-  currentSinkInFront: {fileID: 0}
   charContr: {fileID: 182787433}
   spawnCleanDish: {fileID: 1870404841}
   playerSightLength: 0.25
@@ -3386,6 +3268,60 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729784076209316, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.7843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.7843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.7843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.7764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 114543003137364446, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.07058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005812766438186, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
