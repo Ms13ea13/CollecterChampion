@@ -26,7 +26,7 @@ public class DumplingSteamedManager : InteractableManager
     {
         for (int i = 0; i < flourPairID.Length; i++)
         {
-            dumplingSets.Add(flourPairID[i],ingredientsPairID[i]);
+            dumplingSets.Add(flourPairID[i], ingredientsPairID[i]);
         }
     }
 
