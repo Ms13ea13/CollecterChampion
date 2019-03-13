@@ -43,13 +43,22 @@ public class DumplingSteamedManager : InteractableManager
         if (dumplingSets.ContainsKey(foodID) || dumplingSets.ContainsValue(foodID)) //If foodItem is one of the ingredient needed for dumpling pair
         {
             if (dumplingSets.ContainsKey(foodID)) //if foodItem IS one of the flour type
+            {
+                Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking flour");
                 currentFlourID = foodID;
-            
-            if (dumplingSets.ContainsValue(foodID))  //if foodItem IS one of the ingredient pair type
+            }
+
+
+            if (dumplingSets.ContainsValue(foodID)) //if foodItem IS one of the ingredient pair type
+            {
+                Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking ingredient");
                 currentIngredientsPairID = foodID;
+            }
+               
             
             if (!ingredientsContainer.Contains(food) && ingredientsContainer.Count < maxIngredientsAmount)  //Check that container amount and add item
             {
+                Debug.LogError("adding " + food.GetFoodItemName() + " to container");
                 ingredientsContainer.Add(food);
                 SetTargetPosition(food.transform);
                 food.SetFoodIntoDumplingSteamed(true);
@@ -66,6 +75,7 @@ public class DumplingSteamedManager : InteractableManager
 
     private void SteamTheFuckOutOfYourDumpling()
     {
+        Debug.LogError("Try steaming yo shit");
         int temp = 0;
         FoodItem tempFood = new FoodItem();
 
