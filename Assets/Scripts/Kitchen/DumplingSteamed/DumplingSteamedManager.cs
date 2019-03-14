@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -21,8 +22,8 @@ public class DumplingSteamedManager : InteractableManager
 
     void Start()
     {
-        currentIndex = 0;
-        //itemsInDumplingSteamed = new List<GameObject>();
+        FoodItemAudioSource = GetComponent<AudioSource>();
+        _currentFoodState = FoodState.Chopped;
         timerSlider.value = 0;
         SetDefaultDumplingSteamedUI();
 
@@ -65,6 +66,7 @@ public class DumplingSteamedManager : InteractableManager
                 SetTargetPosition(food.transform);
                 food.SetFoodIntoDumplingSteamed(true);
                 FoodInDumplingSteamedAmount(food.GetFoodItemId());
+                Destroy(food.gameObject);
                 holding = false;
             }
             
@@ -78,10 +80,9 @@ public class DumplingSteamedManager : InteractableManager
 
     private void SteamTheFuckOutOfYourDumpling()
     {
+        Debug.LogError("Try steaming yo shit");
         SteamedFood();
 
-        Debug.LogError("Try steaming yo shit");
-        
         int currentIngredientPairID = 0;
         FoodItem tempFood = new FoodItem();
 
@@ -105,14 +106,37 @@ public class DumplingSteamedManager : InteractableManager
 
     [SerializeField] private GameObject dumplingSteamedPanel;
 
-    [SerializeField] private int currentIndex;
+    //------------------------------------------------------------------------------
+
+    [SerializeField] private Image foodStateUI;
+    [SerializeField] private Sprite cookedPicture;
+    [SerializeField] private Sprite onFirePicture;
+    [SerializeField] private Sprite alertPicture;
+    [SerializeField] private Sprite steamdPicture;
+
+    private float SetFoodOnFireValue;
+
+    [FormerlySerializedAs("max")]
+    [SerializeField]
+    private int maxFoodCookLevel = 150;
+
+    private const float cookTimer = 20f;
+
+    private AudioSource FoodItemAudioSource;
+    public AudioClip steamed, Alert_fire, complete;
+
+    //-------------------------------------------------------------------------------
 
     public enum FoodState
     {
         Chopped,
-        Steamed
+        Steamed,
+        Alert,
+        OnFire,
+        Done
     }
 
+    [SerializeField] private FoodState DoneState;
     [SerializeField] private FoodState _currentFoodState;
 
     [SerializeField] private Slider timerSlider;
@@ -160,6 +184,7 @@ public class DumplingSteamedManager : InteractableManager
             SetShowTimerSlider(false);
 
         LeanTween.cancel(leantweenID);
+        foodStateUI.gameObject.SetActive(false);
     }
 
     public bool CompareCurrentFoodState(FoodState foodState)
@@ -169,61 +194,87 @@ public class DumplingSteamedManager : InteractableManager
 
     public void SteamedFood()
     {
-        if (timerSlider.value >= maxFoodLevel && CompareCurrentFoodState(FoodState.Chopped))
-        {
-            if (!timerSlider.gameObject.activeInHierarchy)
-                SetShowTimerSlider(true);
+        if (_currentFoodState != FoodState.Chopped)
+            return;
 
-            currentFoodLevel += Time.deltaTime * 40f;
-            percentage = (currentFoodLevel / maxFoodLevel) * 100;
-            timerSlider.value = percentage;
-            tempSliderValue = percentage;
+        if (tempSliderValue != 0)
+            timerSlider.value = tempSliderValue;
 
-            if (percentage >= 100)
+        SetFoodOnFireValue = maxFoodCookLevel;
+
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate(
+            (float Value) =>
             {
-                _currentFoodState = FoodState.Steamed;
-                timerSlider.value = 0;
-                SetShowTimerSlider(false);
-                Destroy(gameObject);
-                Debug.Log(percentage + "Food is steamed");
-            }
-        }
+                if (!FoodItemAudioSource.isPlaying && steamed != null)
+                    FoodItemAudioSource.PlayOneShot(steamed);
+
+                tempSliderValue = Value;
+                if (timerSlider.value <= timerSlider.maxValue && _currentFoodState == FoodState.Chopped)
+                {
+                    if (!timerSlider.gameObject.activeInHierarchy)
+                        SetShowTimerSlider(true);
+                    timerSlider.value = Value;
+                }
+                else
+                    SetShowTimerSlider(false);
+
+                if (timerSlider.value >= timerSlider.maxValue && _currentFoodState == FoodState.Chopped && _currentFoodState != FoodState.Done)
+                {
+                    timerSlider.value = 0;
+
+                    _currentFoodState = FoodState.Steamed;
+                    FoodItemAudioSource.PlayOneShot(complete);
+                }
+
+                if (tempSliderValue <= SetFoodOnFireValue + 50 && _currentFoodState != FoodState.Chopped)
+                {
+                    if (CompareCurrentFoodState(DoneState))
+                    {
+                        _currentFoodState = FoodState.Done;
+                        Debug.LogError("set done"); ;
+                    }
+                }
+
+                if (tempSliderValue >= SetFoodOnFireValue + 50f)
+                {
+                    _currentFoodState = FoodState.Alert;
+                    FoodItemAudioSource.PlayOneShot(Alert_fire);
+                }
+
+                //ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
+            }).setOnComplete(() =>
+            {
+                _currentFoodState = FoodState.OnFire;
+                //ChangeFoodVisualAccordingToStates();
+                SetFoodUIState();
+            }).id;
     }
 
-    private Vector3 StackFoodVisually(int index, Transform targetTransform)
+    private void SetFoodUIState()
     {
-        temp = targetTransform.localPosition;
-        switch (index)
+        if (foodStateUI == null)
+            throw new Exception("Food state UI is null");
+
+        foodStateUI.gameObject.SetActive(true);
+        switch (_currentFoodState)
         {
-            case 0:
-                {
-                    temp.y = 0.013f;
-                    break;
-                }
-            case 1:
-                {
-                    temp.y = 0.045f;
-                    break;
-                }
+            case FoodState.Alert:
+                foodStateUI.sprite = alertPicture;
+                break;
+            case FoodState.OnFire:
+                foodStateUI.sprite = onFirePicture;
+                break;
+            case FoodState.Steamed:
+                foodStateUI.sprite = cookedPicture;
+                break;
+            case FoodState.Done:
+                foodStateUI.sprite = cookedPicture;
+                break;
             default:
+                foodStateUI.gameObject.SetActive(false);
                 break;
         }
-
-        temp.x = 0;
-        temp.z = 0;
-
-        currentIndex += 1;
-        return temp;
-    }
-
-    public void SetOnHold(bool hold)
-    {
-        onHold = hold;
-    }
-
-    public bool GetOnHold()
-    {
-        return onHold;
     }
 
     public void FoodInDumplingSteamedAmount(int foodIndex)
@@ -232,42 +283,5 @@ public class DumplingSteamedManager : InteractableManager
         spawnOrderPicture.GetComponent<Image>().sprite = GameSceneManager.GetInstance().GetFoodPictureById(foodIndex);
         spawnOrderPicture.transform.parent = dumplingSteamedPanel.transform;
         spawnOrderPicture.GetComponent<FoodInDumplingSteamed>().SetOrder(foodIndex);
-    }
-
-    public void ClearTargetOrderPanel(int id)
-    {
-        if (dumplingSteamedPanel.transform.childCount <= 0)
-            return;
-
-        for (int i = 0; i < dumplingSteamedPanel.transform.childCount; i++)
-        {
-            if (id == dumplingSteamedPanel.transform.GetChild(i).gameObject.GetComponent<FoodInDumplingSteamed>().GetOrderId())
-            {
-                Destroy(dumplingSteamedPanel.transform.GetChild(i).gameObject);
-                return;
-            }
-        }
-    }
-
-    private void ClearItemsInDumplingSteamed()
-    {
-        if (ingredientsContainer.Count <= 0)
-            return;
-
-        foreach (var foodObj in ingredientsContainer)
-        {
-            Destroy(foodObj);
-        }
-    }
-
-    public void ClearAllItemInDumplingSteamed()
-    {
-        ClearItemsInDumplingSteamed();
-        currentIndex = 0;
-    }
-
-    public void SetFoodOnCounter(bool b)
-    {
-        throw new System.NotImplementedException();
     }
 }
