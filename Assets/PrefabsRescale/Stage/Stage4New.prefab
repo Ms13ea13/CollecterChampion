@@ -1634,23 +1634,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1699464807347736
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224931161749154302}
-  - component: {fileID: 222048719306629350}
-  - component: {fileID: 114094248640623264}
-  m_Layer: 0
-  m_Name: foodStateUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1700586411264428
 GameObject:
   m_ObjectHideFlags: 1
@@ -10749,33 +10732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dc468d7c597a149a57853414c7f1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114094248640623264
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1699464807347736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114117175383188390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10816,25 +10772,8 @@ MonoBehaviour:
   ingredientsPairID: 0800000009000000
   foodInDumplingSteamedImagePrefab: {fileID: 1884512089853596, guid: f92152dee3159e043819b2d6563e0572,
     type: 2}
-  dumplingSteamedPanel: {fileID: 1870116951959642}
-  foodStateUI: {fileID: 114094248640623264}
-  cookedPicture: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b, type: 3}
-  onFirePicture: {fileID: 21300000, guid: 8566b271f95dd4b439984f74ea75519e, type: 3}
-  alertPicture: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888, type: 3}
-  steamdPicture: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b, type: 3}
-  maxFoodCookLevel: 150
-  steamed: {fileID: 8300000, guid: 57d9650de7aab574aab947d09469dea5, type: 3}
-  Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
-  complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
-  DoneState: 1
-  _currentFoodState: 0
   timerSlider: {fileID: 114282123259656258}
-  min: 0
-  maxFoodLevel: 100
-  percentage: 0
-  currentFoodLevel: 0
-  plateIntoSink: 0
-  tempSliderValue: 0
+  dumplingSteamedPanel: {fileID: 1870116951959642}
 --- !u!114 &114184083947909754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11400,13 +11339,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422832623462228}
   m_CullTransparentMesh: 0
---- !u!222 &222048719306629350
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1699464807347736}
-  m_CullTransparentMesh: 0
 --- !u!222 &222521888678316202
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -11460,7 +11392,6 @@ RectTransform:
   m_Children:
   - {fileID: 224394455927610190}
   - {fileID: 224308393301426398}
-  - {fileID: 224931161749154302}
   m_Father: {fileID: 4892456047902830}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -11599,22 +11530,4 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -0, y: 2.134}
   m_SizeDelta: {x: 0, y: 4.268}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224931161749154302
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1699464807347736}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.029}
-  m_LocalScale: {x: 0.92786, y: 0.25606987, z: 0.23573953}
-  m_Children: []
-  m_Father: {fileID: 224129874880823056}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.55, y: 15.6}
-  m_SizeDelta: {x: 2.637, y: 33.556}
   m_Pivot: {x: 0.5, y: 0.5}

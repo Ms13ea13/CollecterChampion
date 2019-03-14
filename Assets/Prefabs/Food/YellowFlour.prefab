@@ -498,6 +498,7 @@ MonoBehaviour:
   Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
   grilling: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
+  boiling: {fileID: 0}
   rawModel: {fileID: 1699413547654894}
   grilledModel: {fileID: 0}
   friedModel: {fileID: 0}
@@ -516,7 +517,7 @@ MonoBehaviour:
   currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
-  foodtype: 7
+  foodtype: 6
   DoneState: 2
   currentFoodState: 0
 --- !u!114 &114055784636003838

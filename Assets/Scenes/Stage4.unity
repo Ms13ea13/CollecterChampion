@@ -273,7 +273,7 @@ GameObject:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114587231031027348, guid: 460f2bd6db9d1b04aa772d4963afd99d,
     type: 2}
-  m_PrefabInternal: {fileID: 1337806618}
+  m_PrefabInternal: {fileID: 1425938298}
   m_Script: {fileID: 11500000, guid: de4fd9586fa2c264ebe2e76ac431ec2b, type: 3}
 --- !u!1 &249401535
 GameObject:
@@ -1381,7 +1381,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1001 &1337806618
+--- !u!1001 &1425938298
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2

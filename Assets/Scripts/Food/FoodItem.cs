@@ -34,6 +34,7 @@ public class FoodItem : MonoBehaviour
         Boiled,
         Alert,
         OnFire,
+        Steamed,
         Done
     }
     
