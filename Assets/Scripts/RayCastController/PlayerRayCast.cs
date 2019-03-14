@@ -215,7 +215,7 @@ public class PlayerRayCast : MonoBehaviour
             if (currentFoodInFront)
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
-                    animPlayer.SetBool("isChop", true);
+                    //animPlayer.SetBool("isChop", true);
                     currentFoodInFront.ChopFood();
                     //animPlayer.SetBool("isChop", false);
                 }
