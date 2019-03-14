@@ -6,6 +6,8 @@ public class CounterManager : InteractableManager
 {
     public override void Interact(GameObject target, ref bool holding)
     {
+        if (target == null) return;
+        
         SetTargetPosition(target.transform);
         holding = false;
         

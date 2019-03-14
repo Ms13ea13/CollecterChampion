@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b84d4d09d677841b06acc55aa1327d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 65200412017677160}
   foodID: 0
   FoodName: 
   trayBandedId: 0
@@ -630,8 +631,8 @@ MonoBehaviour:
   onFireValue: 0
   tempSliderValue: 0
   foodtype: 7
-  DoneState: 2
-  currentFoodState: 0
+  doneState: 2
+  CurrentFoodState: 0
 --- !u!114 &114742138715213786
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FoodItem : MonoBehaviour
 {
+    [SerializeField] private Collider collider;
+    
     [SerializeField] private int foodID;
 
     [SerializeField] private string FoodName;
@@ -25,18 +27,18 @@ public class FoodItem : MonoBehaviour
 
     public AudioClip chopping, Alert_fire, complete, grilling, boiling;
 
-    public enum FoodState
-    {
-        Raw,
-        Grilled,
-        Chopped,
-        Fried,
-        Boiled,
-        Alert,
-        OnFire,
-        Steamed,
-        Done
-    }
+//    public enum FoodState
+//    {
+//        Raw,
+//        Grilled,
+//        Chopped,
+//        Fried,
+//        Boiled,
+//        Alert,
+//        OnFire,
+//        Steamed,
+//        Done
+//    }
     
     [SerializeField] private GameObject rawModel;
 
@@ -88,8 +90,9 @@ public class FoodItem : MonoBehaviour
         return foodtype;
     }
 
-    [SerializeField] private FoodState DoneState;
-    [SerializeField] private FoodState currentFoodState;
+    [SerializeField] private FoodStateGlobal.FoodState doneState;
+    public FoodStateGlobal.FoodState CurrentFoodState;
+    
 
     void Start()
     {
@@ -97,21 +100,16 @@ public class FoodItem : MonoBehaviour
 
         onFireValue = 2;
 
-        currentFoodState = FoodState.Raw;
+//        CurrentFoodState = FoodStateGlobal.FoodState.Raw;
         ChangeFoodVisualAccordingToStates();
         timerSlider.wholeNumbers = false;
         SetDefaultFoodUI();
         FoodItemAudioSource = GetComponent<AudioSource>(); //
     }
 
-    public FoodState GetFoodItemState()
-    {
-        return currentFoodState;
-    }
-
     public void SetDefaultFoodUI()
     {
-        if (currentFoodState == FoodState.Raw && timerSlider.value > 0)
+        if (CurrentFoodState == FoodStateGlobal.FoodState.Raw && timerSlider.value > 0)
             SetShowTimerSlider(true);
         else
             SetShowTimerSlider(false);
@@ -131,24 +129,24 @@ public class FoodItem : MonoBehaviour
             throw new Exception("Food state UI is null");
 
         foodStateUI.gameObject.SetActive(true);
-        switch (currentFoodState)
+        switch (CurrentFoodState)
         {
-            case FoodState.Alert:
+            case FoodStateGlobal.FoodState.Alert:
                 foodStateUI.sprite = alertPicture;
                 break;
-            case FoodState.OnFire:
+            case FoodStateGlobal.FoodState.OnFire:
                 foodStateUI.sprite = onFirePicture;
                 break;
-            case FoodState.Boiled:
+            case FoodStateGlobal.FoodState.Boiled:
                 foodStateUI.sprite = cookedPicture;
                 break;
-            case FoodState.Grilled:
+            case FoodStateGlobal.FoodState.Grilled:
                 foodStateUI.sprite = cookedPicture;
                 break;
-            case FoodState.Fried:
+            case FoodStateGlobal.FoodState.Fried:
                 foodStateUI.sprite = friedPicture;
                 break;
-            case FoodState.Done:
+            case FoodStateGlobal.FoodState.Done:
                 foodStateUI.sprite = cookedPicture;
                 break;
             default:
@@ -172,7 +170,7 @@ public class FoodItem : MonoBehaviour
                 FoodItemAudioSource.PlayOneShot(grilling);
 
             tempSliderValue = Value;
-            if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            if (timerSlider.value <= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw)
             {
                 if (!timerSlider.gameObject.activeInHierarchy)
                     SetShowTimerSlider(true);
@@ -181,24 +179,24 @@ public class FoodItem : MonoBehaviour
             else
                 SetShowTimerSlider(false);
 
-            if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+            if (timerSlider.value >= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw)
             {
-                currentFoodState = FoodState.Grilled;
+                CurrentFoodState = FoodStateGlobal.FoodState.Grilled;
                 FoodItemAudioSource.PlayOneShot(complete);
             }
             
-            if (tempSliderValue <= SetFoodOnFireValue +50 && currentFoodState != FoodState.Raw )
+            if (tempSliderValue <= SetFoodOnFireValue +50 && CurrentFoodState != FoodStateGlobal.FoodState.Raw )
             {
-                if (CompareCurrentFoodState(DoneState))
+                if (CompareCurrentFoodState(doneState))
                 {
-                    currentFoodState = FoodState.Done;   
+                    CurrentFoodState = FoodStateGlobal.FoodState.Done;   
                     Debug.LogError("set done");;
                 }
             }
             
-            if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Grilled)
+            if (tempSliderValue >= SetFoodOnFireValue + 50f && CurrentFoodState == FoodStateGlobal.FoodState.Grilled)
             {
-                currentFoodState = FoodState.Alert;
+                CurrentFoodState = FoodStateGlobal.FoodState.Alert;
                 timerSlider.value = 0;
                 FoodItemAudioSource.PlayOneShot(Alert_fire); 
             }
@@ -207,7 +205,7 @@ public class FoodItem : MonoBehaviour
             SetFoodUIState();
         }).setOnComplete(() =>
         {
-            currentFoodState = FoodState.OnFire;
+            CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             tempSliderValue = 0f;
             SetFoodUIState();
@@ -242,7 +240,7 @@ public class FoodItem : MonoBehaviour
 
                 tempSliderValue = Value;
 
-                if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+                if (timerSlider.value <= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw)
                 {
                     if (!timerSlider.gameObject.activeInHierarchy)
                         SetShowTimerSlider(true);
@@ -251,24 +249,24 @@ public class FoodItem : MonoBehaviour
                 else
                     SetShowTimerSlider(false);
 
-                if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+                if (timerSlider.value >= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw)
                 {
-                    currentFoodState = FoodState.Fried;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Fried;
                     FoodItemAudioSource.PlayOneShot(complete);
                 }
 
-                if (tempSliderValue <= SetFoodOnFireValue + 50 && currentFoodState != FoodState.Raw)
+                if (tempSliderValue <= SetFoodOnFireValue + 50 && CurrentFoodState != FoodStateGlobal.FoodState.Raw)
                 {
-                    if (CompareCurrentFoodState(DoneState))
+                    if (CompareCurrentFoodState(doneState))
                     {
-                        currentFoodState = FoodState.Done;
+                        CurrentFoodState = FoodStateGlobal.FoodState.Done;
                         Debug.LogError("set done"); ;
                     }
                 }
 
-                if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Fried)
+                if (tempSliderValue >= SetFoodOnFireValue + 50f && CurrentFoodState == FoodStateGlobal.FoodState.Fried)
                 {
-                    currentFoodState = FoodState.Alert;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Alert;
                     timerSlider.value = 0;
                     FoodItemAudioSource.PlayOneShot(Alert_fire);
                 }
@@ -277,7 +275,7 @@ public class FoodItem : MonoBehaviour
                 SetFoodUIState();
             }).setOnComplete(() =>
             {
-                currentFoodState = FoodState.OnFire;
+                CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
                 ChangeFoodVisualAccordingToStates();
                 tempSliderValue = 0f;
                 SetFoodUIState();
@@ -292,7 +290,7 @@ public class FoodItem : MonoBehaviour
 
                 tempSliderValue = Value;
 
-                if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Chopped)
+                if (timerSlider.value <= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Chopped)
                 {
                     if (!timerSlider.gameObject.activeInHierarchy)
                         SetShowTimerSlider(true);
@@ -301,24 +299,24 @@ public class FoodItem : MonoBehaviour
                 else
                     SetShowTimerSlider(false);
 
-                if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Chopped)
+                if (timerSlider.value >= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Chopped)
                 {
-                    currentFoodState = FoodState.Fried;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Fried;
                     FoodItemAudioSource.PlayOneShot(complete);
                 }
 
-                if (tempSliderValue <= SetFoodOnFireValue + 50 && currentFoodState != FoodState.Chopped)
+                if (tempSliderValue <= SetFoodOnFireValue + 50 && CurrentFoodState != FoodStateGlobal.FoodState.Chopped)
                 {
-                    if (CompareCurrentFoodState(DoneState))
+                    if (CompareCurrentFoodState(doneState))
                     {
-                        currentFoodState = FoodState.Done;
+                        CurrentFoodState = FoodStateGlobal.FoodState.Done;
                         Debug.LogError("set done"); ;
                     }
                 }
 
-                if (tempSliderValue >= SetFoodOnFireValue + 50f && currentFoodState == FoodState.Fried)
+                if (tempSliderValue >= SetFoodOnFireValue + 50f && CurrentFoodState == FoodStateGlobal.FoodState.Fried)
                 {
-                    currentFoodState = FoodState.Alert;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Alert;
                     timerSlider.value = 0;
                     FoodItemAudioSource.PlayOneShot(Alert_fire);
                 }
@@ -327,7 +325,7 @@ public class FoodItem : MonoBehaviour
                 SetFoodUIState();
             }).setOnComplete(() =>
             {
-                currentFoodState = FoodState.OnFire;
+                CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
                 ChangeFoodVisualAccordingToStates();
                 //tempSliderValue = 0f;
                 SetFoodUIState();
@@ -337,27 +335,27 @@ public class FoodItem : MonoBehaviour
 
     private bool CheckFoodStateBeforeActions()
     {
-        switch (currentFoodState)
+        switch (CurrentFoodState)
         {
-            case FoodState.Grilled:
+            case FoodStateGlobal.FoodState.Grilled:
                 tempSliderValue = SetFoodOnFireValue + 50f;
                 ForceFoodState();
                 return false;
-            case FoodState.Boiled:
+            case FoodStateGlobal.FoodState.Boiled:
                 tempSliderValue = SetFoodOnFireValue + 50f;
                 ForceFoodState();
                 return false;
-            case FoodState.Alert:
-                currentFoodState = FoodState.OnFire;
+            case FoodStateGlobal.FoodState.Alert:
+                CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
                 return false;
-            case FoodState.OnFire:
-                currentFoodState = FoodState.OnFire;
+            case FoodStateGlobal.FoodState.OnFire:
+                CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
                 ChangeFoodVisualAccordingToStates();
                 SetFoodUIState();
                 return false;
-            case FoodState.Fried:
+            case FoodStateGlobal.FoodState.Fried:
                 tempSliderValue = SetFoodOnFireValue + 50f;
                 ForceFoodState();
                 return false;
@@ -377,11 +375,11 @@ public class FoodItem : MonoBehaviour
             if (!FoodItemAudioSource.isPlaying && grilling != null)
                 FoodItemAudioSource.PlayOneShot(grilling);
 
-            currentFoodState = FoodState.Alert;
+            CurrentFoodState = FoodStateGlobal.FoodState.Alert;
             timerSlider.value = 0;
             
             soundStart += Time.deltaTime;
-            if (soundStart >= soundLength && currentFoodState != FoodState.OnFire)
+            if (soundStart >= soundLength && CurrentFoodState != FoodStateGlobal.FoodState.OnFire)
             {
                 FoodItemAudioSource.PlayOneShot(Alert_fire);
                 soundStart = 0;
@@ -391,7 +389,7 @@ public class FoodItem : MonoBehaviour
             SetFoodUIState();
         }).setOnComplete(() =>
         {
-            currentFoodState = FoodState.OnFire;
+            CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             tempSliderValue = 0f;
             SetFoodUIState();
@@ -402,7 +400,7 @@ public class FoodItem : MonoBehaviour
     {
         if (foodID == 4 || foodID == 6 || foodID == 7 || foodID == 8 || foodID == 9)
         {
-            if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Raw))
+            if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodStateGlobal.FoodState.Raw))
             {
                 if (!timerSlider.gameObject.activeInHierarchy)
                     SetShowTimerSlider(true);
@@ -416,7 +414,7 @@ public class FoodItem : MonoBehaviour
 
                 if (percentage >= 100)
                 {
-                    currentFoodState = FoodState.Chopped;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Chopped;
                     /*if (CompareCurrentFoodState(DoneState))
                         currentFoodState = FoodState.Done;*/
                     timerSlider.value = 0;
@@ -437,9 +435,9 @@ public class FoodItem : MonoBehaviour
         }
         else
         {
-            if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Grilled) ||
-            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Fried) ||
-            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodState.Alert))
+            if (timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodStateGlobal.FoodState.Grilled) ||
+            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodStateGlobal.FoodState.Fried) ||
+            timerSlider.value <= maxFoodCookLevel && CompareCurrentFoodState(FoodStateGlobal.FoodState.Alert))
             {
                 if (!timerSlider.gameObject.activeInHierarchy)
                     SetShowTimerSlider(true);
@@ -453,9 +451,9 @@ public class FoodItem : MonoBehaviour
 
                 if (percentage >= 100)
                 {
-                    currentFoodState = FoodState.Chopped;
-                    if (CompareCurrentFoodState(DoneState))
-                        currentFoodState = FoodState.Done;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Chopped;
+                    if (CompareCurrentFoodState(doneState))
+                        CurrentFoodState = FoodStateGlobal.FoodState.Done;
                     timerSlider.value = 0;
                     SetShowTimerSlider(false);
                     ChangeFoodVisualAccordingToStates();
@@ -475,7 +473,7 @@ public class FoodItem : MonoBehaviour
 
     public void PutFoodInThePot()
     {
-        if (currentFoodState != FoodState.Raw)
+        if (CurrentFoodState != FoodStateGlobal.FoodState.Raw)
             return;
 
         if (tempSliderValue != 0)
@@ -490,7 +488,7 @@ public class FoodItem : MonoBehaviour
                     FoodItemAudioSource.PlayOneShot(boiling);
 
                 tempSliderValue = Value;
-                if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
+                if (timerSlider.value <= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw)
                 {
                     if (!timerSlider.gameObject.activeInHierarchy)
                         SetShowTimerSlider(true);
@@ -499,26 +497,26 @@ public class FoodItem : MonoBehaviour
                 else
                     SetShowTimerSlider(false);
 
-                if (timerSlider.value >= timerSlider.maxValue && currentFoodState == FoodState.Raw  && currentFoodState != FoodState.Done)
+                if (timerSlider.value >= timerSlider.maxValue && CurrentFoodState == FoodStateGlobal.FoodState.Raw  && CurrentFoodState != FoodStateGlobal.FoodState.Done)
                 {
                     timerSlider.value = 0;
 
-                    currentFoodState = FoodState.Boiled;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Boiled;
                     FoodItemAudioSource.PlayOneShot(complete);
                 }
 
-                if (tempSliderValue <= SetFoodOnFireValue +50 && currentFoodState != FoodState.Raw )
+                if (tempSliderValue <= SetFoodOnFireValue +50 && CurrentFoodState != FoodStateGlobal.FoodState.Raw )
                 {
-                    if (CompareCurrentFoodState(DoneState))
+                    if (CompareCurrentFoodState(doneState))
                     {
-                        currentFoodState = FoodState.Done;   
+                        CurrentFoodState = FoodStateGlobal.FoodState.Done;   
                         Debug.LogError("set done");;
                     }
                 }
 
                 if (tempSliderValue >= SetFoodOnFireValue + 50f)
                 {
-                    currentFoodState = FoodState.Alert;
+                    CurrentFoodState = FoodStateGlobal.FoodState.Alert;
                     FoodItemAudioSource.PlayOneShot(Alert_fire);
                 }
 
@@ -526,7 +524,7 @@ public class FoodItem : MonoBehaviour
                 SetFoodUIState();
             }).setOnComplete(() =>
         {
-            currentFoodState = FoodState.OnFire;
+            CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
             ChangeFoodVisualAccordingToStates();
             SetFoodUIState();
         }).id;
@@ -534,42 +532,42 @@ public class FoodItem : MonoBehaviour
 
     private void ChangeFoodVisualAccordingToStates() // show visual
     {
-        switch (currentFoodState)
+        switch (CurrentFoodState)
         {
-            case FoodState.Raw:
+            case FoodStateGlobal.FoodState.Raw:
                 if (rawModel == null) return;
                 SelectFoodModel(rawModel);
                 break;
 
-            case FoodState.Chopped:
+            case FoodStateGlobal.FoodState.Chopped:
                 if (chopModel == null) return;
                 SelectFoodModel(chopModel);
                 break;
 
-            case FoodState.Boiled:
+            case FoodStateGlobal.FoodState.Boiled:
                 if (boiledModel == null) return;
                 SelectFoodModel(boiledModel);
                 break;
 
-            case FoodState.Grilled:
+            case FoodStateGlobal.FoodState.Grilled:
                 if (grilledModel == null) return;
                 SelectFoodModel(grilledModel);
                 break;
 
-            case FoodState.Fried:
+            case FoodStateGlobal.FoodState.Fried:
                 if (friedModel == null) return;
                 SelectFoodModel(friedModel);
                 break;
 
-            case FoodState.Done:
+            case FoodStateGlobal.FoodState.Done:
                 SetFoodDoneVisual();
                 break;
 
-            case FoodState.Alert:
+            case FoodStateGlobal.FoodState.Alert:
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
                 break;
 
-            case FoodState.OnFire:
+            case FoodStateGlobal.FoodState.OnFire:
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
                 break;
 
@@ -617,7 +615,7 @@ public class FoodItem : MonoBehaviour
 
     public bool IsFoodDoneCooking()
     {
-        return CompareCurrentFoodState(FoodState.Done);
+        return CompareCurrentFoodState(FoodStateGlobal.FoodState.Done);
     }
 
     void OnDestroy()
@@ -695,32 +693,32 @@ public class FoodItem : MonoBehaviour
 
     public bool IsFoodChopped()
     {
-        return currentFoodState == FoodState.Chopped;
+        return CurrentFoodState == FoodStateGlobal.FoodState.Chopped;
     }
 
     public bool IsFoodGriled()
     {
-        return currentFoodState == FoodState.Grilled;
+        return CurrentFoodState == FoodStateGlobal.FoodState.Grilled;
     }
 
     public bool IsFoodFried()
     {
-        return currentFoodState == FoodState.Fried;
+        return CurrentFoodState == FoodStateGlobal.FoodState.Fried;
     }
 
     public bool IsFoodOnFire()
     {
-        return currentFoodState == FoodState.OnFire;
+        return CurrentFoodState == FoodStateGlobal.FoodState.OnFire;
     }
 
     public bool IsFoodBoiled()
     {
-        return currentFoodState == FoodState.Boiled;
+        return CurrentFoodState == FoodStateGlobal.FoodState.Boiled;
     }
 
     public bool IsFoodAlert()
     {
-        return currentFoodState == FoodState.Alert;
+        return CurrentFoodState == FoodStateGlobal.FoodState.Alert;
     }
 
     public bool GetFoodOnStove()
@@ -738,8 +736,23 @@ public class FoodItem : MonoBehaviour
         return foodOnPan;
     }
 
-    public bool CompareCurrentFoodState(FoodState foodState)
+    public bool CompareCurrentFoodState(FoodStateGlobal.FoodState foodStateGlobal)
     {
-        return currentFoodState == foodState;
+        return CurrentFoodState == foodStateGlobal;
+    }
+
+    public FoodStateGlobal.FoodState GetDoneState()
+    {
+        return doneState;
+    }
+
+    public void EnableFoodItemCollider(bool colliderEnable)
+    {
+        collider.enabled = colliderEnable;
+    }
+
+    public void DestroyFoodItemCollider()
+    {
+        Destroy(collider);
     }
 }

@@ -127,9 +127,9 @@ public class PlateItem : MonoBehaviour
     {
         var foodItem = food.GetComponent<FoodItem>();
 
-        if (!foodItem.CompareCurrentFoodState(FoodItem.FoodState.Done))
+        if (!foodItem.CompareCurrentFoodState(FoodStateGlobal.FoodState.Done))
         {
-            Debug.LogError("Nope food is : " + foodItem.GetFoodItemState().ToString());
+            Debug.LogError("Nope food is : " + foodItem.CurrentFoodState.ToString());
             return false;
         }
 

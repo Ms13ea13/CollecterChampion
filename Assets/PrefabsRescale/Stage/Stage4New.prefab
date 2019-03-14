@@ -10772,8 +10772,15 @@ MonoBehaviour:
   ingredientsPairID: 0800000009000000
   foodInDumplingSteamedImagePrefab: {fileID: 1884512089853596, guid: f92152dee3159e043819b2d6563e0572,
     type: 2}
+  foodInDumplingSteamedPrefab: {fileID: 1364947404725016, guid: d2fd6d044af43634d8599d81b0889a15,
+    type: 2}
   timerSlider: {fileID: 114282123259656258}
   dumplingSteamedPanel: {fileID: 1870116951959642}
+  wrongPair: 0
+  doneCooking: 0
+  tempSliderValue: 0
+  steaming: {fileID: 8300000, guid: 9ddcdcc18626ebc45a069b1ead27cb62, type: 3}
+  complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
 --- !u!114 &114184083947909754
 MonoBehaviour:
   m_ObjectHideFlags: 1

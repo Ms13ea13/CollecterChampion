@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System;
+using System.Linq;
 
 public class DumplingSteamedManager : InteractableManager
 {
@@ -14,31 +16,53 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField] private int[] ingredientsPairID;
 
     [SerializeField] private GameObject foodInDumplingSteamedImagePrefab;
+    [SerializeField] private GameObject foodInDumplingSteamedPrefab;
 
     [SerializeField] private Slider timerSlider;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
+    private GameObject steamedDumpling;
+    private FoodItem steamedDumplingFoodItem;
 
     private Dictionary<int,int> dumplingSets = new Dictionary<int, int>();
+
+    [SerializeField]
+    private bool wrongPair = false;
+    
+    [SerializeField]
+    private bool doneCooking = false;
+    
+    
+
+    private int leantweenID;
+
+    private float cookTimer = 2f;
+    [SerializeField] private float tempSliderValue ;
+    private float SetFoodOnFireValue = 150;
+    
+    private AudioSource FoodItemAudioSource;
+    
+    public AudioClip steaming,complete;
 
     void Start()
     {
         timerSlider.value = 0;
         timerSlider.gameObject.SetActive(false);
-
+        dumplingSteamedPanel.SetActive(false);
+        FoodItemAudioSource = GetComponent<AudioSource>();
         CreatingPairIngredients();
     }
 
     void Update()
     {
-        if (ingredientsContainer.Count == 0)
-        {
-            dumplingSteamedPanel.SetActive(false);
-        }
-        else
-        {
-            dumplingSteamedPanel.SetActive(true);
-        }
+//        if (ingredientsContainer.Count == 0)
+//        {
+//            dumplingSteamedPanel.SetActive(false);
+//        }
+//        else
+//        {
+//            dumplingSteamedPanel.SetActive(true);
+//        }
     }
 
     private void CreatingPairIngredients() // Create dumpling set from flour type and meat type
@@ -51,47 +75,83 @@ public class DumplingSteamedManager : InteractableManager
 
     public override void Interact(GameObject target, ref bool holding)
     {
-        FoodItem food = target.gameObject.GetComponent<FoodItem>();
-        if (food == null) return;
-        
-        int foodID = food.GetFoodItemId();
-
-        if (dumplingSets.ContainsKey(foodID) || dumplingSets.ContainsValue(foodID)) //If foodItem is one of the ingredient needed for dumpling pair
+        if (!wrongPair)
         {
-            if (dumplingSets.ContainsKey(foodID)) //if foodItem IS one of the flour type
+            if (target == null)
             {
-                Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking flour");
+                
+                Debug.LogError("Pick up thing from dumpling");
+                RemovePair();
+                return;
             }
+            FoodItem food = target.gameObject.GetComponent<FoodItem>();
+            if (food == null) return;
+        
+            int foodID = food.GetFoodItemId();
 
-
-            if (dumplingSets.ContainsValue(foodID)) //if foodItem IS one of the ingredient pair type
+            if (dumplingSets.ContainsKey(foodID) || dumplingSets.ContainsValue(foodID)) //If foodItem is one of the ingredient needed for dumpling pair
             {
-                Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking ingredient");
-            }
+//                if (dumplingSets.ContainsKey(foodID)) //if foodItem IS one of the flour type
+//                {
+//                    Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking flour id :" + food.GetFoodItemId());
+//                }
+//
+//
+//                if (dumplingSets.ContainsValue(foodID)) //if foodItem IS one of the ingredient pair type
+//                {
+//                    Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking ingredient id :" + food.GetFoodItemId());
+//                }
                
-            if (!ingredientsContainer.Contains(food) && ingredientsContainer.Count < maxIngredientsAmount)  //Check that container amount and add item
-            {
-                Debug.LogError("adding " + food.GetFoodItemName() + " to container");
-                ingredientsContainer.Add(food);
-                SetTargetPosition(food.transform);
-                food.SetFoodIntoDumplingSteamed(true);
-                FoodInDumplingSteamedAmount(food.GetFoodItemId());
-                Destroy(food.gameObject);
-                holding = false;
-            }
+                if (!ingredientsContainer.Contains(food) && ingredientsContainer.Count < maxIngredientsAmount)  //Check that container amount and add item
+                {
+                    dumplingSteamedPanel.SetActive(true);
+                    Debug.LogError("adding " + food.GetFoodItemName() + " to container");
+                    ingredientsContainer.Add(food);
+                    SetTargetPosition(food.transform);
+                    food.SetFoodIntoDumplingSteamed(true);
+                    FoodInDumplingSteamedAmount(food.GetFoodItemId());
+                    food.gameObject.tag = "Untagged";
+                    food.DestroyFoodItemCollider();
+                    food.enabled = false;
+//                    Destroy(food.gameObject);
+                    holding = false;
+                }
             
-            if (ingredientsContainer.Count >= maxIngredientsAmount) //In case container if full , then take action
-            {
-                SteamTheFuckOutOfYourDumpling();
+                if (ingredientsContainer.Count >= maxIngredientsAmount) //In case container if full , then take action
+                {
+                    
+                    wrongPair = SteamTheFuckOutOfYourDumpling();
+
+                }
             }
+        }
+        else
+        {
+            RemovePair();
         }
 
     }
 
-    private void SteamTheFuckOutOfYourDumpling()
+    private void RemovePair()
     {
-        Debug.LogError("Try steaming yo shit");
+        Debug.LogError("RemovePair");
+        ingredientsContainer.Clear();
+        wrongPair = false;
+        for (int i= 0; i < dumplingSteamedPanel.transform.childCount;i++)
+        {
+            Destroy(dumplingSteamedPanel.transform.GetChild(i).gameObject);
+        }
 
+        if (dumplingSteamedPanel.transform.childCount > 0)
+        {
+            dumplingSteamedPanel.SetActive(false);
+            Debug.LogError("panel doesn't have child");
+        }
+        
+    }
+
+    private bool SteamTheFuckOutOfYourDumpling()
+    {
         int currentIngredientPairID = 0;
         FoodItem tempFood = new FoodItem();
 
@@ -102,18 +162,57 @@ public class DumplingSteamedManager : InteractableManager
                 tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientPairID);
                 if (tempFood) // Check if the container really have the pair item added inside
                 {
-                    item.PutFoodInTheDumplingSteamed(); //TODO make this into one Object and use only one UI pop UP // also return this as one foodItem
-                    tempFood.PutFoodInTheDumplingSteamed(); // If these all return true == all done and can be create as new FoodItem (according to pair)
+                    Debug.LogError("Try steaming yo shit");
+                    SteamingDumplingPair();
+                    return false;
                 }
             }
         }
+
+        ShowWrongPairUI();
+        return true;
+
     }
+
+    private void SteamingDumplingPair()
+    {
+        Debug.LogError("right pair");
+        tempSliderValue = timerSlider.value;
+        leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((tempSliderValue) =>
+        {
+            if (!FoodItemAudioSource.isPlaying && steaming != null)
+                FoodItemAudioSource.PlayOneShot(steaming);
+
+            timerSlider.gameObject.SetActive(true);
+            timerSlider.value = tempSliderValue;
+
+        }).setOnComplete(() =>
+        {
+            Debug.LogError("done steaming");
+            timerSlider.gameObject.SetActive(false);
+            GameObject steamedDumpling = Instantiate(foodInDumplingSteamedPrefab);
+            steamedDumpling.transform.position = new Vector3(transform.position.x,0.245f,transform.position.z);
+            steamedDumplingFoodItem = steamedDumpling.GetComponent<FoodItem>();
+//            SetTargetPosition(steamedDumpling.transform,true);
+            RemovePair();
+            steamedDumplingFoodItem.CurrentFoodState = steamedDumplingFoodItem.GetDoneState();
+            FoodInDumplingSteamedAmount(steamedDumplingFoodItem.GetFoodItemId());
+            dumplingSteamedPanel.SetActive(true);
+        }).id;
+    }
+    
+    
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private void SetShowTimerSlider(bool show)
     {
         timerSlider.gameObject.SetActive(show);
+    }
+
+    private void ShowWrongPairUI()
+    {
+        //show wrong pair UI here
     }
 
     

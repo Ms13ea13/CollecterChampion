@@ -662,10 +662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b84d4d09d677841b06acc55aa1327d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 65834620780392656}
   foodID: 0
   FoodName: 
   trayBandedId: 0
   foodOnStove: 0
+  foodIntoDumplingSteamed: 0
   foodOnChoppingBoard: 0
   foodOnPan: 0
   foodOnCounter: 0
@@ -674,6 +676,7 @@ MonoBehaviour:
   Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
   grilling: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
+  boiling: {fileID: 0}
   rawModel: {fileID: 1055434572777252}
   grilledModel: {fileID: 0}
   friedModel: {fileID: 0}
@@ -693,8 +696,8 @@ MonoBehaviour:
   onFireValue: 0
   tempSliderValue: 0
   foodtype: 4
-  DoneState: 2
-  currentFoodState: 0
+  doneState: 2
+  CurrentFoodState: 0
 --- !u!114 &114922874371017158
 MonoBehaviour:
   m_ObjectHideFlags: 1

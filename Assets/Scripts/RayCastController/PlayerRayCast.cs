@@ -55,11 +55,12 @@ public class PlayerRayCast : MonoBehaviour
         p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
         p2 = p1 + Vector3.up * charContr.height;
 
+        GetInteractableInFront();
+        
         if (holding)
         {
             DropObj(ref itemInHold);
             GetCustomerInFront();
-            GetInteractableInFront();
         }
         else
             GetPlateHolderInFront();
@@ -147,10 +148,17 @@ public class PlayerRayCast : MonoBehaviour
         }
         else
         {
-            if (currentPlateInFront)
+            
+            if (interactableManagerInFront)
+            {
+                Debug.LogError("Interact with nothing");
+                interactableManagerInFront.Interact(null,ref holding);
+            }
+            
+           else if (currentPlateInFront)
                 TakeObjIntoHold(currentPlateInFront.gameObject);
 
-            if (currentFoodInFront)
+           else if (currentFoodInFront && currentFoodInFront.enabled)
             {
                 if (!currentFoodInFront.IsFoodDoneCooking())
                 {
@@ -161,6 +169,8 @@ public class PlayerRayCast : MonoBehaviour
                     TakeObjIntoHold(currentFoodInFront.gameObject);
                 }
             }
+
+           
         }
     }
 
