@@ -1619,7 +1619,7 @@ Prefab:
     - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
         type: 2}
       propertyPath: ingredientsContainer.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1706,7 +1706,8 @@ Prefab:
         type: 2}
       propertyPath: foodInDumplingSteamedImagePrefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1884512089853596, guid: f92152dee3159e043819b2d6563e0572,
+        type: 2}
     - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
         type: 2}
       propertyPath: dumplingSteamedPanel
@@ -2627,7 +2628,7 @@ RectTransform:
   m_GameObject: {fileID: 2061801260}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -0.014}
-  m_LocalScale: {x: 0.04979006, y: 0.020530008, z: 0.30640048}
+  m_LocalScale: {x: 0.04328239, y: 0.017846692, z: 0.26635328}
   m_Children:
   - {fileID: 1383621659}
   - {fileID: 1381310746}
@@ -2636,7 +2637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.012, y: 0.472}
+  m_AnchoredPosition: {x: 0.126, y: 0.522}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061801262

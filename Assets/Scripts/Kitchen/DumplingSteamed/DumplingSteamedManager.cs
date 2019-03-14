@@ -22,7 +22,7 @@ public class DumplingSteamedManager : InteractableManager
     void Start()
     {
         currentIndex = 0;
-        itemsInDumplingSteamed = new List<GameObject>();
+        //itemsInDumplingSteamed = new List<GameObject>();
         timerSlider.value = 0;
         SetDefaultDumplingSteamedUI();
 
@@ -64,6 +64,7 @@ public class DumplingSteamedManager : InteractableManager
                 ingredientsContainer.Add(food);
                 SetTargetPosition(food.transform);
                 food.SetFoodIntoDumplingSteamed(true);
+                FoodInDumplingSteamedAmount(food.GetFoodItemId());
                 holding = false;
             }
             
@@ -77,7 +78,10 @@ public class DumplingSteamedManager : InteractableManager
 
     private void SteamTheFuckOutOfYourDumpling()
     {
+        SteamedFood();
+
         Debug.LogError("Try steaming yo shit");
+        
         int currentIngredientPairID = 0;
         FoodItem tempFood = new FoodItem();
 
@@ -100,14 +104,14 @@ public class DumplingSteamedManager : InteractableManager
 
     [SerializeField] private GameObject dumplingSteamedPanel;
 
-    [FormerlySerializedAs("itemInDumplingSteamed")]
+    /*[FormerlySerializedAs("itemInDumplingSteamed")]
     [SerializeField]
     private List<GameObject> itemsInDumplingSteamed;
 
     public List<GameObject> ItemInDumplingSteamed()
     {
         return itemsInDumplingSteamed;
-    }
+    }*/
 
     [SerializeField] private int currentIndex;
 
@@ -141,7 +145,7 @@ public class DumplingSteamedManager : InteractableManager
 
     void Update()
     {
-        if (itemsInDumplingSteamed.Count == 0)
+        if (ingredientsContainer.Count == 0)
         {
             dumplingSteamedPanel.SetActive(false);
         }
@@ -194,7 +198,7 @@ public class DumplingSteamedManager : InteractableManager
         }
     }
 
-    public bool AddFoodToDumplingSteamed(GameObject food)
+    /*public bool AddFoodToDumplingSteamed(GameObject food)
     {
         var foodItem = food.GetComponent<FoodItem>();
 
@@ -204,18 +208,19 @@ public class DumplingSteamedManager : InteractableManager
             return false;
         }
 
-        if (itemsInDumplingSteamed.Count < 2)
+        if (ingredientsContainer.Count < 2)
         {
-            itemsInDumplingSteamed.Add(food);
+            Debug.Log("Add " + food);
+            FoodInDumplingSteamedAmount(foodItem.GetFoodItemId());
+            /*ingredientsContainer.Add(food);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;
             food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
             foodItem.SetBannedId(currentIndex);
-            FoodInDumplingSteamedAmount(foodItem.GetFoodItemId());
         }
 
         return true;
-    }
+    }*/
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
     {
@@ -258,7 +263,7 @@ public class DumplingSteamedManager : InteractableManager
         GameObject spawnOrderPicture = Instantiate(foodInDumplingSteamedImagePrefab);
         spawnOrderPicture.GetComponent<Image>().sprite = GameSceneManager.GetInstance().GetFoodPictureById(foodIndex);
         spawnOrderPicture.transform.parent = dumplingSteamedPanel.transform;
-        spawnOrderPicture.GetComponent<FoodInPlate>().SetOrder(foodIndex);
+        spawnOrderPicture.GetComponent<FoodInDumplingSteamed>().SetOrder(foodIndex);
     }
 
     public void ClearTargetOrderPanel(int id)
@@ -268,7 +273,7 @@ public class DumplingSteamedManager : InteractableManager
 
         for (int i = 0; i < dumplingSteamedPanel.transform.childCount; i++)
         {
-            if (id == dumplingSteamedPanel.transform.GetChild(i).gameObject.GetComponent<FoodInPlate>().GetOrderId())
+            if (id == dumplingSteamedPanel.transform.GetChild(i).gameObject.GetComponent<FoodInDumplingSteamed>().GetOrderId())
             {
                 Destroy(dumplingSteamedPanel.transform.GetChild(i).gameObject);
                 return;
@@ -278,10 +283,10 @@ public class DumplingSteamedManager : InteractableManager
 
     private void ClearItemsInDumplingSteamed()
     {
-        if (itemsInDumplingSteamed.Count <= 0)
+        if (ingredientsContainer.Count <= 0)
             return;
 
-        foreach (var foodObj in itemsInDumplingSteamed)
+        foreach (var foodObj in ingredientsContainer)
         {
             Destroy(foodObj);
         }

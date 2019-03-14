@@ -16,6 +16,8 @@ public class PlayerRayCast : MonoBehaviour
 
     [SerializeField] private PlateItem currentPlateInFront;
 
+    //[SerializeField] private DumplingSteamedManager currentDumplingSteamedInFront;
+
     [SerializeField] private CharacterController charContr;
     
     [SerializeField] private SpawnCleanDish spawnCleanDish;
@@ -117,6 +119,19 @@ public class PlayerRayCast : MonoBehaviour
             currentPlateInFront = null;
     }
 
+    /*private void GetDumplingSteamedInFront()
+    {
+        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+        if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
+             hit.transform.tag == "DumplingSteamed"))
+        {
+            distanceToObstacle = hit.distance;
+            currentDumplingSteamedInFront = hit.transform.gameObject.GetComponent<DumplingSteamedManager>();
+        }
+        else
+            currentDumplingSteamedInFront = null;
+    }*/
+
     private void GetInteractableInFront()
     {
         if ((Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, playerSightLength) &&
@@ -173,7 +188,6 @@ public class PlayerRayCast : MonoBehaviour
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
-                   
                     if (holdingItem.GetComponent<FoodItem>())
                     { 
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
@@ -198,6 +212,13 @@ public class PlayerRayCast : MonoBehaviour
                         UnHoldItem(holdingItem);
                     
                 }
+                //----------------------------------------------------------------------------------
+                /*else if(currentDumplingSteamedInFront)
+                {
+                    bool added = currentDumplingSteamedInFront.AddFoodToDumplingSteamed(itemInHold);
+                    //Destroy(holdingItem);
+                }*/
+                //----------------------------------------------------------------------------------
                 else if (interactableManagerInFront)
                 {
                     interactableManagerInFront.Interact(holdingItem,ref holding);
