@@ -15,6 +15,8 @@ public class PlayerController : PlayerBase
     private PlayerRayCast playerRayCast;
     private BoxCollider playerBoxColider;
 
+    private AudioSource playerAudioSource;//
+
     void Start()
     {
         //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
@@ -24,12 +26,19 @@ public class PlayerController : PlayerBase
         playerRayCast = GetComponent<PlayerRayCast>();
         rigibody = GetComponentInParent<Rigidbody>();
         playerBoxColider = GetComponentInParent<BoxCollider>();
+        playerAudioSource = GetComponent<AudioSource>();//
     }
 
     void Update()
     {
         MovePlayer();
         playerRayCast.ShootRayCast();
+
+        //if (playercontrol.isGrounded == true && cc.velocity.magnitude>2f&& playerAudioSource.isPlaying == false)
+        //{
+        //    playerAudioSource.Play();
+
+        //}
     }
 
     private void MovePlayer()
@@ -49,6 +58,11 @@ public class PlayerController : PlayerBase
                 velocity.x /= 1 + drag.x * Time.deltaTime;
                 velocity.z /= 1 + drag.z * Time.deltaTime;
                 playerAnim.SetBool("isRun", true);
+
+                if (!playerAudioSource.isPlaying)
+                {
+                    playerAudioSource.Play();
+                }
             }
             else
             {
@@ -59,6 +73,7 @@ public class PlayerController : PlayerBase
         velocity.y /= 1 + drag.y * Time.deltaTime;
         velocity.y -= gravity * Time.deltaTime;
 
+       
         playercontrol.Move(velocity * Time.deltaTime + moveMentControlInput * Time.deltaTime * speed);
     }
 }

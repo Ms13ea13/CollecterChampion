@@ -11,7 +11,7 @@ public class CharacterSelection : MonoBehaviour
 
     void Start()
     {
-        //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
         characterIndex = PlayerPrefs.GetInt("CharacterSelect");
         characterContainer = new GameObject[transform.childCount];

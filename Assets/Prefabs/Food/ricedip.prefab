@@ -618,6 +618,7 @@ MonoBehaviour:
   FoodName: 
   trayBandedId: 0
   foodOnStove: 0
+  foodIntoDumplingSteamed: 0
   foodOnChoppingBoard: 0
   foodOnPan: 0
   foodOnCounter: 0
@@ -626,6 +627,7 @@ MonoBehaviour:
   Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
   grilling: {fileID: 0}
+  boiling: {fileID: 8300000, guid: 57d9650de7aab574aab947d09469dea5, type: 3}
   rawModel: {fileID: 1844462054185884}
   grilledModel: {fileID: 0}
   friedModel: {fileID: 0}

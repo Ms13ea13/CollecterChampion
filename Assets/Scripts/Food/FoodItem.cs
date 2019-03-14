@@ -23,7 +23,7 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private bool foodIntoPot;
 
-    public AudioClip chopping, Alert_fire, complete, grilling;
+    public AudioClip chopping, Alert_fire, complete, grilling, boiling;
 
     public enum FoodState
     {
@@ -485,6 +485,9 @@ public class FoodItem : MonoBehaviour
         leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate(
             (float Value) =>
             {
+                if (!FoodItemAudioSource.isPlaying && boiling != null)
+                    FoodItemAudioSource.PlayOneShot(boiling);
+
                 tempSliderValue = Value;
                 if (timerSlider.value <= timerSlider.maxValue && currentFoodState == FoodState.Raw)
                 {
