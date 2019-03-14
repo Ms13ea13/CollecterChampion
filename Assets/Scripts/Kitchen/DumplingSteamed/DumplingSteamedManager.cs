@@ -100,18 +100,10 @@ public class DumplingSteamedManager : InteractableManager
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     [SerializeField] private GameObject foodInDumplingSteamedImagePrefab;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
-
-    /*[FormerlySerializedAs("itemInDumplingSteamed")]
-    [SerializeField]
-    private List<GameObject> itemsInDumplingSteamed;
-
-    public List<GameObject> ItemInDumplingSteamed()
-    {
-        return itemsInDumplingSteamed;
-    }*/
 
     [SerializeField] private int currentIndex;
 
@@ -197,30 +189,6 @@ public class DumplingSteamedManager : InteractableManager
             }
         }
     }
-
-    /*public bool AddFoodToDumplingSteamed(GameObject food)
-    {
-        var foodItem = food.GetComponent<FoodItem>();
-
-        if (!foodItem.CompareCurrentFoodState(FoodItem.FoodState.Done))
-        {
-            Debug.LogError("Nope food is : " + foodItem.GetFoodItemState().ToString());
-            return false;
-        }
-
-        if (ingredientsContainer.Count < 2)
-        {
-            Debug.Log("Add " + food);
-            FoodInDumplingSteamedAmount(foodItem.GetFoodItemId());
-            /*ingredientsContainer.Add(food);
-            food.transform.parent = transform;
-            food.GetComponent<Collider>().enabled = false;
-            food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
-            foodItem.SetBannedId(currentIndex);
-        }
-
-        return true;
-    }*/
 
     private Vector3 StackFoodVisually(int index, Transform targetTransform)
     {
