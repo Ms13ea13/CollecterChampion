@@ -131,7 +131,6 @@ public class PlayerRayCast : MonoBehaviour
 
     private void PickUpObj()
     {
-        //animPlayer.Play("PickupItem");
         if (holding)
         {
             if (currentPlateInFront) //Holding a plate
@@ -216,7 +215,7 @@ public class PlayerRayCast : MonoBehaviour
             if (currentFoodInFront)
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
-                    //animPlayer.SetBool("isChop", true);
+                    animPlayer.SetBool("isChop", true);
                     currentFoodInFront.ChopFood();
                     //animPlayer.SetBool("isChop", false);
                 }
@@ -254,9 +253,6 @@ public class PlayerRayCast : MonoBehaviour
         playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
-        /*temp.y = 15.9f;
-        temp.x = 0;
-        temp.z = 15.4f;*/
         temp.x = 0;
         temp.y = 0.175f;
         temp.z = 0.185f;

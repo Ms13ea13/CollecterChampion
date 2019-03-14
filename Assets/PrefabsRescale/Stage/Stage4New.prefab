@@ -2824,7 +2824,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508721890491534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.14, z: -0}
+  m_LocalPosition: {x: -0, y: 0.15, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4593299349596706}
@@ -3094,13 +3094,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1259608772178048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.541, y: 0.15, z: -0.847}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.531, y: 0.12, z: 0.107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4656568234364124}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4266798516448064
 Transform:
   m_ObjectHideFlags: 1
@@ -3121,7 +3121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766303892559010}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.531, y: 0.12, z: 0.107}
+  m_LocalPosition: {x: -1.541, y: 0.15, z: -0.847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4656568234364124}
@@ -3487,7 +3487,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1996740155447624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.14, z: -0}
+  m_LocalPosition: {x: -0, y: 0.15, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4403066456022748}
@@ -10513,6 +10513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d969446f94f704cbd9370cac922ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxIngredientsAmount: 0
+  ingredientsContainer: []
+  flourPairID: 
+  ingredientsPairID: 
 --- !u!114 &114184083947909754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10580,7 +10584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodID: 8
-  foodPrefab: {fileID: 1010274552254188, guid: 18beab1a0de98444f8dfc58aed6933e1, type: 2}
+  foodPrefab: {fileID: 1399899465129732, guid: 64ead69f240665045aff21e387d62016, type: 2}
 --- !u!114 &114345693740076412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10866,4 +10870,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodID: 9
-  foodPrefab: {fileID: 1399899465129732, guid: 64ead69f240665045aff21e387d62016, type: 2}
+  foodPrefab: {fileID: 1010274552254188, guid: 18beab1a0de98444f8dfc58aed6933e1, type: 2}
