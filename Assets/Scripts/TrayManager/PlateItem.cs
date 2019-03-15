@@ -186,7 +186,7 @@ public class PlateItem : MonoBehaviour
         {
             case 0:
             {
-                temp.y = 0.013f;
+                temp.y = 0f;
                 break;
             }
             case 1:

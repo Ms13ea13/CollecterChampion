@@ -20,6 +20,7 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField] private GameObject[] foodInDumplingSteamedPrefab;
   
     [SerializeField] private Slider timerSlider;
+    [SerializeField] private Image foodStateUI;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
     private GameObject steamedDumpling;
@@ -35,7 +36,7 @@ public class DumplingSteamedManager : InteractableManager
     
     private int leantweenID;
 
-    private float cookTimer = 15f;
+    private float cookTimer = 6f;
     [SerializeField] private float tempSliderValue ;
     private float SetFoodOnFireValue = 150;
     
@@ -47,6 +48,7 @@ public class DumplingSteamedManager : InteractableManager
     {
         timerSlider.value = 0;
         timerSlider.gameObject.SetActive(false);
+        foodStateUI.gameObject.SetActive(false);
         dumplingSteamedPanel.SetActive(false);
         FoodItemAudioSource = GetComponent<AudioSource>();
         CreatingPairIngredients();
@@ -195,6 +197,7 @@ public class DumplingSteamedManager : InteractableManager
                 FoodItemAudioSource.PlayOneShot(steaming);
 
             timerSlider.gameObject.SetActive(true);
+            foodStateUI.gameObject.SetActive(false);
             timerSlider.value = tempSliderValue;
 
         }).setOnComplete(() =>
@@ -205,6 +208,7 @@ public class DumplingSteamedManager : InteractableManager
             timerSlider.value = 0;
             tempSliderValue = 0;
             timerSlider.gameObject.SetActive(false);
+            foodStateUI.gameObject.SetActive(true);
 
             //--------------------------------------------------
 
