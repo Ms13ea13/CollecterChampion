@@ -50,6 +50,8 @@ public class FoodItem : MonoBehaviour
 
     [SerializeField] private GameObject boiledModel;
 
+    [SerializeField] private GameObject steamedModel;
+
     [SerializeField] private GameObject modelContainer;
 
     private GameObject currentFoodModel;
@@ -61,6 +63,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private Sprite onFirePicture;
     [SerializeField] private Sprite alertPicture;
     [SerializeField] private Sprite friedPicture;
+    [SerializeField] private Sprite steamedPicture;
 
     private int leantweenID;
     private const float cookTimer = 20f;
@@ -145,6 +148,9 @@ public class FoodItem : MonoBehaviour
                 break;
             case FoodStateGlobal.FoodState.Fried:
                 foodStateUI.sprite = friedPicture;
+                break;
+            case FoodStateGlobal.FoodState.Steamed:
+                foodStateUI.sprite = steamedPicture;
                 break;
             case FoodStateGlobal.FoodState.Done:
                 foodStateUI.sprite = cookedPicture;
@@ -359,6 +365,10 @@ public class FoodItem : MonoBehaviour
                 tempSliderValue = SetFoodOnFireValue + 50f;
                 ForceFoodState();
                 return false;
+            case FoodStateGlobal.FoodState.Steamed:
+                tempSliderValue = SetFoodOnFireValue + 50f;
+                ForceFoodState();
+                return false;
             default:
                 return true;
         }
@@ -557,6 +567,11 @@ public class FoodItem : MonoBehaviour
             case FoodStateGlobal.FoodState.Fried:
                 if (friedModel == null) return;
                 SelectFoodModel(friedModel);
+                break;
+
+            case FoodStateGlobal.FoodState.Steamed:
+                if (friedModel == null) return;
+                SelectFoodModel(steamedModel);
                 break;
 
             case FoodStateGlobal.FoodState.Done:
