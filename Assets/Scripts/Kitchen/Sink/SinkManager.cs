@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SinkManager : InteractableManager
 {
-    public override void Interact(GameObject target, ref bool holding)
+    public override bool Interact(GameObject target, ref bool holding, PlayerController player = null)
     {
-       SetTargetPosition(target.transform);
+        var plate = target.GetComponent<PlateItem>();
+        if (plate == null) return false;
+       SetTargetPosition(plate.transform);
         holding = false;
-        target.GetComponent<PlateItem>().SetPlateIntoSink(true);
+        
+        plate.SetPlateIntoSink(true);
+        return true;
     }
 }

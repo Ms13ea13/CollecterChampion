@@ -2,12 +2,10 @@
 
 public class PotManager : InteractableManager
 {
-    public override void Interact (GameObject target, ref bool holding)
+    public override bool Interact (GameObject target, ref bool holding , PlayerController player = null)
     {
-        
-        
         FoodItem food = target.gameObject.GetComponent<FoodItem>();
-        if (food == null) return;
+        if (food == null) return false;
         
         int foodID = food.GetFoodItemId();
 
@@ -18,5 +16,7 @@ public class PotManager : InteractableManager
             food.SetFoodIntoPot(true);
             food.PutFoodInThePot();
         }
+
+        return true;
     }
 }

@@ -40,12 +40,14 @@ public class PlayerRayCast : MonoBehaviour
     private AudioSource playerAudioSource;
 
     public Animator animPlayer;
+    private PlayerController player;
 
     void Start()
     {
         holding = false;
         distanceToObstacle = 0;
-        playerAudioSource = GetComponent<AudioSource>();//
+        playerAudioSource = GetComponent<AudioSource>();
+        player = GetComponent<PlayerController>();
 
         animPlayer = GetComponent<Animator>();
     }
@@ -135,9 +137,10 @@ public class PlayerRayCast : MonoBehaviour
         if (holding)
         {
             if (currentPlateInFront) //Holding a plate
+            {
                 if (currentFoodInFront)
                 {
-                    bool added = currentPlateInFront.AddFoodToPlate(currentFoodInFront.gameObject);
+                    bool added = currentPlateInFront.AddFoodToPlate(currentFoodInFront);
                     
                     if (added)
                     {
@@ -145,14 +148,35 @@ public class PlayerRayCast : MonoBehaviour
                         currentFoodInFront.SetDefaultFoodUI();
                     }
                 }
+                
+                if (interactableManagerInFront)
+                {
+                  var item =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,player);
+                    if (item)
+                    {
+                        bool added = currentPlateInFront.AddFoodToPlate(item);
+                    
+                        if (added)
+                        {
+                            Debug.LogError("add item from interact to plate");
+                            item.StopFoodItemSoundEffect();
+                            item.SetDefaultFoodUI();
+                        }
+                        else
+                        {
+                            Debug.LogError("didnt add shit");
+                        }
+                    }
+                }
+            }
+               
         }
         else
         {
             
             if (interactableManagerInFront)
             {
-                Debug.LogError("Interact with nothing");
-                interactableManagerInFront.Interact(null,ref holding);
+                interactableManagerInFront.Interact(null,ref holding,player);
             }
             
            else if (currentPlateInFront)
@@ -195,8 +219,9 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else if (holdingItem.GetComponent<PlateItem>())
                     {
+                       
                         PlateItem plateToServe = holdingItem.GetComponent<PlateItem>();
-                        
+                        Debug.LogError("server food via plate");
                         if (plateToServe.DeliverFoodViaPlate(currentCustomerInFront))
                         {
                             ResetHolding();
@@ -209,8 +234,11 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (interactableManagerInFront)
                 {
-                    interactableManagerInFront.Interact(holdingItem,ref holding);
+                   bool interacted = interactableManagerInFront.Interact(holdingItem,ref holding,player);
+                    if (interacted)
                     UnHoldItem(holdingItem);
+                    else
+                        return;
                 }
                 else
                     UnHoldItem(holdingItem);
@@ -253,7 +281,12 @@ public class PlayerRayCast : MonoBehaviour
         ResetHolding();
     }
 
-    private void TakeObjIntoHold(GameObject target)
+    public GameObject GetItemInHold()
+    {
+        return itemInHold;
+    }
+
+    public void TakeObjIntoHold(GameObject target)
     {
         playerAudioSource.PlayOneShot(pick_up);//
         target.transform.parent = transform;

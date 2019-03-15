@@ -88,9 +88,11 @@ public class CustomerManager : MonoBehaviour
 
             for (int j = 0; j < customerOrders.Count; j++)
             {
+                Debug.LogError("order food type : " + customerOrders[j].GetOrderFoodItemType().ToString());
+                Debug.LogError("food type : " + fooditem.GetFoodType().ToString());
                 if (customerOrders[j].GetOrderFoodItemType() == fooditem.GetFoodType())
                 {
-//                    Debug.LogError("matching food order : " + customerOrders[j].GetOrderName() +" with item : " + fooditem.GetFoodType());
+                    Debug.LogError("matching food order : " + customerOrders[j].GetOrderName() +" with item : " + fooditem.GetFoodType());
                     DelayPayment(customerOrders[j].GetOrderPrice());
                     RemoveOrder(customerOrders[j]);
                     Destroy(plate.ItemInPlate()[i]);
@@ -98,6 +100,10 @@ public class CustomerManager : MonoBehaviour
                     plate.ClearTargetOrderPanel(fooditem.GetFoodItemId());
                     spawnDirtyDish.DelaySpawnDish(3f);
                     break;
+                }
+                else
+                {
+                    Debug.LogError("aint' catch shit");
                 }
             }
         }

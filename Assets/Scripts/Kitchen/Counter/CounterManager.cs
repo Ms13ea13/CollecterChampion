@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class CounterManager : InteractableManager
 {
-    public override void Interact(GameObject target, ref bool holding)
+    public override bool Interact(GameObject target, ref bool holding , PlayerController player = null)
     {
-        if (target == null) return;
+        if (target == null) return false;
         
         SetTargetPosition(target.transform);
         holding = false;
         
         if (target.GetComponent<FoodItem>() != null) // Can be a TrayItem
             target.GetComponent<FoodItem>().SetFoodOnCounter(true);
+        return true;
     }
 }

@@ -761,6 +761,11 @@ public class FoodItem : MonoBehaviour
         return doneState;
     }
 
+    public bool FoodIsDone()
+    {
+        return CurrentFoodState == doneState;
+    }
+
     public void EnableFoodItemCollider(bool colliderEnable)
     {
         collider.enabled = colliderEnable;

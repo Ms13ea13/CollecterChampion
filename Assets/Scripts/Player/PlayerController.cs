@@ -13,6 +13,7 @@ public class PlayerController : PlayerBase
     [SerializeField] private Vector3 moveMentControlInput;
 
     private PlayerRayCast playerRayCast;
+    
     private BoxCollider playerBoxColider;
 
     private AudioSource playerAudioSource;//
@@ -41,6 +42,10 @@ public class PlayerController : PlayerBase
         //}
     }
 
+    public PlayerRayCast GetPlayerRayCast()
+    {
+        return playerRayCast;
+    }
     private void MovePlayer()
     {
         if (!playercontrol)

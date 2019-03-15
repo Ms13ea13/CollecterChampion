@@ -121,6 +121,7 @@ public class GameSceneManager : MonoBehaviour
 
     public FoodType.FoodItemType GetFoodTypeById(int id)
     {
+      
         return (FoodType.FoodItemType)id;
     }
 
