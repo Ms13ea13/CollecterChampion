@@ -18,11 +18,7 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField] private GameObject foodInDumplingSteamedImagePrefab;
 
     [SerializeField] private GameObject[] foodInDumplingSteamedPrefab;
-    private GameObject GetDumplingPrefabByIndex(int index)
-    {
-        return foodInDumplingSteamedPrefab[index];
-    }
-
+  
     [SerializeField] private Slider timerSlider;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
@@ -56,16 +52,9 @@ public class DumplingSteamedManager : InteractableManager
         CreatingPairIngredients();
     }
 
-    void Update()
+    private GameObject GetDumplingPrefabByIndex(int index)
     {
-//        if (ingredientsContainer.Count == 0)
-//        {
-//            dumplingSteamedPanel.SetActive(false);
-//        }
-//        else
-//        {
-//            dumplingSteamedPanel.SetActive(true);
-//        }
+        return foodInDumplingSteamedPrefab[index];
     }
 
     private void CreatingPairIngredients() // Create dumpling set from flour type and meat type
@@ -76,40 +65,48 @@ public class DumplingSteamedManager : InteractableManager
         }
     }
 
-    public override void Interact(GameObject target, ref bool holding)
+    public override FoodItem InteractWithPlate(PlateItem plateItem, PlayerController player = null)
+    {
+        if (plateItem != null)
+        {
+//            Debug.LogError("Pick up thing from dumpling");
+            RemovePair();
+            return steamedDumplingFoodItem;
+           
+        }
+        else
+
+        {
+//            Debug.LogError("plate is null");
+            return null;
+        }
+         
+           
+
+    }
+
+    public override bool Interact (GameObject target,ref bool holding, PlayerController player)
     {
         if (!wrongPair)
         {
             if (target == null)
             {
-                Debug.LogError("Pick up thing from dumpling");
-                RemovePair();
-                return;
+                return false;
             }
+            
             FoodItem food = target.gameObject.GetComponent<FoodItem>();
-            if (food == null) return;
+            if (food == null) return false;
         
             int foodID = food.GetFoodItemId();
 
             if (dumplingSets.ContainsKey(foodID) || dumplingSets.ContainsValue(foodID)) //If foodItem is one of the ingredient needed for dumpling pair
             {
-//                if (dumplingSets.ContainsKey(foodID)) //if foodItem IS one of the flour type
-//                {
-//                    Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking flour id :" + food.GetFoodItemId());
-//                }
-//
-//
-//                if (dumplingSets.ContainsValue(foodID)) //if foodItem IS one of the ingredient pair type
-//                {
-//                    Debug.LogError("yr " + food.GetFoodItemName() + " is a fucking ingredient id :" + food.GetFoodItemId());
-//                }
-               
                 if (!ingredientsContainer.Contains(food) && ingredientsContainer.Count < maxIngredientsAmount)  //Check that container amount and add item
                 {
                     if (food.IsFoodChopped())
                     {
                         dumplingSteamedPanel.SetActive(true);
-                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
+//                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
 
                         ingredientsContainer.Add(food);
 
@@ -124,6 +121,8 @@ public class DumplingSteamedManager : InteractableManager
                         //                    Destroy(food.gameObject);
                         holding = false;
                     }
+                    else
+                        return false;
                 }
             
                 if (ingredientsContainer.Count >= maxIngredientsAmount) //In case container if full , then take action
@@ -138,12 +137,15 @@ public class DumplingSteamedManager : InteractableManager
         else
         {
             RemovePair();
+            
         }
+        
+        return true;
     }
 
     private void RemovePair()
     {
-        Debug.LogError("RemovePair");
+//        Debug.LogError("RemovePair");
         ingredientsContainer.Clear();
         wrongPair = false;
         for (int i= 0; i < dumplingSteamedPanel.transform.childCount;i++)
@@ -154,7 +156,7 @@ public class DumplingSteamedManager : InteractableManager
         if (dumplingSteamedPanel.transform.childCount > 0)
         {
             dumplingSteamedPanel.SetActive(false);
-            Debug.LogError("panel doesn't have child");
+//            Debug.LogError("panel doesn't have child");
         }
         
     }
@@ -171,7 +173,7 @@ public class DumplingSteamedManager : InteractableManager
                 tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientPairID);
                 if (tempFood) // Check if the container really have the pair item added inside
                 {
-                    Debug.LogError("Try steaming yo shit");
+//                    Debug.LogError("Try steaming yo shit");
                     SteamingDumplingPair();
                     return false;
                 }
@@ -184,7 +186,7 @@ public class DumplingSteamedManager : InteractableManager
 
     private void SteamingDumplingPair()
     {
-        Debug.LogError("right pair");
+//        Debug.LogError("right pair");
         tempSliderValue = timerSlider.value;
         leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((tempSliderValue) =>
         {
@@ -198,19 +200,19 @@ public class DumplingSteamedManager : InteractableManager
         {
             
 
-            Debug.LogError("done steaming");
+//            Debug.LogError("done steaming");
             timerSlider.gameObject.SetActive(false);
 
             //--------------------------------------------------
 
             if (ingredientsContainer.Find(x => x.GetFoodItemId() == 6) && ingredientsContainer.Find(x => x.GetFoodItemId() == 8))
             {
-                Debug.LogError("SpawnShrimpDumpling");
+//                Debug.LogError("SpawnShrimpDumpling");
                 spawnShrimpDumpling();
             }
             else if (ingredientsContainer.Find(x => x.GetFoodItemId() == 7) && ingredientsContainer.Find(x => x.GetFoodItemId() == 9))
             {
-                Debug.LogError("SpawnPigDumpling");
+//                Debug.LogError("SpawnPigDumpling");
                 spawnPorkDumpling();
             }
 
@@ -224,7 +226,7 @@ public class DumplingSteamedManager : InteractableManager
 
             RemovePair();
             steamedDumplingFoodItem.CurrentFoodState = steamedDumplingFoodItem.GetDoneState();
-
+            steamedDumplingFoodItem.EnableFoodItemCollider(false);
             FoodInDumplingSteamedAmount(steamedDumplingFoodItem.GetFoodItemId());
             Debug.Log(steamedDumplingFoodItem.GetFoodItemId());
 

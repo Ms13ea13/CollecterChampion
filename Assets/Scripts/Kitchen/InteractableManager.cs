@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class InteractableManager : MonoBehaviour
 {
-	public virtual void Interact (GameObject target , ref bool holding)
+	public virtual bool Interact (GameObject target , ref bool holding , PlayerController player = null)
+     	{
+     		return false;
+     	}
+	
+	public virtual FoodItem InteractWithPlate (PlateItem plateItem ,  PlayerController player = null)
 	{
-		
+		return null;
 	}
 
 	public void SetTargetPosition(Transform targetTransform , bool notSetParent = false)

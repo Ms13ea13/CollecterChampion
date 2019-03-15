@@ -2,10 +2,10 @@
 
 public class BinManager : InteractableManager
 {
-	public override void Interact(GameObject target  , ref bool holding )
+	public override bool Interact(GameObject target  , ref bool holding, PlayerController player )
 	{
 		if (!target)
-			return;
+			return false;
 		
 		PlateItem plateOnHold = target.GetComponent<PlateItem>();
 		if (plateOnHold != null)
@@ -16,12 +16,14 @@ public class BinManager : InteractableManager
 				plateOnHold.ClearAllItemInPlate();
 			}
 			else
-				return;
+				return false;
 		}
 		else
 		{
 			ThowItemToTrash(target);
 		}
+
+		return true;
 	}
 
 	private void ThowItemToTrash(GameObject item)

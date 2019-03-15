@@ -143,24 +143,23 @@ public class PlateItem : MonoBehaviour
         }
     }
 
-    public bool AddFoodToPlate(GameObject food)
+    public bool AddFoodToPlate(FoodItem food)
     {
-        var foodItem = food.GetComponent<FoodItem>();
 
-        if (!foodItem.CompareCurrentFoodState(FoodStateGlobal.FoodState.Done))
+        if (!food.FoodIsDone())
         {
-            Debug.LogError("Nope food is : " + foodItem.CurrentFoodState.ToString());
+            Debug.LogError("Nope food is : " + food.CurrentFoodState.ToString());
             return false;
         }
 
         if (itemsInPlate.Count < 3)
         {
-            itemsInPlate.Add(food);
+            itemsInPlate.Add(food.gameObject);
             food.transform.parent = transform;
             food.GetComponent<Collider>().enabled = false;
             food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
-            foodItem.SetBannedId(currentIndex);
-            FoodInPlateAmount(foodItem.GetFoodItemId());
+            food.SetBannedId(currentIndex);
+            FoodInPlateAmount(food.GetFoodItemId());
         }
 
         return true;

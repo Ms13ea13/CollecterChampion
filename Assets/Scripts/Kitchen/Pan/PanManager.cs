@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PanManager : InteractableManager
 {
-    public override void Interact(GameObject target, ref bool holding)
+    public override bool Interact(GameObject target, ref bool holding, PlayerController player = null)
     {
         FoodItem food = target.gameObject.GetComponent<FoodItem>();
-        if (food == null) return;
+        if (food == null) return false;
         
         int foodID = food.GetFoodItemId();
 
@@ -18,5 +18,7 @@ public class PanManager : InteractableManager
             food.SetFoodOnStove(true);
             food.PutFoodInThePan();
         }
+
+        return true;
     }
 }
