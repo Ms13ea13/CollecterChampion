@@ -69,7 +69,7 @@ public class DumplingSteamedManager : InteractableManager
     {
         if (plateItem != null)
         {
-//            Debug.LogError("Pick up thing from dumpling");
+            Debug.LogError("Pick up thing from dumpling");
             RemovePair();
             return steamedDumplingFoodItem.gameObject;
            
@@ -94,6 +94,7 @@ public class DumplingSteamedManager : InteractableManager
                 return false;
             }
             
+            Debug.LogError("try put food in steamer");
             FoodItem food = target.gameObject.GetComponent<FoodItem>();
             if (food == null) return false;
         
@@ -106,7 +107,7 @@ public class DumplingSteamedManager : InteractableManager
                     if (food.IsFoodChopped())
                     {
                         dumplingSteamedPanel.SetActive(true);
-//                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
+                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
 
                         ingredientsContainer.Add(food);
 
@@ -201,6 +202,8 @@ public class DumplingSteamedManager : InteractableManager
             
 
 //            Debug.LogError("done steaming");
+            timerSlider.value = 0;
+            tempSliderValue = 0;
             timerSlider.gameObject.SetActive(false);
 
             //--------------------------------------------------

@@ -45,7 +45,7 @@ public class FoodOrder : MonoBehaviour
         orderName = GameSceneManager.GetInstance().GetFoodNameById(id);
         foodImage.sprite = GameSceneManager.GetInstance().GetFoodPictureById(id);
         orderFoodType = GameSceneManager.GetInstance().GetFoodTypeById(id);
-        Debug.LogError("order type " + orderFoodType.ToString());
+//        Debug.LogError("order type " + orderFoodType.ToString());
         Initiate();
     }
     private void Initiate()

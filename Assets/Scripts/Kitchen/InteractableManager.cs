@@ -25,6 +25,6 @@ public class InteractableManager : MonoBehaviour
 		targetTransform.localPosition = temp;
 		Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
 		targetTransform.localRotation = tempQuaternion;
-		Debug.LogError("SetTargetPosition");
+//		Debug.LogError("SetTargetPosition");
 	}
 }
