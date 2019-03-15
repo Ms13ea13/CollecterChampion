@@ -579,11 +579,21 @@ public class FoodItem : MonoBehaviour
                 break;
 
             case FoodStateGlobal.FoodState.Alert:
+                if (currentFoodModel != null)
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
+                else
+                {
+                    GetComponent<Renderer>().material.color = Color.Lerp(Color.yellow, Color.red, 3f);
+                }
                 break;
 
             case FoodStateGlobal.FoodState.OnFire:
+                if (currentFoodModel != null)
                 currentFoodModel.GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
+                else
+                {
+                    GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.black, 3f);
+                }
                 break;
 
             default:

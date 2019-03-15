@@ -39,7 +39,7 @@ public class DumplingSteamedManager : InteractableManager
     
     private int leantweenID;
 
-    private float cookTimer = 20f;
+    private float cookTimer = 15f;
     [SerializeField] private float tempSliderValue ;
     private float SetFoodOnFireValue = 150;
     
@@ -71,13 +71,14 @@ public class DumplingSteamedManager : InteractableManager
         if (plateItem != null)
         {
            
-            if (steamedDumplingFoodItem && steamedDumplingFoodItem.FoodIsDone())
+            if (steamedDumplingFoodItem && steamedDumplingFoodItem.IsFoodDoneCooking())
             {
                 Debug.LogError("Pick up thing from dumpling");
                 LeanTween.cancel(leantweenID);
                 RemovePair();
-                
-                return steamedDumplingFoodItem.gameObject;
+                var tempFood = steamedDumplingFoodItem;
+                steamedDumplingFoodItem = null;
+                return tempFood.gameObject;
             }
             else
                 return null;
@@ -97,9 +98,11 @@ public class DumplingSteamedManager : InteractableManager
         {
             if (target == null)
             {
-                if (doneCooking)
+                if (doneCooking && !steamedDumplingFoodItem.IsFoodDoneCooking())
                 {
-                    player.GetPlayerRayCast().TakeObjIntoHold(steamedDumplingFoodItem.gameObject);
+                    var tempFood = steamedDumplingFoodItem;
+                    steamedDumplingFoodItem = null;
+                    player.GetPlayerRayCast().TakeObjIntoHold(tempFood.gameObject);
                     RemovePair();
                     LeanTween.cancel(leantweenID);
                 }
@@ -236,7 +239,7 @@ public class DumplingSteamedManager : InteractableManager
                
 
             }
-            else  if (tempSliderValue > SetFoodOnFireValue + 71)
+            else  if (tempSliderValue > SetFoodOnFireValue + 71 && tempSliderValue < SetFoodOnFireValue + 90)
             {
               
                 if (steamedDumplingFoodItem.CurrentFoodState != FoodStateGlobal.FoodState.Alert)
@@ -248,23 +251,19 @@ public class DumplingSteamedManager : InteractableManager
                     tempSliderValue = 0;
                 }
                
+            }else if (tempSliderValue > SetFoodOnFireValue + 91)
+            {
+                if (steamedDumplingFoodItem.CurrentFoodState != FoodStateGlobal.FoodState.OnFire)
+                {
+                    Debug.LogError("onfire steaming");
+                    SetFoodUIState(FoodStateGlobal.FoodState.OnFire);
+                    steamedDumplingFoodItem.CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
+                    steamedDumplingFoodItem.ChangeFoodVisualAccordingToStates();
+                }
             }
             
 
-        }).setOnComplete(() =>
-        {
-           
-            if (steamedDumplingFoodItem.CurrentFoodState != FoodStateGlobal.FoodState.OnFire)
-            {
-                Debug.LogError("onfire steaming");
-              
-               
-                SetFoodUIState(FoodStateGlobal.FoodState.OnFire);
-                steamedDumplingFoodItem.CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
-                steamedDumplingFoodItem.ChangeFoodVisualAccordingToStates();
-            }
-
-        }).id;
+        }).setOnComplete(() => { tempSliderValue = 0; }).id;
     }
 
     private void DoneSteamingDumpling()
