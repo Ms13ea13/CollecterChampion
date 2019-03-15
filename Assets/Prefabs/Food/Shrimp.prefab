@@ -682,6 +682,7 @@ MonoBehaviour:
   friedModel: {fileID: 0}
   chopModel: {fileID: 1716455012392428}
   boiledModel: {fileID: 0}
+  steamedModel: {fileID: 0}
   modelContainer: {fileID: 1206477233767316}
   timerSlider: {fileID: 114327511077538146}
   foodStateUI: {fileID: 114922874371017158}
@@ -689,13 +690,14 @@ MonoBehaviour:
   onFirePicture: {fileID: 21300000, guid: 8566b271f95dd4b439984f74ea75519e, type: 3}
   alertPicture: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888, type: 3}
   friedPicture: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b, type: 3}
+  steamedPicture: {fileID: 0}
   min: 0
   maxFoodCookLevel: 100
   percentage: 0
   currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
-  foodtype: 4
+  foodtype: 8
   doneState: 2
   CurrentFoodState: 0
 --- !u!114 &114922874371017158
