@@ -9,7 +9,7 @@ public class CounterManager : InteractableManager
         
         if (target == null) return false;
         
-        Debug.LogError("counter with target item");
+        Debug.Log("counter with target item");
         if (target.GetComponent<FoodItem>() != null) // Can be a TrayItem
             target.GetComponent<FoodItem>().SetFoodOnCounter(true);
         

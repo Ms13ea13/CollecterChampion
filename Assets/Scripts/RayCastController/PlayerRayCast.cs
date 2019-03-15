@@ -160,13 +160,13 @@ public class PlayerRayCast : MonoBehaviour
                     
                         if (added)
                         {
-                            Debug.LogError("add item from interact to plate");
+                            Debug.Log("add item from interact to plate");
                             foodItem.StopFoodItemSoundEffect();
                             foodItem.SetDefaultFoodUI();
                         }
                         else
                         {
-                            Debug.LogError("didnt add shit");
+                            Debug.Log("didnt add shit");
                         }
                     }
                 }
@@ -223,7 +223,7 @@ public class PlayerRayCast : MonoBehaviour
                     {
                        
                         PlateItem plateToServe = holdingItem.GetComponent<PlateItem>();
-                        Debug.LogError("server food via plate");
+                        Debug.Log("server food via plate");
                         if (plateToServe.DeliverFoodViaPlate(currentCustomerInFront))
                         {
                             ResetHolding();

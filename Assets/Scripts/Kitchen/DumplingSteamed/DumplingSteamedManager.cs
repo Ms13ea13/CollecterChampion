@@ -73,7 +73,7 @@ public class DumplingSteamedManager : InteractableManager
            
             if (steamedDumplingFoodItem && steamedDumplingFoodItem.IsFoodDoneCooking())
             {
-                Debug.LogError("Pick up thing from dumpling");
+                Debug.Log("Pick up thing from dumpling");
                 LeanTween.cancel(leantweenID);
                 RemovePair();
                 var tempFood = steamedDumplingFoodItem;
@@ -87,7 +87,7 @@ public class DumplingSteamedManager : InteractableManager
         else
 
         {
-//            Debug.LogError("plate is null");
+//            Debug.Log("plate is null");
             return null;
         }
     }
@@ -109,7 +109,7 @@ public class DumplingSteamedManager : InteractableManager
                 return false;
             }
             
-            Debug.LogError("try put food in steamer");
+            Debug.Log("try put food in steamer");
             FoodItem food = target.gameObject.GetComponent<FoodItem>();
             if (food == null) return false;
         
@@ -122,7 +122,7 @@ public class DumplingSteamedManager : InteractableManager
                     if (food.IsFoodChopped())
                     {
                         dumplingSteamedPanel.SetActive(true);
-                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
+                        Debug.Log("adding " + food.GetFoodItemName() + " to container");
 
                         ingredientsContainer.Add(food);
 
@@ -161,7 +161,7 @@ public class DumplingSteamedManager : InteractableManager
 
     private void RemovePair()
     {
-//        Debug.LogError("RemovePair");
+//        Debug.Log("RemovePair");
         ingredientsContainer.Clear();
         wrongPair = false;
       
@@ -225,7 +225,7 @@ public class DumplingSteamedManager : InteractableManager
             {
                 if (!doneCooking)
                 {
-                    Debug.LogError("done steaming");
+                    Debug.Log("done steaming");
                     DoneSteamingDumpling();
                     SetFoodUIState(FoodStateGlobal.FoodState.Done);
                     steamedDumplingFoodItem.CurrentFoodState = FoodStateGlobal.FoodState.Done;
@@ -246,7 +246,7 @@ public class DumplingSteamedManager : InteractableManager
                 {
                     steamedDumplingFoodItem.CurrentFoodState = FoodStateGlobal.FoodState.Alert;
                     SetFoodUIState(FoodStateGlobal.FoodState.Alert);
-                    Debug.LogError("steaming alert");
+                    Debug.Log("steaming alert");
                     steamedDumplingFoodItem.ChangeFoodVisualAccordingToStates();
                     tempSliderValue = 0;
                 }
@@ -255,7 +255,7 @@ public class DumplingSteamedManager : InteractableManager
             {
                 if (steamedDumplingFoodItem.CurrentFoodState != FoodStateGlobal.FoodState.OnFire)
                 {
-                    Debug.LogError("onfire steaming");
+                    Debug.Log("onfire steaming");
                     SetFoodUIState(FoodStateGlobal.FoodState.OnFire);
                     steamedDumplingFoodItem.CurrentFoodState = FoodStateGlobal.FoodState.OnFire;
                     steamedDumplingFoodItem.ChangeFoodVisualAccordingToStates();
