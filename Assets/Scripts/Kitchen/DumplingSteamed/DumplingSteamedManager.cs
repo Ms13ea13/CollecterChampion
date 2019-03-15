@@ -158,7 +158,7 @@ public class DumplingSteamedManager : InteractableManager
 
         foreach (var item in ingredientsContainer)
         {
-            if (dumplingSets.TryGetValue(item.GetFoodItemId(),out currentIngredientPairID) ) // Check if the food in the container can fetch the pair within the container
+            if (dumplingSets.TryGetValue(item.GetFoodItemId(), out currentIngredientPairID) ) // Check if the food in the container can fetch the pair within the container
             {
                 tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientPairID);
                 if (tempFood) // Check if the container really have the pair item added inside
@@ -194,14 +194,18 @@ public class DumplingSteamedManager : InteractableManager
             timerSlider.gameObject.SetActive(false);
 
             //--------------------------------------------------
-            if (GetDumplingPrefabByIndex(0))
+
+            if (ingredientsContainer.Find(x => x.GetFoodItemId() == 6) && ingredientsContainer.Find(x => x.GetFoodItemId() == 8))
             {
+                Debug.LogError("SpawnShrimpDumpling");
                 spawnShrimpDumpling();
             }
-            else if (GetDumplingPrefabByIndex(1))
+            else if (ingredientsContainer.Find(x => x.GetFoodItemId() == 7) && ingredientsContainer.Find(x => x.GetFoodItemId() == 9))
             {
+                Debug.LogError("SpawnPigDumpling");
                 spawnPorkDumpling();
             }
+
             //---------------------------------------------------
 
             //GameObject steamedDumpling = Instantiate(foodInDumplingSteamedPrefab[]);
