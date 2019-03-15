@@ -26,7 +26,6 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField] private Sprite steamedPicture;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
-    private GameObject steamedDumpling;
     private FoodItem steamedDumplingFoodItem;
 
     private Dictionary<int,int> dumplingSets = new Dictionary<int, int>();
@@ -294,6 +293,7 @@ public class DumplingSteamedManager : InteractableManager
         GameObject a = Instantiate(foodInDumplingSteamedPrefab[0]);
         a.transform.position = new Vector3(transform.position.x, 0.245f, transform.position.z);
         steamedDumplingFoodItem = a.GetComponent<FoodItem>();
+        steamedDumplingFoodItem.GetComponent<Renderer>().material.color = Color.white;
     }
 
     private void spawnPorkDumpling()
@@ -301,6 +301,7 @@ public class DumplingSteamedManager : InteractableManager
         GameObject b = Instantiate(foodInDumplingSteamedPrefab[1]);
         b.transform.position = new Vector3(transform.position.x, 0.245f, transform.position.z);
         steamedDumplingFoodItem = b.GetComponent<FoodItem>();
+        steamedDumplingFoodItem.GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void FoodInDumplingSteamedAmount(int foodIndex)
