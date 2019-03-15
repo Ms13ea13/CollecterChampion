@@ -65,13 +65,13 @@ public class DumplingSteamedManager : InteractableManager
         }
     }
 
-    public override FoodItem InteractWithPlate(PlateItem plateItem, PlayerController player = null)
+    public override GameObject InteractWithPlate(PlateItem plateItem, PlayerController player = null)
     {
         if (plateItem != null)
         {
 //            Debug.LogError("Pick up thing from dumpling");
             RemovePair();
-            return steamedDumplingFoodItem;
+            return steamedDumplingFoodItem.gameObject;
            
         }
         else

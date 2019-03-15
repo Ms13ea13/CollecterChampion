@@ -151,16 +151,17 @@ public class PlayerRayCast : MonoBehaviour
                 
                 if (interactableManagerInFront)
                 {
-                  var item =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,player);
-                    if (item)
+                  GameObject foodItemGameObj =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,player);
+                    FoodItem foodItem = foodItemGameObj.GetComponent<FoodItem>();
+                    if (foodItem)
                     {
-                        bool added = currentPlateInFront.AddFoodToPlate(item);
+                        bool added = currentPlateInFront.AddFoodToPlate(foodItem);
                     
                         if (added)
                         {
                             Debug.LogError("add item from interact to plate");
-                            item.StopFoodItemSoundEffect();
-                            item.SetDefaultFoodUI();
+                            foodItem.StopFoodItemSoundEffect();
+                            foodItem.SetDefaultFoodUI();
                         }
                         else
                         {
@@ -234,11 +235,23 @@ public class PlayerRayCast : MonoBehaviour
                 }
                 else if (interactableManagerInFront)
                 {
-                   bool interacted = interactableManagerInFront.Interact(holdingItem,ref holding,player);
-                    if (interacted)
-                    UnHoldItem(holdingItem);
+                    bool interacted = false;
+                    var plate = holdingItem.GetComponent<PlateItem>();
+                    if (plate == null)
+                    {
+                        interacted = interactableManagerInFront.Interact(holdingItem,ref holding,player);
+                        if (interacted)
+                            UnHoldItem(holdingItem);
+                    }
                     else
-                        return;
+                    {
+                        var emptyPlate =   interactableManagerInFront.InteractWithPlate(plate,player);
+                        if (emptyPlate == null)
+                        UnHoldItem(holdingItem);
+                        else 
+                            TakeObjIntoHold(emptyPlate.gameObject);
+                    }
+                    
                 }
                 else
                     UnHoldItem(holdingItem);

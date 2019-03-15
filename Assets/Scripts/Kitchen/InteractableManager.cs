@@ -9,7 +9,7 @@ public class InteractableManager : MonoBehaviour
      		return false;
      	}
 	
-	public virtual FoodItem InteractWithPlate (PlateItem plateItem ,  PlayerController player = null)
+	public virtual GameObject InteractWithPlate (PlateItem plateItem ,  PlayerController player = null)
 	{
 		return null;
 	}
