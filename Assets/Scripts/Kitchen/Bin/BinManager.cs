@@ -3,7 +3,7 @@
 public class BinManager : InteractableManager
 {
 
-	public override GameObject InteractWithPlate(PlateItem plateItem, PlayerController player = null)
+	public override GameObject InteractWithPlate(PlateItem plateItem,ref bool holding , PlayerController player = null)
 	{
 		if (plateItem != null)
 		{

@@ -9,7 +9,7 @@ public class InteractableManager : MonoBehaviour
      		return false;
      	}
 	
-	public virtual GameObject InteractWithPlate (PlateItem plateItem ,  PlayerController player = null)
+	public virtual GameObject InteractWithPlate (PlateItem plateItem ,  ref bool holding ,  PlayerController player = null)
 	{
 		return null;
 	}
@@ -25,5 +25,6 @@ public class InteractableManager : MonoBehaviour
 		targetTransform.localPosition = temp;
 		Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
 		targetTransform.localRotation = tempQuaternion;
+		Debug.LogError("SetTargetPosition");
 	}
 }

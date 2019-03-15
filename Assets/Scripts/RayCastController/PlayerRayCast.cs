@@ -151,7 +151,7 @@ public class PlayerRayCast : MonoBehaviour
                 
                 if (interactableManagerInFront)
                 {
-                  GameObject foodItemGameObj =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,player);
+                  GameObject foodItemGameObj =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,ref  holding ,player);
                     FoodItem foodItem = foodItemGameObj.GetComponent<FoodItem>();
                     if (foodItem)
                     {
@@ -245,7 +245,7 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else
                     {
-                        var emptyPlate =   interactableManagerInFront.InteractWithPlate(plate,player);
+                        var emptyPlate =   interactableManagerInFront.InteractWithPlate(plate,ref  holding ,player);
                         if (emptyPlate == null)
                         UnHoldItem(holdingItem);
                         else 

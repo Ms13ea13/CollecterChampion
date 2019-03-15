@@ -6,12 +6,26 @@ public class CounterManager : InteractableManager
 {
     public override bool Interact(GameObject target, ref bool holding , PlayerController player = null)
     {
+        
         if (target == null) return false;
+        
+        Debug.LogError("counter with target item");
         if (target.GetComponent<FoodItem>() != null) // Can be a TrayItem
             target.GetComponent<FoodItem>().SetFoodOnCounter(true);
         
         SetTargetPosition(target.transform);
         holding = false;
         return true;
+    }
+    
+    public override GameObject InteractWithPlate(PlateItem plateItem,ref bool holding , PlayerController player = null)
+    {
+        if (plateItem != null)
+        {
+            SetTargetPosition(plateItem.transform);
+            holding = false;
+        }
+
+        return null;
     }
 }
