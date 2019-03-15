@@ -35,7 +35,7 @@ public class DumplingSteamedManager : InteractableManager
     
     private int leantweenID;
 
-    private float cookTimer = 2f;
+    private float cookTimer = 15f;
     [SerializeField] private float tempSliderValue ;
     private float SetFoodOnFireValue = 150;
     
