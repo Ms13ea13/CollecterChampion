@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 65009718301776060}
-  foodID: 0
+  foodID: 9
   FoodName: 
   trayBandedId: 0
   foodOnStove: 0

@@ -46,6 +46,11 @@ public class PlateItem : MonoBehaviour
     [SerializeField] private bool plateIntoSink;
     [SerializeField] private float tempSliderValue;
 
+    private AudioSource FoodItemAudioSource;
+    public AudioClip washdish;
+    private float soundLength;
+    private float soundStart = 0f;
+
     private bool onHold;
     private Vector3 temp;
 
@@ -55,6 +60,7 @@ public class PlateItem : MonoBehaviour
         itemsInPlate = new List<GameObject>();
         timerSlider.value = 0;
         SetDefaultPlateUI();
+        FoodItemAudioSource = GetComponent<AudioSource>(); //
     }
 
     void Update()
@@ -103,6 +109,9 @@ public class PlateItem : MonoBehaviour
     {
         if (timerSlider.value <= maxPlateCleanLevel && CompareCurrentPlateState(PlateState.Dirty))
         {
+            if (!FoodItemAudioSource.isPlaying && washdish != null)
+                FoodItemAudioSource.PlayOneShot(washdish);
+
             if (!timerSlider.gameObject.activeInHierarchy)
                 SetShowTimerSlider(true);
 
@@ -110,6 +119,8 @@ public class PlateItem : MonoBehaviour
             percentage = (currentPlateCleanLevel / maxPlateCleanLevel) * 100;
             timerSlider.value = percentage;
             tempSliderValue = percentage;
+
+            soundLength = washdish.length;//
 
             if (percentage >= 100)
             {
@@ -119,6 +130,15 @@ public class PlateItem : MonoBehaviour
                 Destroy(gameObject);
                 washDone = true;
                 Debug.Log(percentage + "Plate is clean");
+            }
+            else
+            {
+                soundStart += Time.deltaTime;
+                if (soundStart >= soundLength)
+                {
+                    FoodItemAudioSource.PlayOneShot(washdish);
+                    soundStart = 0;
+                }
             }
         }
     }

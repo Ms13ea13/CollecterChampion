@@ -1231,47 +1231,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114612857806053166, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    - target: {fileID: 114844664717689844, guid: 0f50c04eb53ddb9439d28fce024061d5,
         type: 2}
-      propertyPath: spawnCleanDish
+      propertyPath: loadingStage
       value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114299856961570944, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114626080611343854, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114618872859194776, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114028224012919910, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114417928223884398, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114853142003717942, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114026022847490076, guid: 0f50c04eb53ddb9439d28fce024061d5,
-        type: 2}
-      propertyPath: spawnCleanDish
-      value: 
-      objectReference: {fileID: 1870404841}
-    - target: {fileID: 114893093496632414, guid: 0f50c04eb53ddb9439d28fce024061d5,
+      objectReference: {fileID: 1556619644}
+    - target: {fileID: 114125771092152996, guid: 0f50c04eb53ddb9439d28fce024061d5,
         type: 2}
       propertyPath: spawnCleanDish
       value: 
@@ -1281,16 +1246,51 @@ Prefab:
       propertyPath: spawnCleanDish
       value: 
       objectReference: {fileID: 1870404841}
-    - target: {fileID: 114125771092152996, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    - target: {fileID: 114893093496632414, guid: 0f50c04eb53ddb9439d28fce024061d5,
         type: 2}
       propertyPath: spawnCleanDish
       value: 
       objectReference: {fileID: 1870404841}
-    - target: {fileID: 114844664717689844, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    - target: {fileID: 114026022847490076, guid: 0f50c04eb53ddb9439d28fce024061d5,
         type: 2}
-      propertyPath: loadingStage
+      propertyPath: spawnCleanDish
       value: 
-      objectReference: {fileID: 1556619644}
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114853142003717942, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114417928223884398, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114028224012919910, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114618872859194776, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114626080611343854, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114299856961570944, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
+    - target: {fileID: 114612857806053166, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: spawnCleanDish
+      value: 
+      objectReference: {fileID: 1870404841}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0

@@ -16,7 +16,12 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField] private int[] ingredientsPairID;
 
     [SerializeField] private GameObject foodInDumplingSteamedImagePrefab;
-    [SerializeField] private GameObject foodInDumplingSteamedPrefab;
+
+    [SerializeField] private GameObject[] foodInDumplingSteamedPrefab;
+    private GameObject GetDumplingPrefabByIndex(int index)
+    {
+        return foodInDumplingSteamedPrefab[index];
+    }
 
     [SerializeField] private Slider timerSlider;
 
@@ -32,8 +37,6 @@ public class DumplingSteamedManager : InteractableManager
     [SerializeField]
     private bool doneCooking = false;
     
-    
-
     private int leantweenID;
 
     private float cookTimer = 2f;
@@ -79,7 +82,6 @@ public class DumplingSteamedManager : InteractableManager
         {
             if (target == null)
             {
-                
                 Debug.LogError("Pick up thing from dumpling");
                 RemovePair();
                 return;
@@ -108,8 +110,10 @@ public class DumplingSteamedManager : InteractableManager
                     Debug.LogError("adding " + food.GetFoodItemName() + " to container");
                     ingredientsContainer.Add(food);
                     SetTargetPosition(food.transform);
+
                     food.SetFoodIntoDumplingSteamed(true);
                     FoodInDumplingSteamedAmount(food.GetFoodItemId());
+
                     food.gameObject.tag = "Untagged";
                     food.DestroyFoodItemCollider();
                     food.enabled = false;
@@ -119,9 +123,7 @@ public class DumplingSteamedManager : InteractableManager
             
                 if (ingredientsContainer.Count >= maxIngredientsAmount) //In case container if full , then take action
                 {
-                    
                     wrongPair = SteamTheFuckOutOfYourDumpling();
-
                 }
             }
         }
@@ -129,7 +131,6 @@ public class DumplingSteamedManager : InteractableManager
         {
             RemovePair();
         }
-
     }
 
     private void RemovePair()
@@ -171,7 +172,6 @@ public class DumplingSteamedManager : InteractableManager
 
         ShowWrongPairUI();
         return true;
-
     }
 
     private void SteamingDumplingPair()
@@ -188,20 +188,38 @@ public class DumplingSteamedManager : InteractableManager
 
         }).setOnComplete(() =>
         {
+            
+
             Debug.LogError("done steaming");
             timerSlider.gameObject.SetActive(false);
-            GameObject steamedDumpling = Instantiate(foodInDumplingSteamedPrefab);
-            steamedDumpling.transform.position = new Vector3(transform.position.x,0.245f,transform.position.z);
-            steamedDumplingFoodItem = steamedDumpling.GetComponent<FoodItem>();
-//            SetTargetPosition(steamedDumpling.transform,true);
+
+            //--------------------------------------------------
+            if (GetDumplingPrefabByIndex(0))
+            {
+                spawnShrimpDumpling();
+            }
+            else if (GetDumplingPrefabByIndex(1))
+            {
+                spawnPorkDumpling();
+            }
+            //---------------------------------------------------
+
+            //GameObject steamedDumpling = Instantiate(foodInDumplingSteamedPrefab[]);
+
+            //steamedDumpling.transform.position = new Vector3(transform.position.x,0.245f,transform.position.z);
+            //steamedDumplingFoodItem = steamedDumpling.GetComponent<FoodItem>();
+            //            SetTargetPosition(steamedDumpling.transform,true);
+
             RemovePair();
             steamedDumplingFoodItem.CurrentFoodState = steamedDumplingFoodItem.GetDoneState();
+
             FoodInDumplingSteamedAmount(steamedDumplingFoodItem.GetFoodItemId());
+            Debug.Log(steamedDumplingFoodItem.GetFoodItemId());
+
             dumplingSteamedPanel.SetActive(true);
+
         }).id;
     }
-    
-    
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -210,12 +228,25 @@ public class DumplingSteamedManager : InteractableManager
         timerSlider.gameObject.SetActive(show);
     }
 
+    private void spawnShrimpDumpling()
+    {
+        GameObject a = Instantiate(foodInDumplingSteamedPrefab[0]);
+        a.transform.position = new Vector3(transform.position.x, 0.245f, transform.position.z);
+        steamedDumplingFoodItem = a.GetComponent<FoodItem>();
+    }
+
+    private void spawnPorkDumpling()
+    {
+        GameObject b = Instantiate(foodInDumplingSteamedPrefab[1]);
+        b.transform.position = new Vector3(transform.position.x, 0.245f, transform.position.z);
+        steamedDumplingFoodItem = b.GetComponent<FoodItem>();
+    }
+
     private void ShowWrongPairUI()
     {
         //show wrong pair UI here
     }
 
-    
     public void FoodInDumplingSteamedAmount(int foodIndex)
     {
         GameObject spawnOrderPicture = Instantiate(foodInDumplingSteamedImagePrefab);

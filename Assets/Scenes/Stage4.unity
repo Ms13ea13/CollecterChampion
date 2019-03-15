@@ -1388,6 +1388,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: foodInDumplingSteamedPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4569017645469974, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1425,6 +1430,36 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4446022872433394, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118470398650494, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 224394455927610190, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.94391
+      objectReference: {fileID: 0}
+    - target: {fileID: 224394455927610190, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.4381083
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: foodInDumplingSteamedPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 1364947404725016, guid: d2fd6d044af43634d8599d81b0889a15,
+        type: 2}
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: foodInDumplingSteamedPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 1622567539850168, guid: 04d82ebed1e11514c96da228fe705651,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
   m_IsPrefabAsset: 0

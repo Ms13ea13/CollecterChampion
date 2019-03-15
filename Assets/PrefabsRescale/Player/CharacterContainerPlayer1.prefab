@@ -11846,7 +11846,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094001855168678}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.255}
+  m_LocalPosition: {x: 0, y: 0, z: 0.249}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4199069347294970}
@@ -13362,7 +13362,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13457,7 +13457,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13552,7 +13552,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13647,7 +13647,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13742,7 +13742,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13837,7 +13837,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13932,7 +13932,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14027,7 +14027,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14122,7 +14122,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14217,7 +14217,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14312,7 +14312,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95af4b069d3d84d40a6adb8b913718cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6708c909279125047bf17ca927d781a6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -16043,4 +16043,4 @@ CharacterController:
   m_StepOffset: 0.03
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.22, z: 0.03}
+  m_Center: {x: 0, y: 0.22, z: 0}

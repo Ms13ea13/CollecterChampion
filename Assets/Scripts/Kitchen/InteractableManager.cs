@@ -14,7 +14,7 @@ public class InteractableManager : MonoBehaviour
 		targetTransform.parent = transform;
 		Vector3 temp = targetTransform.localPosition;
 		temp.x = 0;
-        temp.y = 0.16f;
+        temp.y = 0.15f;
         temp.z = 0;
 		if (!notSetParent)
 		targetTransform.localPosition = temp;

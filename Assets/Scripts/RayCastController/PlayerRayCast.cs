@@ -233,9 +233,7 @@ public class PlayerRayCast : MonoBehaviour
     private void PlateActions()
     {
         if (!holding)
-        {
             if (currentPlateInFront)
-            {
                 if (currentPlateInFront.GetPlateIntoSink())
                 {
                     currentPlateInFront.WashPlate();
@@ -246,8 +244,6 @@ public class PlayerRayCast : MonoBehaviour
                         currentPlateInFront.washDone = false;
                     }
                 }
-            }
-        }
     }
 
     private void UnHoldItem(GameObject target)
