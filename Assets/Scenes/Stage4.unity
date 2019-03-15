@@ -1425,6 +1425,24 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: onFirePicture
+      value: 
+      objectReference: {fileID: 21300000, guid: 8566b271f95dd4b439984f74ea75519e,
+        type: 3}
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: alertPicture
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888,
+        type: 3}
+    - target: {fileID: 114155630174409702, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: steamedPicture
+      value: 
+      objectReference: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
   m_IsPrefabAsset: 0

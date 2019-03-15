@@ -21,6 +21,9 @@ public class DumplingSteamedManager : InteractableManager
   
     [SerializeField] private Slider timerSlider;
     [SerializeField] private Image foodStateUI;
+    [SerializeField] private Sprite onFirePicture;
+    [SerializeField] private Sprite alertPicture;
+    [SerializeField] private Sprite steamedPicture;
 
     [SerializeField] private GameObject dumplingSteamedPanel;
     private GameObject steamedDumpling;
@@ -42,7 +45,7 @@ public class DumplingSteamedManager : InteractableManager
     
     private AudioSource FoodItemAudioSource;
     
-    public AudioClip steaming,complete;
+    public AudioClip steaming,complete, Alert_fire;
 
     void Start()
     {
@@ -238,6 +241,7 @@ public class DumplingSteamedManager : InteractableManager
             Debug.Log(steamedDumplingFoodItem.GetFoodItemId());
 
             dumplingSteamedPanel.SetActive(true);
+            SetFoodUIState();
 
         }).id;
     }
@@ -274,5 +278,30 @@ public class DumplingSteamedManager : InteractableManager
         spawnOrderPicture.GetComponent<Image>().sprite = GameSceneManager.GetInstance().GetFoodPictureById(foodIndex);
         spawnOrderPicture.transform.parent = dumplingSteamedPanel.transform;
         spawnOrderPicture.GetComponent<FoodInDumplingSteamed>().SetOrder(foodIndex);
+    }
+
+    private void SetFoodUIState()
+    {
+        if (foodStateUI == null)
+            throw new Exception("Food state UI is null");
+
+        foodStateUI.gameObject.SetActive(true);
+        switch (steamedDumplingFoodItem.CurrentFoodState)
+        {
+            case FoodStateGlobal.FoodState.Alert:
+                foodStateUI.sprite = alertPicture;
+                break;
+            case FoodStateGlobal.FoodState.OnFire:
+                foodStateUI.sprite = onFirePicture;
+                break;
+            case FoodStateGlobal.FoodState.Steamed:
+                foodStateUI.sprite = steamedPicture;
+                break;
+            default:
+                foodStateUI.gameObject.SetActive(false);
+                break;
+        }
+
+        Debug.LogError(steamedDumplingFoodItem.CurrentFoodState + "HERE");
     }
 }
