@@ -18,7 +18,9 @@ public static class FoodType
         PorkMeat = 9,
         ShrimpDumpling = 10,
 		PorkDumpling = 11,
-		PorkBuns = 16,
-		CreamBuns = 17
+        PaoFlour = 12,
+        SteamFlour = 13,
+        PorkBuns = 14,
+        SteamedBuns = 15
 	}
 }
