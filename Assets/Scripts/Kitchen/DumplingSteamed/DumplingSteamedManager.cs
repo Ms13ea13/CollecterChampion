@@ -57,11 +57,6 @@ public class DumplingSteamedManager : InteractableManager
         CreatingPairIngredients();
     }
 
-    private GameObject GetDumplingPrefabByIndex(int index)
-    {
-        return foodInDumplingSteamedPrefab[index];
-    }
-
     private void CreatingPairIngredients() // Create dumpling set from flour type and meat type
     {
         for (int i = 0; i < flourPairID.Length; i++)
@@ -85,9 +80,6 @@ public class DumplingSteamedManager : InteractableManager
 //            Debug.LogError("plate is null");
             return null;
         }
-         
-           
-
     }
 
     public override bool Interact (GameObject target,ref bool holding, PlayerController player)
@@ -162,8 +154,9 @@ public class DumplingSteamedManager : InteractableManager
         if (dumplingSteamedPanel.transform.childCount > 0)
         {
             dumplingSteamedPanel.SetActive(false);
-//            Debug.LogError("panel doesn't have child");
         }
+        
+        foodStateUI.gameObject.SetActive(false);
         
     }
 
@@ -179,20 +172,16 @@ public class DumplingSteamedManager : InteractableManager
                 tempFood = ingredientsContainer.Find(x => x.GetFoodItemId() == currentIngredientPairID);
                 if (tempFood) // Check if the container really have the pair item added inside
                 {
-//                    Debug.LogError("Try steaming yo shit");
                     SteamingDumplingPair();
                     return false;
                 }
             }
         }
-
-        ShowWrongPairUI();
         return true;
     }
 
     private void SteamingDumplingPair()
     {
-//        Debug.LogError("right pair");
         tempSliderValue = timerSlider.value;
         leantweenID = LeanTween.value(tempSliderValue, SetFoodOnFireValue + 100f, cookTimer).setOnUpdate((tempSliderValue) =>
         {
@@ -205,8 +194,6 @@ public class DumplingSteamedManager : InteractableManager
 
         }).setOnComplete(() =>
         {
-            
-
 //            Debug.LogError("done steaming");
             timerSlider.value = 0;
             tempSliderValue = 0;
@@ -217,22 +204,12 @@ public class DumplingSteamedManager : InteractableManager
 
             if (ingredientsContainer.Find(x => x.GetFoodItemId() == 6) && ingredientsContainer.Find(x => x.GetFoodItemId() == 8))
             {
-//                Debug.LogError("SpawnShrimpDumpling");
                 spawnShrimpDumpling();
             }
             else if (ingredientsContainer.Find(x => x.GetFoodItemId() == 7) && ingredientsContainer.Find(x => x.GetFoodItemId() == 9))
             {
-//                Debug.LogError("SpawnPigDumpling");
                 spawnPorkDumpling();
             }
-
-            //---------------------------------------------------
-
-            //GameObject steamedDumpling = Instantiate(foodInDumplingSteamedPrefab[]);
-
-            //steamedDumpling.transform.position = new Vector3(transform.position.x,0.245f,transform.position.z);
-            //steamedDumplingFoodItem = steamedDumpling.GetComponent<FoodItem>();
-            //            SetTargetPosition(steamedDumpling.transform,true);
 
             RemovePair();
             steamedDumplingFoodItem.CurrentFoodState = steamedDumplingFoodItem.GetDoneState();
@@ -247,12 +224,7 @@ public class DumplingSteamedManager : InteractableManager
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private void SetShowTimerSlider(bool show)
-    {
-        timerSlider.gameObject.SetActive(show);
-    }
-
+   
     private void spawnShrimpDumpling()
     {
         GameObject a = Instantiate(foodInDumplingSteamedPrefab[0]);
@@ -265,11 +237,6 @@ public class DumplingSteamedManager : InteractableManager
         GameObject b = Instantiate(foodInDumplingSteamedPrefab[1]);
         b.transform.position = new Vector3(transform.position.x, 0.245f, transform.position.z);
         steamedDumplingFoodItem = b.GetComponent<FoodItem>();
-    }
-
-    private void ShowWrongPairUI()
-    {
-        //show wrong pair UI here
     }
 
     public void FoodInDumplingSteamedAmount(int foodIndex)
