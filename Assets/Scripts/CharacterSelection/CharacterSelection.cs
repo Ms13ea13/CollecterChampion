@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
     private GameObject[] characterContainer;
     private int characterIndex;
 
+    [SerializeField] private LevelLoader loadingStage;
+
     void Start()
     {
-        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-
         characterIndex = PlayerPrefs.GetInt("CharacterSelect");
         characterContainer = new GameObject[transform.childCount];
 
@@ -52,6 +51,6 @@ public class CharacterSelection : MonoBehaviour
     public void SelectButton()
     {
         PlayerPrefs.SetInt("CharacterSelect", characterIndex);
-        SceneManager.LoadScene("Stage1");
+        loadingStage.Loadlevel(1);
     }
 }

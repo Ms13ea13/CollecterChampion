@@ -662,10 +662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b84d4d09d677841b06acc55aa1327d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodID: 0
+  collider: {fileID: 65834620780392656}
+  foodID: 8
   FoodName: 
   trayBandedId: 0
   foodOnStove: 0
+  foodIntoDumplingSteamed: 0
   foodOnChoppingBoard: 0
   foodOnPan: 0
   foodOnCounter: 0
@@ -674,11 +676,13 @@ MonoBehaviour:
   Alert_fire: {fileID: 8300000, guid: 90ffa534d6758bf42bb1609c42b366ce, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
   grilling: {fileID: 8300000, guid: 59d51d49891c2184f8e1590bbce7bf3f, type: 3}
+  boiling: {fileID: 0}
   rawModel: {fileID: 1055434572777252}
   grilledModel: {fileID: 0}
   friedModel: {fileID: 0}
   chopModel: {fileID: 1716455012392428}
   boiledModel: {fileID: 0}
+  steamedModel: {fileID: 0}
   modelContainer: {fileID: 1206477233767316}
   timerSlider: {fileID: 114327511077538146}
   foodStateUI: {fileID: 114922874371017158}
@@ -686,15 +690,16 @@ MonoBehaviour:
   onFirePicture: {fileID: 21300000, guid: 8566b271f95dd4b439984f74ea75519e, type: 3}
   alertPicture: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888, type: 3}
   friedPicture: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b, type: 3}
+  steamedPicture: {fileID: 0}
   min: 0
   maxFoodCookLevel: 100
   percentage: 0
   currentFoodCookLevel: 0
   onFireValue: 0
   tempSliderValue: 0
-  foodtype: 4
-  DoneState: 2
-  currentFoodState: 0
+  foodtype: 8
+  doneState: 2
+  CurrentFoodState: 0
 --- !u!114 &114922874371017158
 MonoBehaviour:
   m_ObjectHideFlags: 1

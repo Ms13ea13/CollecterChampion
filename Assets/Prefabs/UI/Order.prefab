@@ -159,7 +159,7 @@ MonoBehaviour:
   orderId: 0
   orderName: 
   Price: 0
-  orderTimer: 20
+  orderTimer: 60
   minWaitLevel: 0
   maxWaitLevel: 100
   initiated: 0

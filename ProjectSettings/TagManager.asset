@@ -19,6 +19,7 @@ TagManager:
   - Sink
   - DuckBox
   - Pan
+  - DumplingSteamed
   layers:
   - Default
   - TransparentFX

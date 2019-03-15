@@ -2,19 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinkManager : MonoBehaviour
+public class SinkManager : InteractableManager
 {
-    public void PlacePlateIntoSink(GameObject target, ref bool holding)
+//    public override bool Interact(GameObject target, ref bool holding, PlayerController player = null)
+//    {
+//        var plate = target.GetComponent<PlateItem>();
+//        if (plate == null) return false;
+//       SetTargetPosition(plate.transform);
+//        holding = false;
+//        
+//        plate.SetPlateIntoSink(true);
+//        return true;
+//    }
+    
+    public override GameObject InteractWithPlate(PlateItem plateItem,ref bool holding , PlayerController player = null)
     {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.107f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<PlateItem>().SetPlateIntoSink(true);
+        if (plateItem != null)
+        {
+            SetTargetPosition(plateItem.transform);
+            plateItem.SetPlateIntoSink(true);
+            holding = false;
+        }
+
+        return null;
     }
 }

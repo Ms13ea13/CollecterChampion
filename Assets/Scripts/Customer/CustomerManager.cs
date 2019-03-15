@@ -83,14 +83,15 @@ public class CustomerManager : MonoBehaviour
         
         for (int i = 0; i < plate.ItemInPlate().Count; i++)
         {
-
             var fooditem = plate.ItemInPlate()[i].GetComponent<FoodItem>();
 
             for (int j = 0; j < customerOrders.Count; j++)
             {
+                Debug.Log("order food type : " + customerOrders[j].GetOrderFoodItemType().ToString());
+                Debug.Log("food type : " + fooditem.GetFoodType().ToString());
                 if (customerOrders[j].GetOrderFoodItemType() == fooditem.GetFoodType())
                 {
-//                    Debug.LogError("matching food order : " + customerOrders[j].GetOrderName() +" with item : " + fooditem.GetFoodType());
+                    Debug.Log("matching food order : " + customerOrders[j].GetOrderName() +" with item : " + fooditem.GetFoodType());
                     DelayPayment(customerOrders[j].GetOrderPrice());
                     RemoveOrder(customerOrders[j]);
                     Destroy(plate.ItemInPlate()[i]);
@@ -98,6 +99,10 @@ public class CustomerManager : MonoBehaviour
                     plate.ClearTargetOrderPanel(fooditem.GetFoodItemId());
                     spawnDirtyDish.DelaySpawnDish(3f);
                     break;
+                }
+                else
+                {
+                    Debug.LogError("aint' catch shit");
                 }
             }
         }
@@ -133,7 +138,7 @@ public class CustomerManager : MonoBehaviour
         if (customerOrders.Count > 0 && foodReceive)
         {
             
-            Debug.LogError("ReceiveOrder");
+            Debug.Log("ReceiveOrder");
             foreach (var item in customerOrders)
             {
                 if (CheckFood(item, foodReceive)) return true;

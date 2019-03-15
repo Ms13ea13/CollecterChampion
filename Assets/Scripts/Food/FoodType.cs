@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class FoodType  {
-
+public static class FoodType
+{
 	public enum FoodItemType
 	{
 		Duck = 0,
@@ -12,9 +12,13 @@ public static class FoodType  {
 		CrispyPork = 3,
         Phongko = 4,
         Tofu = 5,
-        ShrimpDumpling = 6,
-		PorkDumpling = 7,
-		PorkBuns = 8,
-		CreamBuns = 9
+        YellowFlour = 6,
+        GreenFlour = 7,
+        Shrimp = 8,
+        PorkMeat = 9,
+        ShrimpDumpling = 10,
+		PorkDumpling = 11,
+		PorkBuns = 16,
+		CreamBuns = 17
 	}
 }

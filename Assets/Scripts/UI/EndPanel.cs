@@ -9,12 +9,18 @@ public class EndPanel : MonoBehaviour
 
     //public GameObject[] disableOBJ;
 
+    private bool stop = false;
     void Update()
     {
         /*disableOBJ[0].SetActive(false);
         disableOBJ[1].SetActive(false);*/
 
-        stopSound[0].Stop();
-        stopSound[1].Stop();
+        if (stopSound.Length > 0 && stop == false )
+        {
+            stopSound[0].Stop();
+            stopSound[1].Stop();
+            stop = true;
+        }
+    
     }
 }

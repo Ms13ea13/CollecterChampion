@@ -9,7 +9,7 @@ public class PressAnyKey : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("03MainMenu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

@@ -43,6 +43,7 @@ public class TimeManager : MonoBehaviour
         else
         {
             timer = 0;
+            if (GameSceneManager.GetInstance() != null)
             GameSceneManager.GetInstance().SetGameEnd(true);
         }
     }

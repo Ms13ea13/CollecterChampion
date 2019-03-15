@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoveManager : MonoBehaviour
+public class StoveManager : InteractableManager
 {
-    public void PlaceObjIntoStove(GameObject target  , ref bool holding)
+    public override bool Interact(GameObject target  , ref bool holding, PlayerController player = null)
     {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.139f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f,0f,0f,0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodOnStove(true);
+        FoodItem food = target.gameObject.GetComponent<FoodItem>();
+        if (food == null) return false;
+        
+        int foodID = food.GetFoodItemId();
+
+        if (foodID == 0 || foodID == 2)
+        {
+            SetTargetPosition(food.transform);
+            holding = false;
+            food.SetFoodOnStove(true);
+            food.PutFoodInTheStove();
+        }
+
+        return true;
     }
 }

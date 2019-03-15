@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 
-public class PotManager : MonoBehaviour
+public class PotManager : InteractableManager
 {
-    public void PlaceFoodIntoPot(GameObject target, ref bool holding)
+    public override bool Interact (GameObject target, ref bool holding , PlayerController player = null)
     {
-        target.transform.parent = transform;
-        Vector3 temp = target.transform.localPosition;
-        temp.y = 0.148f;
-        temp.x = 0;
-        temp.z = 0;
-        target.transform.localPosition = temp;
-        Quaternion tempQuaternion = new Quaternion(0f, 0f, 0f, 0f);
-        target.transform.localRotation = tempQuaternion;
-        holding = false;
-        target.GetComponent<FoodItem>().SetFoodIntoPot(true);
+        FoodItem food = target.gameObject.GetComponent<FoodItem>();
+        if (food == null) return false;
+        
+        int foodID = food.GetFoodItemId();
+
+        if (foodID == 1 || foodID == 5)
+        {
+            SetTargetPosition(food.transform);
+            holding = false;
+            food.SetFoodIntoPot(true);
+            food.PutFoodInThePot();
+        }
+
+        return true;
     }
 }
