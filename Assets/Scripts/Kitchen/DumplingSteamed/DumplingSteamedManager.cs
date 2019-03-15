@@ -106,24 +106,32 @@ public class DumplingSteamedManager : InteractableManager
                
                 if (!ingredientsContainer.Contains(food) && ingredientsContainer.Count < maxIngredientsAmount)  //Check that container amount and add item
                 {
-                    dumplingSteamedPanel.SetActive(true);
-                    Debug.LogError("adding " + food.GetFoodItemName() + " to container");
-                    ingredientsContainer.Add(food);
-                    SetTargetPosition(food.transform);
+                    if (food.IsFoodChopped())
+                    {
+                        dumplingSteamedPanel.SetActive(true);
+                        Debug.LogError("adding " + food.GetFoodItemName() + " to container");
 
-                    food.SetFoodIntoDumplingSteamed(true);
-                    FoodInDumplingSteamedAmount(food.GetFoodItemId());
+                        ingredientsContainer.Add(food);
 
-                    food.gameObject.tag = "Untagged";
-                    food.DestroyFoodItemCollider();
-                    food.enabled = false;
-//                    Destroy(food.gameObject);
-                    holding = false;
+                        SetTargetPosition(food.transform);
+
+                        food.SetFoodIntoDumplingSteamed(true);
+                        FoodInDumplingSteamedAmount(food.GetFoodItemId());
+
+                        food.gameObject.tag = "Untagged";
+                        food.DestroyFoodItemCollider();
+                        food.enabled = false;
+                        //                    Destroy(food.gameObject);
+                        holding = false;
+                    }
                 }
             
                 if (ingredientsContainer.Count >= maxIngredientsAmount) //In case container if full , then take action
                 {
-                    wrongPair = SteamTheFuckOutOfYourDumpling();
+                    if (food.IsFoodChopped())
+                    {
+                        wrongPair = SteamTheFuckOutOfYourDumpling();
+                    }
                 }
             }
         }
