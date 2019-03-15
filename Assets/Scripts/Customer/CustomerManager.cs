@@ -83,7 +83,6 @@ public class CustomerManager : MonoBehaviour
         
         for (int i = 0; i < plate.ItemInPlate().Count; i++)
         {
-
             var fooditem = plate.ItemInPlate()[i].GetComponent<FoodItem>();
 
             for (int j = 0; j < customerOrders.Count; j++)

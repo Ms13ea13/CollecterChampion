@@ -1443,6 +1443,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b,
         type: 3}
+    - target: {fileID: 114053878286913258, guid: 460f2bd6db9d1b04aa772d4963afd99d,
+        type: 2}
+      propertyPath: delayOrderTimer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460f2bd6db9d1b04aa772d4963afd99d, type: 2}
   m_IsPrefabAsset: 0

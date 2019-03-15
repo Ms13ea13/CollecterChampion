@@ -6360,7 +6360,7 @@ MonoBehaviour:
   statusImages: []
   customerPanel: {fileID: 0}
   spawnDirtyDish: {fileID: 114255511644545602}
-  delayOrderTimer: 50
+  delayOrderTimer: 15
 --- !u!114 &114940437828693752
 MonoBehaviour:
   m_ObjectHideFlags: 1
