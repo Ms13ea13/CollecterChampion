@@ -77,6 +77,11 @@ public class PlayerRayCast : MonoBehaviour
             FoodActions();
             PlateActions();
         }
+        else
+        {
+            animPlayer.SetBool("isChop", false);
+            animPlayer.SetBool("isWash", false);
+        }
     }
 
     private void GetFoodInFront()
@@ -266,9 +271,9 @@ public class PlayerRayCast : MonoBehaviour
             if (currentFoodInFront)
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
-                    //animPlayer.SetBool("isChop", true);
+                    animPlayer.SetBool("isChop", true);
                     currentFoodInFront.ChopFood();
-                    //animPlayer.SetBool("isChop", false);
+                    //
                 }
     }
 
@@ -278,7 +283,7 @@ public class PlayerRayCast : MonoBehaviour
             if (currentPlateInFront)
                 if (currentPlateInFront.GetPlateIntoSink())
                 {
-                    //animPlayer.SetBool("isWash", true);
+                    animPlayer.SetBool("isWash", true);
                     currentPlateInFront.WashPlate();
 
                     if (currentPlateInFront.washDone)
