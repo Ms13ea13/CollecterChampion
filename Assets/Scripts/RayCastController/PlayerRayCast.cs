@@ -200,8 +200,6 @@ public class PlayerRayCast : MonoBehaviour
                     TakeObjIntoHold(currentFoodInFront.gameObject);
                 }
             }
-
-           
         }
     }
 
@@ -237,7 +235,6 @@ public class PlayerRayCast : MonoBehaviour
                     }
                     else
                         UnHoldItem(holdingItem);
-                    
                 }
                 else if (interactableManagerInFront)
                 {
@@ -257,7 +254,6 @@ public class PlayerRayCast : MonoBehaviour
                         else 
                             TakeObjIntoHold(emptyPlate.gameObject);
                     }
-                    
                 }
                 else
                     UnHoldItem(holdingItem);
@@ -273,7 +269,6 @@ public class PlayerRayCast : MonoBehaviour
                 {
                     animPlayer.SetBool("isChop", true);
                     currentFoodInFront.ChopFood();
-                    //
                 }
     }
 
@@ -290,7 +285,6 @@ public class PlayerRayCast : MonoBehaviour
                     {
                         spawnCleanDish.SpawnDish();
                         currentPlateInFront.washDone = false;
-                        //animPlayer.SetBool("isWash", true);
                     }
                 }
     }
