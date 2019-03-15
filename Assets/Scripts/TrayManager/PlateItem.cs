@@ -146,7 +146,7 @@ public class PlateItem : MonoBehaviour
     public bool AddFoodToPlate(FoodItem food)
     {
 
-        if (!food.FoodIsDone())
+        if (!food.IsFoodDoneCooking())
         {
             Debug.LogError("Nope food is : " + food.CurrentFoodState.ToString());
             return false;

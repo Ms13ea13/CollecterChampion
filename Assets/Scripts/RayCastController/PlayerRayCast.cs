@@ -152,6 +152,7 @@ public class PlayerRayCast : MonoBehaviour
                 if (interactableManagerInFront)
                 {
                   GameObject foodItemGameObj =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,ref  holding ,player);
+                    if (foodItemGameObj == null) return;
                     FoodItem foodItem = foodItemGameObj.GetComponent<FoodItem>();
                     if (foodItem)
                     {

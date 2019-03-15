@@ -540,7 +540,7 @@ public class FoodItem : MonoBehaviour
         }).id;
     }
 
-    private void ChangeFoodVisualAccordingToStates() // show visual
+    public void ChangeFoodVisualAccordingToStates() // show visual
     {
         switch (CurrentFoodState)
         {
