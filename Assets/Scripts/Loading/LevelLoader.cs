@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (Time.timeScale == 0)
             Time.timeScale = 1;
+
         StartCoroutine(LoadAsynchronously(SceneIndex));
     }
 

@@ -12,6 +12,9 @@ public class MoveCameraToMouse : MonoBehaviour
    
 	void Update ()
     {
+        if (Time.timeScale == 0)
+            Time.timeScale = 1;
+
 		if (Input.GetAxis("Mouse Y") > 0 && transform.position.y < limitMax.y)
         { 
             transform.position += new Vector3(0.0f,Input.GetAxisRaw("Mouse Y")*Time.deltaTime*speed,0);

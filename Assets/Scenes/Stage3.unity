@@ -1769,9 +1769,20 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -59
       objectReference: {fileID: 0}
+    - target: {fileID: 114536318193843218, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: totalScoreText
+      value: 
+      objectReference: {fileID: 1944425344}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1944425344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114708108468377064, guid: 051b05698df63624986138bac3a398e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1944425343}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1961393713
 GameObject:
   m_ObjectHideFlags: 0

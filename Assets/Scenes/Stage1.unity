@@ -505,6 +505,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114570492596192724, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: totalScoreText
+      value: 
+      objectReference: {fileID: 1544168579}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9241752178d5f124a8a6918088faca54, type: 2}
   m_IsPrefabAsset: 0
@@ -1504,6 +1509,12 @@ Transform:
   m_Father: {fileID: 1736157675}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1544168579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114279262020582812, guid: 9241752178d5f124a8a6918088faca54,
+    type: 2}
+  m_PrefabInternal: {fileID: 469155428}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1642593875
 GameObject:
   m_ObjectHideFlags: 0

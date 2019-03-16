@@ -1627,6 +1627,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114034402193896746, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: totalScoreText
+      value: 
+      objectReference: {fileID: 1902593820}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3bf182c5df14cf49833aa1ddebc09e5, type: 2}
   m_IsPrefabAsset: 0
@@ -1656,6 +1661,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1952715168268922, guid: a3bf182c5df14cf49833aa1ddebc09e5,
     type: 2}
   m_PrefabInternal: {fileID: 1902593814}
+--- !u!114 &1902593820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114500375104562250, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1902593814}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1937536559
 GameObject:
   m_ObjectHideFlags: 0

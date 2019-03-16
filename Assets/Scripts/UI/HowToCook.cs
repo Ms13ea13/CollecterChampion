@@ -20,7 +20,9 @@ public class HowToCook : MonoBehaviour
     {
         if (Input.anyKey && ShowTutorial)
         {
-            Time.timeScale = 1;
+            if (Time.timeScale == 0)
+                Time.timeScale = 1;
+
             ShowTutorial = false;
             howToCook.SetActive(false);
             GameSceneManager.GetInstance().GameInitiate();
