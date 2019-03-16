@@ -21,6 +21,7 @@ public class SinkManager : InteractableManager
         {
             SetTargetPosition(plateItem.transform);
             plateItem.SetPlateIntoSink(true);
+            plateItem.GetComponent<Collider>().enabled = true;
             holding = false;
         }
 

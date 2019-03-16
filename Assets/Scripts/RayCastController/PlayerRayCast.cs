@@ -225,7 +225,7 @@ public class PlayerRayCast : MonoBehaviour
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>())
+                  /*  if (holdingItem.GetComponent<FoodItem>())
                     { 
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
@@ -235,7 +235,7 @@ public class PlayerRayCast : MonoBehaviour
                         }
                         
                     }
-                    else if (holdingItem.GetComponent<PlateItem>())
+                    else */if (holdingItem.GetComponent<PlateItem>())
                     {
                        
                         PlateItem plateToServe = holdingItem.GetComponent<PlateItem>();
@@ -277,7 +277,7 @@ public class PlayerRayCast : MonoBehaviour
     private void FoodActions()
     {
         if (!holding)
-            if (currentFoodInFront)
+            if (currentFoodInFront && !currentFoodInFront.IsFoodDoneCooking())
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
                     animPlayer.SetBool("isChop", true);

@@ -146,23 +146,29 @@ public class PlateItem : MonoBehaviour
     public bool AddFoodToPlate(FoodItem food)
     {
 
-        if (!food.IsFoodDoneCooking())
+        if (food.IsFoodDoneCooking() || food.CompareCurrentFoodState(FoodStateGlobal.FoodState.Alert)  )
+        {
+            if (itemsInPlate.Count < 3)
+            {
+                itemsInPlate.Add(food.gameObject);
+                food.transform.parent = transform;
+                food.GetComponent<Collider>().enabled = false;
+                food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
+                food.SetBannedId(currentIndex);
+                FoodInPlateAmount(food.GetFoodItemId());
+            }
+            return true;
+         
+        }
+        else
         {
             Debug.LogError("Nope food is : " + food.CurrentFoodState.ToString());
             return false;
         }
 
-        if (itemsInPlate.Count < 3)
-        {
-            itemsInPlate.Add(food.gameObject);
-            food.transform.parent = transform;
-            food.GetComponent<Collider>().enabled = false;
-            food.transform.localPosition = StackFoodVisually(currentIndex, food.transform);
-            food.SetBannedId(currentIndex);
-            FoodInPlateAmount(food.GetFoodItemId());
-        }
+      
 
-        return true;
+       
     }
 
     public bool DeliverFoodViaPlate(CustomerManager customer)

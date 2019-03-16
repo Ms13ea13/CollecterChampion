@@ -47,7 +47,6 @@ public class CustomerManager : MonoBehaviour
 
     public void Initiate()
     {
-        if (customerOrders == null)
         customerOrders = new List<FoodOrder>();
         OrderingFood();
         
