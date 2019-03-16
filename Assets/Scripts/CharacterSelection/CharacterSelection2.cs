@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSelection : MonoBehaviour
+public class CharacterSelection2 : MonoBehaviour
 {
     private GameObject[] characterContainer;
     private int characterIndex;
 
-    private CharacterSelection2 characterP2save;
-
-    [SerializeField] private LevelLoader loadingStage;
-    [SerializeField] private int index;
-
     void Start()
     {
-        characterIndex = PlayerPrefs.GetInt("CharacterSelect");
+        characterIndex = PlayerPrefs.GetInt("CharacterSelect2");
         characterContainer = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -29,7 +24,7 @@ public class CharacterSelection : MonoBehaviour
         }
     }
 
-    public void ToggleLeft()
+    public void ToggleLeft2()
     {
         characterContainer[characterIndex].SetActive(false);
 
@@ -39,10 +34,10 @@ public class CharacterSelection : MonoBehaviour
 
         characterContainer[characterIndex].SetActive(true);
 
-        PlayerPrefs.SetInt("CharacterSelect", characterIndex);
+        PlayerPrefs.SetInt("CharacterSelect2", characterIndex);
     }
 
-    public void ToggleRight()
+    public void ToggleRight2()
     {
         characterContainer[characterIndex].SetActive(false);
 
@@ -52,11 +47,6 @@ public class CharacterSelection : MonoBehaviour
 
         characterContainer[characterIndex].SetActive(true);
 
-        PlayerPrefs.SetInt("CharacterSelect", characterIndex);
-    }
-
-    public void SelectButton()
-    {
-        loadingStage.Loadlevel(index);
+        PlayerPrefs.SetInt("CharacterSelect2", characterIndex);
     }
 }

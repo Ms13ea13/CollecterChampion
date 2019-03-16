@@ -268,11 +268,13 @@ public class DumplingSteamedManager : InteractableManager
     private void DoneSteamingDumpling()
     {
         if (steamedDumplingFoodItem != null) return;
-        if (ingredientsContainer.Find(x => x.GetFoodItemId() == 6) && ingredientsContainer.Find(x => x.GetFoodItemId() == 8))
+        if (ingredientsContainer.Find(x => x.GetFoodItemId() == 6) && ingredientsContainer.Find(x => x.GetFoodItemId() == 8) ||
+            ingredientsContainer.Find(x => x.GetFoodItemId() == 9) && ingredientsContainer.Find(x => x.GetFoodItemId() == 12))
         {
             spawnShrimpDumpling();
         }
-        else if (ingredientsContainer.Find(x => x.GetFoodItemId() == 7) && ingredientsContainer.Find(x => x.GetFoodItemId() == 9))
+        else if (ingredientsContainer.Find(x => x.GetFoodItemId() == 7) && ingredientsContainer.Find(x => x.GetFoodItemId() == 9) ||
+                 ingredientsContainer.Find(x => x.GetFoodItemId() == 13) && ingredientsContainer.Find(x => x.GetFoodItemId() == 13))
         {
             spawnPorkDumpling();
         }

@@ -10729,7 +10729,7 @@ MonoBehaviour:
   statusImages: []
   customerPanel: {fileID: 0}
   spawnDirtyDish: {fileID: 114809561465981722}
-  delayOrderTimer: 100
+  delayOrderTimer: 15
 --- !u!114 &114077212044533482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10797,12 +10797,16 @@ MonoBehaviour:
   - {fileID: 1622567539850168, guid: 04d82ebed1e11514c96da228fe705651, type: 2}
   timerSlider: {fileID: 114282123259656258}
   foodStateUI: {fileID: 114952745943982574}
+  onFirePicture: {fileID: 21300000, guid: 8566b271f95dd4b439984f74ea75519e, type: 3}
+  alertPicture: {fileID: 21300000, guid: 8d902fca61d27ce41b3f6b4695892888, type: 3}
+  steamedPicture: {fileID: 21300000, guid: 90384cbefa64367448b085ae4e61391b, type: 3}
   dumplingSteamedPanel: {fileID: 1870116951959642}
   wrongPair: 0
   doneCooking: 0
   tempSliderValue: 0
-  steaming: {fileID: 8300000, guid: 9ddcdcc18626ebc45a069b1ead27cb62, type: 3}
+  steaming: {fileID: 8300000, guid: 57d9650de7aab574aab947d09469dea5, type: 3}
   complete: {fileID: 8300000, guid: c1e39811bba3c134f8aa63ba919bab90, type: 3}
+  Alert_fire: {fileID: 0}
 --- !u!114 &114184083947909754
 MonoBehaviour:
   m_ObjectHideFlags: 1
