@@ -204,14 +204,13 @@ public class PlayerRayCast : MonoBehaviour
 
            else if (currentFoodInFront && currentFoodInFront.enabled)
             {
-                if (!currentFoodInFront.IsFoodDoneCooking())
-                {
+    
                     playerAudioSource.PlayOneShot(pick_up);
 
                     currentFoodInFront.StopFoodItemSoundEffect();
                     currentFoodInFront.SetDefaultFoodUI();
                     TakeObjIntoHold(currentFoodInFront.gameObject);
-                }
+                
             }
         }
     }
@@ -277,7 +276,7 @@ public class PlayerRayCast : MonoBehaviour
     private void FoodActions()
     {
         if (!holding)
-            if (currentFoodInFront && !currentFoodInFront.IsFoodDoneCooking())
+            if (currentFoodInFront )
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
                     animPlayer.SetBool("isChop", true);
