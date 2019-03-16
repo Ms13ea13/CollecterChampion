@@ -47,6 +47,7 @@ public class CustomerManager : MonoBehaviour
 
     public void Initiate()
     {
+        customerOrders = new List<FoodOrder>();
         OrderingFood();
         
         if (HowToCook.IsShowingTutorial())

@@ -761,9 +761,9 @@ public class FoodItem : MonoBehaviour
         return foodOnPan;
     }
 
-    public bool CompareCurrentFoodState(FoodStateGlobal.FoodState foodStateGlobal)
+    public bool CompareCurrentFoodState(FoodStateGlobal.FoodState foodstate)
     {
-        return CurrentFoodState == foodStateGlobal;
+        return CurrentFoodState == foodstate;
     }
 
     public FoodStateGlobal.FoodState GetDoneState()

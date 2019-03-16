@@ -156,8 +156,17 @@ public class PlayerRayCast : MonoBehaviour
                 
                 if (interactableManagerInFront)
                 {
+                    Debug.LogError("holding plate and interact");
                   GameObject foodItemGameObj =  interactableManagerInFront.InteractWithPlate(currentPlateInFront,ref  holding ,player);
-                    if (foodItemGameObj == null) return;
+                    if (foodItemGameObj == null)
+                    {
+                        Debug.LogError("gameobj from interactWithPlate is null");
+                        if (holding == false)
+                        {
+                            ResetHolding();
+                        }
+                        return;
+                    }
                     FoodItem foodItem = foodItemGameObj.GetComponent<FoodItem>();
                     if (foodItem)
                     {
@@ -173,6 +182,10 @@ public class PlayerRayCast : MonoBehaviour
                         {
                             Debug.Log("didnt add shit");
                         }
+                    }
+                    else
+                    {
+                        Debug.LogError("not food item yo");
                     }
                 }
             }
@@ -212,7 +225,7 @@ public class PlayerRayCast : MonoBehaviour
                 playerAudioSource.PlayOneShot(pick_up);
                 if (currentCustomerInFront)
                 {
-                    if (holdingItem.GetComponent<FoodItem>())
+                  /*  if (holdingItem.GetComponent<FoodItem>())
                     { 
                         FoodItem foodToServe = holdingItem.GetComponent<FoodItem>();
                         if (currentCustomerInFront.ReceiveOrder(foodToServe))
@@ -222,7 +235,7 @@ public class PlayerRayCast : MonoBehaviour
                         }
                         
                     }
-                    else if (holdingItem.GetComponent<PlateItem>())
+                    else */if (holdingItem.GetComponent<PlateItem>())
                     {
                        
                         PlateItem plateToServe = holdingItem.GetComponent<PlateItem>();
@@ -255,8 +268,8 @@ public class PlayerRayCast : MonoBehaviour
                             TakeObjIntoHold(emptyPlate.gameObject);
                     }
                 }
-                else
-                    UnHoldItem(holdingItem);
+//                else
+//                    UnHoldItem(holdingItem);
             }
         }
     }
@@ -264,7 +277,7 @@ public class PlayerRayCast : MonoBehaviour
     private void FoodActions()
     {
         if (!holding)
-            if (currentFoodInFront)
+            if (currentFoodInFront && !currentFoodInFront.IsFoodDoneCooking())
                 if (currentFoodInFront.GetFoodOnChoppingBoard())
                 {
                     animPlayer.SetBool("isChop", true);
@@ -303,7 +316,11 @@ public class PlayerRayCast : MonoBehaviour
 
     public void TakeObjIntoHold(GameObject target)
     {
-        playerAudioSource.PlayOneShot(pick_up);//
+       
+        
+        
+        Debug.LogError("takeOBJ into hold ");
+        playerAudioSource.PlayOneShot(pick_up);
         target.transform.parent = transform;
         Vector3 temp = target.transform.localPosition;
         temp.x = 0;
