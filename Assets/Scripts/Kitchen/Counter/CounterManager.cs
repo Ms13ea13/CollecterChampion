@@ -23,6 +23,7 @@ public class CounterManager : InteractableManager
         if (plateItem != null)
         {
             SetTargetPosition(plateItem.transform);
+            plateItem.GetComponent<Collider>().enabled = true;
             holding = false;
         }
 
