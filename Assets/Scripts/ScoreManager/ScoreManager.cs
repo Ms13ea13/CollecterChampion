@@ -35,7 +35,15 @@ public class ScoreManager : MonoBehaviour
         CheckScore(score);
     }
 
-	private void SetScoreContent(string message)
+    public void RemoveScoreNumber(int minusScore)
+    {
+        score -= minusScore;
+        SetScoreContent(score.ToString());
+
+        CheckScore(score);
+    }
+
+    private void SetScoreContent(string message)
 	{
 		scoreText.text = message;
         totalScoreText.text = message;

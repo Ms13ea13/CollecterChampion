@@ -69,6 +69,7 @@ public class FoodOrder : MonoBehaviour
         }).setOnComplete(() =>
         {
             CustomerManager.RemoveOrder(this);
+            CustomerManager.GetInstance().RemovePayment(Price/2);
             CustomerManager.GetInstance().OrderingFood();
             Destroy(gameObject);
         }).id;

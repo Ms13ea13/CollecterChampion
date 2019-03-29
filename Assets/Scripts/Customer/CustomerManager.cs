@@ -104,6 +104,7 @@ public class CustomerManager : MonoBehaviour
                 else
                 {
                     Debug.LogError("aint' catch shit");
+                    //RemovePayment(customerOrders[j].GetOrderPrice());
                 }
             }
         }
@@ -177,6 +178,12 @@ public class CustomerManager : MonoBehaviour
     {
         //Play coin vfx here
         GameSceneManager.GetInstance().CustomerPayMoneyToStore(moneyAmount);
+    }
+
+    public void RemovePayment(int moneyAmount)
+    {
+        //Play coin vfx here
+        GameSceneManager.GetInstance().CustomerDidNotPayMoneyToStore(moneyAmount);
     }
 
     void DelayPayment(int moneyAmount)

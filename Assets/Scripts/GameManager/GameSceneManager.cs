@@ -136,6 +136,11 @@ public class GameSceneManager : MonoBehaviour
         scoreManager.AddScoreNumber(price);
     }
 
+    public void CustomerDidNotPayMoneyToStore(int price)
+    {
+        scoreManager.RemoveScoreNumber(price);
+    }
+
     //Pause Panel -------------------------------------------------------------------
     public GameObject PausePanel;
 
