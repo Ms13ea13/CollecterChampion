@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score_sound: {fileID: 8300000, guid: 73e86a0b6128b9a4294b3235d1027152, type: 3}
   scoreText: {fileID: 114500375104562250}
-  totalScoreText: {fileID: 114265741157255120}
+  totalScoreText: {fileID: 114500375104562250}
   score: 0
   plusStar: {fileID: 0}
   minScore: 50
@@ -8502,6 +8502,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 98, y: -59.00006}
-  m_SizeDelta: {x: 174.03, y: 100}
+  m_AnchoredPosition: {x: 435, y: -645}
+  m_SizeDelta: {x: 174.03003, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
