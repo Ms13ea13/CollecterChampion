@@ -30,20 +30,25 @@ public class ScoreManager : MonoBehaviour
 	public void AddScoreNumber(int plusScore)
 	{
 		score += plusScore;
+
 		SetScoreContent(score.ToString());
-        
         CheckScore(score);
     }
 
     public void RemoveScoreNumber(int minusScore)
     {
         score -= minusScore;
-        SetScoreContent(score.ToString());
 
+        if (score <= 0)
+        {
+            score = 0;
+        }
+
+        SetScoreContent(score.ToString());
         CheckScore(score);
     }
 
-    private void SetScoreContent(string message)
+    public void SetScoreContent(string message)
 	{
 		scoreText.text = message;
         totalScoreText.text = message;
