@@ -205,8 +205,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.8513874, b: 0.514151, a: 1}
-  m_Intensity: 4.81
-  m_Range: 0.37
+  m_Intensity: 3.38
+  m_Range: 0.45
   m_SpotAngle: 75.4
   m_CookieSize: 10
   m_Shadows:
@@ -501,6 +501,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 489084678}
+    - target: {fileID: 1761147452731768, guid: 9241752178d5f124a8a6918088faca54, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9241752178d5f124a8a6918088faca54, type: 2}
   m_IsPrefabAsset: 0
@@ -1460,8 +1464,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.9716981, g: 0.9111834, b: 0.81127626, a: 1}
-  m_Intensity: 2.65
-  m_Range: 1.89
+  m_Intensity: 0.95
+  m_Range: 5.51
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1717,7 +1721,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.3063813, g: 0.6827138, b: 0.764151, a: 1}
-  m_Intensity: 4.81
+  m_Intensity: 5.28
   m_Range: 0.37
   m_SpotAngle: 75.4
   m_CookieSize: 10

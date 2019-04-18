@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17988706, g: 0.22523275, b: 0.30666435, a: 1}
+  m_IndirectSpecularColor: {r: 0.17988694, g: 0.22523247, b: 0.30666348, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1723,17 +1723,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114536318193843218, guid: 051b05698df63624986138bac3a398e4,
-        type: 2}
-      propertyPath: plusStar
-      value: 
-      objectReference: {fileID: 858645528}
-    - target: {fileID: 114927248556453888, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114839179457792086, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1556619644}
-    - target: {fileID: 114469255598988762, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114319597290509020, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1556619644}
+    - target: {fileID: 114435270223380164, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1748,21 +1748,21 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
-    - target: {fileID: 114435270223380164, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114469255598988762, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1556619644}
-    - target: {fileID: 114319597290509020, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114927248556453888, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1556619644}
-    - target: {fileID: 114839179457792086, guid: 051b05698df63624986138bac3a398e4,
+    - target: {fileID: 114536318193843218, guid: 051b05698df63624986138bac3a398e4,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: plusStar
       value: 
-      objectReference: {fileID: 1556619644}
+      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}
   m_IsPrefabAsset: 0
