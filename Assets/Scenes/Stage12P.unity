@@ -612,6 +612,94 @@ Prefab:
       propertyPath: maxScore
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 114044390899633276, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: addEndSceneValue
+      value: 
+      objectReference: {fileID: 724095120}
+    - target: {fileID: 114295040419559000, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_Text
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469318587303922, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_Text
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209648133880526, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_Text
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443349086760228, guid: 9241752178d5f124a8a6918088faca54, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224773364274815272, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224773364274815272, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224773364274815272, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 224227724134957094, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224227724134957094, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224227724134957094, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 224717526469851170, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224717526469851170, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224717526469851170, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 224773364274815272, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 224227724134957094, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 224717526469851170, guid: 9241752178d5f124a8a6918088faca54,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782240391470648, guid: 9241752178d5f124a8a6918088faca54, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9241752178d5f124a8a6918088faca54, type: 2}
   m_IsPrefabAsset: 0
@@ -1196,6 +1284,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &724095120 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 724095119}
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
 --- !u!1 &777267696
 GameObject:
   m_ObjectHideFlags: 0

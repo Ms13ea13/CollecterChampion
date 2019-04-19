@@ -499,6 +499,7 @@ GameObject:
   - component: {fileID: 4829069027901838}
   - component: {fileID: 114844664717689844}
   - component: {fileID: 143008793820145514}
+  - component: {fileID: 114444953989716372}
   m_Layer: 0
   m_Name: CharacterContainerPlayer1
   m_TagString: Untagged
@@ -14907,6 +14908,18 @@ MonoBehaviour:
   pick_up: {fileID: 8300000, guid: 0bf8926b6d5cbcd478bfdac510d24bd8, type: 3}
   sent_food: {fileID: 8300000, guid: e06447c06f558d5439e8cf41ac4acc16, type: 3}
   animPlayer: {fileID: 0}
+--- !u!114 &114444953989716372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1094001855168678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endScene: 0
 --- !u!114 &114453902213873798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15161,6 +15174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingStage: {fileID: 0}
+  index: 0
 --- !u!114 &114853142003717942
 MonoBehaviour:
   m_ObjectHideFlags: 1

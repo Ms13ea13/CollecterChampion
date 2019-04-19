@@ -1725,11 +1725,36 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114034402193896746, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+    - target: {fileID: 114242883014596706, guid: a3bf182c5df14cf49833aa1ddebc09e5,
         type: 2}
-      propertyPath: plusStar
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 858645528}
+      objectReference: {fileID: 717753483}
+    - target: {fileID: 114989157569288322, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 717753483}
+    - target: {fileID: 114768946850290458, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 717753483}
+    - target: {fileID: 114598130989172628, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 717753483}
+    - target: {fileID: 114265702591536788, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 717753483}
+    - target: {fileID: 114291263678991432, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+        type: 2}
+      propertyPath: addEndSceneValue
+      value: 
+      objectReference: {fileID: 2029443108}
     - target: {fileID: 114291263678991432, guid: a3bf182c5df14cf49833aa1ddebc09e5,
         type: 2}
       propertyPath: stopSound.Array.data[0]
@@ -1740,35 +1765,11 @@ Prefab:
       propertyPath: stopSound.Array.data[1]
       value: 
       objectReference: {fileID: 730997559}
-    - target: {fileID: 114265702591536788, guid: a3bf182c5df14cf49833aa1ddebc09e5,
+    - target: {fileID: 114034402193896746, guid: a3bf182c5df14cf49833aa1ddebc09e5,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: plusStar
       value: 
-      objectReference: {fileID: 717753483}
-    - target: {fileID: 114598130989172628, guid: a3bf182c5df14cf49833aa1ddebc09e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 717753483}
-    - target: {fileID: 114768946850290458, guid: a3bf182c5df14cf49833aa1ddebc09e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 717753483}
-    - target: {fileID: 114989157569288322, guid: a3bf182c5df14cf49833aa1ddebc09e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 717753483}
-    - target: {fileID: 114242883014596706, guid: a3bf182c5df14cf49833aa1ddebc09e5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 717753483}
-    - target: {fileID: 1289266936390350, guid: a3bf182c5df14cf49833aa1ddebc09e5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 858645528}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3bf182c5df14cf49833aa1ddebc09e5, type: 2}
   m_IsPrefabAsset: 0
@@ -1972,6 +1973,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2029443108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2029443107}
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
 --- !u!1 &2031863021
 GameObject:
   m_ObjectHideFlags: 0

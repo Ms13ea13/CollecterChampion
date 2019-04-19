@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage52P.unity
     guid: 7db0b4d3cc8206341920961d2ada39e9
+  - enabled: 1
+    path: Assets/Scenes/StoryEnd.unity
+    guid: 5001dd11bc749d04a83a9eea919bc29c
   m_configObjects: {}

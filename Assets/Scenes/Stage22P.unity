@@ -860,7 +860,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1561095951199956, guid: 57b75c8e07d3a8d4c8f1a46335004007, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114578563469977318, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
@@ -885,6 +885,26 @@ Prefab:
     - target: {fileID: 114578563469977318, guid: 57b75c8e07d3a8d4c8f1a46335004007,
         type: 2}
       propertyPath: maxScore
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 114122187931776664, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: addEndSceneValue
+      value: 
+      objectReference: {fileID: 508267614}
+    - target: {fileID: 114780120792965120, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Text
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114128659795729248, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Text
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822556760816702, guid: 57b75c8e07d3a8d4c8f1a46335004007,
+        type: 2}
+      propertyPath: m_Text
       value: 900
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1090,6 +1110,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &508267614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 508267613}
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
 --- !u!1 &685464584
 GameObject:
   m_ObjectHideFlags: 0

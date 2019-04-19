@@ -1570,6 +1570,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1493992739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1493992738}
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
 --- !u!1 &1558546700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1990,26 @@ Prefab:
         type: 2}
       propertyPath: middleScore
       value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986340080169824, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: addEndSceneValue
+      value: 
+      objectReference: {fileID: 1493992739}
+    - target: {fileID: 114926638255766998, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_Text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114194806602307860, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_Text
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 114924998002466160, guid: 051b05698df63624986138bac3a398e4,
+        type: 2}
+      propertyPath: m_Text
+      value: 160
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051b05698df63624986138bac3a398e4, type: 2}

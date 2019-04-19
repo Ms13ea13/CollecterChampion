@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EndPanel : MonoBehaviour
 {
+    [SerializeField] private TriggerEndScene addEndSceneValue;
     [SerializeField] private AudioSource[] stopSound;
 
     //public GameObject[] disableOBJ;
@@ -20,7 +21,9 @@ public class EndPanel : MonoBehaviour
             stopSound[0].Stop();
             stopSound[1].Stop();
             stop = true;
+
+            addEndSceneValue.endScene += 1;
+            PlayerPrefs.SetInt("StageIndex", addEndSceneValue.endScene);
         }
-    
     }
 }

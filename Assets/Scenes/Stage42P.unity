@@ -541,6 +541,26 @@ Prefab:
       propertyPath: maxScore
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 114035159584842118, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: addEndSceneValue
+      value: 
+      objectReference: {fileID: 1513315262}
+    - target: {fileID: 114690246747202922, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: m_Text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004880471190856, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: m_Text
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348939488232622, guid: 3f49d9114312d4042bfacad6923f3e64,
+        type: 2}
+      propertyPath: m_Text
+      value: 240
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f49d9114312d4042bfacad6923f3e64, type: 2}
   m_IsPrefabAsset: 0
@@ -1948,6 +1968,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1513315262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1513315261}
+  m_Script: {fileID: 11500000, guid: 29bc3c1b6e41b4744af2489d929fe474, type: 3}
 --- !u!1 &1588341251
 GameObject:
   m_ObjectHideFlags: 0
