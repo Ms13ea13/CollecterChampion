@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18352471, g: 0.22907385, b: 0.30566213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18352488, g: 0.22907436, b: 0.3056626, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1281,6 +1281,11 @@ Prefab:
       propertyPath: spawnCleanDish
       value: 
       objectReference: {fileID: 1479340131}
+    - target: {fileID: 114444953989716372, guid: 0f50c04eb53ddb9439d28fce024061d5,
+        type: 2}
+      propertyPath: loadEndStory
+      value: 
+      objectReference: {fileID: 432481689}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f50c04eb53ddb9439d28fce024061d5, type: 2}
   m_IsPrefabAsset: 0
